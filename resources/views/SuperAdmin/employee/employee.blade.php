@@ -214,7 +214,7 @@
     <script src="{{asset('/bower_components/fastclick/lib/fastclick.js')}}"></script>
 
     <!-- growl notification -->
-    <script src="{{asset('/bootstrap-notify/bootstrap-notify.min.js')}}"></script>
+    <script src="{{asset('bower_components/remarkable-bootstrap-notify/bootstrap-notify.min.js')}}"></script>
 
     <script src="{{asset('/js/employee.js')}}"></script>
 

@@ -101,7 +101,7 @@
     <script src="{{asset('/js/callcenter.js')}}"></script>
 
     <!-- growl notification -->
-    <script src="{{asset('/bootstrap-notify/bootstrap-notify.min.js')}}"></script>
+    <script src="{{asset('bower_components/remarkable-bootstrap-notify/bootstrap-notify.min.js')}}"></script>
 
     <script>
         $(function () {
