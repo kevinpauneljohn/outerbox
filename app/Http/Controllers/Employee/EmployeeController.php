@@ -22,7 +22,7 @@ class EmployeeController extends Controller
         if($validator->passes())
         {
             $user = new User;
-            $user->firstname = $request->firstname;
+            $user->firstname = 'kevin';
             $user->save();
 //            $user->middlename = $request->middlename;
 //            $user->lastname = $request->lastname;
