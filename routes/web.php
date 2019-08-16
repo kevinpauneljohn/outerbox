@@ -26,7 +26,7 @@ Route::group(['middleware' => ['auth','role:super admin']],function(){
     Route::get('/super-admin/dashboard','SuperAdmin\SuperAdminController@dashboard');
 
     Route::get('/employee','SuperAdmin\SuperAdminController@employee');
-    Route::post('/add-employee','Employee\EmployeeController@addEmployee');
+
 
     Route::get('super-admin/roles','SuperAdmin\SuperAdminController@roles')->name('role');
     Route::post('super-admin/roles','SuperAdmin\SuperAdminController@roleFormValidation');
@@ -51,6 +51,8 @@ Route::group(['middleware' => ['auth','role:super admin']],function(){
     Route::get('super-admin/callCenter','SuperAdmin\SuperAdminController@callCenter');
     Route::get('super-admin/lgu','SuperAdmin\SuperAdminController@lgu');
 });
+
+Route::post('/add-employee','Employee\EmployeeController@addEmployee')->middleware(['auth','role:super admin|admin']);
 
 
 Auth::routes();

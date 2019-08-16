@@ -50,23 +50,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                    @foreach($users as $user)
-                        <tr>
-                            <td>{{$user->created_at}}</td>
-                            <td>
-                                {{ucfirst($user->firstname).' '.ucfirst($user->lastname)}}
-                            </td>
-                            <td>{{$user->email}}</td>
-                            <td>{{$user->username}}</td>
-                            <td>{{(sizeof($user->roles) > 0) ? ucfirst($user->roles[0]->name) : ''}}</td>
-                            <td></td>
-                            <td>
-                                <a href="#"><button type="button" class="btn btn-success edit-btn" title="View"><i class="fa fa-eye"></i></button></a>
-                                <button type="button" class="btn btn-primary edit-callcenter" title="Edit" data-toggle="modal" data-target="#edit_callCenterModal" value=""><i class="fa fa-edit"></i></button>
-                                <button type="button" class="btn btn-danger delete-callcenter" title="Delete" data-toggle="modal" data-target="#delete_call_center" value=""><i class="fa fa-trash"></i></button>
-                            </td>
-                        </tr>
-                        @endforeach
+
                 </tbody>
                 <tfoot>
                 <tr>
@@ -163,45 +147,41 @@
                                     </div>
                                 </span>
                             </div>
-{{--                        </div>--}}
-                        <div class="form-group">
-                            <div class="row">
-                                <div class="col-lg-4">
-                                    <div class="form-group">
-                                        <div class="role">
-                                            <label for="role">Select Role</label>
-                                            <select name="role" class="form-control role" id="role">
-                                                <option></option>
-                                                @foreach($roles as $role)
-                                                    <option value="{{$role->name}}">{{ucfirst($role->name)}}</option>
-                                                    @endforeach
-                                            </select>
+                            {{--                        </div>--}}
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <div class="role">
+                                                <label for="role">Select Role</label>
+                                                <select name="role" class="form-control role" id="role">
+                                                    <option></option>
+
+                                                </select>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
 
-                                <div class="col-lg-4">
-                                    <div class="form-group">
-                                        <div class="role">
-                                            <label for="role">Assign To Call Center</label>
-                                            <select name="role" class="form-control role" id="callcenter">
-                                                <option></option>
-                                                @foreach($callcenters as $callcenter)
-                                                    <option value="{{$callcenter->id}}">{{ucfirst($callcenter->name)}}</option>
-                                                @endforeach
-                                            </select>
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <div class="role">
+                                                <label for="role">Assign To Call Center</label>
+                                                <select name="role" class="form-control role" id="callcenter">
+                                                    <option></option>
+
+                                                </select>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn bg-purple"><i class="fa fa-check"></i> Save</button>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn bg-purple"><i class="fa fa-check"></i> Save</button>
+                        </div>
                     </div>
-                </div>
                 </div>
             </form>
         </div>
