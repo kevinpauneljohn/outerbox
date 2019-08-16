@@ -35,7 +35,12 @@ class EmployeeController extends Controller
 //        }
 //
 //        return response()->json($validator->errors());
-        $user = User::all();
+        $user = $request->firstname.'<br/>';
+        $user .= $request->middlename.'<br/>';
+        $user .= $request->lastname.'<br/>';
+        $user .= $request->email.'<br/>';
+        $user .= $request->username.'<br/>';
+        $user .= bcrypt($request->password).'<br/>';
         return $user;
     }
 }
