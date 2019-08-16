@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="03ba3b1d-e17f-4440-a069-100ded3b375a" name="Default Changelist" comment="updated call center profile">
+    <list default="true" id="03ba3b1d-e17f-4440-a069-100ded3b375a" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/SuperAdmin/SuperAdminController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/SuperAdmin/SuperAdminController.php" afterDir="false" />
     </list>
@@ -91,8 +91,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/SuperAdmin/SuperAdminController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="21" column="5" lean-forward="true" selection-start-line="21" selection-start-column="5" selection-end-line="21" selection-end-column="5" />
+            <state relative-caret-position="272">
+              <caret line="24" column="38" selection-start-line="24" selection-start-column="38" selection-end-line="24" selection-end-column="38" />
               <folding>
                 <element signature="e#51#72#0#PHP" expanded="true" />
               </folding>
@@ -430,11 +430,25 @@
       <option name="project" value="LOCAL" />
       <updated>1565982548077</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="updated super admin controller">
+      <created>1565982695149</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1565982695149</updated>
+    </task>
+    <task id="LOCAL-00024" summary="updated super admin controller">
+      <created>1565982787347</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1565982787347</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="8058000" />
+    <option name="totallyTimeSpent" value="8286000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
@@ -488,7 +502,8 @@
     <MESSAGE value="updated EmployeeController" />
     <MESSAGE value="updated the employee js" />
     <MESSAGE value="updated call center profile" />
-    <option name="LAST_COMMIT_MESSAGE" value="updated call center profile" />
+    <MESSAGE value="updated super admin controller" />
+    <option name="LAST_COMMIT_MESSAGE" value="updated super admin controller" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/database/migrations/2019_08_16_174613_change_mname_and_extname_attr_to_nullable.php">
@@ -614,8 +629,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/SuperAdmin/SuperAdminController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="21" column="5" lean-forward="true" selection-start-line="21" selection-start-column="5" selection-end-line="21" selection-end-column="5" />
+        <state relative-caret-position="272">
+          <caret line="24" column="38" selection-start-line="24" selection-start-column="38" selection-end-line="24" selection-end-column="38" />
           <folding>
             <element signature="e#51#72#0#PHP" expanded="true" />
           </folding>
