@@ -21,7 +21,6 @@ class EmployeeController extends Controller
 //
         if($validator->passes())
         {
-            return $request->all();
             $user = new User;
             $user->firstname = $request->firstname;
 //            $user->middlename = $request->middlename;
