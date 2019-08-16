@@ -180,7 +180,7 @@
                                     <div class="form-group">
                                         <div class="role">
                                             <label for="role">Assign To Call Center</label>
-                                            <select name="role" class="form-control role" id="role">
+                                            <select name="role" class="form-control role" id="callcenter">
                                                 <option></option>
                                                 @foreach($callcenters as $callcenter)
                                                     <option value="{{$callcenter->id}}">{{ucfirst($callcenter->name)}}</option>
