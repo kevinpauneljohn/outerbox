@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\SuperAdmin;
 
+use App\Models\Leads;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -138,8 +139,10 @@ class SuperAdminController extends Controller
 
     public function callCenterProfile($id)
     {
+
         $callCenter = CallCenter::find($id);
-        return view('SuperAdmin.callCenter.callcenterProfile')->with(['callcenter' => $callCenter]);
+        $employee = User::all()->except(['1','2']);
+        return view('SuperAdmin.callCenter.callcenterProfile')->with(['callcenter' => $callCenter, 'employees' => $employee]);
     }
 
     public function lgu()

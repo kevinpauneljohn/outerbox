@@ -71,7 +71,16 @@
                 </tr>
                 </thead>
                 <tbody>
-
+                    @foreach($employees as $employee)
+                            <tr>
+                                <td>{{$employee->created_at}}</td>
+                                <td>{{ucfirst($employee->firstname).' '.ucfirst($employee->lastname)}}</td>
+                                <td>{{$employee->username}}</td>
+                                <td>{{$employee->email}}</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        @endforeach
                 </tbody>
                 <tfoot>
                 <tr>
