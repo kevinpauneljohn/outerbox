@@ -18,6 +18,7 @@ $(document).on('submit','#add-staff',function (form) {
 
     $.ajax({
         'url'   : '/add-employee',
+        'headers': {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
         'type'  : 'POST',
         'data'  : data,
         'cache' : false,

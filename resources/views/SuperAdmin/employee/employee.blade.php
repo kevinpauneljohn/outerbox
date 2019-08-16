@@ -1,5 +1,9 @@
 @extends('layouts.admin_template')
 
+@section('extra_meta')
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+@endsection
+
 @section('title')
     Super Admin | Staffs
 @endsection
