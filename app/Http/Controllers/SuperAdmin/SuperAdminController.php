@@ -22,7 +22,7 @@ class SuperAdminController extends Controller
     {
         $roles = Role::all();
         $role = $roles->except(1);
-        $users = User::all();
+        $users = User::all()->except([1,2]);
         $callcenter = CallCenter::all();
         return view('SuperAdmin.employee.employee')->with(['roles' => $role, 'users' => $users, 'callcenters' => $callcenter]);
     }
