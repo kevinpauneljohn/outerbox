@@ -28,7 +28,7 @@ class EmployeeController extends Controller
             $user->email = $request->email;
             $user->username = $request->username;
             $user->password = bcrypt($request->password);
-            $user->assignRole($request->role);
+//            $user->assignRole($request->role);
 
             $message = ($user->save()) ? ['success' => true] : ['success' => false];
             return $message;
