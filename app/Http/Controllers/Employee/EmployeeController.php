@@ -23,6 +23,7 @@ class EmployeeController extends Controller
         {
             $user = new User;
             $user->firstname = $request->firstname;
+            $user->save();
 //            $user->middlename = $request->middlename;
 //            $user->lastname = $request->lastname;
 //            $user->email = $request->email;
@@ -30,8 +31,8 @@ class EmployeeController extends Controller
 //            $user->password = bcrypt($request->password);
 //            $user->assignRole($request->role);
 
-            $message = ($user->save()) ? ['success' => true] : ['success' => false];
-            return response()->json($message);
+//            $message = ($user->save()) ? ['success' => true] : ['success' => false];
+//            return response()->json($message);
         }
 //
 //        return response()->json($validator->errors());
