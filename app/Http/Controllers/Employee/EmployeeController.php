@@ -11,16 +11,17 @@ class EmployeeController extends Controller
 {
     public function addEmployee(Request $request)
     {
-//        $validator = Validator::make($request->all(),[
-//            'firstname'     => 'required|min:2|max:50',
-//            'lastname'      => 'required|min:2|max:50',
-//            'email'         => 'required|email|unique:users,email',
-//            'username'      => 'required|unique:users,username',
-//            'password'      => 'required|min:3|max:50|confirmed'
-//        ]);
+        $validator = Validator::make($request->all(),[
+            'firstname'     => 'required|min:2|max:50',
+            'lastname'      => 'required|min:2|max:50',
+            'email'         => 'required|email|unique:users,email',
+            'username'      => 'required|unique:users,username',
+            'password'      => 'required|min:3|max:50|confirmed'
+        ]);
 //
-//        if($validator->passes())
-//        {
+        if($validator->passes())
+        {
+            return $request->all();
 //            $user = new User;
 //            $user->firstname = $request->firstname;
 //            $user->middlename = $request->middlename;
@@ -32,15 +33,8 @@ class EmployeeController extends Controller
 //
 //            $message = ($user->save()) ? ['success' => true] : ['success' => false];
 //            return response()->json($message);
-//        }
+        }
 //
 //        return response()->json($validator->errors());
-        $user = $request->firstname.'<br/>';
-        $user .= $request->middlename.'<br/>';
-        $user .= $request->lastname.'<br/>';
-        $user .= $request->email.'<br/>';
-        $user .= $request->username.'<br/>';
-        $user .= bcrypt($request->password).'<br/>';
-        return $user;
     }
 }
