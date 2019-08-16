@@ -133,7 +133,7 @@ class SuperAdminController extends Controller
     public function callCenter()
     {
         $callCenter = CallCenter::all();
-        return view('SuperAdmin.callCenter.callCenter')->with(['callcenters' => $callCenter]);
+        return view('SuperAdmin.callCenter.callcenter')->with(['callcenters' => $callCenter]);
     }
 
     public function callCenterProfile($id)
