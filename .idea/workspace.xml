@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="03ba3b1d-e17f-4440-a069-100ded3b375a" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/employee.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/employee.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Employee/EmployeeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Employee/EmployeeController.php" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/vendor/beyondcode/laravel-dump-server/" />
     <ignored path="$PROJECT_DIR$/vendor/composer/" />
@@ -105,7 +105,7 @@
     </execution>
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.6021841">
+    <splitter split-orientation="horizontal" split-proportion="0.67316693">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file pinned="false" current-in-tab="false">
@@ -120,8 +120,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Employee/EmployeeController.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="374">
-                  <caret line="22" column="47" lean-forward="true" selection-start-line="22" selection-start-column="47" selection-end-line="22" selection-end-column="47" />
+                <state relative-caret-position="272">
+                  <caret line="95" column="31" selection-start-line="95" selection-start-column="31" selection-end-line="95" selection-end-column="31" />
                   <folding>
                     <element signature="e#49#62#0#PHP" expanded="true" />
                   </folding>
@@ -178,8 +178,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/public/js/employee.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="408">
-                  <caret line="56" column="27" selection-start-line="56" selection-start-column="27" selection-end-line="56" selection-end-column="27" />
+                <state relative-caret-position="204">
+                  <caret line="92" column="48" lean-forward="true" selection-start-line="92" selection-start-column="48" selection-end-line="92" selection-end-column="48" />
                 </state>
               </provider>
             </entry>
@@ -233,8 +233,8 @@
         <option value="$PROJECT_DIR$/routes/web.php" />
         <option value="$PROJECT_DIR$/app/User.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/SuperAdmin/SuperAdminController.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/Employee/EmployeeController.php" />
         <option value="$PROJECT_DIR$/public/js/employee.js" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/Employee/EmployeeController.php" />
       </list>
     </option>
   </component>
@@ -700,7 +700,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1566091570261</updated>
-      <workItem from="1566091579241" duration="31475000" />
+      <workItem from="1566091579241" duration="32460000" />
     </task>
     <task id="LOCAL-00026" summary="set the default landing page to login page">
       <created>1566092197937</created>
@@ -758,11 +758,25 @@
       <option name="project" value="LOCAL" />
       <updated>1566146363770</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="updated the employee js">
+      <created>1566146604960</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1566146604960</updated>
+    </task>
+    <task id="LOCAL-00035" summary="updated the employee js">
+      <created>1566147708127</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1566147708127</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="39978000" />
+    <option name="totallyTimeSpent" value="40963000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
@@ -817,13 +831,13 @@
     <MESSAGE value="update user model" />
     <MESSAGE value="added change_mname_and_extname_attr_to_nullable" />
     <MESSAGE value="updated EmployeeController" />
-    <MESSAGE value="updated the employee js" />
     <MESSAGE value="updated call center profile" />
     <MESSAGE value="updated super admin controller" />
     <MESSAGE value="set the default landing page to login page" />
     <MESSAGE value="updated the call center profile page" />
     <MESSAGE value="updated the employee page" />
-    <option name="LAST_COMMIT_MESSAGE" value="updated the employee page" />
+    <MESSAGE value="updated the employee js" />
+    <option name="LAST_COMMIT_MESSAGE" value="updated the employee js" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/database/migrations/2019_08_16_174613_change_mname_and_extname_attr_to_nullable.php" />
@@ -1003,20 +1017,20 @@
         <state relative-caret-position="-136" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Employee/EmployeeController.php">
+    <entry file="file://$PROJECT_DIR$/public/js/employee.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="22" column="47" lean-forward="true" selection-start-line="22" selection-start-column="47" selection-end-line="22" selection-end-column="47" />
-          <folding>
-            <element signature="e#49#62#0#PHP" expanded="true" />
-          </folding>
+        <state relative-caret-position="204">
+          <caret line="92" column="48" lean-forward="true" selection-start-line="92" selection-start-column="48" selection-end-line="92" selection-end-column="48" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/employee.js">
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Employee/EmployeeController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="56" column="27" selection-start-line="56" selection-start-column="27" selection-end-line="56" selection-end-column="27" />
+        <state relative-caret-position="272">
+          <caret line="95" column="31" selection-start-line="95" selection-start-column="31" selection-end-line="95" selection-end-column="31" />
+          <folding>
+            <element signature="e#49#62#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
