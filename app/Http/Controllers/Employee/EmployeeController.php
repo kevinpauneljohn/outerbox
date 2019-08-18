@@ -93,41 +93,39 @@ class EmployeeController extends Controller
     public function updateEmployeeDetails(Request $request)
     {
 
-        return $request->all();
+        $validator = Validator::make($request->all(),[
+            'edit_firstname'     => 'required|min:2|max:50',
+            'edit_lastname'      => 'required|min:2|max:50',
+            'edit_email'         => 'required',
+            'edit_role'          => 'required',
+            'edit_callcenter'          => 'required'
+        ]);
 
-//        $validator = Validator::make($request->all(),[
-//            'edit_firstname'     => 'required|min:2|max:50',
-//            'edit_lastname'      => 'required|min:2|max:50',
-//            'edit_email'         => 'required',
-//            'edit_role'          => 'required',
-//            'edit_callcenter'          => 'required'
-//        ]);
-//
-//        if($validator->passes())
-//        {
-//            $user = User::find($request->user_value);
-//            $user->firstname = $request->edit_firstname;
-//            $user->middlename = $request->edit_middlename;
-//            $user->lastname = $request->edit_lastname;
-//            $user->email = $request->edit_email;
-//            $user->removeRole($request->old_role);
-//            $user->assignRole($request->edit_role);
-//
-//            if($user->save())
-//            {
-//                if(!empty($request->edit_callcenter) > 0)
-//                {
-//                    $this->updateUserAssignmentToCC($user->id,$request->edit_callcenter);
-//                }
-//                $message = ['success' => true];
-//            }else{
-//                $message = ['success' => false];
-//            }
-//
-//            return response()->json($message);
-//        }
-//
-//        return response()->json($validator->errors());
+        if($validator->passes())
+        {
+            $user = User::find($request->user_value);
+            $user->firstname = $request->edit_firstname;
+            $user->middlename = $request->edit_middlename;
+            $user->lastname = $request->edit_lastname;
+            $user->email = $request->edit_email;
+            $user->removeRole($request->old_role);
+            $user->assignRole($request->edit_role);
+
+            if($user->save())
+            {
+                if(!empty($request->edit_callcenter) > 0)
+                {
+                    $this->updateUserAssignmentToCC($request->user_value,$request->edit_callcenter);
+                }
+                $message = ['success' => true];
+            }else{
+                $message = ['success' => false];
+            }
+
+            return response()->json($message);
+        }
+
+        return response()->json($validator->errors());
     }
 
     public function deleteEmployee(Request $request)
