@@ -19,7 +19,8 @@ class EmployeeController extends Controller
             'email'         => 'required|email|unique:users,email',
             'username'      => 'required|unique:users,username',
             'password'      => 'required|min:3|max:50|confirmed',
-            'role'          => 'required'
+            'role'          => 'required',
+            'callcenter'          => 'required'
         ]);
 //
         if($validator->passes())
