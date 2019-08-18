@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\SuperAdmin;
 
-use App\Models\Leads;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Validator;
@@ -26,11 +26,7 @@ class SuperAdminController extends Controller
         $users = User::all()->except(2);
         $callcenter = CallCenter::all();
         $time = Carbon::now();
-// OR:
-// use with your own timestamp:
-// $time = Carbon::createFromTimestamp($your_timestamp);
 
-//        $datetime = $time->format('Y_m_d_His'); // your desired format
         return view('SuperAdmin.employee.employee')->with(['roles' => $role, 'users' => $users, 'callcenters' => $callcenter, 'date' => $time]);
     }
 
@@ -148,7 +144,10 @@ class SuperAdminController extends Controller
     {
 
         $callCenter = CallCenter::find($id);
-        $employee = User::all()->except(['1','2']);
+//        $employee = User::all()->except(['1','2']);
+        $employee = DB::table('users')
+            ->leftJoin('callcenterdetails', 'users.id', '=', 'callcenterdetails.user_id')
+            ->where('callcenterdetails.cc_id', '=',$id)->get();
         return view('SuperAdmin.callCenter.callcenterProfile')->with(['callcenter' => $callCenter, 'employees' => $employee]);
     }
 

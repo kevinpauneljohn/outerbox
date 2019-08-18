@@ -58,7 +58,7 @@
     </div>
     <div class="box">
         <div class="box-body">
-            <h2>Agents</h2>
+            <h2>Employees</h2>
             <table id="agent-list" class="table table-bordered table-hover">
                 <thead>
                 <tr>
