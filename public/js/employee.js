@@ -54,7 +54,7 @@ $(document).on('submit','#add-staff',function (form) {
             console.log(result.status);
         }
     });
-    check_value('firstname','lastname','email','username','password','role');
+    check_value('firstname','lastname','email','username','password','role','callcenter');
 });
 
 $(document).on('click','.edit-employee',function(){
