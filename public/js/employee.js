@@ -87,45 +87,45 @@ $(document).on('submit','#update-staff',function (form) {
 
     let data = $('#update-staff').serialize();
 
-    console.log(data);
 
-    // $.ajax({
-    //     'url'   : '/update-employee-details',
-    //     'type'  : 'POST',
-    //     'data'  : data,
-    //     'cache' : false,
-    //     success:function(result){
-    //         if(result.success == true)
-    //         {
-    //             setTimeout(function(){
-    //                 $('#edit_employee').modal('toggle');
-    //                 $.notify({
-    //                         message: '1 Employee Successfully Added!'
-    //                     } ,{
-    //                         type: 'success'
-    //                     }
-    //                 );
-    //
-    //                 setTimeout(function(){
-    //                     location.reload();
-    //                 },1500);
-    //             });
-    //         }
-    //
-    //         $.each(result, function (key, value) {
-    //             var element = $('#'+key);
-    //
-    //             element.closest('div.'+key)
-    //                 .addClass(value.length > 0 ? 'has-error' : 'has-success')
-    //                 .find('.text-danger')
-    //                 .remove();
-    //             element.after('<p class="text-danger">'+value+'</p>');
-    //         });
-    //     },error:function(error){
-    //         console.log(error.status);
-    //     }
-    // });
-    // check_value('edit_firstname','edit_lastname','edit_email','edit_role','edit_callcenter');
+    $.ajax({
+        'url'   : '/update-employee-details',
+        'type'  : 'POST',
+        'data'  : data,
+        'cache' : false,
+        success:function(result){
+            console.log(result);
+            // if(result.success == true)
+            // {
+            //     setTimeout(function(){
+            //         $('#edit_employee').modal('toggle');
+            //         $.notify({
+            //                 message: '1 Employee Successfully Added!'
+            //             } ,{
+            //                 type: 'success'
+            //             }
+            //         );
+            //
+            //         setTimeout(function(){
+            //             location.reload();
+            //         },1500);
+            //     });
+            // }
+            //
+            // $.each(result, function (key, value) {
+            //     var element = $('#'+key);
+            //
+            //     element.closest('div.'+key)
+            //         .addClass(value.length > 0 ? 'has-error' : 'has-success')
+            //         .find('.text-danger')
+            //         .remove();
+            //     element.after('<p class="text-danger">'+value+'</p>');
+            // });
+        },error:function(error){
+            console.log(error.status);
+        }
+    });
+    check_value('edit_firstname','edit_lastname','edit_email','edit_role','edit_callcenter');
 });
 
 $(document).on('click','.delete-employee-btn',function(){
