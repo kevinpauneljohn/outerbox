@@ -6,6 +6,7 @@ use App\Models\Leads;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Carbon;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Validator;
@@ -24,7 +25,13 @@ class SuperAdminController extends Controller
         $role = $roles->except(1);
         $users = User::all()->except(2);
         $callcenter = CallCenter::all();
-        return view('SuperAdmin.employee.employee')->with(['roles' => $role, 'users' => $users, 'callcenters' => $callcenter]);
+        $time = Carbon::now();
+// OR:
+// use with your own timestamp:
+// $time = Carbon::createFromTimestamp($your_timestamp);
+
+//        $datetime = $time->format('Y_m_d_His'); // your desired format
+        return view('SuperAdmin.employee.employee')->with(['roles' => $role, 'users' => $users, 'callcenters' => $callcenter, 'date' => $time]);
     }
 
     #Role Page Method

@@ -14,7 +14,6 @@ $(document).on('submit','#add-staff',function (form) {
 
     let data = $('#add-staff').serialize();
 
-    console.log('hello');
 
     $.ajax({
         'url'   : '/add-employee',
@@ -55,5 +54,5 @@ $(document).on('submit','#add-staff',function (form) {
             console.log(result.status);
         }
     });
-    // check_value('firstname','lastname','email','username','password');
+    check_value('firstname','lastname','email','username','password','role');
 });
