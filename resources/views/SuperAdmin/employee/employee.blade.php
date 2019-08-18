@@ -58,12 +58,12 @@
                             </td>
                             <td>{{$user->email}}</td>
                             <td>{{$user->username}}</td>
-                            <td>{{(sizeof($user->roles) > 0) ? ucfirst($user->roles[0]->name) : ''}}</td>
-                            <td></td>
+                            <td>{{ucfirst($user->role_name)}}</td>
+                            <td>{{ucfirst($user->cc_name)}}</td>
                             <td>
                                 <a href="#"><button type="button" class="btn btn-success edit-btn" title="View"><i class="fa fa-eye"></i></button></a>
-                                <button type="button" class="btn btn-primary edit-callcenter" title="Edit" data-toggle="modal" data-target="#edit_callCenterModal" value=""><i class="fa fa-edit"></i></button>
-                                <button type="button" class="btn btn-danger delete-callcenter" title="Delete" data-toggle="modal" data-target="#delete_call_center" value=""><i class="fa fa-trash"></i></button>
+                                <button type="button" class="btn btn-primary edit-employee" title="Edit" data-toggle="modal" data-target="#edit_employee" value="{{$user->id}}"><i class="fa fa-edit"></i></button>
+                                <button type="button" class="btn btn-danger delete-employee" title="Delete" data-toggle="modal" data-target="#delete_employee" value="{{$user->id}}"><i class="fa fa-trash"></i></button>
                             </td>
                         </tr>
                         @endforeach
@@ -163,7 +163,7 @@
                                     </div>
                                 </span>
                             </div>
-{{--                        </div>--}}
+
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-lg-4">
@@ -206,6 +206,101 @@
             </form>
         </div>
     </div>
+
+    {{--Edit Staff--}}
+    <div class="modal fade" id="edit_employee">
+        <div class="modal-dialog modal-lg">
+            <form method="post" id="update-staff">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">Update Employee</h4>
+                    </div>
+
+                    <div class="modal-body">
+                        @csrf
+                        <input type="hidden" name="user_value" id="user_value"/>
+                        <div class="form-group">
+                            <div class="row">
+                                <span class="col-lg-4">
+                                    <div class="form-group">
+                                        <div class="edit_firstname">
+                                            <label for="edit_firstname">First name</label> <span class="required">*</span>
+                                            <input type="text" name="edit_firstname" id="edit_firstname" class="form-control"/>
+                                        </div>
+                                    </div>
+                                </span>
+                                <span class="col-lg-4">
+                                    <div class="form-group">
+                                        <div class="edit_middlename">
+                                            <label for="edit_middlename">Middle name</label>
+                                            <input type="text" name="edit_middlename" id="edit_middlename" class="form-control"/>
+                                        </div>
+                                    </div>
+                                </span>
+                                <span class="col-lg-4">
+                                    <div class="form-group">
+                                        <div class="edit_lastname">
+                                            <label for="edit_lastname">Last name</label><span class="required">*</span>
+                                            <input type="text" name="edit_lastname" id="edit_lastname" class="form-control"/>
+                                        </div>
+                                    </div>
+                                </span>
+                            </div>
+                            <div class="row">
+                                <span class="col-lg-6">
+                                    <div class="form-group">
+                                        <div class="edit_email">
+                                            <label for="edit_email">Email</label><span class="required">*</span>
+                                            <input type="text" name="edit_email" id="edit_email" class="form-control"/>
+                                        </div>
+                                    </div>
+                                </span>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <div class="edit_role">
+                                                <label for="edit_role">Select Role</label>
+                                                <select name="edit_role" class="form-control role" id="edit_role">
+                                                    <option></option>
+                                                    @foreach($roles as $role)
+                                                        <option value="{{$role->name}}">{{ucfirst($role->name)}}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <input type="hidden" name="old_role" id="old_role"/>
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <div class="edit_callcenter">
+                                                <label for="edit_callcenter">Assign To Call Center</label>
+                                                <select name="edit_callcenter" class="form-control" id="edit_callcenter">
+                                                    <option></option>
+                                                    @foreach($callcenters as $callcenter)
+                                                        <option value="{{$callcenter->id}}">{{ucfirst($callcenter->name)}}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn bg-purple"><i class="fa fa-check"></i> Save</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
 @endsection
 
 @section('extra_script')
@@ -225,7 +320,8 @@
 
     <script>
         $(function () {
-            $('#agents-list').DataTable()
+            $('#agents-list').DataTable({
+            })
         })
     </script>
 @endsection

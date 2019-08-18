@@ -52,7 +52,12 @@ Route::group(['middleware' => ['auth','role:super admin']],function(){
     Route::get('super-admin/lgu','SuperAdmin\SuperAdminController@lgu');
 });
 
-Route::post('/add-employee','Employee\EmployeeController@addEmployee')->middleware(['auth','role:super admin|admin']);
+Route::group(['middleware' => ['auth','role:super admin|admin']], function (){
+    Route::post('/add-employee','Employee\EmployeeController@addEmployee');
+    Route::post('/get-employee-details','Employee\EmployeeController@getEmployeeDetails');
+    Route::post('/update-employee-details','Employee\EmployeeController@updateEmployeeDetails');
+});
+
 
 
 Auth::routes();

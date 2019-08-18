@@ -23,7 +23,16 @@ class SuperAdminController extends Controller
     {
         $roles = Role::all();
         $role = $roles->except(1);
-        $users = User::all()->except(2);
+        //$users = User::all()->except(2);
+
+        $users = DB::table('users')
+            ->leftJoin('callcenterdetails', 'users.id', '=', 'callcenterdetails.user_id')
+            ->leftJoin('call_centers','callcenterdetails.cc_id','=','call_centers.id')
+            ->leftJoin('model_has_roles','users.id','=','model_has_roles.model_id')
+            ->leftJoin('roles','model_has_roles.role_id','=','roles.id')
+            ->select('users.id','users.firstname','users.middlename','users.lastname','users.email','users.username','users.created_at','roles.name as role_name','callcenterdetails.cc_id as cc_id','call_centers.name as cc_name')
+            ->get();
+
         $callcenter = CallCenter::all();
         $time = Carbon::now();
 
@@ -147,12 +156,20 @@ class SuperAdminController extends Controller
 
         $employee = DB::table('users')
             ->leftJoin('callcenterdetails', 'users.id', '=', 'callcenterdetails.user_id')
-            ->Join('model_has_roles','users.id','=','model_has_roles.model_id')
-            ->join('roles','model_has_roles.role_id','=','roles.id')
+            ->leftJoin('model_has_roles','users.id','=','model_has_roles.model_id')
+            ->leftJoin('roles','model_has_roles.role_id','=','roles.id')
             ->select('users.*','roles.name as role_name')
-            ->where('callcenterdetails.cc_id', '=',$id)->get();
+            ->where('callcenterdetails.cc_id', '=',$id)
+            ->get();
 
-        return view('SuperAdmin.callCenter.callcenterProfile')->with(['callcenter' => $callCenter, 'employees' => $employee]);
+        $roles = Role::all()->except(1);
+
+        return view('SuperAdmin.callCenter.callcenterProfile')->with([
+            'callcenter' => $callCenter,
+            'employees' => $employee,
+            'roles' => $roles,
+            'cc_id' => $id
+        ]);
     }
 
     public function lgu()
