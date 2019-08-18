@@ -94,7 +94,6 @@ class EmployeeController extends Controller
 
         $validator = Validator::make($request->all(),[
             'edit_firstname'     => 'required|min:2|max:50',
-            'edit_middlename'     => 'required|min:2|max:50',
             'edit_lastname'      => 'required|min:2|max:50',
             'edit_email'         => 'required',
             'edit_role'          => 'required',
