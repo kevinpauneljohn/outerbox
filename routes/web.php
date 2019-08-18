@@ -56,6 +56,7 @@ Route::group(['middleware' => ['auth','role:super admin|admin']], function (){
     Route::post('/add-employee','Employee\EmployeeController@addEmployee');
     Route::post('/get-employee-details','Employee\EmployeeController@getEmployeeDetails');
     Route::post('/update-employee-details','Employee\EmployeeController@updateEmployeeDetails');
+    Route::post('/delete-employee','Employee\EmployeeController@deleteEmployee');
 });
 
 

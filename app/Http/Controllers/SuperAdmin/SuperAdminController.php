@@ -31,6 +31,10 @@ class SuperAdminController extends Controller
             ->leftJoin('model_has_roles','users.id','=','model_has_roles.model_id')
             ->leftJoin('roles','model_has_roles.role_id','=','roles.id')
             ->select('users.id','users.firstname','users.middlename','users.lastname','users.email','users.username','users.created_at','roles.name as role_name','callcenterdetails.cc_id as cc_id','call_centers.name as cc_name')
+            ->where([
+                ['users.id','!=',2],
+                ['users.deleted_at','=',null]
+            ])
             ->get();
 
         $callcenter = CallCenter::all();
@@ -159,7 +163,11 @@ class SuperAdminController extends Controller
             ->leftJoin('model_has_roles','users.id','=','model_has_roles.model_id')
             ->leftJoin('roles','model_has_roles.role_id','=','roles.id')
             ->select('users.*','roles.name as role_name')
-            ->where('callcenterdetails.cc_id', '=',$id)
+            ->where([
+                ['users.id','!=',2],
+                ['users.deleted_at','=',null],
+                ['callcenterdetails.cc_id', '=',$id]
+            ])
             ->get();
 
         $roles = Role::all()->except(1);

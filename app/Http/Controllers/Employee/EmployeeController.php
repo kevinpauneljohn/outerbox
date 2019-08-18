@@ -127,4 +127,11 @@ class EmployeeController extends Controller
 
         return response()->json($validator->errors());
     }
+
+    public function deleteEmployee(Request $request)
+    {
+        $user = User::find($request->user_delete)->delete();
+        $message = ($user) ? ['success' => true] : ['success' => false];
+        return response()->json($message);
+    }
 }

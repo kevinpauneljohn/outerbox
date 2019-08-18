@@ -125,3 +125,55 @@ $(document).on('submit','#update-staff',function (form) {
     });
     check_value('edit_firstname','edit_lastname','edit_email','edit_role','edit_callcenter');
 });
+
+$(document).on('click','.delete-employee-btn',function(){
+    let value = this.value;
+    $.ajax({
+        'url'   : '/get-employee-details',
+        'headers': {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+        'type'  : 'POST',
+        'data'  : {'id':value},
+        'cache' : false,
+        success:function(result){
+             $('.user_name').text(result[0].username);
+             $('.user_delete').val(result[0].id);
+
+        },error:function(error){
+            console.log(error.status);
+        }
+    });
+});
+
+$(document).on('submit','#delete-staff',function(form){
+    form.preventDefault();
+
+    let data = $('#delete-staff').serialize();
+
+    $.ajax({
+        'url'   : '/delete-employee',
+        'type'  : 'POST',
+        'data'  : data,
+        'cache' : false,
+        success:function(result){
+            if(result.success == true)
+            {
+                setTimeout(function(){
+                    $('#delete_employee').modal('toggle');
+                    $.notify({
+                            message: '1 Employee Successfully Removed!'
+                        } ,{
+                            type: 'success'
+                        }
+                    );
+
+                    setTimeout(function(){
+                        location.reload();
+                    },1500);
+                });
+            }
+
+        },error:function(error){
+            console.log(error.status);
+        }
+    });
+});

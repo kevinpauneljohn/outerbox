@@ -63,7 +63,7 @@
                             <td>
                                 <a href="#"><button type="button" class="btn btn-success edit-btn" title="View"><i class="fa fa-eye"></i></button></a>
                                 <button type="button" class="btn btn-primary edit-employee" title="Edit" data-toggle="modal" data-target="#edit_employee" value="{{$user->id}}"><i class="fa fa-edit"></i></button>
-                                <button type="button" class="btn btn-danger delete-employee" title="Delete" data-toggle="modal" data-target="#delete_employee" value="{{$user->id}}"><i class="fa fa-trash"></i></button>
+                                <button type="button" class="btn btn-danger delete-employee-btn" title="Delete" data-toggle="modal" data-target="#delete_employee" value="{{$user->id}}"><i class="fa fa-trash"></i></button>
                             </td>
                         </tr>
                         @endforeach
@@ -301,6 +301,34 @@
             </form>
         </div>
     </div>
+
+
+    <div class="modal modal-danger fade" id="delete_employee">
+        <div class="modal-dialog">
+            <form method="post" id="delete-staff">
+                @csrf
+
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">Delete Role</h4>
+                    </div>
+                    <div class="modal-body">
+                        <span>Are you sure you want to delete User: <b class="user_name"></b>?</span>
+                    </div>
+                    <input type="hidden" name="user_delete" class="user_delete"/>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-outline" name="submit" value=""><i class="fa fa-trash"></i> Delete</button>
+                    </div>
+                </div>
+            </form>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
 @endsection
 
 @section('extra_script')
