@@ -120,8 +120,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Employee/EmployeeController.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state>
-                  <caret line="93" column="5" selection-start-line="93" selection-start-column="5" selection-end-line="93" selection-end-column="5" />
+                <state relative-caret-position="408">
+                  <caret line="128" column="18" lean-forward="true" selection-start-line="128" selection-start-column="18" selection-end-line="128" selection-end-column="18" />
                   <folding>
                     <element signature="e#49#62#0#PHP" expanded="true" />
                   </folding>
@@ -700,7 +700,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1566091570261</updated>
-      <workItem from="1566091579241" duration="32854000" />
+      <workItem from="1566091579241" duration="33264000" />
     </task>
     <task id="LOCAL-00026" summary="set the default landing page to login page">
       <created>1566092197937</created>
@@ -786,11 +786,25 @@
       <option name="project" value="LOCAL" />
       <updated>1566148063879</updated>
     </task>
-    <option name="localTasksCounter" value="38" />
+    <task id="LOCAL-00038" summary="updated the employee controller">
+      <created>1566148329337</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1566148329337</updated>
+    </task>
+    <task id="LOCAL-00039" summary="updated the employee controller">
+      <created>1566148636604</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1566148636604</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="41357000" />
+    <option name="totallyTimeSpent" value="41767000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
@@ -851,7 +865,8 @@
     <MESSAGE value="updated the call center profile page" />
     <MESSAGE value="updated the employee page" />
     <MESSAGE value="updated the employee js" />
-    <option name="LAST_COMMIT_MESSAGE" value="updated the employee js" />
+    <MESSAGE value="updated the employee controller" />
+    <option name="LAST_COMMIT_MESSAGE" value="updated the employee controller" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/database/migrations/2019_08_16_174613_change_mname_and_extname_attr_to_nullable.php" />
@@ -1040,8 +1055,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Employee/EmployeeController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret line="93" column="5" selection-start-line="93" selection-start-column="5" selection-end-line="93" selection-end-column="5" />
+        <state relative-caret-position="408">
+          <caret line="128" column="18" lean-forward="true" selection-start-line="128" selection-start-column="18" selection-end-line="128" selection-end-column="18" />
           <folding>
             <element signature="e#49#62#0#PHP" expanded="true" />
           </folding>
