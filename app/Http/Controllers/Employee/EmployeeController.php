@@ -67,7 +67,7 @@ class EmployeeController extends Controller
     {
         $time = Carbon::now();
         DB::table('callcenterdetails')
-            ->where('user_id',$userID)
+            ->where('user_id','=',$userID)
             ->update([
                 'cc_id'         => $callCenterId,
                 'created_at'    => $time,
