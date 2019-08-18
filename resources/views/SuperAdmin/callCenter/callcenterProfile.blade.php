@@ -67,6 +67,7 @@
                     <th>Username</th>
                     <th width="20%">Email</th>
                     <th>Department</th>
+                    <th>Role</th>
                     <th>Action</th>
                 </tr>
                 </thead>
@@ -78,7 +79,10 @@
                                 <td>{{$employee->username}}</td>
                                 <td>{{$employee->email}}</td>
                                 <td></td>
-                                <td></td>
+                                <td>{{ucfirst($employee->role_name)}}</td>
+                                <td>
+                                    <button type="button" class="btn btn-success" title="View"><i class="fa fa-eye"></i></button>
+                                </td>
                             </tr>
                         @endforeach
                 </tbody>
@@ -89,6 +93,7 @@
                     <th>Username</th>
                     <th>Email</th>
                     <th>Department</th>
+                    <th>Role</th>
                     <th>Action</th>
                 </tr>
                 </tfoot>

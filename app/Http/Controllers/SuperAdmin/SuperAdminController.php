@@ -144,10 +144,14 @@ class SuperAdminController extends Controller
     {
 
         $callCenter = CallCenter::find($id);
-//        $employee = User::all()->except(['1','2']);
+
         $employee = DB::table('users')
             ->leftJoin('callcenterdetails', 'users.id', '=', 'callcenterdetails.user_id')
+            ->Join('model_has_roles','users.id','=','model_has_roles.model_id')
+            ->join('roles','model_has_roles.role_id','=','roles.id')
+            ->select('users.*','roles.name as role_name')
             ->where('callcenterdetails.cc_id', '=',$id)->get();
+
         return view('SuperAdmin.callCenter.callcenterProfile')->with(['callcenter' => $callCenter, 'employees' => $employee]);
     }
 
