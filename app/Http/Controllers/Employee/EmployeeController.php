@@ -113,17 +113,9 @@ class EmployeeController extends Controller
 
             if($user->save())
             {
-                if(!empty($request->edit_callcenter) > 0)
+                if(!empty($request->edit_callcenter))
                 {
-//                    $this->updateUserAssignmentToCC($request->user_value,$request->edit_callcenter);
-                    $time = Carbon::now();
-                    DB::table('callcenterdetails')
-                        ->where('user_id','=',$request->user_value)
-                        ->update([
-                            'cc_id'         => $request->edit_callcenter,
-                            'created_at'    => $time,
-                            'updated_at'    => $time
-                        ]);
+                    $this->updateUserAssignmentToCC($request->user_value,$request->edit_callcenter);
                 }
                 $message = ['success' => true];
             }else{
