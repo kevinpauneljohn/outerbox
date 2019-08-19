@@ -45,7 +45,8 @@ class SuperAdminController extends Controller
 
     public function employeeProfile($id)
     {
-        return view('SuperAdmin.employee.employeeProfile')->with(['user_id' => $id]);
+        $user = User::find($id);
+        return view('SuperAdmin.employee.employeeProfile')->with(['user' => $user]);
     }
 
     #Role Page Method
