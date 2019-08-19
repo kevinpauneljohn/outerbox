@@ -66,7 +66,7 @@ class LoginController extends Controller
                 return '/super-admin/dashboard';
                 break;
             case 'admin':
-                return '/admin';
+                return '/dashboard';
                 break;
             default:
                 return '/login';

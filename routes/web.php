@@ -19,6 +19,10 @@ Route::get('admin', function(){
     return view('layouts.admin_template');
 });
 
+Route::group(['middleware' => ['auth','role:admin|Agent']],function (){
+    Route::get('/dashboard','EmployeePageController@dashboard');
+});
+
 #superadmin login
 Route::get('secure-login','SuperAdmin\SpLoginController@login_form');
 

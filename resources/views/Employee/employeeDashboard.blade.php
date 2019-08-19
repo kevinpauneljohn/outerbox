@@ -1,11 +1,11 @@
-@extends('layouts.admin_template')
+@extends('layouts.adminDashboardTemplate')
 
 @section('extra_meta')
     <meta name="csrf-token" content="{{ csrf_token() }}">
 @endsection
 
 @section('title')
-    Super Admin | Staffs
+    Admin | Dasdhboard
 @endsection
 @section('extra_stylesheet')
     <!-- DataTables -->
@@ -13,27 +13,8 @@
     <link href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.0/animate.min.css" rel="stylesheet">
 @endsection
 @section('page_header')
-    Employee <button type="button" class="btn bg-purple" data-toggle="modal" data-target="#create-staff"><i class="fa fa-plus"></i> Add New</button>
+    Dashboard
 @endsection
-@section('variable_menu')
-    <li><a href="{{url('/super-admin/dashboard')}}"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
-    <li class="active"><a href="{{url('employee')}}"><i class="fa fa-user-plus"></i> <span>Employee</span></a></li>
-    <li class="treeview">
-        <a href="#">
-            <i class="fa fa-bank"></i><span>Roles</span>
-            <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-            </span>
-            <ul class="treeview-menu">
-                <li><a href="{{url('/super-admin/roles')}}">View Roles</a></li>
-                <li><a href="/super-admin/permissions">View Permissions</a></li>
-            </ul>
-        </a>
-    </li>
-    <li><a href="{{url('/super-admin/callCenter')}}"><i class="fa fa-phone-square"></i> <span>Call Center</span></a></li>
-    <li><a href="{{url('/super-admin/lgu')}}"><i class="fa fa-bank"></i> <span>LGUs</span></a></li>
-@endsection
-
 @section('main_content')
     <div class="box">
         <div class="box-body">
