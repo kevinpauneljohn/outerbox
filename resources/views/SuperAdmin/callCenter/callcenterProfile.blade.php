@@ -86,7 +86,7 @@
                                 <td></td>
                                 <td>{{ucfirst($employee->role_name)}}</td>
                                 <td>
-                                    <a href="{{url('/employee/profile/'.$user->id)}}"><button type="button" class="btn btn-success edit-btn" title="View"><i class="fa fa-eye"></i></button></a>
+                                    <a href="{{url('/employee/profile/'.$employee->id)}}"><button type="button" class="btn btn-success edit-btn" title="View"><i class="fa fa-eye"></i></button></a>
                                     <button type="button" class="btn btn-primary edit-employee" title="Edit" data-toggle="modal" data-target="#edit_employee" value="{{$employee->id}}"><i class="fa fa-edit"></i></button>
                                     <button type="button" class="btn btn-danger delete-employee-btn" title="Delete" data-toggle="modal" data-target="#delete_employee" value="{{$employee->id}}"><i class="fa fa-trash"></i></button>
                                 </td>
