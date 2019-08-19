@@ -43,6 +43,11 @@ class SuperAdminController extends Controller
         return view('SuperAdmin.employee.employee')->with(['roles' => $role, 'users' => $users, 'callcenters' => $callcenter, 'date' => $time]);
     }
 
+    public function employeeProfile($id)
+    {
+        return view('SuperAdmin.employee.employeeProfile')->with(['user_id' => $id]);
+    }
+
     #Role Page Method
     public function roles()
     {
