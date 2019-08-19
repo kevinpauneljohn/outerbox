@@ -19,8 +19,10 @@ Route::get('admin', function(){
     return view('layouts.admin_template');
 });
 
-Route::group(['middleware' => ['auth','role:admin|Agent']],function (){
+Route::group(['middleware' => ['auth','role:admin']],function (){
     Route::get('/dashboard','EmployeePageController@dashboard');
+    Route::get('/agent','EmployeePageController@agent');
+    Route::get('/lgu','EmployeePageController@lgu');
 });
 
 #superadmin login

@@ -5,7 +5,7 @@
 @endsection
 
 @section('title')
-    Admin | Dasdhboard
+    Admin | LGU
 @endsection
 @section('extra_stylesheet')
     <!-- DataTables -->
@@ -13,7 +13,7 @@
     <link href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.0/animate.min.css" rel="stylesheet">
 @endsection
 @section('page_header')
-    Dashboard
+    LGU
 @endsection
 @section('main_content')
 
