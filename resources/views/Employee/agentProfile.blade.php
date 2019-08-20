@@ -5,7 +5,7 @@
 @endsection
 
 @section('title')
-    Super Admin | Employee | Profile
+    Admin | Agent | Profile
 @endsection
 @section('extra_stylesheet')
     <!-- DataTables -->

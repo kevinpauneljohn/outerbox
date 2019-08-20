@@ -16,7 +16,185 @@
     LGU
 @endsection
 @section('main_content')
+    <div class="box">
 
+        <div class="box-body">
+            <div class="nav-tabs-custom">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="#local" data-toggle="tab" aria-expanded="true">Local</a></li>
+                    <li class=""><a href="#national" data-toggle="tab" aria-expanded="false">National</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane active" id="local">
+                        <button type="button" class="btn bg-purple" data-toggle="modal" data-target="#create-lgu" style="margin: 0px 0px 20px 0px;"><i class="fa fa-plus"></i> Add New</button>
+                        <table id="agents-list" class="table table-bordered table-hover">
+                            <thead>
+                            <tr>
+                                <th width="10%">Date Registered</th>
+                                <th width="10%">Station Name</th>
+                                <th>Department</th>
+                                <th width="20%">Address</th>
+                                <th>Contact Person</th>
+                                <th>Contact No.</th>
+                                <th width="15%">Action</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+
+
+                            </tbody>
+                            <tfoot>
+                            <tr>
+                                <th width="10%">Date Registered</th>
+                                <th width="10%">Station Name</th>
+                                <th>Department</th>
+                                <th width="20%">Address</th>
+                                <th>Contact Person</th>
+                                <th>Contact No.</th>
+                                <th width="15%">Action</th>
+                            </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                    <!-- /.tab-pane -->
+                    <div class="tab-pane" id="national">
+                        <table id="agents-list" class="table table-bordered table-hover">
+                            <thead>
+                            <tr>
+                                <th width="10%">Date Registered</th>
+                                <th width="10%">Station Name</th>
+                                <th>Department</th>
+                                <th width="20%">Address</th>
+                                <th>Contact Person</th>
+                                <th>Contact No.</th>
+                                <th width="15%">Action</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+
+
+                            </tbody>
+                            <tfoot>
+                            <tr>
+                                <th width="10%">Date Registered</th>
+                                <th width="10%">Station Name</th>
+                                <th>Department</th>
+                                <th width="20%">Address</th>
+                                <th>Contact Person</th>
+                                <th>Contact No.</th>
+                                <th width="15%">Action</th>
+                            </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                    <!-- /.tab-pane -->
+                </div>
+                <!-- /.tab-content -->
+            </div>
+        </div>
+        <!-- /.box-body -->
+    </div>
+    <!-- /.box -->
+
+    {{--Create New Call Center--}}
+    <div class="modal fade" id="create-lgu">
+        <div class="modal-dialog">
+            <form method="post" id="add-call-center">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">Add LGU</h4>
+                    </div>
+
+                    <div class="modal-body">
+                        @csrf
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label for="station_name">Station Name</label>
+                                    <div class="station_name">
+                                        <input type="text" name="station_name" class="form-control" id="station_name"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label for="department">Department</label>
+                                    <div class="department">
+                                        <input type="text" name="department" class="form-control" id="department"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Address</label>
+                            <div class="row">
+                                <span class="col-lg-12">
+                                    <div class="form-group">
+                                        <div class="street_address">
+                                            <input type="text" name="street_address" id="street_address" class="form-control"/>
+                                            <label for="street_address">Street Address</label>
+                                        </div>
+                                    </div>
+                                </span>
+                            </div>
+                            <div class="row">
+                                <span class="col-lg-4">
+                                    <div class="form-group">
+                                        <div class="state">
+                                            <input type="text" name="state" id="state" class="form-control"/>
+                                            <label for="state">State</label>
+                                        </div>
+                                    </div>
+                                </span>
+                                <span class="col-lg-4">
+                                    <div class="form-group">
+                                        <div class="postal_code">
+                                            <input type="text" name="postal_code" id="postal_code" class="form-control"/>
+                                            <label for="postal_code">Postal Code</label>
+                                        </div>
+                                    </div>
+                                </span>
+                                <span class="col-lg-4">
+                                    <div class="form-group">
+                                        <div class="city">
+                                            <input type="text" name="city" id="city" class="form-control"/>
+                                            <label for="city">City</label>
+                                        </div>
+                                    </div>
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="contactperson_name">
+                                        <label for="contactperson_name">Contact Person</label>
+                                        <input type="text" name="contactperson_name" id="contactperson_name" class="form-control"/>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="contactperson_no">
+                                        <label for="contactperson_no">Contact Number</label>
+                                        <input type="text" name="contactperson_no" id="contactperson_no" class="form-control"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn bg-purple"><i class="fa fa-check"></i> Save</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
 @endsection
 
 @section('extra_script')
