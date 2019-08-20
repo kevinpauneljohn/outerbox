@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Models\CallCenter;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -41,8 +42,8 @@ class User extends Authenticatable
     ];
 
 
-    public function callCenter()
+    public function callcenter()
     {
-        return $this->belongsToMany('App\Models\CallCenter','callcenterdetails','cc_id','user_id');
+        return $this->belongsToMany(CallCenter::class,'callcenterdetails','user_id','cc_id');
     }
 }

@@ -30,28 +30,48 @@
                         <table id="local-lgu" class="table table-bordered table-hover">
                             <thead>
                             <tr>
-                                <th width="10%">Date Registered</th>
-                                <th width="10%">Station Name</th>
-                                <th>Department</th>
+                                <th width="8%">Date Registered</th>
+                                <th width="8%">Station Name</th>
+                                <th width="10%">Department</th>
                                 <th width="20%">Address</th>
-                                <th>Contact Person</th>
-                                <th>Contact No.</th>
-                                <th width="15%">Action</th>
+                                <th width="8%">Contact Person</th>
+                                <th width="8%">Contact No.</th>
+                                <th width="13%">Action</th>
                             </tr>
                             </thead>
                             <tbody>
-
+                            @foreach($lgus as $lgu)
+                                <tr>
+                                    <td>{{$lgu->created_at}}</td>
+                                    <td>{{$lgu->station_name}}</td>
+                                    <td>{{$lgu->department}}</td>
+                                    <td>
+                                        {{ucfirst($lgu->address)}}
+                                        {{ucfirst($lgu->city)}}
+                                        {{ucfirst($lgu->province)}}
+                                    </td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>
+                                        <button type="button" class="btn btn-default"><i class="fa fa-eye"></i></button>
+                                        <button type="button" class="btn btn-primary"><i class="fa fa-pencil"></i></button>
+                                        <button type="button" class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                                        <button type="button" class="btn btn-warning"><i class="fa fa-phone"></i></button>
+                                        <button type="button" class="btn btn-success"><i class="fa fa-comment"></i></button>
+                                    </td>
+                                </tr>
+                            @endforeach
 
                             </tbody>
                             <tfoot>
                             <tr>
-                                <th width="10%">Date Registered</th>
-                                <th width="10%">Station Name</th>
+                                <th>Date Registered</th>
+                                <th>Station Name</th>
                                 <th>Department</th>
-                                <th width="20%">Address</th>
+                                <th>Address</th>
                                 <th>Contact Person</th>
                                 <th>Contact No.</th>
-                                <th width="15%">Action</th>
+                                <th>Action</th>
                             </tr>
                             </tfoot>
                         </table>
@@ -149,20 +169,22 @@
                             <div class="row">
                                 <span class="col-lg-4">
                                     <div class="form-group">
+                                        <div class="region">
+                                            <input type="text" name="region" id="region" class="form-control"/>
+                                            <label for="region">Region</label>
+                                        </div>
+                                    </div>
+                                </span>
+
+                                <span class="col-lg-4">
+                                    <div class="form-group">
                                         <div class="state">
                                             <input type="text" name="state" id="state" class="form-control"/>
                                             <label for="state">State</label>
                                         </div>
                                     </div>
                                 </span>
-                                <span class="col-lg-4">
-                                    <div class="form-group">
-                                        <div class="postal_code">
-                                            <input type="text" name="postal_code" id="postal_code" class="form-control"/>
-                                            <label for="postal_code">Postal Code</label>
-                                        </div>
-                                    </div>
-                                </span>
+
                                 <span class="col-lg-4">
                                     <div class="form-group">
                                         <div class="city">
@@ -220,8 +242,8 @@
 
     <script>
         $(function () {
-            $('#local-lgu').DataTable()
-            $('#national-lgu').DataTable()
+            $('#local-lgu').DataTable({'lengthChange': false})
+            $('#national-lgu').DataTable({'lengthChange': false})
         })
     </script>
 @endsection

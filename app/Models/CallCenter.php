@@ -15,7 +15,7 @@ class CallCenter extends Model
 
     public function users()
     {
-        return $this->belongsToMany(User::class,'callcenterdetails','user_id','cc_id');
+        return $this->belongsToMany(User::class,'callcenterdetails','cc_id','user_id');
     }
 
     public function lgus()

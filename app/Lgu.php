@@ -13,3 +13,4 @@ class Lgu extends Model
         return $this->belongsTo(CallCenter::class);
     }
 }
+

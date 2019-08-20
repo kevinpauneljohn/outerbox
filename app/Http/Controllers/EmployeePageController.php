@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CallCenter;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -50,6 +51,11 @@ class EmployeePageController extends Controller
 
     public function lgu()
     {
-        return view('Employee.lgu');
+        $user = User::find(Auth::user()->id)->callcenter;
+        $callcenter_id = $user[0]->pivot->cc_id;
+
+        $lgus = CallCenter::find($callcenter_id)->lgus;
+        return view('Employee.lgu')->with(['lgus' => $lgus]);
+
     }
 }
