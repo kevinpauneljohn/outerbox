@@ -23,6 +23,7 @@ Route::group(['middleware' => ['auth','role:admin']],function (){
     Route::get('/dashboard','EmployeePageController@dashboard');
     Route::get('/agent','EmployeePageController@agent');
     Route::get('/lgu','EmployeePageController@lgu');
+    Route::get('/agent/profile/{id}','EmployeePageController@agentProfile');
 });
 
 #superadmin login

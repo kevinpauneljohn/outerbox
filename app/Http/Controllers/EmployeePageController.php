@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -39,6 +40,12 @@ class EmployeePageController extends Controller
             'employees' => $employees,
             'roles' => $role
         ]);
+    }
+
+    public function agentProfile($id)
+    {
+        $user = User::find($id);
+        return view('Employee.agentProfile')->with(['user' => $user]);
     }
 
     public function lgu()
