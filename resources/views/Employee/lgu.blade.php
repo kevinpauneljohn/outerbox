@@ -102,10 +102,10 @@
     </div>
     <!-- /.box -->
 
-    {{--Create New Call Center--}}
+    {{--Create New LGU--}}
     <div class="modal fade" id="create-lgu">
         <div class="modal-dialog">
-            <form method="post" id="add-call-center">
+            <form method="post" id="add-lgu">
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -216,7 +216,7 @@
     <!-- growl notification -->
     <script src="{{asset('bower_components/remarkable-bootstrap-notify/bootstrap-notify.min.js')}}"></script>
 
-    <script src="{{asset('/js/employee.js')}}"></script>
+    <script src="{{asset('/js/lgu.js')}}"></script>
 
     <script>
         $(function () {

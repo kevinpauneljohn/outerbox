@@ -24,6 +24,7 @@ Route::group(['middleware' => ['auth','role:admin']],function (){
     Route::get('/agent','EmployeePageController@agent');
     Route::get('/lgu','EmployeePageController@lgu');
     Route::get('/agent/profile/{id}','EmployeePageController@agentProfile');
+    Route::post('/add-lgu','Lgu\LguController@addLgu');
 });
 
 #superadmin login
