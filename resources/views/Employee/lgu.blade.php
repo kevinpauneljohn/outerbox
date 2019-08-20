@@ -27,7 +27,7 @@
                 <div class="tab-content">
                     <div class="tab-pane active" id="local">
                         <button type="button" class="btn bg-purple" data-toggle="modal" data-target="#create-lgu" style="margin: 0px 0px 20px 0px;"><i class="fa fa-plus"></i> Add New</button>
-                        <table id="agents-list" class="table table-bordered table-hover">
+                        <table id="local-lgu" class="table table-bordered table-hover">
                             <thead>
                             <tr>
                                 <th width="10%">Date Registered</th>
@@ -58,16 +58,19 @@
                     </div>
                     <!-- /.tab-pane -->
                     <div class="tab-pane" id="national">
-                        <table id="agents-list" class="table table-bordered table-hover">
+                        <table id="national-lgu" class="table table-bordered table-hover">
                             <thead>
                             <tr>
                                 <th width="10%">Date Registered</th>
                                 <th width="10%">Station Name</th>
                                 <th>Department</th>
-                                <th width="20%">Address</th>
+                                <th>Region</th>
+                                <th>Province</th>
+                                <th>City</th>
+                                <th>Address</th>
                                 <th>Contact Person</th>
                                 <th>Contact No.</th>
-                                <th width="15%">Action</th>
+                                <th width="20%">Action</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -79,10 +82,13 @@
                                 <th width="10%">Date Registered</th>
                                 <th width="10%">Station Name</th>
                                 <th>Department</th>
-                                <th width="20%">Address</th>
+                                <th>Region</th>
+                                <th>Province</th>
+                                <th>City</th>
+                                <th>Address</th>
                                 <th>Contact Person</th>
                                 <th>Contact No.</th>
-                                <th width="15%">Action</th>
+                                <th width="20%">Action</th>
                             </tr>
                             </tfoot>
                         </table>
@@ -214,7 +220,8 @@
 
     <script>
         $(function () {
-            $('#agents-list').DataTable()
+            $('#local-lgu').DataTable()
+            $('#national-lgu').DataTable()
         })
     </script>
 @endsection
