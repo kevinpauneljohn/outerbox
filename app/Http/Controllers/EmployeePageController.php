@@ -54,7 +54,14 @@ class EmployeePageController extends Controller
         $user = User::find(Auth::user()->id)->callcenter;
         $callcenter_id = $user[0]->pivot->cc_id;
 
-        $lgus = CallCenter::find($callcenter_id)->lgus;
+//        $lgus = CallCenter::find($callcenter_id)->lgus;
+
+        $lgus = DB::table('call_centers')
+            ->leftJoin('lgus','call_centers.id', '=', 'lgus.call_center_id')
+            ->leftJoin('contact_people','lgus.id', '=', 'contact_people.lgu_id')
+            ->select('lgus.*','contact_people.fullname as contactname','contact_people.contactno')
+            ->where('call_centers.id','=',$callcenter_id)
+            ->get();
         return view('Employee.lgu')->with(['lgus' => $lgus]);
 
     }

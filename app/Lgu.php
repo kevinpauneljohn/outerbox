@@ -12,5 +12,10 @@ class Lgu extends Model
     {
         return $this->belongsTo(CallCenter::class);
     }
+
+    public function contactpeople()
+    {
+        return $this->hasMany(ContactPerson::class);
+    }
 }
 

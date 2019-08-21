@@ -50,8 +50,8 @@
                                         {{ucfirst($lgu->city)}}
                                         {{ucfirst($lgu->province)}}
                                     </td>
-                                    <td></td>
-                                    <td></td>
+                                    <td>{{ucfirst($lgu->contactname)}}</td>
+                                    <td>{{$lgu->contactno}}</td>
                                     <td>
                                         <button type="button" class="btn btn-default"><i class="fa fa-eye"></i></button>
                                         <button type="button" class="btn btn-primary"><i class="fa fa-pencil"></i></button>

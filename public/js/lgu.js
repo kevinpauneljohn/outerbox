@@ -55,5 +55,5 @@ $(document).on('submit','#add-lgu',function(form){
         }
     });
 
-    check_value('station_name','department','street_address','region','state','city');
+    check_value('station_name','department','street_address','region','state','city','contactperson_name','contactperson_no');
 });

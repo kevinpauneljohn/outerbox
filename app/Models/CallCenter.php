@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\ContactPerson;
 use App\Lgu;
 use App\User;
 use Illuminate\Database\Eloquent\Model;
@@ -21,5 +22,10 @@ class CallCenter extends Model
     public function lgus()
     {
         return $this->hasMany(Lgu::class);
+    }
+
+    public function contactpeople()
+    {
+        return $this->hasManyThrough(ContactPerson::class,Lgu::class);
     }
 }
