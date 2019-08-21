@@ -69,7 +69,6 @@ Route::group(['middleware' => ['auth','role:super admin|admin']], function (){
 });
 
 
-
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

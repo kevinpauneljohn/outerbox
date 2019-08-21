@@ -60,17 +60,17 @@ class LoginController extends Controller
         // User role
         $role = auth()->user()->getRoleNames()[0];
 
-        // Check user role
-        switch ($role) {
-            case 'super admin':
-                return '/super-admin/dashboard';
-                break;
-            case 'admin':
-                return '/dashboard';
-                break;
-            default:
-                return '/login';
-                break;
-        }
+            // Check user role
+            switch ($role) {
+                case 'super admin':
+                    return '/super-admin/dashboard';
+                    break;
+                case 'admin':
+                    return '/dashboard';
+                    break;
+                default:
+                    return '/login';
+                    break;
+            }
     }
 }
