@@ -27,6 +27,10 @@ Route::group(['middleware' => ['auth','role:admin']],function (){
     Route::post('/add-lgu','Lgu\LguController@addLgu');
 });
 
+Route::group(['middleware' => ['auth','role:Agent']],function (){
+    Route::get('/agent/dashboard','AgentPageController@dashboard');
+});
+
 #superadmin login
 Route::get('secure-login','SuperAdmin\SpLoginController@login_form');
 
