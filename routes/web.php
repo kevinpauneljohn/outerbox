@@ -27,6 +27,8 @@ Route::group(['middleware' => ['auth','role:admin']],function (){
     Route::post('/add-lgu','Lgu\LguController@addLgu');
 });
 
+Route::get('/check-leads','Ticket\CreateTicketController@get_all_new_leads');
+
 Route::group(['middleware' => ['auth','role:Agent']],function (){
     Route::get('/agent/dashboard','AgentPageController@dashboard');
 });
