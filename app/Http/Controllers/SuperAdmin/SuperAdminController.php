@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\SuperAdmin;
 
+use App\address\Region;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -156,7 +157,8 @@ class SuperAdminController extends Controller
     public function callCenter()
     {
         $callCenter = CallCenter::all();
-        return view('SuperAdmin.callCenter.callcenter')->with(['callcenters' => $callCenter]);
+        $region = Region::all();
+        return view('SuperAdmin.callCenter.callcenter')->with(['callcenters' => $callCenter, 'regions' => $region]);
     }
 
     public function callCenterProfile($id)

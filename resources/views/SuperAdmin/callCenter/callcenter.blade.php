@@ -11,6 +11,8 @@
 @section('extra_stylesheet')
     <!-- DataTables -->
     <link rel="stylesheet" href="{{asset('/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css')}}">
+    <!-- Select2 -->
+    <link rel="stylesheet" href="{{asset('/bower_components/select2/dist/css/select2.min.css')}}">
     <link href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.0/animate.min.css" rel="stylesheet">
 @endsection
 @section('page_header')
@@ -113,27 +115,48 @@
                                 </span>
                             </div>
                             <div class="row">
-                                <span class="col-lg-4">
+                                <span class="col-lg-6">
+                                    <div class="form-group">
+                                        <div class="region">
+                                            <select class="form-control regions" style="width: 100%;" id="region" name="region">
+                                                <option></option>
+                                                @foreach($regions as $region)
+                                                    <option value="{{$region->regCode}}">{{$region->regDesc}}</option>
+                                                @endforeach
+                                            </select>
+                                            <label for="region">Region</label>
+                                        </div>
+                                    </div>
+                                </span>
+                                <span class="col-lg-6">
                                     <div class="form-group">
                                         <div class="state">
-                                            <input type="text" name="state" id="state" class="form-control"/>
+                                            <select class="form-control provinces" style="width: 100%;" id="state" name="state">
+
+                                            </select>
+{{--                                            <input type="text" name="state" id="state" class="form-control"/>--}}
                                             <label for="state">State</label>
                                         </div>
                                     </div>
                                 </span>
-                                <span class="col-lg-4">
+                            </div>
+                            <div class="row">
+                                <span class="col-lg-6">
+                                    <div class="form-group">
+                                        <div class="city">
+                                            <select class="form-control cities" style="width: 100%;" id="city" name="city">
+
+                                            </select>
+{{--                                            <input type="text" name="city" id="city" class="form-control"/>--}}
+                                            <label for="city">City</label>
+                                        </div>
+                                    </div>
+                                </span>
+                                <span class="col-lg-6">
                                     <div class="form-group">
                                         <div class="postal_code">
                                             <input type="text" name="postal_code" id="postal_code" class="form-control"/>
                                             <label for="postal_code">Postal Code</label>
-                                        </div>
-                                    </div>
-                                </span>
-                                <span class="col-lg-4">
-                                    <div class="form-group">
-                                        <div class="city">
-                                            <input type="text" name="city" id="city" class="form-control"/>
-                                            <label for="city">City</label>
                                         </div>
                                     </div>
                                 </span>
@@ -186,27 +209,48 @@
                                 </span>
                             </div>
                             <div class="row">
-                                <span class="col-lg-4">
+                                <span class="col-lg-6">
+                                    <div class="form-group">
+                                        <div class="update_region">
+                                            <select class="form-control update_regions" style="width: 100%;" id="update_region" name="update_region">
+                                                <option></option>
+                                                @foreach($regions as $region)
+                                                    <option value="{{$region->regCode}}">{{$region->regDesc}}</option>
+                                                @endforeach
+                                            </select>
+                                            <label for="update_region">Region</label>
+                                        </div>
+                                    </div>
+                                </span>
+                                <span class="col-lg-6">
                                     <div class="form-group">
                                         <div class="update_state">
-                                            <input type="text" name="update_state" id="update_state" class="form-control"/>
+                                                <select class="form-control update_provinces" style="width: 100%;" id="update_state" name="update_state">
+
+                                                </select>
+                                                <label for="update_state">State</label>
                                             <label for="update_state">State</label>
                                         </div>
                                     </div>
                                 </span>
-                                <span class="col-lg-4">
+
+                            </div>
+                            <div class="row">
+                                <span class="col-lg-6">
+                                    <div class="form-group">
+                                        <div class="update_city">
+                                            <select class="form-control update_cities" style="width: 100%;" id="update_city" name="update_city">
+
+                                            </select>
+                                            <label for="update_city">City</label>
+                                        </div>
+                                    </div>
+                                </span>
+                                <span class="col-lg-6">
                                     <div class="form-group">
                                         <div class="update_postal_code">
                                             <input type="text" name="update_postal_code" id="update_postal_code" class="form-control"/>
                                             <label for="update_postal_code">Postal Code</label>
-                                        </div>
-                                    </div>
-                                </span>
-                                <span class="col-lg-4">
-                                    <div class="form-group">
-                                        <div class="update_city">
-                                            <input type="text" name="update_city" id="update_city" class="form-control"/>
-                                            <label for="update_city">City</label>
                                         </div>
                                     </div>
                                 </span>
@@ -260,6 +304,9 @@
     <!-- SlimScroll -->
     <script src="{{asset('/bower_components/jquery-slimscroll/jquery.slimscroll.min.js')}}"></script>
 
+    <!-- Select2 -->
+    <script src="{{asset('/bower_components/select2/dist/js/select2.full.min.js')}}"></script>
+
     <!-- FastClick -->
     <script src="{{asset('/bower_components/fastclick/lib/fastclick.js')}}"></script>
 
@@ -278,7 +325,15 @@
                 'ordering'    : true,
                 'info'        : true,
                 'autoWidth'   : false
-            })
+            });
+
+            // $('.regions').select2();
+            // $('.provinces').select2();
+            // $('.cities').select2();
+            //
+            // $('.update_regions').select2();
+            // $('.update_provinces').select2();
+            // $('.update_cities').select2();
         })
     </script>
 @endsection

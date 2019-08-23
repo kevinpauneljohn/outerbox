@@ -20,7 +20,7 @@ $(document).on('submit','#add-call-center',function(form){
         'data'  : data,
         'cache' : false,
         success: function(result){
-
+            console.log(result);
             if(result.success == true)
             {
                 setTimeout(function(){
@@ -53,7 +53,7 @@ $(document).on('submit','#add-call-center',function(form){
         }
     });
 
-    check_value('callcenter','street_address','state','postal_code','city');
+    check_value('callcenter','street_address','region','state','postal_code','city');
     return false;
 });
 
@@ -68,9 +68,11 @@ $(document).on('click','.edit-callcenter',function () {
         'data'  : {'id' : value},
         'cache' : false,
         success: function (result) {
+            console.log(result);
             $('#callcenter_value').val(result.id);
             $('#update_callcenter').val(result.name);
             $('#update_street_address').val(result.street);
+            $("#update_region option[value='"+result.region+"']").prop('selected',true);
             $('#update_state').val(result.state);
             $('#update_postal_code').val(result.postalcode);
             $('#update_city').val(result.city);
@@ -124,7 +126,7 @@ $(document).on('submit','#edit-call-center',function (form) {
         }
     });
 
-    check_value('update_callcenter','update_street_address','update_state','update_postal_code','update_city');
+    check_value('update_callcenter','update_street_address','update_region','update_state','update_postal_code','update_city');
     return false;
 });
 
@@ -175,6 +177,50 @@ $(document).on('submit','#delete_form_call_center',function (form) {
                     },1500);
                 });
             }
+        }
+    });
+});
+
+$(document).on('change','#region',function(){
+    let value = $('#region').val();
+    let state = $('#state').val();
+    let city = $('#city').val();
+
+    if(state != null || city != null)
+    {
+        $('#state').html("<option></option>");
+        $('#city').html("<option></option>");
+    }
+
+    $.ajax({
+        'url'   : '/provinces',
+        'headers': {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+        'type'  : 'POST',
+        'data'  : {'id' : value},
+        'cache' : false,
+        success: function (result) {
+            $('#state').html(result);
+
+        },error: function (error) {
+            console.log(error.status);
+        }
+    });
+});
+
+$(document).on('change','#state',function(){
+    let value = $('#state').val();
+
+    $.ajax({
+        'url'   : '/city',
+        'headers': {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+        'type'  : 'POST',
+        'data'  : {'id' : value},
+        'cache' : false,
+        success: function (result) {
+            $('#city').html(result);
+
+        },error: function (error) {
+            console.log(error.status);
         }
     });
 });

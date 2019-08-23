@@ -74,6 +74,11 @@ Route::group(['middleware' => ['auth','role:super admin|admin']], function (){
     Route::get('/employee/profile/{id}','SuperAdmin\SuperAdminController@employeeProfile');
 });
 
+Route::group(['middleware' => ['auth']],function (){
+    Route::post('/provinces','address\AddressController@getProvinces');
+    Route::post('/city','address\AddressController@getCities');
+});
+
 
 Auth::routes();
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\CallCenter;
 
+use App\address\Province;
 use App\Models\CallCenter;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -16,6 +17,7 @@ class CallCenterController extends Controller
         $validator = Validator::make($request->All(),[
             'callcenter'       => 'required|min:1|max:20',
             'street_address'   => 'required|max:100',
+            'region'           => 'required',
             'state'            => 'required',
             'postal_code'      => 'required',
             'city'             => 'required',
@@ -25,6 +27,7 @@ class CallCenterController extends Controller
         {
             $callCenter = new CallCenter;
             $callCenter->name = $request->callcenter;
+            $callCenter->region = $request->region;
             $callCenter->street = $request->street_address;
             $callCenter->state = $request->state;
             $callCenter->postalcode = $request->postal_code;
@@ -39,7 +42,17 @@ class CallCenterController extends Controller
     public function getCallCenterDetails(Request $request)
     {
         $callCenter = CallCenter::find($request->id);
-        return $callCenter;
+        $data = ['prov code'=> $this->getCity($callCenter->state)];
+        $callCenter = json_decode($callCenter,true);
+        $json = array_merge($callCenter,$data);
+
+        return $json;
+    }
+
+    private function getCity($provCOde)
+    {
+        $province = Province::where('provCode',$provCOde)->first();
+        return $province->provDesc;
     }
 
     public function updateCallCenterDetails(Request $request)
