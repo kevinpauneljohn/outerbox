@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\CallCenter;
 
+use App\address\Municipality;
 use App\address\Province;
 use App\Models\CallCenter;
 use Illuminate\Http\Request;
@@ -42,27 +43,52 @@ class CallCenterController extends Controller
     public function getCallCenterDetails(Request $request)
     {
         $callCenter = CallCenter::find($request->id);
-        $data = ['prov code'=> $this->getCity($callCenter->state)];
+        $data = [
+            'province_value'  => $this->getProvinces($callCenter->region),
+            'city_value'  => $this->getCities($callCenter->state)
+        ];
         $callCenter = json_decode($callCenter,true);
         $json = array_merge($callCenter,$data);
 
         return $json;
     }
 
-    private function getCity($provCOde)
+    private function getSelectedProvince($provCOde)
     {
         $province = Province::where('provCode',$provCOde)->first();
-        return $province->provDesc;
+        return $province->provCode;
+    }
+
+    private function getProvinces($regCode)
+    {
+            $provinces = Province::where('regCode',$regCode)->get();
+
+            $option = "";
+            foreach ($provinces as $province){
+                $option .= '<option value="'.$province->provCode.'">'.$province->provDesc.'</option>';
+            }
+            return $option;
+    }
+
+    public function getCities($proCode)
+    {
+        $cities = Municipality::where('provCode',$proCode)->get();
+        $option = "";
+        foreach ($cities as $city){
+            $option .= '<option value="'.$city->citymunCode.'">'.$city->citymunDesc.'</option>';
+        }
+        return $option;
     }
 
     public function updateCallCenterDetails(Request $request)
     {
         $validator = Validator::make($request->all(),[
-            'update_callcenter'         => 'required|min:3|max:30',
-            'update_street_address'     => 'required|min:3|max:50',
-            'update_state'              => 'required|min:2|max:50',
-            'update_postal_code'        => 'required|min:2|max:10',
-            'update_city'               => 'required|min:2|max:30',
+            'update_callcenter'         => 'required',
+            'update_street_address'     => 'required',
+            'update_region'             => 'required',
+            'update_state'              => 'required',
+            'update_postal_code'        => 'required',
+            'update_city'               => 'required',
         ]);
 
         if($validator->passes())

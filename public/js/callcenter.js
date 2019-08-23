@@ -73,9 +73,11 @@ $(document).on('click','.edit-callcenter',function () {
             $('#update_callcenter').val(result.name);
             $('#update_street_address').val(result.street);
             $("#update_region option[value='"+result.region+"']").prop('selected',true);
-            $('#update_state').val(result.state);
+            $('#update_state').html(result.province_value);
+            $("#update_state option[value='"+result.state+"']").prop('selected',true);
             $('#update_postal_code').val(result.postalcode);
-            $('#update_city').val(result.city);
+            $('#update_city').html(result.city_value);
+            $("#update_city option[value='"+result.city+"']").prop('selected',true);
         },error: function (error) {
             console.log(error.status);
         }
@@ -218,6 +220,52 @@ $(document).on('change','#state',function(){
         'cache' : false,
         success: function (result) {
             $('#city').html(result);
+
+        },error: function (error) {
+            console.log(error.status);
+        }
+    });
+});
+
+
+// Edit form address
+$(document).on('change','#update_region',function(){
+    let value = $('#update_region').val();
+    let state = $('#update_state').val();
+    let city = $('#update_city').val();
+
+    if(state != null || city != null)
+    {
+        $('#update_state').html("<option></option>");
+        $('#update_city').html("<option></option>");
+    }
+
+    $.ajax({
+        'url'   : '/provinces',
+        'headers': {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+        'type'  : 'POST',
+        'data'  : {'id' : value},
+        'cache' : false,
+        success: function (result) {
+            $('#update_state').html(result);
+
+        },error: function (error) {
+            console.log(error.status);
+        }
+    });
+});
+
+$(document).on('change','#update_state',function(){
+    let value = $('#update_state').val();
+
+    $.ajax({
+        'url'   : '/city',
+        'headers': {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+        'type'  : 'POST',
+        'data'  : {'id' : value},
+        'cache' : false,
+        success: function (result) {
+            $('#update_city').html(result);
 
         },error: function (error) {
             console.log(error.status);
