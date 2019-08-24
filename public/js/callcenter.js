@@ -58,80 +58,6 @@ $(document).on('submit','#add-call-center',function(form){
 });
 
 
-$(document).on('click','.edit-callcenter',function () {
-    let value = this.value;
-
-    $.ajax({
-        'url'   : '/get-call-center-value',
-        'headers': {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-        'type'  : 'POST',
-        'data'  : {'id' : value},
-        'cache' : false,
-        success: function (result) {
-            console.log(result);
-            $('#callcenter_value').val(result.id);
-            $('#update_callcenter').val(result.name);
-            $('#update_street_address').val(result.street);
-            $("#update_region option[value='"+result.region+"']").prop('selected',true);
-            $('#update_state').html(result.province_value);
-            $("#update_state option[value='"+result.state+"']").prop('selected',true);
-            $('#update_postal_code').val(result.postalcode);
-            $('#update_city').html(result.city_value);
-            $("#update_city option[value='"+result.city+"']").prop('selected',true);
-        },error: function (error) {
-            console.log(error.status);
-        }
-    });
-});
-
-
-$(document).on('submit','#edit-call-center',function (form) {
-    form.preventDefault();
-
-    let value = $('#edit-call-center').serialize();
-
-    // console.log(value);
-    $.ajax({
-        'url'   : '/update-call-center-details',
-        'type'  : 'POST',
-        'data'  : value,
-        'cache' : false,
-        success: function (result) {
-
-            if(result.success == true)
-            {
-                setTimeout(function(){
-                    $('#edit-call-center').trigger('reset');
-                    $('#edit_callCenterModal').modal('toggle');
-                    $.notify({
-                            message: 'New Call Center Successfully Added!'
-                        } ,{
-                            type: 'success'
-                        }
-                    );
-
-                    setTimeout(function(){
-                        location.reload();
-                    },1500);
-                });
-            }
-
-            $.each(result, function (key, value) {
-                var element = $('#'+key);
-
-                element.closest('div.'+key)
-                    .addClass(value.length > 0 ? 'has-error' : 'has-success')
-                    .find('.text-danger')
-                    .remove();
-                element.after('<p class="text-danger">'+value+'</p>');
-            });
-        }
-    });
-
-    check_value('update_callcenter','update_street_address','update_region','update_state','update_postal_code','update_city');
-    return false;
-});
-
 $(document).on('click','.delete-callcenter',function () {
     let value = this.value;
 
@@ -229,6 +155,80 @@ $(document).on('change','#state',function(){
 
 
 // Edit form address
+$(document).on('click','.edit-callcenter',function () {
+    let value = this.value;
+
+    $.ajax({
+        'url'   : '/get-call-center-value',
+        'headers': {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+        'type'  : 'POST',
+        'data'  : {'id' : value},
+        'cache' : false,
+        success: function (result) {
+            console.log(result);
+            $('#callcenter_value').val(result.id);
+            $('#update_callcenter').val(result.name);
+            $('#update_street_address').val(result.street);
+            $("#update_region option[value='"+result.region+"']").prop('selected',true);
+            $('#update_state').html(result.province_value);
+            $("#update_state option[value='"+result.state+"']").prop('selected',true);
+            $('#update_postal_code').val(result.postalcode);
+            $('#update_city').html(result.city_value);
+            $("#update_city option[value='"+result.city+"']").prop('selected',true);
+        },error: function (error) {
+            console.log(error.status);
+        }
+    });
+});
+
+
+$(document).on('submit','#edit-call-center',function (form) {
+    form.preventDefault();
+
+    let value = $('#edit-call-center').serialize();
+
+    // console.log(value);
+    $.ajax({
+        'url'   : '/update-call-center-details',
+        'type'  : 'POST',
+        'data'  : value,
+        'cache' : false,
+        success: function (result) {
+
+            if(result.success == true)
+            {
+                setTimeout(function(){
+                    $('#edit-call-center').trigger('reset');
+                    $('#edit_callCenterModal').modal('toggle');
+                    $.notify({
+                            message: 'New Call Center Successfully Added!'
+                        } ,{
+                            type: 'success'
+                        }
+                    );
+
+                    setTimeout(function(){
+                        location.reload();
+                    },1500);
+                });
+            }
+
+            $.each(result, function (key, value) {
+                var element = $('#'+key);
+
+                element.closest('div.'+key)
+                    .addClass(value.length > 0 ? 'has-error' : 'has-success')
+                    .find('.text-danger')
+                    .remove();
+                element.after('<p class="text-danger">'+value+'</p>');
+            });
+        }
+    });
+
+    check_value('update_callcenter','update_street_address','update_region','update_state','update_postal_code','update_city');
+    return false;
+});
+
 $(document).on('change','#update_region',function(){
     let value = $('#update_region').val();
     let state = $('#update_state').val();

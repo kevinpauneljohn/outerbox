@@ -89,6 +89,7 @@ class CallCenterController extends Controller
         {
             $callCenter = CallCenter::find($request->callcenter_value);
             $callCenter->name = $request->update_callcenter;
+            $callCenter->region = $request->update_region;
             $callCenter->street = $request->update_street_address;
             $callCenter->state = $request->update_state;
             $callCenter->postalcode = $request->update_postal_code;

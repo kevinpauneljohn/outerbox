@@ -100,7 +100,7 @@ $(document).on('submit','#update-staff',function (form) {
                 setTimeout(function(){
                     $('#edit_employee').modal('toggle');
                     $.notify({
-                            message: '1 Employee Successfully Added!'
+                            message: '1 Employee Successfully Updated!'
                         } ,{
                             type: 'success'
                         }
