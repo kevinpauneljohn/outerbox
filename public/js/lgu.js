@@ -57,3 +57,47 @@ $(document).on('submit','#add-lgu',function(form){
 
     check_value('station_name','department','street_address','region','state','city','contactperson_name','contactperson_no');
 });
+
+$(document).on('change','#region',function(){
+    let value = $('#region').val();
+    let state = $('#state').val();
+    let city = $('#city').val();
+
+    if(state != null || city != null)
+    {
+        $('#state').html("<option></option>");
+        $('#city').html("<option></option>");
+    }
+
+    $.ajax({
+        'url'   : '/provinces',
+        'headers': {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+        'type'  : 'POST',
+        'data'  : {'id' : value},
+        'cache' : false,
+        success: function (result) {
+            $('#state').html(result);
+
+        },error: function (error) {
+            console.log(error.status);
+        }
+    });
+});
+
+$(document).on('change','#state',function(){
+    let value = $('#state').val();
+
+    $.ajax({
+        'url'   : '/city',
+        'headers': {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+        'type'  : 'POST',
+        'data'  : {'id' : value},
+        'cache' : false,
+        success: function (result) {
+            $('#city').html(result);
+
+        },error: function (error) {
+            console.log(error.status);
+        }
+    });
+});

@@ -167,29 +167,48 @@
                                 </span>
                             </div>
                             <div class="row">
-                                <span class="col-lg-4">
+                                <span class="col-lg-6">
                                     <div class="form-group">
                                         <div class="region">
-                                            <input type="text" name="region" id="region" class="form-control"/>
+                                            <select class="form-control regions" style="width: 100%;" id="region" name="region">
+                                                <option></option>
+                                                @foreach($regions as $region)
+                                                    <option value="{{$region->regCode}}">{{$region->regDesc}}</option>
+                                                @endforeach
+                                            </select>
                                             <label for="region">Region</label>
                                         </div>
                                     </div>
                                 </span>
-
-                                <span class="col-lg-4">
+                                <span class="col-lg-6">
                                     <div class="form-group">
                                         <div class="state">
-                                            <input type="text" name="state" id="state" class="form-control"/>
+                                            <select class="form-control provinces" style="width: 100%;" id="state" name="state">
+
+                                            </select>
+{{--                                            <input type="text" name="state" id="state" class="form-control"/>--}}
                                             <label for="state">State</label>
                                         </div>
                                     </div>
                                 </span>
-
-                                <span class="col-lg-4">
+                            </div>
+                            <div class="row">
+                                <span class="col-lg-6">
                                     <div class="form-group">
                                         <div class="city">
-                                            <input type="text" name="city" id="city" class="form-control"/>
+                                            <select class="form-control cities" style="width: 100%;" id="city" name="city">
+
+                                            </select>
+{{--                                            <input type="text" name="city" id="city" class="form-control"/>--}}
                                             <label for="city">City</label>
+                                        </div>
+                                    </div>
+                                </span>
+                                <span class="col-lg-6">
+                                    <div class="form-group">
+                                        <div class="postal_code">
+                                            <input type="text" name="postal_code" id="postal_code" class="form-control"/>
+                                            <label for="postal_code">Postal Code</label>
                                         </div>
                                     </div>
                                 </span>
