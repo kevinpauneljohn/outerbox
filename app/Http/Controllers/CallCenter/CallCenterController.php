@@ -53,12 +53,6 @@ class CallCenterController extends Controller
         return $json;
     }
 
-    private function getSelectedProvince($provCOde)
-    {
-        $province = Province::where('provCode',$provCOde)->first();
-        return $province->provCode;
-    }
-
     private function getProvinces($regCode)
     {
             $provinces = Province::where('regCode',$regCode)->get();
