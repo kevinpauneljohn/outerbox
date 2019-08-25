@@ -52,4 +52,6 @@ class AddressController extends Controller
         $city = DB::table('refcitymun')->where('citymunCode',$citymunCode)->first();
         return $city->citymunDesc;
     }
+
+
 }

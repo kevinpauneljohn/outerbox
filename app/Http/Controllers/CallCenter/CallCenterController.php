@@ -21,7 +21,7 @@ class CallCenterController extends Controller
             'region'           => 'required',
             'state'            => 'required',
             'postal_code'      => 'required',
-            'city'             => 'required',
+            'city'             => 'required|unique:call_centers,city',
         ]);
 
         if($validator->passes())
@@ -106,7 +106,6 @@ class CallCenterController extends Controller
     {
         $callCenter = CallCenter::find($request->call_center_delete_id);
         $message = ($callCenter->delete()) ? ['success' => true] : ['success' => false];
-
         return response()->json($message);
     }
 

@@ -10,4 +10,12 @@ class AgentPageController extends Controller
     {
         return view('Employee.Agent.dashboard');
     }
+
+    /*
+    * Agent Leads Page
+    */
+    public function leads()
+    {
+        return view('Employee.Agent.leads');
+    }
 }

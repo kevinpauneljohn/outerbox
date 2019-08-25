@@ -80,15 +80,17 @@ $(document).on('submit','#delete_form_call_center',function (form) {
     form.preventDefault();
 
     let data = $('#delete_form_call_center').serialize();
-    console.log(data);
+    // console.log(data);
 
     $.ajax({
         'url'   : '/delete-call-center-details',
+        'headers': {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
         'type'  : 'POST',
         'data'  : data,
         'cache' : false,
         success: function (result) {
 
+            //console.log(result);
             if(result.success == true)
             {
                 setTimeout(function(){

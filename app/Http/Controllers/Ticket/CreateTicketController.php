@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Ticket;
 
+use App\Http\Controllers\address\AddressController;
 use App\Models\Lead;
 use App\Ticket;
 use Illuminate\Http\Request;
@@ -18,9 +19,27 @@ class CreateTicketController extends Controller
     }
 
     //this method assign the ticket to the nearest call center
-    private function local_call_center()
+    private function get_all_local_call_center($request_location)
     {
+        /*
+         * the format should be $request_location = "address, city, state, region";
+         */
 
+        //$address = $this->get_all_local_call_center('blk 141 lot 2, ANGELES CITY, PAMPANGA, REGION III (CENTRAL LUZON)');
+        $request_location = explode(', ',$request_location);
+        $call_centers = DB::table('call_centers')
+            ->leftJoin('refregion','call_centers.region','=','refregion.regCode')
+            ->leftJoin('refprovince','refregion.regCode','=','refprovince.regCode')
+            ->leftJoin('refcitymun','refprovince.provCode','=','refcitymun.provCode')
+            //->select('refregion.regDesc as region','refprovince.provDesc as state','refcitymun.citymunDesc as city')
+            ->select('call_centers.*')
+            ->where([
+                ['refregion.regDesc','=',$request_location[3]],
+                ['refprovince.provDesc','=',$request_location[2]],
+                ['refcitymun.citymunDesc','=',$request_location[1]]
+            ])->get();
+
+        return $call_centers;
     }
 
     // this method is used to create tickets
@@ -43,7 +62,7 @@ class CreateTicketController extends Controller
             $leads = Lead::all();
             foreach($leads as $lead)
             {
-                $this->create_ticket($lead->id);
+                //$this->create_ticket($lead->id);
             }
         }
     }
