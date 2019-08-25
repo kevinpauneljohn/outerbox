@@ -17,7 +17,6 @@
 @endsection
 @section('main_content')
     <div class="box">
-
         <div class="box-body">
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
@@ -46,9 +45,9 @@
                                     <td>{{$lgu->station_name}}</td>
                                     <td>{{$lgu->department}}</td>
                                     <td>
-                                        {{ucfirst($lgu->address)}}
-                                        {{ucfirst($lgu->city)}}
-                                        {{ucfirst($lgu->province)}}
+                                        {{ucfirst($lgu->address).', '}}
+                                        {{ucfirst(\App\Http\Controllers\address\AddressController::cityName($lgu->city).', ')}}
+                                        {{ucfirst(\App\Http\Controllers\address\AddressController::provinceName($lgu->province))}}
                                     </td>
                                     <td>{{ucfirst($lgu->contactname)}}</td>
                                     <td>{{$lgu->contactno}}</td>
