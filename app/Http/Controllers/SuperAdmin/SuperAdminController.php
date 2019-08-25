@@ -154,11 +154,20 @@ class SuperAdminController extends Controller
         return response()->json($validator->errors());
     }
 
+    public static function test()
+    {
+        return 'hello';
+    }
+
     public function callCenter()
     {
         $callCenter = CallCenter::all();
         $region = Region::all();
+
+
         return view('SuperAdmin.callCenter.callcenter')->with(['callcenters' => $callCenter, 'regions' => $region]);
+        //return $callcenter;
+
     }
 
     public function callCenterProfile($id)

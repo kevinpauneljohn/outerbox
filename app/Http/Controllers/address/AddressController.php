@@ -6,6 +6,7 @@ use App\address\Municipality;
 use App\address\Province;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 
 class AddressController extends Controller
 {
@@ -31,5 +32,24 @@ class AddressController extends Controller
         }
 
         return $value;
+    }
+
+
+    public static function regionName($regCode)
+    {
+        $region = DB::table('refregion')->where('regCode',$regCode)->first();
+        return $region;
+    }
+
+    public static function provinceName($regProv)
+    {
+        $province = DB::table('refprovince')->where('provCode','=',$regProv)->first();
+        return $province->provDesc;
+    }
+
+    public static function cityName($citymunCode)
+    {
+        $city = DB::table('refcitymun')->where('citymunCode',$citymunCode)->first();
+        return $city->citymunDesc;
     }
 }
