@@ -55,7 +55,7 @@
                     @foreach($callcenters as $callcenter)
                         <tr>
                             <td>{{ucfirst($callcenter->name)}}</td>
-                            <td>{{ucfirst($callcenter->street).' '.ucfirst(\App\Http\Controllers\address\AddressController::cityName($callcenter->city).' '.ucfirst(\App\Http\Controllers\address\AddressController::provinceName($callcenter->state).' '.$callcenter->postalcode))}}</td>
+                            <td>{{ucfirst($callcenter->street).', '.ucfirst(\App\Http\Controllers\address\AddressController::cityName($callcenter->city).', '.ucfirst(\App\Http\Controllers\address\AddressController::provinceName($callcenter->state).' '.$callcenter->postalcode))}}</td>
                             <td></td>
                             <td></td>
                             <td>

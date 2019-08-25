@@ -3,9 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="03ba3b1d-e17f-4440-a069-100ded3b375a" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/EmployeePageController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/EmployeePageController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/lgu.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/lgu.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/Employee/lgu.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Employee/lgu.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/SuperAdmin/callCenter/callcenter.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/SuperAdmin/callCenter/callcenter.blade.php" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/vendor/beyondcode/laravel-dump-server/" />
     <ignored path="$PROJECT_DIR$/vendor/composer/" />
@@ -107,13 +105,13 @@
     </execution>
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.40222222">
+    <splitter split-orientation="horizontal" split-proportion="0.13884674">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/routes/web.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="369">
+                <state relative-caret-position="505">
                   <caret line="75" selection-start-line="75" selection-end-line="75" />
                 </state>
               </provider>
@@ -131,11 +129,23 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/app/Http/Controllers/CallCenter/CallCenterController.php">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="527">
+                  <caret line="51" lean-forward="true" selection-start-line="51" selection-end-line="51" />
+                  <folding>
+                    <element signature="e#51#80#0#PHP" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Lgu/LguController.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-124">
-                  <caret line="26" column="29" selection-start-line="26" selection-start-column="13" selection-end-line="26" selection-end-column="29" />
+                <state relative-caret-position="-342">
+                  <caret line="14" column="20" selection-start-line="26" selection-start-column="13" selection-end-line="26" selection-end-column="29" />
                   <folding>
                     <element signature="e#44#66#0#PHP" expanded="true" />
                   </folding>
@@ -152,11 +162,11 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="false">
+          <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/app/Http/Controllers/address/AddressController.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="391">
-                  <caret line="23" column="29" selection-start-line="23" selection-start-column="20" selection-end-line="23" selection-end-column="29" />
+                <state relative-caret-position="505">
+                  <caret line="52" column="33" selection-start-line="52" selection-start-column="33" selection-end-line="52" selection-end-column="33" />
                   <folding>
                     <element signature="e#48#77#0#PHP" expanded="true" />
                   </folding>
@@ -168,11 +178,23 @@
       </split-first>
       <split-second>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file pinned="false" current-in-tab="false">
+          <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/resources/views/SuperAdmin/callCenter/callcenter.blade.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="127">
-                  <caret line="142" column="28" selection-start-line="142" selection-start-column="28" selection-end-line="162" selection-end-column="34" />
+                <state relative-caret-position="357">
+                  <caret line="57" column="65" selection-start-line="57" selection-start-column="65" selection-end-line="57" selection-end-column="65" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/app/Http/Controllers/SuperAdmin/SuperAdminController.php">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="68">
+                  <caret line="163" selection-start-line="163" selection-end-line="168" selection-end-column="29" />
+                  <folding>
+                    <element signature="e#51#74#0#PHP" expanded="true" />
+                  </folding>
                 </state>
               </provider>
             </entry>
@@ -180,26 +202,8 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/public/js/callcenter.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="352">
-                  <caret line="153" column="3" lean-forward="true" selection-start-line="111" selection-end-line="153" selection-end-column="3" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/public/js/lgu.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="610">
-                  <caret line="102" column="3" selection-start-line="102" selection-start-column="3" selection-end-line="102" selection-end-column="3" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/app/address/Municipality.php">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="187">
-                  <caret line="11" selection-start-line="11" selection-end-line="11" />
+                <state relative-caret-position="63">
+                  <caret line="152" column="7" lean-forward="true" selection-start-line="152" selection-start-column="7" selection-end-line="152" selection-end-column="7" />
                 </state>
               </provider>
             </entry>
@@ -225,6 +229,7 @@
       <find>deleteEmployee</find>
       <find>select2</find>
       <find>callCenter</find>
+      <find>$id</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -270,13 +275,10 @@
         <option value="$PROJECT_DIR$/database/migrations/2019_08_22_041001_add_new_status_column_to_leads_table.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Ticket/CreateTicketController.php" />
         <option value="$PROJECT_DIR$/database/migrations/2019_08_23_140932_add_region_column_to_call_centers.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/SuperAdmin/SuperAdminController.php" />
         <option value="$PROJECT_DIR$/app/address/Region.php" />
         <option value="$PROJECT_DIR$/app/address/Province.php" />
         <option value="$PROJECT_DIR$/app/address/Municipality.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/address/AddressController.php" />
         <option value="$PROJECT_DIR$/routes/web.php" />
-        <option value="$PROJECT_DIR$/resources/views/SuperAdmin/callCenter/callcenter.blade.php" />
         <option value="$PROJECT_DIR$/public/js/callcenter.js" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/CallCenter/CallCenterController.php" />
         <option value="$PROJECT_DIR$/public/js/employee.js" />
@@ -284,6 +286,9 @@
         <option value="$PROJECT_DIR$/app/Http/Controllers/EmployeePageController.php" />
         <option value="$PROJECT_DIR$/database/migrations/2019_08_24_174652_change_region_attr_from_lgus_table.php" />
         <option value="$PROJECT_DIR$/public/js/lgu.js" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/SuperAdmin/SuperAdminController.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/address/AddressController.php" />
+        <option value="$PROJECT_DIR$/resources/views/SuperAdmin/callCenter/callcenter.blade.php" />
       </list>
     </option>
   </component>
@@ -428,6 +433,14 @@
               <item name="app" type="462c0819:PsiDirectoryNode" />
               <item name="Http" type="462c0819:PsiDirectoryNode" />
               <item name="Controllers" type="462c0819:PsiDirectoryNode" />
+              <item name="address" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="outerbox" type="b2602c69:ProjectViewProjectNode" />
+              <item name="outerbox" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="Http" type="462c0819:PsiDirectoryNode" />
+              <item name="Controllers" type="462c0819:PsiDirectoryNode" />
               <item name="CallCenter" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -445,6 +458,14 @@
               <item name="Http" type="462c0819:PsiDirectoryNode" />
               <item name="Controllers" type="462c0819:PsiDirectoryNode" />
               <item name="Lgu" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="outerbox" type="b2602c69:ProjectViewProjectNode" />
+              <item name="outerbox" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="Http" type="462c0819:PsiDirectoryNode" />
+              <item name="Controllers" type="462c0819:PsiDirectoryNode" />
+              <item name="SuperAdmin" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="outerbox" type="b2602c69:ProjectViewProjectNode" />
@@ -542,20 +563,6 @@
     <configuration />
   </component>
   <component name="TaskManager">
-    <task id="LOCAL-00017" summary="added change_mname_and_extname_attr_to_nullable">
-      <created>1565977781308</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1565977781308</updated>
-    </task>
-    <task id="LOCAL-00018" summary="updated EmployeeController">
-      <created>1565977862905</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1565977862905</updated>
-    </task>
     <task id="LOCAL-00019" summary="updated EmployeeController">
       <created>1565978018896</created>
       <option name="number" value="00019" />
@@ -619,7 +626,7 @@
       <workItem from="1566446512469" duration="2894000" />
       <workItem from="1566479313973" duration="2191000" />
       <workItem from="1566562012553" duration="19908000" />
-      <workItem from="1566663064981" duration="4064000" />
+      <workItem from="1566663064981" duration="10040000" />
     </task>
     <task id="LOCAL-00026" summary="set the default landing page to login page">
       <created>1566092197937</created>
@@ -901,17 +908,31 @@
       <option name="project" value="LOCAL" />
       <updated>1566668141030</updated>
     </task>
-    <option name="localTasksCounter" value="66" />
+    <task id="LOCAL-00066" summary="added philippines-region-province-citymun-brgy">
+      <created>1566669573857</created>
+      <option name="number" value="00066" />
+      <option name="presentableId" value="LOCAL-00066" />
+      <option name="project" value="LOCAL" />
+      <updated>1566669573857</updated>
+    </task>
+    <task id="LOCAL-00067" summary="updated the call center page address call">
+      <created>1566715281160</created>
+      <option name="number" value="00067" />
+      <option name="presentableId" value="LOCAL-00067" />
+      <option name="project" value="LOCAL" />
+      <updated>1566715281160</updated>
+    </task>
+    <option name="localTasksCounter" value="68" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="117862000" />
+    <option name="totallyTimeSpent" value="123838000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49748743" visible="true" weight="0.093959734" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49748743" visible="true" weight="0.11543624" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" sideWeight="0.5025126" side_tool="true" weight="0.48724833" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -1000,7 +1021,8 @@
     <MESSAGE value="added the agent access module" />
     <MESSAGE value="added the agent access module and deleted philippines-region-province-citymun-brgy" />
     <MESSAGE value="added philippines-region-province-citymun-brgy" />
-    <option name="LAST_COMMIT_MESSAGE" value="added philippines-region-province-citymun-brgy" />
+    <MESSAGE value="updated the call center page address call" />
+    <option name="LAST_COMMIT_MESSAGE" value="updated the call center page address call" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/database/migrations/2019_08_20_154759_create_lgus_table.php">
@@ -1236,13 +1258,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/address/Municipality.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" selection-start-line="11" selection-end-line="11" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/address/Region.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
@@ -1257,30 +1272,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/CallCenter/CallCenterController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="83" column="53" selection-start-line="83" selection-start-column="53" selection-end-line="83" selection-end-column="53" />
-          <folding>
-            <element signature="e#51#80#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/address/Province.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
           <caret line="16" selection-start-line="16" selection-end-line="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/address/AddressController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="23" column="29" selection-start-line="23" selection-start-column="20" selection-end-line="23" selection-end-column="29" />
-          <folding>
-            <element signature="e#48#77#0#PHP" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1291,34 +1286,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/SuperAdmin/callCenter/callcenter.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="127">
-          <caret line="142" column="28" selection-start-line="142" selection-start-column="28" selection-end-line="162" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/Employee/lgu.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="624">
           <caret line="214" column="34" selection-start-line="214" selection-start-column="34" selection-end-line="214" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/SuperAdmin/SuperAdminController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-90">
-          <caret line="162" selection-start-line="162" selection-end-line="162" />
-          <folding>
-            <element signature="e#51#74#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/web.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="369">
-          <caret line="75" selection-start-line="75" selection-end-line="75" />
         </state>
       </provider>
     </entry>
@@ -1336,20 +1307,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/callcenter.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="352">
-          <caret line="153" column="3" lean-forward="true" selection-start-line="111" selection-end-line="153" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/lgu.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="610">
-          <caret line="102" column="3" selection-start-line="102" selection-start-column="3" selection-end-line="102" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/EmployeePageController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="454">
@@ -1362,11 +1319,76 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Lgu/LguController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-124">
-          <caret line="26" column="29" selection-start-line="26" selection-start-column="13" selection-end-line="26" selection-end-column="29" />
+        <state relative-caret-position="-342">
+          <caret line="14" column="20" selection-start-line="26" selection-start-column="13" selection-end-line="26" selection-end-column="29" />
           <folding>
             <element signature="e#44#66#0#PHP" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/address/Municipality.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="6" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/lgu.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1734">
+          <caret line="102" column="3" selection-start-line="102" selection-start-column="3" selection-end-line="102" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/web.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="505">
+          <caret line="75" selection-start-line="75" selection-end-line="75" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/callcenter.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="63">
+          <caret line="152" column="7" lean-forward="true" selection-start-line="152" selection-start-column="7" selection-end-line="152" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/CallCenter/CallCenterController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="527">
+          <caret line="51" lean-forward="true" selection-start-line="51" selection-end-line="51" />
+          <folding>
+            <element signature="e#51#80#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/SuperAdmin/SuperAdminController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="163" selection-start-line="163" selection-end-line="168" selection-end-column="29" />
+          <folding>
+            <element signature="e#51#74#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/address/AddressController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="505">
+          <caret line="52" column="33" selection-start-line="52" selection-start-column="33" selection-end-line="52" selection-end-column="33" />
+          <folding>
+            <element signature="e#48#77#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/SuperAdmin/callCenter/callcenter.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="57" column="65" selection-start-line="57" selection-start-column="65" selection-end-line="57" selection-end-column="65" />
         </state>
       </provider>
     </entry>
