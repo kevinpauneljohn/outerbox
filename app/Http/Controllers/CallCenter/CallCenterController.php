@@ -110,4 +110,11 @@ class CallCenterController extends Controller
         return response()->json($message);
     }
 
+    //count number of agents per call center
+    public static function totalEmployees($callcenter_id)
+    {
+        $employees = CallCenter::find($callcenter_id)->users->count();
+        return $employees;
+    }
+
 }

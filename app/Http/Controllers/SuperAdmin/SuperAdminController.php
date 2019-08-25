@@ -164,11 +164,11 @@ class SuperAdminController extends Controller
         $callCenter = CallCenter::all();
         $region = Region::all();
 
-
         return view('SuperAdmin.callCenter.callcenter')->with(['callcenters' => $callCenter, 'regions' => $region]);
         //return $callcenter;
-
     }
+
+
 
     public function callCenterProfile($id)
     {

@@ -56,7 +56,7 @@
                         <tr>
                             <td>{{ucfirst($callcenter->name)}}</td>
                             <td>{{ucfirst($callcenter->street).', '.ucfirst(\App\Http\Controllers\address\AddressController::cityName($callcenter->city).', '.ucfirst(\App\Http\Controllers\address\AddressController::provinceName($callcenter->state).' '.$callcenter->postalcode))}}</td>
-                            <td></td>
+                            <td>{{App\Http\Controllers\CallCenter\CallCenterController::totalEmployees($callcenter->id)}}</td>
                             <td></td>
                             <td>
                                 <a href="{{route('callcenter.profile',['id' => $callcenter->id])}}"><button type="button" class="btn btn-success edit-btn" title="View"><i class="fa fa-eye"></i></button></a>
