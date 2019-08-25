@@ -82,7 +82,7 @@ class CallCenterController extends Controller
             'update_region'             => 'required',
             'update_state'              => 'required',
             'update_postal_code'        => 'required',
-            'update_city'               => 'required',
+            'update_city'               => 'required|unique:call_centers,city',
         ]);
 
         if($validator->passes())
