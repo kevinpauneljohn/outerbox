@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\SuperAdmin;
 
 use App\address\Region;
+use App\Models\Lead;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -18,7 +19,8 @@ class SuperAdminController extends Controller
 {
     public function dashboard()
     {
-        return view('SuperAdmin.dashboard');
+        return Lead::all();
+//        return view('SuperAdmin.dashboard');
     }
 
     public function employee()
