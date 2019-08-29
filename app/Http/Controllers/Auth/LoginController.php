@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
@@ -59,6 +61,8 @@ class LoginController extends Controller
     {
         // User role
         $role = auth()->user()->getRoleNames()[0];
+        //set active status to true before redirect
+        $this->setActiveStatus(auth()->user()->id, 1);
 
             // Check user role
             switch ($role) {
@@ -75,5 +79,20 @@ class LoginController extends Controller
                     return '/login';
                     break;
             }
+    }
+
+    private function setActiveStatus($userId, $status)
+    {
+        DB::table('users')->where('id',$userId)->update(['active' => $status]);
+    }
+
+    public function logout(Request $request)
+    {
+        $current_id = auth()->user()->id;
+        $this->guard()->logout();
+        $request->session()->invalidate();
+
+        $this->setActiveStatus($current_id, 0);
+        return $this->loggedOut($request)?:redirect('/');
     }
 }

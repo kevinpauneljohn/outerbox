@@ -78,6 +78,7 @@ Route::group(['middleware' => ['auth','role:super admin|admin']], function (){
 Route::group(['middleware' => ['auth']],function (){
     Route::post('/provinces','address\AddressController@getProvinces');
     Route::post('/city','address\AddressController@getCities');
+    Route::post('/get-leads','Leads\LeadsController@get_response');
 });
 
 

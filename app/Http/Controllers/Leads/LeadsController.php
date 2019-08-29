@@ -7,5 +7,8 @@ use App\Http\Controllers\Controller;
 
 class LeadsController extends Controller
 {
-    //
+    public function get_response(Request $request)
+    {
+        return $request->all();
+    }
 }

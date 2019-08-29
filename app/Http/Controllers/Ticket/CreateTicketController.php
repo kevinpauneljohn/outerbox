@@ -51,7 +51,8 @@ class CreateTicketController extends Controller
     {
         $ticket = new Ticket;
         $ticket->lead_id = $lead_id;
-        $ticket->call_center_id = $call_center_id;
+//        $ticket->call_center_id = $call_center_id;
+        $ticket->call_center_id = $this->get_all_local_call_center('request_location');
         $ticket->user_assigned_id = 36;
         $ticket->user_created_id = 0;
         $ticket->status = 'pending';
