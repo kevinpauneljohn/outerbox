@@ -217,8 +217,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/app/Http/Middleware/VerifyCsrfToken.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="408">
-                  <caret line="24" lean-forward="true" selection-start-line="24" selection-end-line="24" />
+                <state relative-caret-position="357">
+                  <caret line="21" column="8" selection-start-line="21" selection-start-column="8" selection-end-line="21" selection-end-column="8" />
                 </state>
               </provider>
             </entry>
@@ -530,14 +530,7 @@
       <workItem from="1566663064981" duration="29512000" />
       <workItem from="1566811765048" duration="1277000" />
       <workItem from="1566840037684" duration="1408000" />
-      <workItem from="1567059964049" duration="7712000" />
-    </task>
-    <task id="LOCAL-00026" summary="set the default landing page to login page">
-      <created>1566092197937</created>
-      <option name="number" value="00026" />
-      <option name="presentableId" value="LOCAL-00026" />
-      <option name="project" value="LOCAL" />
-      <updated>1566092197937</updated>
+      <workItem from="1567059964049" duration="7774000" />
     </task>
     <task id="LOCAL-00027" summary="updated the employee page">
       <created>1566095918588</created>
@@ -875,11 +868,18 @@
       <option name="project" value="LOCAL" />
       <updated>1567070183267</updated>
     </task>
-    <option name="localTasksCounter" value="75" />
+    <task id="LOCAL-00075" summary="updated the call center page address call">
+      <created>1567070832469</created>
+      <option name="number" value="00075" />
+      <option name="presentableId" value="LOCAL-00075" />
+      <option name="project" value="LOCAL" />
+      <updated>1567070832469</updated>
+    </task>
+    <option name="localTasksCounter" value="76" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="153707000" />
+    <option name="totallyTimeSpent" value="153769000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
@@ -1330,8 +1330,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Middleware/VerifyCsrfToken.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="24" lean-forward="true" selection-start-line="24" selection-end-line="24" />
+        <state relative-caret-position="357">
+          <caret line="21" column="8" selection-start-line="21" selection-start-column="8" selection-end-line="21" selection-end-column="8" />
         </state>
       </provider>
     </entry>
