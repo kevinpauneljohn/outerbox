@@ -8,13 +8,14 @@ use App\Http\Controllers\Controller;
 
 class LeadsController extends Controller
 {
-    public function get_response(Request $request)
+    public function save_leads(Request $request)
     {
         $app_user_id = $request->input('app_user_id');
         $app_response = $request->input('app_response');
 
         $leads = new Lead;
         $leads->app_user_id = $app_user_id;
+        $leads->status = 'new';
         $leads->app_response = $app_response;
         $leads->save();
 

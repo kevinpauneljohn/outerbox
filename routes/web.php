@@ -81,7 +81,7 @@ Route::group(['middleware' => ['auth']],function (){
 });
 
 Route::group(['middleware' => ['cors']], function (){
-    Route::post('/get-leads','Leads\LeadsController@get_response');
+    Route::post('/get-leads','Leads\LeadsController@save_leads');
 });
 
 
