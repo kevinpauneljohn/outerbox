@@ -80,10 +80,10 @@ Route::group(['middleware' => ['auth']],function (){
     Route::post('/city','address\AddressController@getCities');
 });
 
-Route::group(['middleware' => ['cors']], function (){
-    Route::post('/get-leads','Leads\LeadsController@save_leads');
-});
-
+//Route::group(['middleware' => ['cors']], function (){
+//
+//});
+Route::post('/get-leads','Leads\LeadsController@save_leads');
 
 Auth::routes();
 
