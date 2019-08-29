@@ -19,8 +19,7 @@ class SuperAdminController extends Controller
 {
     public function dashboard()
     {
-        return Lead::all();
-//        return view('SuperAdmin.dashboard');
+        return view('SuperAdmin.dashboard');
     }
 
     public function employee()
