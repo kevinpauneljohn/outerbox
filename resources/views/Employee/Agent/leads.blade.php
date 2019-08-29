@@ -37,24 +37,29 @@
                 </tr>
                 </thead>
                 <tbody>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td>
-                        <button type="button" class="btn btn-primary"><i class="fa fa-phone"></i></button>
-                        <button type="button" class="btn btn-success"><i class="fa fa-arrows-h"></i></button>
-                        <button type="button" class="btn btn-danger"><i class="fa fa-warning"></i></button>
-                        <button type="button" class="btn btn-warning"><i class="fa fa-user-times"></i></button>
-                    </td>
+                @foreach($tickets as $ticket)
+                    <tr>
+                        <td>{{$ticket->id}}</td>
+                        <td>{{$ticket->app_response}}</td>
+                        <td>{{$ticket->station_name}}</td>
+                        <td>{{$ticket->date_reported}}</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>
+                            <a href="{{url('/call')}}"><button type="button" class="btn btn-primary"><i class="fa fa-phone"></i></button></a>
+                            <button type="button" class="btn btn-success"><i class="fa fa-arrows-h"></i></button>
+                            <button type="button" class="btn btn-danger"><i class="fa fa-warning"></i></button>
+                            <button type="button" class="btn btn-warning"><i class="fa fa-user-times"></i></button>
+                        </td>
+                    </tr>
+                    @endforeach
+
                 </tbody>
                 <tfoot>
                 <tr>
