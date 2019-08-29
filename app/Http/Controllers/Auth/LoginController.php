@@ -72,7 +72,7 @@ class LoginController extends Controller
                 case 'admin':
                     return '/dashboard';
                     break;
-                case 'Agent':
+                case 'agent':
                     return '/agent/dashboard';
                     break;
                 default:
