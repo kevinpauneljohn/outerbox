@@ -31,33 +31,27 @@ class CreateTicketController extends Controller
             ->leftJoin('refcitymun','call_centers.city','=','refcitymun.citymunCode')
             ->leftJoin('refregion','call_centers.region','=','refregion.regCode')
             ->leftJoin('refprovince','refregion.regCode','=','refprovince.regCode')
-            //->select('refregion.regDesc as region','refprovince.provDesc as state','refcitymun.citymunDesc as city')
-            ->select('call_centers.*')
+            ->select('call_centers.name', 'call_centers.id')
             ->where([
                 ['refregion.regDesc','=',$request_location[3]],
                 ['refprovince.provDesc','=',$request_location[2]],
                 ['refcitymun.citymunDesc','=',$request_location[1]]
             ])->get();
-//        $call_centers = DB::table('call_centers')
-//            ->leftJoin('refregion','call_centers.region','=','refregion.regCode')
-//            ->leftJoin('refprovince','refregion.regCode','=','refprovince.regCode')
-//            ->leftJoin('refcitymun','refprovince.provCode','=','refcitymun.provCode')
-//            //->select('refregion.regDesc as region','refprovince.provDesc as state','refcitymun.citymunDesc as city')
-//            ->select('call_centers.*')
-//            ->where([
-//                ['refregion.regDesc','=',$request_location[3]],
-//                ['refprovince.provDesc','=',$request_location[2]],
-//                ['refcitymun.citymunDesc','=',$request_location[1]]
-//            ])->get();
 
-        return $call_centers;
+        return $call_centers->id;
     }
 
+    private function get_available_agent()
+    {
+
+    }
+  
     // this method is used to create tickets
-    private function create_ticket($lead_id)
+    private function create_ticket($lead_id, $call_center_id)
     {
         $ticket = new Ticket;
         $ticket->lead_id = $lead_id;
+        $ticket->call_center_id = $call_center_id;
         $ticket->user_assigned_id = 36;
         $ticket->user_created_id = 0;
         $ticket->status = 'pending';
@@ -68,19 +62,13 @@ class CreateTicketController extends Controller
     //this method will be called by CRON to retrieve all new leads and automatically create ticket
     public function get_all_new_leads()
     {
-        $address = $this->get_all_local_call_center('blk 141 lot 2, ANGELES CITY, PAMPANGA, REGION III (CENTRAL LUZON)');
-
-        foreach ($address as $add){
-            echo $add->name.'<br/>';
+        if($this->check_leads() > 0)
+        {
+            $leads = Lead::all();
+            foreach($leads as $lead)
+            {
+                //$this->create_ticket($lead->id);
+            }
         }
-        //return $address;
-//        if($this->check_leads() > 0)
-//        {
-//            $leads = Lead::all();
-//            foreach($leads as $lead)
-//            {
-//                //$this->create_ticket($lead->id);
-//            }
-//        }
     }
 }
