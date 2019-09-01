@@ -60,7 +60,7 @@ class EmployeePageController extends Controller
             ->leftJoin('call_centers','lgus.call_center_id','=','call_centers.id')
             ->where('lgus.call_center_id','=',$callcenter_id);
 
-        return $lgus->get();
+        return $lgus->count();
 
 //        $lgus = DB::table('call_centers')
 //            ->leftJoin('lgus','call_centers.id', '=', 'lgus.call_center_id')

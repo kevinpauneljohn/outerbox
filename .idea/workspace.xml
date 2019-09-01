@@ -199,8 +199,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/app/Http/Controllers/EmployeePageController.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="423">
-                  <caret line="62" column="43" selection-start-line="62" selection-start-column="43" selection-end-line="62" selection-end-column="43" />
+                <state relative-caret-position="253">
+                  <caret line="52" column="25" lean-forward="true" selection-start-line="52" selection-start-column="25" selection-end-line="52" selection-end-column="25" />
                   <folding>
                     <element signature="e#40#63#0#PHP" expanded="true" />
                   </folding>
@@ -561,21 +561,7 @@
       <workItem from="1566840037684" duration="1408000" />
       <workItem from="1567059964049" duration="11186000" />
       <workItem from="1567082079091" duration="7531000" />
-      <workItem from="1567256644759" duration="2694000" />
-    </task>
-    <task id="LOCAL-00046" summary="updated the call center profile page">
-      <created>1566223661056</created>
-      <option name="number" value="00046" />
-      <option name="presentableId" value="LOCAL-00046" />
-      <option name="project" value="LOCAL" />
-      <updated>1566223661056</updated>
-    </task>
-    <task id="LOCAL-00047" summary="updated the call center profile page">
-      <created>1566225244067</created>
-      <option name="number" value="00047" />
-      <option name="presentableId" value="LOCAL-00047" />
-      <option name="project" value="LOCAL" />
-      <updated>1566225244067</updated>
+      <workItem from="1567256644759" duration="2990000" />
     </task>
     <task id="LOCAL-00048" summary="setup the admin page">
       <created>1566228641482</created>
@@ -906,11 +892,25 @@
       <option name="project" value="LOCAL" />
       <updated>1567317737753</updated>
     </task>
-    <option name="localTasksCounter" value="95" />
+    <task id="LOCAL-00095" summary="updated the call center page address call">
+      <created>1567317881894</created>
+      <option name="number" value="00095" />
+      <option name="presentableId" value="LOCAL-00095" />
+      <option name="project" value="LOCAL" />
+      <updated>1567317881895</updated>
+    </task>
+    <task id="LOCAL-00096" summary="updated the call center page address call">
+      <created>1567318096571</created>
+      <option name="number" value="00096" />
+      <option name="presentableId" value="LOCAL-00096" />
+      <option name="project" value="LOCAL" />
+      <updated>1567318096571</updated>
+    </task>
+    <option name="localTasksCounter" value="97" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="167406000" />
+    <option name="totallyTimeSpent" value="167702000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
@@ -1367,8 +1367,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/EmployeePageController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="423">
-          <caret line="62" column="43" selection-start-line="62" selection-start-column="43" selection-end-line="62" selection-end-column="43" />
+        <state relative-caret-position="253">
+          <caret line="52" column="25" lean-forward="true" selection-start-line="52" selection-start-column="25" selection-end-line="52" selection-end-column="25" />
           <folding>
             <element signature="e#40#63#0#PHP" expanded="true" />
           </folding>
