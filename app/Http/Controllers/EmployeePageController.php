@@ -62,7 +62,7 @@ class EmployeePageController extends Controller
             ->select('lgus.*','contact_people.fullname as contactname','contact_people.contactno')
             ->where('call_centers.id','=',$callcenter_id);
 
-        return $lgus->get();
+        return $lgus->count();
 //        return view('Employee.lgu')->with([
 //            'lgus'    => $lgus,
 //            'regions' => $regions
