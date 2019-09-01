@@ -63,7 +63,7 @@ class EmployeePageController extends Controller
             ->where('call_centers.id','=',$callcenter_id)
             ->get();
 
-        return $lgus;
+        return $callcenter_id;
 //        return view('Employee.lgu')->with([
 //            'lgus'    => $lgus,
 //            'regions' => $regions
