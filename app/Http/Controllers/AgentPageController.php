@@ -17,9 +17,8 @@ class AgentPageController extends Controller
     /*
     * Agent Leads Page
     */
-    public function leads()
+    public function ticket()
     {
-//        $tickets = Ticket::all();
         $tickets = DB::table('tickets')
             ->leftJoin('lgus','tickets.lgu_id','=','lgus.id')
             ->leftJoin('call_centers','tickets.call_center_id','=','call_centers.id')
@@ -30,13 +29,11 @@ class AgentPageController extends Controller
                 'users.username',
                 'leads.id as lead_id','leads.app_user_id','leads.created_at as date_reported','leads.app_response',
                 'lgus.*',
-                'tickets.*')->get();
+                'tickets.*')
+            ->where('tickets.user_assigned_id','=',auth()->user()->id)
+            ->get();
 
-//        foreach ($tickets as $ticket){
-//            echo $ticket->id.'<br/>';
-//        }
-
-        return view('Employee.Agent.leads')->with(['tickets' => $tickets]);
+        return view('Employee.Agent.tickets')->with(['tickets' => $tickets]);
     }
 
     public function call_user()

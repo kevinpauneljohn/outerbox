@@ -39,7 +39,7 @@
                 <tbody>
                 @foreach($tickets as $ticket)
                     <tr>
-                        <td>{{$ticket->id}}</td>
+                        <td>{{\App\Http\Controllers\Ticket\CreateTicketController::getSequence($ticket->id)}}</td>
                         <td>{{$ticket->app_response}}</td>
                         <td>{{$ticket->station_name}}</td>
                         <td>{{$ticket->date_reported}}</td>
@@ -50,7 +50,7 @@
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td></td>
+                        <td><span class="label bg-{{\App\Http\Controllers\Ticket\CreateTicketController::get_status_label($ticket->status)}}">{{$ticket->status}}</span></td>
                         <td>
                             <a href="{{url('/call')}}"><button type="button" class="btn btn-primary"><i class="fa fa-phone"></i></button></a>
                             <button type="button" class="btn btn-success"><i class="fa fa-arrows-h"></i></button>
