@@ -79,6 +79,7 @@ Route::group(['middleware' => ['auth']],function (){
     Route::post('/provinces','address\AddressController@getProvinces');
     Route::post('/city','address\AddressController@getCities');
     Route::get('/call','AgentPageController@call_user');
+    Route::post('/update-ticket-status','');
 });
 
 Route::group(['middleware' => ['cors'],'prefix' => 'v1'], function (){

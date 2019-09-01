@@ -50,7 +50,24 @@
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td><span class="label bg-{{\App\Http\Controllers\Ticket\CreateTicketController::get_status_label($ticket->status)}}">{{$ticket->status}}</span></td>
+                        <td>
+                            <select name="status" id="{{$ticket->id}}">
+                                <option value="{{$ticket->status}}">{{$ticket->status}}</option>
+                                @if($ticket->status != 'Pending')
+                                    <option value="Pending">Pending</option>
+                                @endif
+                                @if($ticket->status != 'On-going')
+                                    <option value="On-going">On-going</option>
+                                    @endif
+                                @if($ticket->status != 'Prank')
+                                    <option value="Prank">Prank</option>
+                                    @endif
+                                @if($ticket->status != 'Completed')
+                                    <option value="Completed">Completed</option>
+                                    @endif
+
+                            </select>
+                        </td>
                         <td>
                             <a href="{{url('/call')}}"><button type="button" class="btn btn-primary"><i class="fa fa-phone"></i></button></a>
                             <button type="button" class="btn btn-success"><i class="fa fa-arrows-h"></i></button>
@@ -98,7 +115,7 @@
     <!-- growl notification -->
     <script src="{{asset('bower_components/remarkable-bootstrap-notify/bootstrap-notify.min.js')}}"></script>
 
-    <script src="{{asset('/js/employee.js')}}"></script>
+    <script src="{{asset('/js/ticket.js')}}"></script>
 
     <script>
         $(function () {

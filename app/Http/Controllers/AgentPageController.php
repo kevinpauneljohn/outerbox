@@ -36,6 +36,11 @@ class AgentPageController extends Controller
         return view('Employee.Agent.tickets')->with(['tickets' => $tickets]);
     }
 
+    public static function status()
+    {
+        return array('Pending','On-going','Prank','Completed');
+    }
+
     public function call_user()
     {
 // Your Account SID and Auth Token from twilio.com/console
