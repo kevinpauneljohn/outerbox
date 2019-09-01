@@ -31,7 +31,7 @@ Route::get('/check-leads','Ticket\CreateTicketController@get_all_new_leads');
 
 Route::group(['middleware' => ['auth','role:agent']],function (){
     Route::get('/agent/dashboard','AgentPageController@dashboard');
-    Route::get('/agent/leads','AgentPageController@leads');
+    Route::get('/agent/ticket','AgentPageController@leads');
 });
 
 #superadmin login

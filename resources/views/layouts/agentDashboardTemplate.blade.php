@@ -220,7 +220,7 @@
                 <li class="header">MAIN NAVIGATION</li>
                 <!-- Optionally, you can add icons to the links -->
                 <li{{(Request::segment(2) == 'dashboard') ? ' class=active' : ''}}><a href="{{url('/agent/dashboard')}}"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
-                <li{{(Request::segment(2) == 'leads') ? ' class=active' : ''}}><a href="{{url('/agent/leads')}}"><i class="fa fa-user-plus"></i> <span>Leads</span></a></li>
+                <li{{(Request::segment(2) == 'ticket') ? ' class=active' : ''}}><a href="{{url('/agent/ticket')}}"><i class="fa fa-ticket"></i> <span>Ticket</span></a></li>
                 <li{{(Request::segment(2) == 'lgu') ? ' class=active' : ''}}><a href="{{url('/agent/lgu')}}"><i class="fa fa-bank"></i> <span>LGUs</span></a></li>
             </ul>
             <!-- /.sidebar-menu -->
