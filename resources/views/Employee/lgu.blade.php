@@ -40,7 +40,7 @@
                             </thead>
                             <tbody>
                             @if($lgus->count() > 0)
-                            @foreach($lgus as $lgu)
+                            @foreach($lgus->get() as $lgu)
                                 <tr>
                                     <td>{{$lgu->created_at}}</td>
                                     <td>{{$lgu->station_name}}</td>
