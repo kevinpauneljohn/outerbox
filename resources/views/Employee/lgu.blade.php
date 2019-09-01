@@ -17,6 +17,7 @@
 @endsection
 @section('main_content')
     <div class="box">
+        {{$lgus->count()}}
         <div class="box-body">
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
@@ -39,6 +40,7 @@
                             </tr>
                             </thead>
                             <tbody>
+
 {{--                            @foreach($lgus as $lgu)--}}
 {{--                                <tr>--}}
 {{--                                    <td>{{$lgu->created_at}}</td>--}}

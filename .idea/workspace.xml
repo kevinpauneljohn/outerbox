@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="03ba3b1d-e17f-4440-a069-100ded3b375a" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/EmployeePageController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/EmployeePageController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/Employee/lgu.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Employee/lgu.blade.php" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/vendor/beyondcode/laravel-dump-server/" />
     <ignored path="$PROJECT_DIR$/vendor/composer/" />
@@ -178,11 +178,11 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="false">
+          <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/resources/views/Employee/lgu.blade.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="391">
-                  <caret line="47" selection-start-line="47" selection-end-line="47" />
+                <state relative-caret-position="323">
+                  <caret line="19" column="26" selection-start-line="19" selection-start-column="26" selection-end-line="19" selection-end-column="26" />
                 </state>
               </provider>
             </entry>
@@ -196,11 +196,11 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/app/Http/Controllers/EmployeePageController.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="253">
-                  <caret line="52" column="25" lean-forward="true" selection-start-line="52" selection-start-column="25" selection-end-line="52" selection-end-column="25" />
+                <state relative-caret-position="542">
+                  <caret line="72" column="31" lean-forward="true" selection-start-line="72" selection-start-column="31" selection-end-line="72" selection-end-column="31" />
                   <folding>
                     <element signature="e#40#63#0#PHP" expanded="true" />
                   </folding>
@@ -298,8 +298,8 @@
         <option value="$PROJECT_DIR$/resources/views/Employee/Agent/leads.blade.php" />
         <option value="$PROJECT_DIR$/routes/web.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/AgentPageController.php" />
-        <option value="$PROJECT_DIR$/resources/views/Employee/lgu.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/EmployeePageController.php" />
+        <option value="$PROJECT_DIR$/resources/views/Employee/lgu.blade.php" />
       </list>
     </option>
   </component>
@@ -561,21 +561,7 @@
       <workItem from="1566840037684" duration="1408000" />
       <workItem from="1567059964049" duration="11186000" />
       <workItem from="1567082079091" duration="7531000" />
-      <workItem from="1567256644759" duration="2990000" />
-    </task>
-    <task id="LOCAL-00048" summary="setup the admin page">
-      <created>1566228641482</created>
-      <option name="number" value="00048" />
-      <option name="presentableId" value="LOCAL-00048" />
-      <option name="project" value="LOCAL" />
-      <updated>1566228641482</updated>
-    </task>
-    <task id="LOCAL-00049" summary="updated the admin dashboard">
-      <created>1566305989064</created>
-      <option name="number" value="00049" />
-      <option name="presentableId" value="LOCAL-00049" />
-      <option name="project" value="LOCAL" />
-      <updated>1566305989064</updated>
+      <workItem from="1567256644759" duration="3214000" />
     </task>
     <task id="LOCAL-00050" summary="added agent profile page accessed by the admin">
       <created>1566307050887</created>
@@ -906,11 +892,25 @@
       <option name="project" value="LOCAL" />
       <updated>1567318096571</updated>
     </task>
-    <option name="localTasksCounter" value="97" />
+    <task id="LOCAL-00097" summary="updated the call center page address call">
+      <created>1567318183648</created>
+      <option name="number" value="00097" />
+      <option name="presentableId" value="LOCAL-00097" />
+      <option name="project" value="LOCAL" />
+      <updated>1567318183648</updated>
+    </task>
+    <task id="LOCAL-00098" summary="updated the call center page address call">
+      <created>1567318292098</created>
+      <option name="number" value="00098" />
+      <option name="presentableId" value="LOCAL-00098" />
+      <option name="project" value="LOCAL" />
+      <updated>1567318292098</updated>
+    </task>
+    <option name="localTasksCounter" value="99" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="167702000" />
+    <option name="totallyTimeSpent" value="167926000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
@@ -1358,20 +1358,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/Employee/lgu.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="47" selection-start-line="47" selection-end-line="47" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/EmployeePageController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="52" column="25" lean-forward="true" selection-start-line="52" selection-start-column="25" selection-end-line="52" selection-end-column="25" />
+        <state relative-caret-position="542">
+          <caret line="72" column="31" lean-forward="true" selection-start-line="72" selection-start-column="31" selection-end-line="72" selection-end-column="31" />
           <folding>
             <element signature="e#40#63#0#PHP" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/Employee/lgu.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="19" column="26" selection-start-line="19" selection-start-column="26" selection-end-line="19" selection-end-column="26" />
         </state>
       </provider>
     </entry>
