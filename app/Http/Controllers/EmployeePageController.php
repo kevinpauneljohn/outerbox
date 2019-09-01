@@ -60,8 +60,6 @@ class EmployeePageController extends Controller
             ->leftJoin('call_centers','lgus.call_center_id','=','call_centers.id')
             ->where('lgus.call_center_id','=',$callcenter_id);
 
-        return $lgus->count();
-
 //        $lgus = DB::table('call_centers')
 //            ->leftJoin('lgus','call_centers.id', '=', 'lgus.call_center_id')
 //            ->leftJoin('contact_people','lgus.id', '=', 'contact_people.lgu_id')
@@ -71,10 +69,10 @@ class EmployeePageController extends Controller
 //            ->where('call_centers.id','=',$callcenter_id);
 //
 //        return $lgus->get();
-//        return view('Employee.lgu')->with([
-//            'lgus'    => $lgus,
-//            'regions' => $regions
-//        ]);
+        return view('Employee.lgu')->with([
+            'lgus'    => $lgus,
+            'regions' => $regions
+        ]);
 
     }
 }

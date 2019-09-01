@@ -39,25 +39,25 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($lgus as $lgu)
-                                <tr>
-                                    <td>{{$lgu->created_at}}</td>
-                                    <td>{{$lgu->station_name}}</td>
-                                    <td>{{$lgu->department}}</td>
-                                    <td>
+{{--                            @foreach($lgus as $lgu)--}}
+{{--                                <tr>--}}
+{{--                                    <td>{{$lgu->created_at}}</td>--}}
+{{--                                    <td>{{$lgu->station_name}}</td>--}}
+{{--                                    <td>{{$lgu->department}}</td>--}}
+{{--                                    <td>--}}
 
-                                    </td>
-                                    <td>{{ucfirst($lgu->contactname)}}</td>
-                                    <td>{{$lgu->contactno}}</td>
-                                    <td>
-                                        <button type="button" class="btn btn-default"><i class="fa fa-eye"></i></button>
-                                        <button type="button" class="btn btn-primary"><i class="fa fa-pencil"></i></button>
-                                        <button type="button" class="btn btn-danger"><i class="fa fa-trash"></i></button>
-                                        <button type="button" class="btn btn-warning"><i class="fa fa-phone"></i></button>
-                                        <button type="button" class="btn btn-success"><i class="fa fa-comment"></i></button>
-                                    </td>
-                                </tr>
-                            @endforeach
+{{--                                    </td>--}}
+{{--                                    <td>{{ucfirst($lgu->contactname)}}</td>--}}
+{{--                                    <td>{{$lgu->contactno}}</td>--}}
+{{--                                    <td>--}}
+{{--                                        <button type="button" class="btn btn-default"><i class="fa fa-eye"></i></button>--}}
+{{--                                        <button type="button" class="btn btn-primary"><i class="fa fa-pencil"></i></button>--}}
+{{--                                        <button type="button" class="btn btn-danger"><i class="fa fa-trash"></i></button>--}}
+{{--                                        <button type="button" class="btn btn-warning"><i class="fa fa-phone"></i></button>--}}
+{{--                                        <button type="button" class="btn btn-success"><i class="fa fa-comment"></i></button>--}}
+{{--                                    </td>--}}
+{{--                                </tr>--}}
+{{--                            @endforeach--}}
 
                             </tbody>
                             <tfoot>
