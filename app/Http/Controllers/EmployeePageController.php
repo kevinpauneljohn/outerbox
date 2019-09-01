@@ -59,10 +59,11 @@ class EmployeePageController extends Controller
         $lgus = DB::table('call_centers')
             ->leftJoin('lgus','call_centers.id', '=', 'lgus.call_center_id')
             ->leftJoin('contact_people','lgus.id', '=', 'contact_people.lgu_id')
-            ->select('lgus.*','contact_people.fullname as contactname','contact_people.contactno')
+            ->select('lgus.id as lgu_id','lgus.station_name','lgus.department as lgu_dept',
+                'contact_people.fullname as contactname','contact_people.contactno')
             ->where('call_centers.id','=',$callcenter_id);
 
-        return $lgus->count();
+        return $lgus->get();
 //        return view('Employee.lgu')->with([
 //            'lgus'    => $lgus,
 //            'regions' => $regions
