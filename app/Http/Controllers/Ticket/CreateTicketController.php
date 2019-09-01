@@ -88,7 +88,7 @@ class CreateTicketController extends Controller
                 $this->create_ticket(
                     $lead->id,
                     $call_center_id,
-                    36,
+                    9,
                     $lead->created_at
                     );
 
