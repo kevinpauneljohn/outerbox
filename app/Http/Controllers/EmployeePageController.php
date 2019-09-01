@@ -60,10 +60,9 @@ class EmployeePageController extends Controller
             ->leftJoin('lgus','call_centers.id', '=', 'lgus.call_center_id')
             ->leftJoin('contact_people','lgus.id', '=', 'contact_people.lgu_id')
             ->select('lgus.*','contact_people.fullname as contactname','contact_people.contactno')
-            ->where('call_centers.id','=',$callcenter_id)
-            ->get();
+            ->where('call_centers.id','=',$callcenter_id);
 
-        return $callcenter_id;
+        return $lgus->count();
 //        return view('Employee.lgu')->with([
 //            'lgus'    => $lgus,
 //            'regions' => $regions
