@@ -39,7 +39,7 @@
         <form action="{{route('login')}}" method="post">
             @csrf
             <div class="form-group has-feedback">
-                <input name="login" type="text" class="form-control" placeholder="Email">
+                <input name="login" type="text" class="form-control" placeholder="Email or Username">
                 <span class="fa fa-sign-in form-control-feedback"></span>
                 @if ($errors->has('username') || $errors->has('email'))
                     <span class="invalid-feedback">

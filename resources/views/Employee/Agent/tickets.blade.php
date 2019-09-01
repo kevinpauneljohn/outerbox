@@ -41,7 +41,7 @@
                     <tr>
                         <td>{{\App\Http\Controllers\Ticket\CreateTicketController::getSequence($ticket->id)}}</td>
                         <td>{{$ticket->app_response}}</td>
-                        <td>{{$ticket->station_name}}</td>
+                        <td><button type="button" name="select_lgu" class="btn bg-aqua" data-toggle="modal" data-target="#select-lgu" value="{{$ticket->id}}">{{(!empty($ticket->station_name)) ? $ticket->station_name : 'Select LGU'}}</button></td>
                         <td>{{$ticket->date_reported}}</td>
                         <td></td>
                         <td></td>
@@ -100,6 +100,53 @@
         <!-- /.box-body -->
     </div>
     <!-- /.box -->
+
+    <div class="modal fade" id="select-lgu">
+        <div class="modal-dialog">
+            <form method="post" id="lgu-form">
+                @csrf
+                <input type="hidden" name="ticket_id" id="ticket_id"/>
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">Assign LGU</h4>
+                    </div>
+
+                    <div class="modal-body">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>LGUs</th>
+                                    <th>Address</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            @foreach($lgus as $lgu)
+                                <tr>
+                                    <td>{{$lgu->station_name}}</td>
+                                    <td>
+                                        {{ucfirst($lgu->address).', '}}
+                                        {{ucfirst(\App\Http\Controllers\address\AddressController::cityName($lgu->city).', ')}}
+                                        {{ucfirst(\App\Http\Controllers\address\AddressController::provinceName($lgu->province))}}
+                                    </td>
+                                    <td>
+                                        <button name="chosen_lgu" type="submit" class="btn btn-info" value="{{$lgu->id}}">Select</button>
+                                    </td>
+                                </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn bg-purple"><i class="fa fa-check"></i> Save</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
 @endsection
 
 @section('extra_script')

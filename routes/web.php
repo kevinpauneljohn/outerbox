@@ -32,6 +32,7 @@ Route::get('/check-leads','Ticket\CreateTicketController@get_all_new_leads');
 Route::group(['middleware' => ['auth','role:agent']],function (){
     Route::get('/agent/dashboard','AgentPageController@dashboard');
     Route::get('/agent/ticket','AgentPageController@ticket');
+    Route::get('/agent/lgu','AgentPageController@lgu');
 });
 
 #superadmin login
@@ -80,6 +81,7 @@ Route::group(['middleware' => ['auth']],function (){
     Route::post('/city','address\AddressController@getCities');
     Route::get('/call','AgentPageController@call_user');
     Route::post('/update-ticket-status','Ticket\TicketController@update_ticket_status');
+    Route::post('/assign-lgu-to-ticket','Ticket\TicketController@assign_lgu_to_ticket');
 });
 
 Route::group(['middleware' => ['cors'],'prefix' => 'v1'], function (){

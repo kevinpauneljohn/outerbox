@@ -16,4 +16,9 @@ class TicketController extends Controller
         $message = ($ticket->save()) ? ['success'=>true] : ['success' => false];
         return response()->json($message);
     }
+
+    public function assign_lgu_to_ticket(Request $request)
+    {
+        return $request->all();
+    }
 }
