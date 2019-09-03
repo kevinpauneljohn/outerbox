@@ -42,9 +42,52 @@ class AgentPageController extends Controller
             'lgus'    => $this->get_registered_lgu($this->get_user_call_center())
         ]);
 
+//        foreach ($tickets as $ticket){
+//            $str = $ticket->app_response;
+//            $split = explode(',',$str);
+//
+//            $region = explode('"province":',$split[9]);
+//            $reg = explode('"',$region[1]);
+//
+//            echo $reg[1]."<br/>";
+//
+//        }
+
+//        echo $tickets;
     }
 
+    public static function get_app_response($app_response)
+    {
+        $str = $app_response;
+        $split = explode(',',$str);
 
+        $region = explode('"region":',$split[6]);
+        $reg = explode('"',$region[1]);
+        ///;
+        echo self::get_city($app_response).', '.self::get_state($app_response).', '.$reg[1];
+    }
+
+    private static function get_city($app_response)
+    {
+        $str = $app_response;
+        $split = explode(',',$str);
+
+        $region = explode('"city":',$split[8]);
+        $reg = explode('"',$region[1]);
+
+        return $reg[1];
+    }
+
+    private static function get_state($app_response)
+    {
+        $str = $app_response;
+        $split = explode(',',$str);
+
+        $region = explode('"province":',$split[9]);
+        $reg = explode('"',$region[1]);
+
+        return $reg[1];
+    }
     /*
      * display all registered lgu per callcenter in ticket page
      * */

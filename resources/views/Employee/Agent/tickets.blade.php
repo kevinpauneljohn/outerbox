@@ -22,7 +22,7 @@
                 <thead>
                 <tr>
                     <th width="8%">Ticket #</th>
-                    <th>Location of Incident</th>
+                    <th width="10%">Location of Incident</th>
                     <th>Station name</th>
                     <th>Date Reported</th>
                     <th>Time Handled</th>
@@ -40,7 +40,7 @@
                 @foreach($tickets as $ticket)
                     <tr>
                         <td>{{\App\Http\Controllers\Ticket\CreateTicketController::getSequence($ticket->id)}}</td>
-                        <td>{{$ticket->app_response}}</td>
+                        <td>{{\App\Http\Controllers\AgentPageController::get_app_response($ticket->app_response)}}</td>
                         <td><button type="button" name="select_lgu" class="btn bg-aqua" data-toggle="modal" data-target="#select-lgu" value="{{$ticket->id}}">{{(!empty($ticket->station_name)) ? $ticket->station_name : 'Select LGU'}}</button></td>
                         <td>{{$ticket->date_reported}}</td>
                         <td></td>
@@ -69,7 +69,7 @@
                             </select>
                         </td>
                         <td>
-                            <a href="{{url('/call')}}"><button type="button" class="btn btn-primary"><i class="fa fa-phone"></i></button></a>
+                            <a href="{{url('/call')}}"><button type="button" class="btn btn-primary" value="{{$ticket->id}}"><i class="fa fa-phone"></i></button></a>
                             <button type="button" class="btn btn-success"><i class="fa fa-arrows-h"></i></button>
                             <button type="button" class="btn btn-danger"><i class="fa fa-warning"></i></button>
                             <button type="button" class="btn btn-warning"><i class="fa fa-user-times"></i></button>

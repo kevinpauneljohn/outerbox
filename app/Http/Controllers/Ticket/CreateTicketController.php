@@ -296,4 +296,6 @@ class CreateTicketController extends Controller
     {
         return User::find($user_id)->tickets->count();
     }
+
+
 }

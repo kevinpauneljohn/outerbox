@@ -19,6 +19,10 @@ class TicketController extends Controller
 
     public function assign_lgu_to_ticket(Request $request)
     {
-        return $request->all();
+        $ticket = Ticket::find($request->ticket_id);
+        $ticket->lgu_id = $request->lgu_id;
+        $ticket->save() ? $message = ['success' => true] : ['success' => false];
+        return response()->json($message);
+//        return $request->ticket_id;
     }
 }
