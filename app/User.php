@@ -46,4 +46,9 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(CallCenter::class,'callcenterdetails','user_id','cc_id');
     }
+
+    public function tickets()
+    {
+        return $this->hasMany(Ticket::class,'user_assigned_id');
+    }
 }

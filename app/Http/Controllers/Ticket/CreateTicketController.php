@@ -6,6 +6,7 @@ use App\Http\Controllers\address\AddressController;
 use App\Models\CallCenter;
 use App\Models\Lead;
 use App\Ticket;
+use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -44,8 +45,17 @@ class CreateTicketController extends Controller
          return ($call_centers != null) ? $call_centers->id : 0;
     }
 
+    /*
+     * return total number of active agents
+    */
+    private function count_active_agents($call_center_id)
+    {
+        return CallCenter::find($call_center_id)->users->where('active',1)->count();
+    }
+
     private function get_available_agent($call_center_id)
     {
+        $total_agents = $this->count_active_agents($call_center_id);
         $employees = DB::table('users')
             ->leftJoin('callcenterdetails','users.id','=','callcenterdetails.user_id')
             ->leftJoin('model_has_roles','users.id','=','model_has_roles.model_id')
@@ -54,11 +64,12 @@ class CreateTicketController extends Controller
             ->where([
                 ['callcenterdetails.cc_id','=',$call_center_id],
                 ['users.deleted_at','=',null],
+                ['users.active','=',1],
                 ['roles.name','=','agent']
             ])
-            ->first();
+            ->get();
 
-        return $employees->id;
+        return $employees != null ? $employees : null;
     }
   
     // this method is used to create tickets
@@ -80,28 +91,137 @@ class CreateTicketController extends Controller
     {
         if($this->check_leads()->count() > 0)
         {
+            $arr = [];
+            $arr2 = [];
+            $arr3 = [];
+            $arr4 = [];
             foreach($this->check_leads()->get() as $lead)
             {
                 //$agent_id = $this->get_available_agent($call_center_id)
 
                 ///echo $lead->app_response[0]['firstname'];
+                // angeles = 1
+                // mabalacat = 2
+                // angeles, angeles, mabalacat
+                // arr = [1, 1, 2]
 
                 $region = $lead->app_response[0]['region'];
                 $state = $lead->app_response[0]['province'];
                 $city = $lead->app_response[0]['city'];
 
-                echo $this->get_call_center_id($region, $state, $city);
+                $call_center_id = $this->get_call_center_id($region, $state, $city);
+
+                array_push($arr, $call_center_id);
+                array_push($arr2, $lead->id);
+                //echo $this->get_call_center_id($region, $state, $city);
 //                $this->create_ticket(
 //                    $lead->id,
-//                    $this->get_call_center_id($region, $state, $city),
-//                    36,
+//                    $call_center_id,
+//                    $this->get_available_agent($call_center_id),
 //                    $lead->created_at
 //                    );
 //
 //                $this->update_lead_status($lead->id, null);
             }
+            //$counter =  count($arr2);
+
+            ///will create ticket inside the loop
+            foreach ($arr as $callcenter){
+
+                $agents = $this->get_available_agent($callcenter);
+                foreach ($agents as $agent){
+                    if($agent != null){
+                        array_push($arr3, $agent->id);
+                        //echo $agent->id.'<br/>';
+                    }
+
+
+                }
+
+                //echo $agents->count();
+
+                //print_r($user_agent);
+                if($agents != null){
+                    $user_agent = array_unique($arr3);
+                    //echo count($user_agent).'<br/>';
+                   // $this->count_assigned_ticket($user_agent);
+                }
+
+
+                // all agents count on agent tickets
+
+
+                //$agents = $this->get_available_agent($callcenter);
+
+//                if($agents != null)
+//                {
+//                    echo "total = ".$this->count_agent_tickets($callcenter, $agents).'<br/>';
+//                    $this->create_ticket(
+//                    $lead->id,
+//                    $callcenter,
+//                    $this->get_available_agent($call_center_id),
+//                    $lead->created_at
+//                    );
+  //              }
+            }
+            $i = 0;
+            $y = 0;
+            foreach ($arr2 as $callcenter2){
+                $select_agent = array_unique($arr3);
+                $index_in_agent_count = $this->count_assigned_ticket(array_unique($arr3));
+                //echo $select_agent[$index_in_agent_count];
+
+                $lead_id = $arr2[$i++];
+                $cc_id = $arr[$y++];
+                $this->create_ticket(
+                    $lead_id,
+                    $cc_id,
+                    $select_agent[$index_in_agent_count],
+                    $lead->created_at
+                    );
+
+//                echo $arr[$y++].' - ';
+
+                $this->update_lead_status($lead_id, null);
+            }
+
         }
     }
+
+    public function count_assigned_ticket($user_id)
+    {
+
+        $count_list = [];
+        foreach($user_id as $id)
+        {
+            //echo User::find($id)->tickets->count();
+            array_push($count_list, User::find($id)->tickets->count());
+        }
+
+        //echo array_search(min($count_list), $count_list);
+//        $ticket = User::find($user_id)->tickets->count();
+        return array_search(min($count_list), $count_list);
+    }
+
+//    private function count_agent_tickets($call_center_id,$user_id)
+//    {
+//        $employees = DB::table('users')
+//            ->leftJoin('callcenterdetails','users.id','=','callcenterdetails.user_id')
+//            ->leftJoin('model_has_roles','users.id','=','model_has_roles.model_id')
+//            ->leftJoin('roles','model_has_roles.role_id','=','roles.id')
+//            ->leftJoin('tickets','users.id','=','tickets.user_assigned_id')
+//            ->select('users.id')
+//            ->where([
+//                ['callcenterdetails.cc_id','=',$call_center_id],
+//                ['users.deleted_at','=',null],
+//                ['users.active','=',1],
+//                ['tickets.user_assigned_id','=',$user_id],
+//                ['roles.name','=','agent']
+//            ])
+//            ->count();
+//
+//        return $employees;
+//    }
 
     private function update_lead_status($lead_id, $status)
     {
@@ -132,5 +252,48 @@ class CreateTicketController extends Controller
             }
 
         return $label;
+    }
+
+    public function tester()
+    {
+        $employees = DB::table('users')
+            ->leftJoin('callcenterdetails','users.id','=','callcenterdetails.user_id')
+            ->leftJoin('model_has_roles','users.id','=','model_has_roles.model_id')
+            ->leftJoin('roles','model_has_roles.role_id','=','roles.id')
+            ->select('users.id')
+            ->where([
+                ['callcenterdetails.cc_id','=',1],
+                ['users.active','=',1],
+                ['users.deleted_at','=',null],
+                ['roles.name','=','agent']
+            ])
+            ->get();
+
+        $agents = array();
+        $count = 0;
+        $leads = 5;
+        foreach ($employees as $employee){
+           echo $employee->id.' = '.$this->ticket_counter($employee->id).'<br/>';
+           $agents[$count] = $employee->id;
+            $count++;
+        }
+
+        $new_leads = Lead::all()->pluck('id');
+
+//        $counter = 0;
+//        while($counter > $this->count_active_agents(1)){
+//            if($agents)
+//            $counter++;
+//        }
+//        echo  $agents[1];
+    }
+
+
+    /*
+     * Count all assigned tickets from an agent
+     * */
+    public function ticket_counter($user_id)
+    {
+        return User::find($user_id)->tickets->count();
     }
 }
