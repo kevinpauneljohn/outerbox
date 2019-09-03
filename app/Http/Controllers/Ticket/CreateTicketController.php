@@ -22,26 +22,26 @@ class CreateTicketController extends Controller
     }
 
     //this method assign the ticket to the nearest call center
-    private function get_call_center_id($request_location)
+    private function get_call_center_id($region,$state, $city)
     {
         /*
          * the format should be $request_location = "address, city, state, region";
          */
 
         //$address = $this->get_all_local_call_center('blk 141 lot 2, ANGELES CITY, PAMPANGA, REGION III (CENTRAL LUZON)');
-        $request_location = explode(', ',$request_location);
+//        $request_location = explode(', ',$request_location);
         $call_centers = DB::table('call_centers')
             ->leftJoin('refcitymun','call_centers.city','=','refcitymun.citymunCode')
             ->leftJoin('refregion','call_centers.region','=','refregion.regCode')
             ->leftJoin('refprovince','refregion.regCode','=','refprovince.regCode')
             ->select('call_centers.name', 'call_centers.id')
             ->where([
-                ['refregion.regDesc','=',$request_location[3]],
-                ['refprovince.provDesc','=',$request_location[2]],
-                ['refcitymun.citymunDesc','=',$request_location[1]]
+                ['refregion.regDesc','=',$region],
+                ['refprovince.provDesc','=',$state],
+                ['refcitymun.citymunDesc','=',$city]
             ])->first();
 
-        return ($call_centers != null) ? $call_centers->id : 0;
+         return ($call_centers != null) ? $call_centers->id : 0;
     }
 
     private function get_available_agent($call_center_id)
@@ -82,17 +82,23 @@ class CreateTicketController extends Controller
         {
             foreach($this->check_leads()->get() as $lead)
             {
-                $call_center_id = $this->get_call_center_id('blk 141 lot 2, ANGELES CITY, PAMPANGA, REGION III (CENTRAL LUZON)');
-                //$agent_id = $this->get_available_agent($call_center_id);
+                //$agent_id = $this->get_available_agent($call_center_id)
 
-                $this->create_ticket(
-                    $lead->id,
-                    $call_center_id,
-                    9,
-                    $lead->created_at
-                    );
+                ///echo $lead->app_response[0]['firstname'];
 
-                $this->update_lead_status($lead->id, null);
+                $region = $lead->app_response[0]['region'];
+                $state = $lead->app_response[0]['province'];
+                $city = $lead->app_response[0]['city'];
+
+                echo $this->get_call_center_id($region, $state, $city);
+//                $this->create_ticket(
+//                    $lead->id,
+//                    $this->get_call_center_id($region, $state, $city),
+//                    36,
+//                    $lead->created_at
+//                    );
+//
+//                $this->update_lead_status($lead->id, null);
             }
         }
     }

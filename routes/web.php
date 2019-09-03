@@ -27,7 +27,7 @@ Route::group(['middleware' => ['auth','role:admin|super admin']],function (){
     Route::post('/add-lgu','Lgu\LguController@addLgu');
 });
 
-Route::get('/check-leads','Ticket\CreateTicketController@get_all_new_leads');
+Route::get('/create-ticket','Ticket\CreateTicketController@get_all_new_leads');
 
 Route::group(['middleware' => ['auth','role:agent']],function (){
     Route::get('/agent/dashboard','AgentPageController@dashboard');
@@ -84,11 +84,14 @@ Route::group(['middleware' => ['auth']],function (){
     Route::post('/assign-lgu-to-ticket','Ticket\TicketController@assign_lgu_to_ticket');
 });
 
-Route::group(['middleware' => ['cors'],'prefix' => 'v1'], function (){
-    Route::post('/get-leads','Leads\LeadsController@save_leads');
-});
-
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/test','Auth\LoginController@test');
+
+
+Route::group(['middleware' => ['cors'],'prefix' => 'v1'], function (){
+    Route::post('/get-leads','Leads\LeadsController@save_leads');
+    Route::get('/display-call-centers','SuperAdmin\SuperAdminController@show_call_center_list');
+});
+

@@ -208,4 +208,14 @@ class SuperAdminController extends Controller
     {
 
     }
+
+
+    /*
+     * for mobile app
+     * display of call center list
+     * */
+    public function show_call_center_list()
+    {
+        return CallCenter::all()->pluck('postalcode');
+    }
 }
