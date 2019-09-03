@@ -32,6 +32,7 @@ class EmployeeController extends Controller
             $user->email = $request->email;
             $user->username = $request->username;
             $user->password = bcrypt($request->password);
+            $user->active = 0;
             $user->assignRole($request->role);
 
             if($user->save())

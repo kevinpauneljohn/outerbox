@@ -23,6 +23,7 @@ $(document).on('submit','#add-staff',function (form) {
         'cache' : false,
         success: function(result){
 
+            console.log(result);
             if(result.success == true)
             {
                 setTimeout(function(){
