@@ -81,7 +81,7 @@ class CreateTicketController extends Controller
         $ticket->user_assigned_id = $agent_id;
         $ticket->user_created_id = 0;
         $ticket->date_reported = $date_reported;
-        $ticket->status = 'pending';
+        $ticket->status = 'Pending';
 
         return ($ticket->save()) ? true : false;
     }

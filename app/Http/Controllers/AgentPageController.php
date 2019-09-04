@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\DB;
 use Nexmo\Client\Credentials\Keypair;
 use Nexmo\Client;
 use Nexmo\Laravel\Facade\Nexmo;
+use Illuminate\Support\Carbon;
 
 class AgentPageController extends Controller
 {
@@ -38,10 +39,15 @@ class AgentPageController extends Controller
                 'tickets.*')
             ->where('tickets.user_assigned_id','=',auth()->user()->id)
             ->get();
+        $callCenterId = User::find(auth()->user()->id)->callcenter()->pluck('cc_id')[0];
+        $callCenterTickets = CallCenter::find($callCenterId)->tickets()->pluck('id');
+
+//        return $callCenterTickets;
 
         return view('Employee.Agent.tickets')->with([
             'tickets' => $tickets,
-            'lgus'    => $this->get_registered_lgu($this->get_user_call_center())
+            'lgus'    => $this->get_registered_lgu($this->get_user_call_center()),
+            'callCenterTickets' => $callCenterTickets
         ]);
 
 //        foreach ($tickets as $ticket){
@@ -54,6 +60,8 @@ class AgentPageController extends Controller
 //            echo $reg[1]."<br/>";
 //
 //        }
+
+
 
 //        echo $tickets;
     }

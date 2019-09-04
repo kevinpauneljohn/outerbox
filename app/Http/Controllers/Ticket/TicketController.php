@@ -6,6 +6,7 @@ use App\Ticket;
 use http\Env\Response;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 
 class TicketController extends Controller
@@ -107,6 +108,41 @@ class TicketController extends Controller
     public function connect_to_lgu(Request $request)
     {
 //        return $request->all();
+    }
+
+
+    /**
+     * create child ticket
+     * date created 05/29/2019
+     * @param int $parentTicketID
+     * @param int $leadId
+     * @param int $callCenterId
+     * @param int $agentId
+     * @param datetime $dateReported
+     * @return boolean
+     * */
+    public function create_child_ticket($parentTicketID, $leadId, $callCenterId, $agentId, $dateReported)
+    {
+        $ticket = new Ticket;
+        $ticket->lead_id = $leadId;
+        $ticket->call_center_id = $callCenterId;
+        $ticket->user_assigned_id = $agentId;
+        $ticket->user_created_id = 0;
+        $ticket->date_reported = $dateReported;
+        $ticket->status = 'Pending';
+
+        if($ticket->save())
+        {
+            $childTicket = DB::table('parent_ticket')
+                ->insert([
+                    ['ticket_id' => $ticket->id],
+                    ['parent_ticket_id' => $parentTicketID],
+                    ['created_at' => Carbon::now()],
+                    ['updated_at' => Carbon::now()],
+                ]);
+            return $childTicket ? true : false;
+        }
+//        return ($ticket->save()) ? true : false;
     }
 
 }
