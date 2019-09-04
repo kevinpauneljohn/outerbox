@@ -41,7 +41,10 @@ $(document).on('click','button[name=chosen_lgu]',function(form){
         'data'  : data,
         'cache' : false,
         success: function (result) {
-            console.log(result);
+            if(result.success == true)
+            {
+                location.reload();
+            }
         }
     });
 });

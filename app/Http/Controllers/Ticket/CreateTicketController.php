@@ -97,13 +97,6 @@ class CreateTicketController extends Controller
             $arr4 = [];
             foreach($this->check_leads()->get() as $lead)
             {
-                //$agent_id = $this->get_available_agent($call_center_id)
-
-                ///echo $lead->app_response[0]['firstname'];
-                // angeles = 1
-                // mabalacat = 2
-                // angeles, angeles, mabalacat
-                // arr = [1, 1, 2]
 
                 $region = $lead->app_response[0]['region'];
                 $state = $lead->app_response[0]['province'];
@@ -113,18 +106,7 @@ class CreateTicketController extends Controller
 
                 array_push($arr, $call_center_id);
                 array_push($arr2, $lead->id);
-                //echo $this->get_call_center_id($region, $state, $city);
-//                $this->create_ticket(
-//                    $lead->id,
-//                    $call_center_id,
-//                    $this->get_available_agent($call_center_id),
-//                    $lead->created_at
-//                    );
-//
-//                $this->update_lead_status($lead->id, null);
             }
-            //$counter =  count($arr2);
-
             ///will create ticket inside the loop
             foreach ($arr as $callcenter){
 
@@ -138,31 +120,9 @@ class CreateTicketController extends Controller
 
                 }
 
-                //echo $agents->count();
-
-                //print_r($user_agent);
                 if($agents != null){
                     $user_agent = array_unique($arr3);
-                    //echo count($user_agent).'<br/>';
-                   // $this->count_assigned_ticket($user_agent);
                 }
-
-
-                // all agents count on agent tickets
-
-
-                //$agents = $this->get_available_agent($callcenter);
-
-//                if($agents != null)
-//                {
-//                    echo "total = ".$this->count_agent_tickets($callcenter, $agents).'<br/>';
-//                    $this->create_ticket(
-//                    $lead->id,
-//                    $callcenter,
-//                    $this->get_available_agent($call_center_id),
-//                    $lead->created_at
-//                    );
-  //              }
             }
             $i = 0;
             $y = 0;
@@ -180,8 +140,6 @@ class CreateTicketController extends Controller
                     $lead->created_at
                     );
 
-//                echo $arr[$y++].' - ';
-
                 $this->update_lead_status($lead_id, null);
             }
 
@@ -194,34 +152,11 @@ class CreateTicketController extends Controller
         $count_list = [];
         foreach($user_id as $id)
         {
-            //echo User::find($id)->tickets->count();
             array_push($count_list, User::find($id)->tickets->count());
         }
-
-        //echo array_search(min($count_list), $count_list);
-//        $ticket = User::find($user_id)->tickets->count();
         return array_search(min($count_list), $count_list);
     }
 
-//    private function count_agent_tickets($call_center_id,$user_id)
-//    {
-//        $employees = DB::table('users')
-//            ->leftJoin('callcenterdetails','users.id','=','callcenterdetails.user_id')
-//            ->leftJoin('model_has_roles','users.id','=','model_has_roles.model_id')
-//            ->leftJoin('roles','model_has_roles.role_id','=','roles.id')
-//            ->leftJoin('tickets','users.id','=','tickets.user_assigned_id')
-//            ->select('users.id')
-//            ->where([
-//                ['callcenterdetails.cc_id','=',$call_center_id],
-//                ['users.deleted_at','=',null],
-//                ['users.active','=',1],
-//                ['tickets.user_assigned_id','=',$user_id],
-//                ['roles.name','=','agent']
-//            ])
-//            ->count();
-//
-//        return $employees;
-//    }
 
     private function update_lead_status($lead_id, $status)
     {
@@ -280,12 +215,6 @@ class CreateTicketController extends Controller
 
         $new_leads = Lead::all()->pluck('id');
 
-//        $counter = 0;
-//        while($counter > $this->count_active_agents(1)){
-//            if($agents)
-//            $counter++;
-//        }
-//        echo  $agents[1];
     }
 
 

@@ -46,7 +46,7 @@ class AgentPageController extends Controller
 //            $str = $ticket->app_response;
 //            $split = explode(',',$str);
 //
-//            $region = explode('"province":',$split[9]);
+//            $region = explode('"request_time":',$split[11]);
 //            $reg = explode('"',$region[1]);
 //
 //            echo $reg[1]."<br/>";
@@ -54,6 +54,29 @@ class AgentPageController extends Controller
 //        }
 
 //        echo $tickets;
+    }
+
+    public static function get_requested_date($app_response)
+    {
+        $str = $app_response;
+        $split = explode(',',$str);
+
+        $region = explode('"request_date":',$split[10]);
+        $reg = explode('"',$region[1]);
+
+        $requested_date = str_replace('\/','-',$reg[1]);
+        return $requested_date.' '.self::get_requested_time($app_response);
+    }
+
+    public static function get_requested_time($app_response)
+    {
+        $str = $app_response;
+        $split = explode(',',$str);
+
+        $region = explode('"request_time":',$split[11]);
+        $reg = explode('"',$region[1]);
+
+        return $reg[1];
     }
 
     public static function get_app_response($app_response)

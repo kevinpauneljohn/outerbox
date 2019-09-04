@@ -42,7 +42,8 @@
                         <td>{{\App\Http\Controllers\Ticket\CreateTicketController::getSequence($ticket->id)}}</td>
                         <td>{{\App\Http\Controllers\AgentPageController::get_app_response($ticket->app_response)}}</td>
                         <td><button type="button" name="select_lgu" class="btn bg-aqua" data-toggle="modal" data-target="#select-lgu" value="{{$ticket->id}}">{{(!empty($ticket->station_name)) ? $ticket->station_name : 'Select LGU'}}</button></td>
-                        <td>{{$ticket->date_reported}}</td>
+{{--                        <td>{{$ticket->date_reported}}</td>--}}
+                        <td>{{\App\Http\Controllers\AgentPageController::get_requested_date($ticket->app_response)}}</td>
                         <td></td>
                         <td></td>
                         <td></td>

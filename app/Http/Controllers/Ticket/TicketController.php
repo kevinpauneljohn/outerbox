@@ -21,6 +21,7 @@ class TicketController extends Controller
     {
         $ticket = Ticket::find($request->ticket_id);
         $ticket->lgu_id = $request->lgu_id;
+        $ticket->status = 'On-going';
         $ticket->save() ? $message = ['success' => true] : ['success' => false];
         return response()->json($message);
 //        return $request->ticket_id;
