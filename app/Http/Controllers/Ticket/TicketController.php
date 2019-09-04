@@ -58,6 +58,8 @@ class TicketController extends Controller
             ->first();
 
         $app_response = $tickets->app_response;
+        $requested_date = $this->display_label($app_response,'request_date',10);
+        $requested_date  = str_replace('\/','-',$requested_date);
         $data = [
             'firstname' => $this->display_label($app_response,'firstname',1),
             'lastname' => $this->display_label($app_response,'lastname',3),
@@ -67,7 +69,7 @@ class TicketController extends Controller
             'zip_code' => $this->display_label($app_response,'zip_code',7),
             'city' => $this->display_label($app_response,'city',8),
             'province' => $this->display_label($app_response,'province',9),
-            'request_date' => $this->display_label($app_response,'request_date',10),
+            'request_date' => $requested_date,
             'request_time' => $this->display_label($app_response,'request_time',11),
             'mobile_no' => $this->display_label($app_response,'mobile_no',12),
             'timestamp' => $this->display_label($app_response,'timestamp',13),
