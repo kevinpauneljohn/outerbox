@@ -57,6 +57,13 @@ class TicketController extends Controller
         return $data;
     }
 
+    /**
+     * Display the label of app_response retrieved in leads table
+     * @param string $app_response
+     * @param string $name
+     * @param  int $index
+     * @return array
+     */
     public function display_label($app_response, $name,$index)
     {
         $str = $app_response;
@@ -68,9 +75,15 @@ class TicketController extends Controller
         return $reg[1];
     }
 
-//    connect to lgu
+
+    /**
+     * Connect leads to lgu
+     * @param Request $request
+     * @return void
+     */
     public function connect_to_lgu(Request $request)
     {
-        return $request->all();
+//        return $request->all();
     }
+
 }
