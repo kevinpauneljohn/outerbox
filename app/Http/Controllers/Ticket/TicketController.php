@@ -3,12 +3,20 @@
 namespace App\Http\Controllers\Ticket;
 
 use App\Ticket;
+use http\Env\Response;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 
 class TicketController extends Controller
 {
+
+    /**
+     * update the ticket status
+     * @param Request $request
+     * route /update_ticket_status
+     * @return Response
+     * */
     public function update_ticket_status(Request $request)
     {
         $ticket = Ticket::find($request->ticket_id);
@@ -18,6 +26,13 @@ class TicketController extends Controller
         return response()->json($message);
     }
 
+
+    /**
+     * assign the lgu to a ticket thru lgu id
+     * @param Request $request
+     * route /assign-lgu-to-ticket
+     * @return Response
+     * */
     public function assign_lgu_to_ticket(Request $request)
     {
         $ticket = Ticket::find($request->ticket_id);
@@ -28,11 +43,17 @@ class TicketController extends Controller
 //        return $request->ticket_id;
     }
 
+
+    /**
+     * Display the label of app_response in the view
+     * @param Request $request
+     * @return array
+     * */
     public function display_lead_details(Request $request)
     {
         $tickets = DB::table('leads')
             ->leftJoin('tickets','leads.id','=','tickets.lead_id')
-            ->select('leads.*')
+            ->select('leads.app_response')
             ->where('tickets.id','=',$request->ticket_id)
             ->first();
 
