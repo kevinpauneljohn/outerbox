@@ -38,26 +38,26 @@ class TicketController extends Controller
 
         $app_response = $tickets->app_response;
         $data = [
-            'firstname' => $this->display_json_value($app_response,'firstname',1),
-            'lastname' => $this->display_json_value($app_response,'lastname',3),
-            'latitude' => $this->display_json_value($app_response,'lat',4),
-            'longitude' => $this->display_json_value($app_response,'lang',5),
-            'region' => $this->display_json_value($app_response,'region',6),
-            'zip_code' => $this->display_json_value($app_response,'zip_code',7),
-            'city' => $this->display_json_value($app_response,'city',8),
-            'province' => $this->display_json_value($app_response,'province',9),
-            'request_date' => $this->display_json_value($app_response,'request_date',10),
-            'request_time' => $this->display_json_value($app_response,'request_time',11),
-            'mobile_no' => $this->display_json_value($app_response,'mobile_no',12),
-            'timestamp' => $this->display_json_value($app_response,'timestamp',13),
-            'type_of_accident' => $this->display_json_value($app_response,'type_of_accident',14),
-            'emergency_contact' => $this->display_json_value($app_response,'emergency_contact',15),
-            'contact_no' => $this->display_json_value($app_response,'contact_no',16),
+            'firstname' => $this->display_label($app_response,'firstname',1),
+            'lastname' => $this->display_label($app_response,'lastname',3),
+            'latitude' => $this->display_label($app_response,'lat',4),
+            'longitude' => $this->display_label($app_response,'lang',5),
+            'region' => $this->display_label($app_response,'region',6),
+            'zip_code' => $this->display_label($app_response,'zip_code',7),
+            'city' => $this->display_label($app_response,'city',8),
+            'province' => $this->display_label($app_response,'province',9),
+            'request_date' => $this->display_label($app_response,'request_date',10),
+            'request_time' => $this->display_label($app_response,'request_time',11),
+            'mobile_no' => $this->display_label($app_response,'mobile_no',12),
+            'timestamp' => $this->display_label($app_response,'timestamp',13),
+            'type_of_accident' => $this->display_label($app_response,'type_of_accident',14),
+            'emergency_contact' => $this->display_label($app_response,'emergency_contact',15),
+            'contact_no' => $this->display_label($app_response,'contact_no',16),
         ];
         return $data;
     }
 
-    public function display_json_value($app_response, $name,$index)
+    public function display_label($app_response, $name,$index)
     {
         $str = $app_response;
         $split = explode(',',$str);
@@ -68,9 +68,7 @@ class TicketController extends Controller
         return $reg[1];
     }
 
-    /*
-     * connect to lgu
-     * */
+//    connect to lgu
     public function connect_to_lgu(Request $request)
     {
         return $request->all();
