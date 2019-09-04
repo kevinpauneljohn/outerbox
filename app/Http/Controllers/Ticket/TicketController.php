@@ -67,4 +67,12 @@ class TicketController extends Controller
 
         return $reg[1];
     }
+
+    /*
+     * connect to lgu
+     * */
+    public function connect_to_lgu(Request $request)
+    {
+        return $request->all();
+    }
 }

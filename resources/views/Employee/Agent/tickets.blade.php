@@ -73,7 +73,7 @@
 {{--                            <a href="{{url('/call')}}"><button type="button" class="btn btn-primary call_user" value="{{$ticket->id}}"><i class="fa fa-phone"></i></button></a>--}}
                             <input type="hidden" name="user_mobile_no{{$ticket->id}}" value="{{\App\Http\Controllers\AgentPageController::get_mobile_no($ticket->app_response)}}">
                             <button type="button" class="btn btn-primary call_user" value="{{$ticket->id}}" data-toggle="modal" data-target="#lead-details"><i class="fa fa-phone"></i></button>
-                            <button type="button" class="btn btn-success"><i class="fa fa-arrows-h"></i></button>
+                            <button type="button" class="btn btn-success connect_to_lgu" value="{{$ticket->lgu_id}}"><i class="fa fa-arrows-h"></i></button>
 {{--                            <button type="button" class="btn btn-danger"><i class="fa fa-warning"></i></button>--}}
 {{--                            <button type="button" class="btn btn-warning"><i class="fa fa-user-times"></i></button>--}}
                         </td>

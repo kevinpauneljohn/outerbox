@@ -94,3 +94,27 @@ $(document).on('click','.call_user',function(){
         }
     });
 });
+
+
+/*
+* connect_to_lgu
+* */
+$(document).on('click','.connect_to_lgu',function(){
+    let lgu_id = this.value;
+
+    console.log(lgu_id);
+
+    $.ajax({
+        'url'   : '/connect-to-lgu',
+        'headers': {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+        'type'  : 'POST',
+        'data'  : {
+            'lgu_id' : lgu_id,
+        },
+        'cache' : false,
+        success: function (result) {
+            console.log(result);
+
+        }
+    });
+});
