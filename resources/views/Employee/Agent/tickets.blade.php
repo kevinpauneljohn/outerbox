@@ -70,10 +70,12 @@
                             </select>
                         </td>
                         <td>
-                            <a href="{{url('/call')}}"><button type="button" class="btn btn-primary" value="{{$ticket->id}}"><i class="fa fa-phone"></i></button></a>
+{{--                            <a href="{{url('/call')}}"><button type="button" class="btn btn-primary call_user" value="{{$ticket->id}}"><i class="fa fa-phone"></i></button></a>--}}
+                            <input type="hidden" name="user_mobile_no{{$ticket->id}}" value="{{\App\Http\Controllers\AgentPageController::get_mobile_no($ticket->app_response)}}">
+                            <button type="button" class="btn btn-primary call_user" value="{{$ticket->id}}" data-toggle="modal" data-target="#lead-details"><i class="fa fa-phone"></i></button>
                             <button type="button" class="btn btn-success"><i class="fa fa-arrows-h"></i></button>
-                            <button type="button" class="btn btn-danger"><i class="fa fa-warning"></i></button>
-                            <button type="button" class="btn btn-warning"><i class="fa fa-user-times"></i></button>
+{{--                            <button type="button" class="btn btn-danger"><i class="fa fa-warning"></i></button>--}}
+{{--                            <button type="button" class="btn btn-warning"><i class="fa fa-user-times"></i></button>--}}
                         </td>
                     </tr>
                     @endforeach
@@ -146,6 +148,66 @@
                     </div>
                 </div>
             </form>
+        </div>
+    </div>
+
+
+    {{--display lead details--}}
+    <div class="modal fade" id="lead-details">
+        <div class="modal-dialog">
+
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">Lead Details</h4>
+                    </div>
+
+                    <div class="modal-body">
+                        <table class="table table-bordered table-hover" id="lead-info-table">
+                            <tr>
+                                <td width="25%">Full Name</td>
+                                <td id="fullname"></td>
+                            </tr>
+                            <tr>
+                                <td>Contact No.</td>
+                                <td id="mobile_no"></td>
+                            </tr>
+                            <tr>
+                                <td>Incident Location</td>
+                                <td id="address"></td>
+                            </tr>
+                            <tr>
+                                <td>Date Reported</td>
+                                <td id="request_date"></td>
+                            </tr>
+                            <tr>
+                                <td>Type of accident</td>
+                                <td id="type_of_accident"></td>
+                            </tr>
+                            <tr>
+                                <td>Latitude</td>
+                                <td id="lat"></td>
+                            </tr>
+                            <tr>
+                                <td>Longitude</td>
+                                <td id="lang"></td>
+                            </tr>
+                            <tr>
+                                <td>Contact Person</td>
+                                <td id="emergency_contact"></td>
+                            </tr>
+                            <tr>
+                                <td>Contact Person Number</td>
+                                <td id="contact_no"></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+
         </div>
     </div>
 @endsection

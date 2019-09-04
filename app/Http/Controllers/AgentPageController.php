@@ -9,7 +9,9 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use Twilio\Rest\Client;
+use Nexmo\Client\Credentials\Keypair;
+use Nexmo\Client;
+use Nexmo\Laravel\Facade\Nexmo;
 
 class AgentPageController extends Controller
 {
@@ -46,7 +48,7 @@ class AgentPageController extends Controller
 //            $str = $ticket->app_response;
 //            $split = explode(',',$str);
 //
-//            $region = explode('"request_time":',$split[11]);
+//            $region = explode('"mobile_no":',$split[12]);
 //            $reg = explode('"',$region[1]);
 //
 //            echo $reg[1]."<br/>";
@@ -54,6 +56,16 @@ class AgentPageController extends Controller
 //        }
 
 //        echo $tickets;
+    }
+    public static function get_mobile_no($app_response)
+    {
+        $str = $app_response;
+        $split = explode(',',$str);
+
+        $region = explode('"mobile_no":',$split[12]);
+        $reg = explode('"',$region[1]);
+
+        return $reg[1];
     }
 
     public static function get_requested_date($app_response)
@@ -134,28 +146,44 @@ class AgentPageController extends Controller
         return array('Pending','On-going','Prank','Completed');
     }
 
+    public function test(Request $request)
+    {
+        return $request->all();
+    }
+
     public function call_user()
     {
-// Your Account SID and Auth Token from twilio.com/console
-        $account_sid = 'ACc2b621c75962600764b5dc43529b4fcd';
-        $auth_token = '10393bb1636198ac1ff9811e5e3b1152';
-        // In production, these should be environment variables. E.g.:
-        // $auth_token = $_ENV["TWILIO_ACCOUNT_SID"]
-
-        // A Twilio number you own with Voice capabilities
-        $twilio_number = "+19282183974";
-
-        // Where to make a voice call (your cell phone?)
-        $to_number = "+639051583899";
-
-        $client = new Client($account_sid, $auth_token);
-        $client->account->calls->create(
-            $to_number,
-            $twilio_number,
-            array(
-                "url" => "http://demo.twilio.com/docs/voice.xml"
-            )
+        $keypair = new Keypair(
+            file_get_contents(base_path('/private.key')),
+            '271d2050-e635-4432-abf9-9382ad560b54'
         );
+
+        $client = new Client($keypair);
+
+//        $call = $client->calls()->create([
+//            'to' => [[
+//                'type' => 'phone',
+//                'number' => 639051583899
+//            ]],
+//            'from' => [
+//                'type' => 'phone',
+//                'number' => 6322313601
+//            ],
+//            'answer_url' => ['https://developer.nexmo.com/ncco/tts.json'],
+//        ]);
+
+        Nexmo::calls()->create([
+            'to' => [[
+                'type' => 'phone',
+                'number' => '639051583899'
+            ]],
+            'from' => [
+                'type' => 'phone',
+                'number' => '6322313601'
+            ],
+            'answer_url' => ['https://developer.nexmo.com/ncco/tts.json'],
+            'event_url' => ['http://b1d0ee42.ngrok.io/webhooks/events']
+        ]);
     }
 
     public function lgu()

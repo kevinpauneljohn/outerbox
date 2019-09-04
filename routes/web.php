@@ -79,10 +79,12 @@ Route::group(['middleware' => ['auth','role:super admin|admin']], function (){
 Route::group(['middleware' => ['auth']],function (){
     Route::post('/provinces','address\AddressController@getProvinces');
     Route::post('/city','address\AddressController@getCities');
-    Route::get('/call','AgentPageController@call_user');
+
     Route::post('/update-ticket-status','Ticket\TicketController@update_ticket_status');
     Route::post('/assign-lgu-to-ticket','Ticket\TicketController@assign_lgu_to_ticket');
+    Route::post('/display-lead-details','Ticket\TicketController@display_lead_details');
 });
+Route::post('/call-user','AgentPageController@test');
 
 Auth::routes();
 
@@ -93,5 +95,7 @@ Route::get('/test','Ticket\CreateTicketController@tester');
 Route::group(['middleware' => ['cors'],'prefix' => 'v1'], function (){
     Route::post('/get-leads','Leads\LeadsController@save_leads');
     Route::get('/display-call-centers','SuperAdmin\SuperAdminController@show_call_center_list');
+    Route::get('lgu-list','SuperAdmin\SuperAdminController@show_lgu_list');
+//    Route::post('/call','AgentPageController@call_user');
 });
 

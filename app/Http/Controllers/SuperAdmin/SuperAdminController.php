@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\SuperAdmin;
 
 use App\address\Region;
+use App\Lgu;
 use App\Models\Lead;
 use App\User;
 use Illuminate\Http\Request;
@@ -217,5 +218,10 @@ class SuperAdminController extends Controller
     public function show_call_center_list()
     {
         return CallCenter::all()->pluck('postalcode');
+    }
+
+    public function show_lgu_list()
+    {
+        return Lgu::all();
     }
 }

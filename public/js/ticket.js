@@ -48,3 +48,49 @@ $(document).on('click','button[name=chosen_lgu]',function(form){
         }
     });
 });
+
+
+$(document).on('click','.call_user',function(){
+    let ticket_id = this.value;
+    let mobile_no = $('input[name=user_mobile_no'+ticket_id+']').val();
+
+    $.ajax({
+        'url'   : '/call-user',
+        'headers': {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+        'type'  : 'POST',
+        'data'  : {
+            'ticket_id' : ticket_id,
+            'mobile_no' : mobile_no,
+        },
+        'cache' : false,
+        success: function (result) {
+            console.log(result);
+        }
+    });
+});
+
+$(document).on('click','.call_user',function(){
+    let ticket_id = this.value;
+
+    $.ajax({
+        'url'   : '/display-lead-details',
+        'headers': {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+        'type'  : 'POST',
+        'data'  : {
+            'ticket_id' : ticket_id,
+        },
+        'cache' : false,
+        success: function (result) {
+            console.log(result);
+            $('#lead-info-table #fullname').text(result.firstname+' '+result.lastname);
+            $('#lead-info-table #mobile_no').text(result.mobile_no);
+            $('#lead-info-table #address').text(result.city+', '+result.province+', '+result.region+' '+result.zip_code);
+            $('#lead-info-table #lat').text(result.latitude);
+            $('#lead-info-table #lang').text(result.longitude);
+            $('#lead-info-table #request_date').text(result.request_date+' '+result.request_time);
+            $('#lead-info-table #type_of_accident').text(result.type_of_accident);
+            $('#lead-info-table #emergency_contact').text(result.emergency_contact);
+            $('#lead-info-table #contact_no').text(result.contact_no);
+        }
+    });
+});
