@@ -145,4 +145,32 @@ class TicketController extends Controller
 //        return ($ticket->save()) ? true : false;
     }
 
+
+
+    public function relate_tickets(Request $request)
+    {
+        $childTicket = DB::table('parent_ticket')->insert([
+            'ticket_id' => $request->ticketId,
+            'parent_ticket_id' => $request->ticketList,
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
+        ]);
+
+        $message = $childTicket ? ['success' => true] : ['success' => false];
+        return response()->json($message);
+
+        //return $request->ticketId;
+//        $childTicket = DB::table('parent_ticket')
+//            ->insert([
+//                [
+//                    'ticket_id' => $request->ticketId,
+//                    'parent_ticket_id' => $request->ticketList],
+//                    'created_at' => Carbon::now(),
+//                    'updated_at' => Carbon::now(),
+//            ]);
+
+        //$message = $childTicket ? ['success' => true] : ['success' => false];
+//        return response()->json($message);
+    }
+
 }

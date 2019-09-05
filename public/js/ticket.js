@@ -118,3 +118,28 @@ $(document).on('click','.connect_to_lgu',function(){
         }
     });
 });
+
+$(document).on('click','.relate-ticket-btn',function(){
+    let value = this.value;
+
+    // console.log(value);
+    $('#child-ticket-form input[name=ticketId]').val(value);
+});
+
+$(document).on('submit','#child-ticket-form', function(form){
+    form.preventDefault();
+
+    let data = $('#child-ticket-form').serialize();
+
+    $.ajax({
+        'url'   : '/relate-ticket',
+        'headers': {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+        'type'  : 'POST',
+        'data'  : data,
+        'cache' : false,
+        success: function (result) {
+            console.log(result);
+
+        }
+    });
+});

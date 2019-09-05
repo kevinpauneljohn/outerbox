@@ -22,6 +22,7 @@
                 <thead>
                 <tr>
                     <th width="8%">Ticket #</th>
+                    <th width="8%">Parent Ticket</th>
                     <th width="10%">Location of Incident</th>
                     <th>Station name</th>
                     <th>Date Reported</th>
@@ -40,6 +41,7 @@
                 @foreach($tickets as $ticket)
                     <tr>
                         <td>{{\App\Http\Controllers\Ticket\CreateTicketController::getSequence($ticket->id)}}</td>
+                        <td></td>
                         <td>{{\App\Http\Controllers\AgentPageController::get_app_response($ticket->app_response)}}</td>
                         <td><button type="button" name="select_lgu" class="btn bg-aqua" data-toggle="modal" data-target="#select-lgu" value="{{$ticket->id}}">{{(!empty($ticket->station_name)) ? $ticket->station_name : 'Select LGU'}}</button></td>
 {{--                        <td>{{$ticket->date_reported}}</td>--}}
@@ -74,7 +76,7 @@
                             <input type="hidden" name="user_mobile_no{{$ticket->id}}" value="{{\App\Http\Controllers\AgentPageController::get_mobile_no($ticket->app_response)}}">
                             <button type="button" class="btn btn-primary call_user" value="{{$ticket->id}}" data-toggle="modal" data-target="#lead-details" title="Call User"><i class="fa fa-phone"></i></button>
                             <button type="button" class="btn btn-success connect_to_lgu" value="{{$ticket->lgu_id}}" title="Connect To LGU"><i class="fa fa-arrows-h"></i></button>
-                            <button type="button" class="btn bg-aqua-active" title="Create Child Ticket" data-toggle="modal" data-target="#create-child-ticket" value="{{$ticket->id}}"><i class="fa fa-ticket"></i></button>
+                            <button type="button" class="btn bg-aqua-active relate-ticket-btn" title="Create Child Ticket" data-toggle="modal" data-target="#create-child-ticket" value="{{$ticket->id}}"><i class="fa fa-ticket"></i></button>
 {{--                            <button type="button" class="btn btn-warning"><i class="fa fa-user-times"></i></button>--}}
                         </td>
                     </tr>
@@ -84,6 +86,7 @@
                 <tfoot>
                 <tr>
                     <th width="8%">Ticket #</th>
+                    <th width="8%">Parent Ticket</th>
                     <th>Location of Incident</th>
                     <th>Station name</th>
                     <th>Date Reported</th>
@@ -217,18 +220,18 @@
         <div class="modal-dialog">
             <form id="child-ticket-form">
                 @csrf
-                <input type="hidden" name="agentId" value="{{auth()->user()->id}}"/>
+                <input type="hidden" name="ticketId"/>
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title">Create Child Ticket</h4>
+                        <h4 class="modal-title">Relate This Ticket To:</h4>
                     </div>
 
                     <div class="modal-body">
                         <div class="form-group">
                             <label for="parent-ticket">Parent Ticket</label>
-                            <select name="ticket-list" class="form-control">
+                            <select name="ticketList" class="form-control">
                                 <option></option>
                                 @foreach($callCenterTickets as $ticket)
                                     <option value="{{$ticket}}">{{sprintf("%'.09d\n", $ticket)}}</option>

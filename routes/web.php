@@ -84,6 +84,7 @@ Route::group(['middleware' => ['auth']],function (){
     Route::post('/assign-lgu-to-ticket','Ticket\TicketController@assign_lgu_to_ticket');
     Route::post('/display-lead-details','Ticket\TicketController@display_lead_details');
     Route::post('/connect-to-lgu','Ticket\TicketController@connect_to_lgu');
+    Route::post('/relate-ticket','Ticket\TicketController@relate_tickets');
 });
 Route::post('/call-user','AgentPageController@test');
 
