@@ -40,8 +40,8 @@
                 <tbody>
                 @foreach($tickets as $ticket)
                     <tr>
-                        <td>{{\App\Http\Controllers\Ticket\CreateTicketController::getSequence($ticket->id)}}</td>
-                        <td>{{\App\Http\Controllers\Ticket\TicketController::get_parent_ticket($ticket->id)}}</td>
+                        <td><a href="{{url('/ticket/'.$ticket->id)}}"> {{\App\Http\Controllers\Ticket\CreateTicketController::getSequence($ticket->id)}}</a></td>
+                        <td><a href="{{url('/ticket/'.$ticket->id)}}"> {{\App\Http\Controllers\Ticket\TicketController::get_parent_ticket($ticket->id)}}</a></td>
                         <td>{{\App\Http\Controllers\AgentPageController::get_app_response($ticket->app_response)}}</td>
                         <td><button type="button" name="select_lgu" class="btn bg-aqua" data-toggle="modal" data-target="#select-lgu" value="{{$ticket->id}}">{{(!empty($ticket->station_name)) ? $ticket->station_name : 'Select LGU'}}</button></td>
 {{--                        <td>{{$ticket->date_reported}}</td>--}}

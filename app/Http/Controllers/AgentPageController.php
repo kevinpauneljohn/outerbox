@@ -211,4 +211,16 @@ class AgentPageController extends Controller
 
         return view('Employee.Agent.lgu')->with(['lgus'=> $lgus]);
     }
+
+
+    /**
+     * display the details about the ticket
+     * date: 09/06/2019
+     * @param int $id
+     * @return mixed
+     * */
+    public function ticket_profile_page($id)
+    {
+        return view('Employee.Agent.ticketProfile')->with(["ticketId" => $id]);
+    }
 }
