@@ -185,7 +185,7 @@ class TicketController extends Controller
         $status = $request->all();
 
         $twilio_response = DB::table('twilio_callback')
-            ->insert(['callback_response' => $status]);
+            ->insert(['callback_response' => 'hi']);
     }
 
 }
