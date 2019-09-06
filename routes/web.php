@@ -100,8 +100,6 @@ Route::group(['middleware' => ['cors'],'prefix' => 'v1'], function (){
     Route::get('/display-call-centers','SuperAdmin\SuperAdminController@show_call_center_list');
     Route::get('lgu-list','SuperAdmin\SuperAdminController@show_lgu_list');
     Route::get('/call-user','AgentPageController@call_user');
-//    Route::get('/events',function (){
-//
-//    });
+    Route::get('/events','Ticket\TicketController@twilio_callback');
 });
 

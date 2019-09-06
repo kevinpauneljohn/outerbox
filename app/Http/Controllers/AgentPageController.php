@@ -177,7 +177,7 @@ class AgentPageController extends Controller
             $call = $client->calls->create("+639166520817","+6326263521",
                 array(
                     "method" => "GET",
-                    "statusCallback" => "http://crm.devouterbox.com/v1/call-user",
+                    "statusCallback" => "http://crm.devouterbox.com/v1/events",
                     "statusCallbackEvent" => array("initiated","answered"),
                     "statusCallbackMethod" => "POST",
                     "url" => "http://demo.twilio.com/docs/voice.xml")

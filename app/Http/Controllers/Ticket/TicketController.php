@@ -180,4 +180,12 @@ class TicketController extends Controller
         return $parentTicket->parent_ticket_id != null ? CreateTicketController::getSequence($parentTicket->parent_ticket_id) : '';
     }
 
+    public function twilio_callback(Request $request)
+    {
+        $status = implode(',',$request->all());
+        $handle = fopen('log.txt','a');
+
+        fwrite($handle, $status);
+    }
+
 }
