@@ -4,8 +4,6 @@
     <list default="true" id="03ba3b1d-e17f-4440-a069-100ded3b375a" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AgentPageController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AgentPageController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/Employee/Agent/tickets.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Employee/Agent/tickets.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/vendor/beyondcode/laravel-dump-server/" />
     <ignored path="$PROJECT_DIR$/vendor/composer/" />
@@ -107,7 +105,7 @@
     </execution>
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.50379574">
+    <splitter split-orientation="horizontal" split-proportion="0.16425121">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file pinned="false" current-in-tab="true">
@@ -168,11 +166,11 @@
       </split-first>
       <split-second>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file pinned="false" current-in-tab="false">
+          <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/app/Http/Controllers/AgentPageController.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="153">
-                  <caret line="169" column="59" lean-forward="true" selection-start-line="169" selection-start-column="59" selection-end-line="169" selection-end-column="59" />
+                <state relative-caret-position="289">
+                  <caret line="177" column="22" selection-start-line="177" selection-start-column="22" selection-end-line="177" selection-end-column="22" />
                   <folding>
                     <element signature="e#40#63#0#PHP" expanded="true" />
                   </folding>
@@ -189,11 +187,11 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/resources/views/Employee/Agent/tickets.blade.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="272">
-                  <caret line="76" column="214" lean-forward="true" selection-start-line="76" selection-start-column="32" selection-end-line="76" selection-end-column="214" />
+                <state relative-caret-position="80">
+                  <caret line="52" column="29" lean-forward="true" selection-start-line="52" selection-start-column="29" selection-end-line="52" selection-end-column="29" />
                 </state>
               </provider>
             </entry>
@@ -201,7 +199,7 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/app/Ticket.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="340">
+                <state relative-caret-position="374">
                   <caret line="22" column="51" selection-start-line="22" selection-start-column="51" selection-end-line="22" selection-end-column="51" />
                   <folding>
                     <element signature="e#23#49#0#PHP" expanded="true" />
@@ -342,9 +340,9 @@
         <option value="$PROJECT_DIR$/app/Http/Controllers/Ticket/TicketController.php" />
         <option value="$PROJECT_DIR$/resources/views/Employee/Agent/ticketProfile.blade.php" />
         <option value="$PROJECT_DIR$/public/js/ticket.js" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/AgentPageController.php" />
-        <option value="$PROJECT_DIR$/resources/views/Employee/Agent/tickets.blade.php" />
         <option value="$PROJECT_DIR$/routes/web.php" />
+        <option value="$PROJECT_DIR$/resources/views/Employee/Agent/tickets.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/AgentPageController.php" />
       </list>
     </option>
   </component>
@@ -627,21 +625,7 @@
       <workItem from="1567620400841" duration="3975000" />
       <workItem from="1567696200707" duration="5543000" />
       <workItem from="1567759201556" duration="6158000" />
-      <workItem from="1567771779566" duration="1600000" />
-    </task>
-    <task id="LOCAL-00080" summary="updated the call center page address call">
-      <created>1567083640415</created>
-      <option name="number" value="00080" />
-      <option name="presentableId" value="LOCAL-00080" />
-      <option name="project" value="LOCAL" />
-      <updated>1567083640415</updated>
-    </task>
-    <task id="LOCAL-00081" summary="updated the call center page address call">
-      <created>1567083909382</created>
-      <option name="number" value="00081" />
-      <option name="presentableId" value="LOCAL-00081" />
-      <option name="project" value="LOCAL" />
-      <updated>1567083909382</updated>
+      <workItem from="1567771779566" duration="2324000" />
     </task>
     <task id="LOCAL-00082" summary="updated the call center page address call">
       <created>1567083993921</created>
@@ -972,11 +956,25 @@
       <option name="project" value="LOCAL" />
       <updated>1567767165175</updated>
     </task>
-    <option name="localTasksCounter" value="129" />
+    <task id="LOCAL-00129" summary="updated the call process">
+      <created>1567773452435</created>
+      <option name="number" value="00129" />
+      <option name="presentableId" value="LOCAL-00129" />
+      <option name="project" value="LOCAL" />
+      <updated>1567773452436</updated>
+    </task>
+    <task id="LOCAL-00130" summary="updated the call process">
+      <created>1567773693764</created>
+      <option name="number" value="00130" />
+      <option name="presentableId" value="LOCAL-00130" />
+      <option name="project" value="LOCAL" />
+      <updated>1567773693764</updated>
+    </task>
+    <option name="localTasksCounter" value="131" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="271366000" />
+    <option name="totallyTimeSpent" value="272090000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
@@ -1389,16 +1387,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Ticket.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="22" column="51" selection-start-line="22" selection-start-column="51" selection-end-line="22" selection-end-column="51" />
-          <folding>
-            <element signature="e#23#49#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Models/Lead.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
@@ -1433,16 +1421,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/AgentPageController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="169" column="59" lean-forward="true" selection-start-line="169" selection-start-column="59" selection-end-line="169" selection-end-column="59" />
-          <folding>
-            <element signature="e#40#63#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/Employee/Agent/ticketProfile.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="63">
@@ -1450,17 +1428,37 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/Employee/Agent/tickets.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="76" column="214" lean-forward="true" selection-start-line="76" selection-start-column="32" selection-end-line="76" selection-end-column="214" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/routes/web.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="287">
           <caret line="89" column="60" lean-forward="true" selection-start-line="89" selection-start-column="60" selection-end-line="89" selection-end-column="60" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Ticket.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="22" column="51" selection-start-line="22" selection-start-column="51" selection-end-line="22" selection-end-column="51" />
+          <folding>
+            <element signature="e#23#49#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/Employee/Agent/tickets.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="80">
+          <caret line="52" column="29" lean-forward="true" selection-start-line="52" selection-start-column="29" selection-end-line="52" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/AgentPageController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="177" column="22" selection-start-line="177" selection-start-column="22" selection-end-line="177" selection-end-column="22" />
+          <folding>
+            <element signature="e#40#63#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
