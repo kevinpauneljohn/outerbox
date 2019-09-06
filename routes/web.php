@@ -87,7 +87,7 @@ Route::group(['middleware' => ['auth']],function (){
     Route::post('/relate-ticket','Ticket\TicketController@relate_tickets');
     Route::get('/ticket/{id}','AgentPageController@ticket_profile_page');
 });
-Route::post('/call-user','AgentPageController@test');
+//Route::post('/call-user','AgentPageController@call_user');
 
 Auth::routes();
 
@@ -99,6 +99,6 @@ Route::group(['middleware' => ['cors'],'prefix' => 'v1'], function (){
     Route::post('/get-leads','Leads\LeadsController@save_leads');
     Route::get('/display-call-centers','SuperAdmin\SuperAdminController@show_call_center_list');
     Route::get('lgu-list','SuperAdmin\SuperAdminController@show_lgu_list');
-//    Route::post('/call','AgentPageController@call_user');
+    Route::post('/call-user','AgentPageController@call_user');
 });
 

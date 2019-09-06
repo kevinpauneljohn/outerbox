@@ -9,10 +9,8 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use Nexmo\Client\Credentials\Keypair;
-use Nexmo\Client;
-use Nexmo\Laravel\Facade\Nexmo;
 use Illuminate\Support\Carbon;
+use Twilio\Rest\Client;
 
 class AgentPageController extends Controller
 {
@@ -159,39 +157,22 @@ class AgentPageController extends Controller
         return $request->all();
     }
 
-    public function call_user()
+
+    public function call_user(Request $request)
     {
-        $keypair = new Keypair(
-            file_get_contents(base_path('/private.key')),
-            '271d2050-e635-4432-abf9-9382ad560b54'
-        );
+        $AccountSid = 'ACa2901d7449d60690cb960e94f5f56df2';
+        $AuthToken = '24789a94f5f1775d0028bd477f928ca7';
 
-        $client = new Client($keypair);
+        $client = new Client($AccountSid, $AuthToken);
 
-//        $call = $client->calls()->create([
-//            'to' => [[
-//                'type' => 'phone',
-//                'number' => 639051583899
-//            ]],
-//            'from' => [
-//                'type' => 'phone',
-//                'number' => 6322313601
-//            ],
-//            'answer_url' => ['https://developer.nexmo.com/ncco/tts.json'],
-//        ]);
+        try{
+            $call = $client->calls->create($request->mobile_no,"+6326263521", array("url" => "http://demo.twilio.com/docs/voice.xml") );
+            $startedCall = array('action' => 'ringing', 'callId' => $call->sid);
 
-        Nexmo::calls()->create([
-            'to' => [[
-                'type' => 'phone',
-                'number' => '639051583899'
-            ]],
-            'from' => [
-                'type' => 'phone',
-                'number' => '6322313601'
-            ],
-            'answer_url' => ['https://developer.nexmo.com/ncco/tts.json'],
-            'event_url' => ['http://b1d0ee42.ngrok.io/webhooks/events']
-        ]);
+            return $startedCall;
+        }catch (Exception $e){
+            echo "Error: ".$e->getMessage();
+        }
     }
 
     public function lgu()
