@@ -210,19 +210,21 @@ class TicketController extends Controller
 
         $twilio = new Client($AccountSid, $AuthToken);
 
-//        $calls = $client->calls("CA281df0215f90a0b2d46cf49fc3af3781")
-//            ->fetch();
+        $calls = $twilio->calls("CA281df0215f90a0b2d46cf49fc3af3781")
+            ->fetch();
+
+        return $calls->to;
 
 //        $call = $twilio->calls($request->sid)
 //            ->fetch();
 //
 //        var_dump($call);
-        $calls = $twilio->calls
-            ->read(array(), 1);
-
-        foreach ($calls as $record) {
-            print($record->duration);
-        }
+//        $calls = $twilio->calls
+//            ->read(array(), 1);
+//
+//        foreach ($calls as $record) {
+//            echo gettype($record->sid);
+//        }
     }
 
 }
