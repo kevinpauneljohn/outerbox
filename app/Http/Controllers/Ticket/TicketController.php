@@ -145,8 +145,11 @@ class TicketController extends Controller
 //        return ($ticket->save()) ? true : false;
     }
 
-
-
+    /**
+     * relate ticket to parent ticket
+     * @param Request $request
+     * @return Response
+     * */
     public function relate_tickets(Request $request)
     {
         $childTicket = DB::table('parent_ticket')->insert([
@@ -158,19 +161,23 @@ class TicketController extends Controller
 
         $message = $childTicket ? ['success' => true] : ['success' => false];
         return response()->json($message);
+    }
 
-        //return $request->ticketId;
-//        $childTicket = DB::table('parent_ticket')
-//            ->insert([
-//                [
-//                    'ticket_id' => $request->ticketId,
-//                    'parent_ticket_id' => $request->ticketList],
-//                    'created_at' => Carbon::now(),
-//                    'updated_at' => Carbon::now(),
-//            ]);
+    /**
+     * get the id of the parent ticket
+     * date: 09/06/2019
+     * @param int $ticketId
+     * @return mixed
+     * */
+    public static function get_parent_ticket($ticketId)
+    {
+        $parentTicket = DB::table('tickets')
+            ->leftJoin('parent_ticket','tickets.id','=','parent_ticket.ticket_id')
+            ->select('parent_ticket.parent_ticket_id')
+            ->where('tickets.id',$ticketId)
+            ->first();
 
-        //$message = $childTicket ? ['success' => true] : ['success' => false];
-//        return response()->json($message);
+        return $parentTicket->parent_ticket_id != null ? CreateTicketController::getSequence($parentTicket->parent_ticket_id) : '';
     }
 
 }
