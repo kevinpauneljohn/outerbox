@@ -176,6 +176,10 @@ class AgentPageController extends Controller
             //$call = $client->calls->create($request->mobile_no,"+6326263521",
             $call = $client->calls->create("+639166520817","+6326263521",
                 array(
+                    "method" => "GET",
+                    "statusCallback" => "http://crm.devouterbox.com/v1/call-user",
+                    "statusCallbackEvent" => array("initiated","answered"),
+                    "statusCallbackMethod" => "POST",
                     "url" => "http://demo.twilio.com/docs/voice.xml")
             );
             $startedCall = array('action' => 'ringing', 'callId' => $call->sid);
