@@ -182,10 +182,10 @@ class TicketController extends Controller
 
     public function twilio_callback(Request $request)
     {
-        $status = implode(',',$request->all());
-        $handle = fopen('log.txt','a');
+        $status = $request->all();
 
-        fwrite($handle, $status);
+        $twilio_response = DB::table('twilio_callback')
+            ->insert(['callback_response' => $status]);
     }
 
 }
