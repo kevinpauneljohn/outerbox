@@ -38,6 +38,31 @@
                 </tr>
                 </thead>
                 <tbody>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>
+
+                    </td>
+                    <td>
+                        <a href="{{url('/v1/call-user')}}"><button type="button" class="btn btn-primary call_user" value=""><i class="fa fa-phone"></i></button></a>
+{{--                        <input type="hidden" name="user_mobile_no{{$ticket->id}}" value="">--}}
+                        {{--                            <button type="button" class="btn btn-primary call_user" value="{{$ticket->id}}" data-toggle="modal" data-target="#lead-details" title="Call User"><i class="fa fa-phone"></i></button>--}}
+                        <button type="button" class="btn btn-success connect_to_lgu" value="" title="Connect To LGU"><i class="fa fa-arrows-h"></i></button>
+                        <button type="button" class="btn bg-aqua-active relate-ticket-btn" title="Create Child Ticket" data-toggle="modal" data-target="#create-child-ticket" value=""><i class="fa fa-ticket"></i></button>
+                        {{--                            <button type="button" class="btn btn-warning"><i class="fa fa-user-times"></i></button>--}}
+                    </td>
+                </tr>
                 @foreach($tickets as $ticket)
                     <tr>
                         <td><a href="{{url('/ticket/'.$ticket->id)}}"> {{\App\Http\Controllers\Ticket\CreateTicketController::getSequence($ticket->id)}}</a></td>
