@@ -178,7 +178,7 @@ class AgentPageController extends Controller
                 array(
                     "method" => "GET",
                     "statusCallback" => "http://crm.devouterbox.com/v1/events",
-                    "statusCallbackEvent" => array("initiated","answered"),
+                    "statusCallbackEvent" => array("initiated","ringing","answered","completed"),
                     "statusCallbackMethod" => "POST",
                     "url" => "http://demo.twilio.com/docs/voice.xml")
             );
