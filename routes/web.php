@@ -99,6 +99,9 @@ Route::group(['middleware' => ['cors'],'prefix' => 'v1'], function (){
     Route::post('/get-leads','Leads\LeadsController@save_leads');
     Route::get('/display-call-centers','SuperAdmin\SuperAdminController@show_call_center_list');
     Route::get('lgu-list','SuperAdmin\SuperAdminController@show_lgu_list');
-    Route::post('/call-user','AgentPageController@call_user');
+    Route::get('/call-user','AgentPageController@call_user');
+//    Route::get('/events',function (){
+//
+//    });
 });
 

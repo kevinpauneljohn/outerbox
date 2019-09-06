@@ -158,6 +158,13 @@ class AgentPageController extends Controller
     }
 
 
+    /**
+     * call user
+     * @param Request $request
+     * @return mixed
+     * @throws \Twilio\Exceptions\ConfigurationException
+     * @throws \Twilio\Exceptions\TwilioException
+     */
     public function call_user(Request $request)
     {
         $AccountSid = 'ACa2901d7449d60690cb960e94f5f56df2';
@@ -166,10 +173,19 @@ class AgentPageController extends Controller
         $client = new Client($AccountSid, $AuthToken);
 
         try{
-            $call = $client->calls->create($request->mobile_no,"+6326263521", array("url" => "http://demo.twilio.com/docs/voice.xml") );
+            //$call = $client->calls->create($request->mobile_no,"+6326263521",
+            $call = $client->calls->create("+639166520817","+6326263521",
+                array(
+                    "method" => "POST",
+                    "statusCallback" => "http://127.0.0.1:8000/call-user",
+                    "statusCallbackEvent" => array("initiated","answered"),
+                    "statusCallbackMethod" => "POST",
+                    "url" => "http://demo.twilio.com/docs/voice.xml")
+            );
             $startedCall = array('action' => 'ringing', 'callId' => $call->sid);
 
-            return $startedCall;
+            //return $startedCall;
+            print($call->sid);
         }catch (Exception $e){
             echo "Error: ".$e->getMessage();
         }
