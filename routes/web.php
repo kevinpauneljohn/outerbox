@@ -83,7 +83,6 @@ Route::group(['middleware' => ['auth']],function (){
     Route::post('/update-ticket-status','Ticket\TicketController@update_ticket_status');
     Route::post('/assign-lgu-to-ticket','Ticket\TicketController@assign_lgu_to_ticket');
     Route::post('/display-lead-details','Ticket\TicketController@display_lead_details');
-    Route::post('/connect-to-lgu','Ticket\TicketController@connect_to_lgu');
     Route::post('/relate-ticket','Ticket\TicketController@relate_tickets');
     Route::get('/ticket/{id}','AgentPageController@ticket_profile_page');
 });
@@ -99,7 +98,8 @@ Route::group(['middleware' => ['cors'],'prefix' => 'v1'], function (){
     Route::post('/get-leads','Leads\LeadsController@save_leads');
     Route::get('/display-call-centers','SuperAdmin\SuperAdminController@show_call_center_list');
     Route::get('lgu-list','SuperAdmin\SuperAdminController@show_lgu_list');
-    Route::get('/call-user','AgentPageController@call_user');
-    Route::get('/events','Ticket\TicketController@twilio_callback');
+    Route::post('/call-user','AgentPageController@call_user');
+    Route::post('/events','Ticket\TicketController@twilio_callback');
+    Route::post('/connect-to-lgu','Ticket\TicketController@connect_to_lgu');
 });
 

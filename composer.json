@@ -18,7 +18,8 @@
         "nexmo/laravel": "^1.1",
         "pusher/pusher-php-server": "^4.0",
         "spatie/laravel-permission": "^2.37",
-        "twilio/sdk": "^5.0"
+        "twilio/sdk": "^5.0",
+        "orchestra/parser": "^3.8"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",

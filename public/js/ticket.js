@@ -49,6 +49,21 @@ $(document).on('click','button[name=chosen_lgu]',function(form){
     });
 });
 
+$(document).on('click','.twilio_call_back',function(){
+    let ticket_id = this.value;
+
+    let mobile_no = $('input[name=user_mobile_no'+ticket_id+']').val();
+
+    $.ajax({
+        'url'   : '/v1/events',
+        'headers': {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+        'type'  : 'POST',
+        'cache' : false,
+        success: function (result) {
+            console.log(result);
+        }
+    });
+});
 
 $(document).on('click','.call_user',function(){
     let ticket_id = this.value;
@@ -64,7 +79,22 @@ $(document).on('click','.call_user',function(){
         },
         'cache' : false,
         success: function (result) {
-            console.log(result);
+            let callId = result.sid;
+
+            $.ajax({
+                'url'   : '/v1/events',
+                'headers': {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                'type'  : 'POST',
+                'data'  : {
+                    'sid' : callId,
+                },
+                'cache' : false,
+                success: function (data) {
+                    console.log(data)
+
+                }
+            });
+
         }
     });
 });
@@ -101,10 +131,8 @@ $(document).on('click','.call_user',function(){
 $(document).on('click','.connect_to_lgu',function(){
     let lgu_id = this.value;
 
-    console.log(lgu_id);
-
     $.ajax({
-        'url'   : '/connect-to-lgu',
+        'url'   : '/v1/connect-to-lgu',
         'headers': {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
         'type'  : 'POST',
         'data'  : {

@@ -19,8 +19,9 @@ class AgentPageController extends Controller
         return view('Employee.Agent.dashboard');
     }
 
-    /*
+    /**
     * Agent Leads Page
+     * @return mixed
     */
     public function ticket()
     {
@@ -173,8 +174,8 @@ class AgentPageController extends Controller
         $client = new Client($AccountSid, $AuthToken);
 
         try{
-            //$call = $client->calls->create($request->mobile_no,"+6326263521",
-            $call = $client->calls->create("+639166520817","+6326263521",
+            $call = $client->calls->create($request->mobile_no,"+6326263521",
+//            $call = $client->calls->create("+639166520817","+6326263521",
                 array(
                     "method" => "GET",
                     "statusCallback" => "http://crm.devouterbox.com/v1/events",
@@ -182,10 +183,10 @@ class AgentPageController extends Controller
                     "statusCallbackMethod" => "POST",
                     "url" => "http://demo.twilio.com/docs/voice.xml")
             );
-            $startedCall = array('action' => 'ringing', 'callId' => $call->sid);
+            $startedCall = array('action' => 'ringing', 'sid' => $call->sid);
 
             //return $startedCall;
-            print($call->sid);
+            return $startedCall;
         }catch (Exception $e){
             echo "Error: ".$e->getMessage();
         }

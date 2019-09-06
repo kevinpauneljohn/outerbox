@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers\Ticket;
 
+use App\Lgu;
 use App\Ticket;
+use App\User;
 use http\Env\Response;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
+use Twilio\Rest\Client;
 
 class TicketController extends Controller
 {
@@ -103,11 +106,31 @@ class TicketController extends Controller
     /**
      * Connect leads to lgu
      * @param Request $request
-     * @return void
+     * @return array
      */
     public function connect_to_lgu(Request $request)
     {
-//        return $request->all();
+        /**
+         * get the response team name, officer in charge, agent
+         * @var $stationName
+         * @var $officeInCharge
+         * @var $agent
+         * @var $callCenterId
+         * */
+
+        $lgu = Lgu::find($request->lgu_id);
+        $stationName = $lgu->station_name;
+        $officeInCharge = $lgu->contactpeople[0]->fullname;
+        $agent = auth()->user()->username;
+        $callCenter = User::find(auth()->user()->id)->callcenter[0]->name;
+
+        $data = array(
+            'responseTeam'      => $stationName,
+            'officeInCharge'    => $officeInCharge,
+            'agent'             => $agent,
+            'callCenter'        => $callCenter);
+
+        return $data;
     }
 
 
@@ -182,10 +205,24 @@ class TicketController extends Controller
 
     public function twilio_callback(Request $request)
     {
-        $status = $request->all();
+        $AccountSid = 'ACa2901d7449d60690cb960e94f5f56df2';
+        $AuthToken = '24789a94f5f1775d0028bd477f928ca7';
 
-        $twilio_response = DB::table('twilio_callback')
-            ->insert(['callback_response' => 'hi']);
+        $twilio = new Client($AccountSid, $AuthToken);
+
+//        $calls = $client->calls("CA281df0215f90a0b2d46cf49fc3af3781")
+//            ->fetch();
+
+//        $call = $twilio->calls($request->sid)
+//            ->fetch();
+//
+//        var_dump($call);
+        $calls = $twilio->calls
+            ->read(array(), 1);
+
+        foreach ($calls as $record) {
+            print($record->duration);
+        }
     }
 
 }
