@@ -18,11 +18,26 @@
 @section('main_content')
     <div class="box">
         <div class="box-body">
-            {{$ticketId}}
+            <table cellspacing="100">
+                <tr>
+                    <td>Assigned Agent</td>
+                    <td>: {{ucfirst($agent->firstname)}} {{ucfirst($agent->lastname)}}</td>
+                </tr>
+                <tr>
+                    <td>Username</td>
+                    <td>: {{$agent->username}}</td>
+                </tr>
+            </table>
         </div>
         <!-- /.box-body -->
     </div>
     <!-- /.box -->
+    <div class="row">
+
+        <div>
+
+        </div>
+    </div>
 
 
 @endsection

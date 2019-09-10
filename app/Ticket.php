@@ -10,7 +10,7 @@ class Ticket extends Model
 {
     public function users()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class,'user_assigned_id');
     }
 
     public function leads()

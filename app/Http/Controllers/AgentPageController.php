@@ -43,11 +43,11 @@ class AgentPageController extends Controller
 
 //        return $callCenterTickets;
 
-        return view('Employee.Agent.tickets')->with([
-            'tickets' => $tickets,
-            'lgus'    => $this->get_registered_lgu($this->get_user_call_center()),
-            'callCenterTickets' => $callCenterTickets
-        ]);
+//        return view('Employee.Agent.tickets')->with([
+//            'tickets' => $tickets,
+//            'lgus'    => $this->get_registered_lgu($this->get_user_call_center()),
+//            'callCenterTickets' => $callCenterTickets
+//        ]);
 
 //        foreach ($tickets as $ticket){
 //            $str = $ticket->app_response;
@@ -63,6 +63,53 @@ class AgentPageController extends Controller
 
 
 //        echo $tickets;
+        echo '<br>Difference is : '.$this->time_duration("2019-09-10 01:00:00", date('Y-m-d H:i:s'));
+    }
+
+
+
+    /**
+     * this method will display the duration based on two dates
+     * @param  string $date1
+     * @param  string $date2
+     * @return string
+     * */
+    public function time_duration($date1, $date2)
+    {
+        $date1=strtotime($date1);
+        $date2=strtotime($date2);
+        $diff = abs($date1 - $date2);
+
+        $day = $diff/(60*60*24); // in day
+        $dayFix = floor($day);
+        $dayPen = $day - $dayFix;
+        if($dayPen > 0)
+        {
+            $hour = $dayPen*(24); // in hour (1 day = 24 hour)
+            $hourFix = floor($hour);
+            $hourPen = $hour - $hourFix;
+            if($hourPen > 0)
+            {
+                $min = $hourPen*(60); // in hour (1 hour = 60 min)
+                $minFix = floor($min);
+                $minPen = $min - $minFix;
+                if($minPen > 0)
+                {
+                    $sec = $minPen*(60); // in sec (1 min = 60 sec)
+                    $secFix = floor($sec);
+                }
+            }
+        }
+        $str = "";
+        if($dayFix > 0)
+            $str.= $dayFix." day ";
+        if($hourFix > 0)
+            $str.= $hourFix." hour ";
+        if($minFix > 0)
+            $str.= $minFix." min ";
+        if($secFix > 0)
+            $str.= $secFix." sec ";
+        return $str;
     }
     public static function get_mobile_no($app_response)
     {
@@ -219,6 +266,14 @@ class AgentPageController extends Controller
      * */
     public function ticket_profile_page($id)
     {
-        return view('Employee.Agent.ticketProfile')->with(["ticketId" => $id]);
+        return view('Employee.Agent.ticketProfile')->with([
+            "ticketId" => $id,
+            "agent"    => $this->display_assigned_agent($id)
+        ]);
+    }
+
+    public function display_assigned_agent($ticket_id)
+    {
+        return Ticket::find($ticket_id) != null ? Ticket::find($ticket_id)->users : "";
     }
 }
