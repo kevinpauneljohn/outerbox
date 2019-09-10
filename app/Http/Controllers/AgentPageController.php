@@ -43,11 +43,11 @@ class AgentPageController extends Controller
 
 //        return $callCenterTickets;
 
-//        return view('Employee.Agent.tickets')->with([
-//            'tickets' => $tickets,
-//            'lgus'    => $this->get_registered_lgu($this->get_user_call_center()),
-//            'callCenterTickets' => $callCenterTickets
-//        ]);
+        return view('Employee.Agent.tickets')->with([
+            'tickets' => $tickets,
+            'lgus'    => $this->get_registered_lgu($this->get_user_call_center()),
+            'callCenterTickets' => $callCenterTickets
+        ]);
 
 //        foreach ($tickets as $ticket){
 //            $str = $ticket->app_response;
@@ -63,7 +63,7 @@ class AgentPageController extends Controller
 
 
 //        echo $tickets;
-        echo '<br>Difference is : '.$this->time_duration("2019-09-10 01:00:00", date('Y-m-d H:i:s'));
+//        echo '<br>Difference is : '.$this->time_duration("2019-09-10 01:00:00", date('Y-m-d H:i:s'));
     }
 
 
@@ -272,6 +272,11 @@ class AgentPageController extends Controller
         ]);
     }
 
+    /**
+     * this method will return the agent value based on ticket ID
+     * @param int $ticket_id
+     * @return array
+     * */
     public function display_assigned_agent($ticket_id)
     {
         return Ticket::find($ticket_id) != null ? Ticket::find($ticket_id)->users : "";
