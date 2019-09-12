@@ -33,6 +33,7 @@ Route::group(['middleware' => ['auth','role:agent']],function (){
     Route::get('/agent/dashboard','AgentPageController@dashboard');
     Route::get('/agent/ticket','AgentPageController@ticket');
     Route::get('/agent/lgu','AgentPageController@lgu');
+    Route::get('/agent/lgu/profile/{id}','Lgu\LguController@lgu_profile');
 });
 
 #superadmin login

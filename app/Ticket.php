@@ -22,4 +22,9 @@ class Ticket extends Model
     {
         return $this->belongsTo(CallCenter::class);
     }
+
+    public function lgus()
+    {
+        return $this->belongsTo(Lgu::class);
+    }
 }

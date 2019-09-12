@@ -77,6 +77,7 @@
                             <button type="button" class="btn btn-primary call_user" value="{{$ticket->id}}" data-toggle="modal" data-target="#lead-details" title="Call User"><i class="fa fa-phone"></i></button>
                             <button type="button" class="btn btn-success connect_to_lgu" value="{{$ticket->lgu_id}}" title="Connect To LGU"><i class="fa fa-arrows-h"></i></button>
                             <button type="button" class="btn bg-aqua-active relate-ticket-btn" title="Create Child Ticket" data-toggle="modal" data-target="#create-child-ticket" value="{{$ticket->id}}"><i class="fa fa-ticket"></i></button>
+                            <button type="button" class="btn bg-yellow-active twilio_recordings" title="Display Call Recordings" value="{{$ticket->id}}" data-toggle="modal" data-target="#display-call-recordings"><i class="fa fa-play"></i></button>
                             <button type="button" class="btn bg-aqua-active twilio_call_back" title="Create Child Ticket" value="{{$ticket->id}}"><i class="fa fa-ticket"></i></button>
 {{--                            <button type="button" class="btn btn-warning"><i class="fa fa-user-times"></i></button>--}}
                         </td>
@@ -247,6 +248,43 @@
                     </div>
                 </div>
             </form>
+        </div>
+    </div>
+
+    {{--display call recordings--}}
+    <div class="modal fade" id="display-call-recordings">
+        <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">Call Recordings</h4>
+                    </div>
+
+                    <div class="modal-body">
+                        <table class="table table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Description</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td>
+                                        <button type="button" class="btn btn-success" title="Play Recording"><i class="fa fa-play"></i></button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
         </div>
     </div>
 @endsection

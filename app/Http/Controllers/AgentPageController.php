@@ -220,23 +220,23 @@ class AgentPageController extends Controller
 
         $client = new Client($AccountSid, $AuthToken);
 
-        try{
-            $call = $client->calls->create($request->mobile_no,"+6326263521",
-//            $call = $client->calls->create("+639166520817","+6326263521",
-                array(
-                    "method" => "GET",
-                    "statusCallback" => "http://crm.devouterbox.com/v1/events",
-                    "statusCallbackEvent" => array("initiated","ringing","answered","completed"),
-                    "statusCallbackMethod" => "POST",
-                    "url" => "http://demo.twilio.com/docs/voice.xml")
-            );
-            $startedCall = array('action' => 'ringing', 'sid' => $call->sid);
-
-            //return $startedCall;
-            return $startedCall;
-        }catch (Exception $e){
-            echo "Error: ".$e->getMessage();
-        }
+//        try{
+//            $call = $client->calls->create($request->mobile_no,"+6326263521",
+////            $call = $client->calls->create("+639166520817","+6326263521",
+//                array(
+//                    "method" => "GET",
+//                    "statusCallback" => "http://crm.devouterbox.com/v1/events",
+//                    "statusCallbackEvent" => array("initiated","ringing","answered","completed"),
+//                    "statusCallbackMethod" => "POST",
+//                    "url" => "http://demo.twilio.com/docs/voice.xml")
+//            );
+//            $startedCall = array('action' => 'ringing', 'sid' => $call->sid);
+//
+//            //return $startedCall;
+//            return $startedCall;
+//        }catch (Exception $e){
+//            echo "Error: ".$e->getMessage();
+//        }
     }
 
     public function lgu()

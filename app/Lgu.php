@@ -9,6 +9,7 @@ class Lgu extends Model
 {
     protected $guarded = [];
     protected $table = 'lgus';
+
     public function callcenter()
     {
         return $this->belongsTo(CallCenter::class);
@@ -17,6 +18,11 @@ class Lgu extends Model
     public function contactpeople()
     {
         return $this->hasMany(ContactPerson::class,'lgu_id');
+    }
+
+    public function tickets()
+    {
+        return $this->hasMany(Ticket::class,'lgu_id');
     }
 }
 

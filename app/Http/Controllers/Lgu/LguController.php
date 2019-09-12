@@ -7,6 +7,7 @@ use App\Lgu;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use App\User;
 
@@ -62,5 +63,17 @@ class LguController extends Controller
         $contactPerson->fullname = $full_name;
         $contactPerson->contactno = $contactNo;
         $contactPerson->save();
+    }
+
+    public function lgu_profile($lgu_id)
+    {
+        $lguDetails = DB::table('lgus')
+            ->leftJoin('contact_people','lgus.id','=','contact_people.lgu_id')
+            ->select('lgus.*','contact_people.id as contactId','contact_people.fullname','contact_people.contactno')
+            ->where('lgus.id','=',$lgu_id)->first();
+        return view('lgu.lguProfile')->with([
+            'lguDetails'    => $lguDetails,
+        ]);
+
     }
 }
