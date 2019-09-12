@@ -21,5 +21,7 @@ class VerifyCsrfToken extends Middleware
     protected $except = [
         'v1/*',
         '/sms/call',
+        'token',
+        '/support/call'
     ];
 }

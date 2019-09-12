@@ -104,3 +104,15 @@ Route::group(['middleware' => ['cors'],'prefix' => 'v1'], function (){
     Route::post('/connect-to-lgu','Ticket\TicketController@connect_to_lgu');
 });
 
+
+Route::post(
+    '/token',
+    ['uses' => 'TokenController@newToken', 'as' => 'new-token']
+);
+
+Route::post(
+    '/support/call',
+    ['uses' => 'CallController@newCall', 'as' => 'new-call']
+);
+
+

@@ -178,6 +178,7 @@ return [
         Barryvdh\Cors\ServiceProvider::class,
         Nexmo\Laravel\NexmoServiceProvider::class,
         Orchestra\Parser\XmlServiceProvider::class,
+        App\Providers\TwilioCapabilityProvider::class,
 
     ],
 

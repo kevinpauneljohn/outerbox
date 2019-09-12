@@ -3,6 +3,7 @@
     "type": "project",
     "description": "The Laravel Framework.",
     "keywords": [
+        "twilio",
         "framework",
         "laravel"
     ],
@@ -56,6 +57,13 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "scripts": {
+        "post-install-cmd": [
+            "php artisan clear-compiled",
+            "php artisan optimize"
+        ],
+        "pre-update-cmd": [
+            "php artisan clear-compiled"
+        ],
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
             "@php artisan package:discover --ansi"
