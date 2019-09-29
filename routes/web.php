@@ -115,4 +115,31 @@ Route::post(
     ['uses' => 'CallController@newCall', 'as' => 'new-call']
 );
 
+//use JasperPHP\JasperPHP as JasperPHP;
+//
+//Route::get('/jasper', function () {
+//
+//    $jasper = new JasperPHP;
+//
+//    // Compile a JRXML to Jasper
+//    $jasper->compile(__DIR__ . '/../../vendor/cossou/jasperphp/examples/hello_world.jrxml')->execute();
+//
+//    // Process a Jasper file to PDF and RTF (you can use directly the .jrxml)
+//    $jasper->process(
+//        __DIR__ . '/../../vendor/cossou/jasperphp/examples/hello_world.jasper',
+//        false,
+//        array("pdf", "rtf"),
+//        array("php_version" => "xxx")
+//    )->execute();
+//
+//    // List the parameters from a Jasper file.
+//    $array = $jasper->list_parameters(
+//        __DIR__ . '/../../vendor/cossou/jasperphp/examples/hello_world.jasper'
+//    )->execute();
+//
+//    return view('welcome');
+//});
+
+Route::get('/jasper','Reports\Reports@generateReport');
+
 
