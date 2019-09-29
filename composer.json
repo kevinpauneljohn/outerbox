@@ -11,16 +11,17 @@
     "require": {
         "php": "^7.1.3",
         "barryvdh/laravel-cors": "^0.11.4",
+        "cossou/jasperphp": "^2.8",
         "doctrine/dbal": "^2.9",
         "fideloper/proxy": "^4.0",
         "laravel/framework": "5.8.*",
         "laravel/tinker": "^1.0",
         "nexmo/client": "^1.8",
         "nexmo/laravel": "^1.1",
+        "orchestra/parser": "^3.8",
         "pusher/pusher-php-server": "^4.0",
         "spatie/laravel-permission": "^2.37",
-        "twilio/sdk": "^5.0",
-        "orchestra/parser": "^3.8"
+        "twilio/sdk": "^5.0"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",

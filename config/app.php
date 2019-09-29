@@ -179,6 +179,13 @@ return [
         Nexmo\Laravel\NexmoServiceProvider::class,
         Orchestra\Parser\XmlServiceProvider::class,
         App\Providers\TwilioCapabilityProvider::class,
+        //...
+        Illuminate\Translation\TranslationServiceProvider::class,
+        Illuminate\Validation\ValidationServiceProvider::class,
+        Illuminate\View\ViewServiceProvider::class,
+
+        //insert jasper service provider here
+        JasperPHP\JasperPHPServiceProvider::class
 
     ],
 
