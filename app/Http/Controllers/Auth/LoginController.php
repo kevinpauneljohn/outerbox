@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\activity;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Reports\Reports;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
@@ -31,6 +33,13 @@ class LoginController extends Controller
     protected $username;
 
     /**
+     * set activity logs
+     *
+     * @var string
+     * */
+    private $activity;
+
+    /**
      * Create a new controller instance.
      *
      * @return void
@@ -39,6 +48,8 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
         $this->username = $this->findUsername();
+
+        $this->activity = new Reports;
     }
 
     public function findUsername()
@@ -57,14 +68,20 @@ class LoginController extends Controller
         return $this->username;
     }
 
+
+    /**
+     * redirect login user to their designated dashboard
+     * @return mixed
+     * */
     public function redirectTo()
     {
             // Check user role
-
-            // User role
             $role = !empty(auth()->user()->getRoleNames()[0]) ? auth()->user()->getRoleNames()[0] : "";
 
             $this->setActiveStatus(auth()->user()->id, 1);
+
+            $this->activity->activity_log(auth()->user()->username." logged in");
+
             switch ($role) {
                 case 'super admin':
                     return '/super-admin/dashboard';
@@ -81,6 +98,12 @@ class LoginController extends Controller
             }
     }
 
+    /**
+     * set active status of login users
+     * @param int $userId
+     * @param int $status
+     * @return void
+     * */
     private function setActiveStatus($userId, $status)
     {
         DB::table('users')->where('id',$userId)->update(['active' => $status]);
@@ -89,10 +112,14 @@ class LoginController extends Controller
     public function logout(Request $request)
     {
         $current_id = auth()->user()->id;
+
+        $this->activity->activity_log(auth()->user()->username." logged out");
+
         $this->guard()->logout();
         $request->session()->invalidate();
 
         $this->setActiveStatus($current_id, 0);
+
         return $this->loggedOut($request)?:redirect('/');
     }
 }

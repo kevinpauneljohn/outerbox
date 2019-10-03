@@ -20,14 +20,13 @@ class Reports extends Controller
 //        JasperPHP::compile(base_path('/vendor/cossou/jasperphp/examples/hello_world.jrxml'))->execute();
 //        return auth()->user()->id;
 
-
+        return auth()->user()->username;
     }
 
     /**
      * date created 09/30/2019
      * author: John Kevin Paunel
      * save user activity to database
-     * @param int $userId
      * @param int $action
      * @return void
      */
