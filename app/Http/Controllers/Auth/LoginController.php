@@ -59,12 +59,12 @@ class LoginController extends Controller
 
     public function redirectTo()
     {
-        // User role
-        $role = auth()->user()->getRoleNames()[0];
-        //set active status to true before redirect
-        $this->setActiveStatus(auth()->user()->id, 1);
-
             // Check user role
+
+            // User role
+            $role = !empty(auth()->user()->getRoleNames()[0]) ? auth()->user()->getRoleNames()[0] : "";
+
+            $this->setActiveStatus(auth()->user()->id, 1);
             switch ($role) {
                 case 'super admin':
                     return '/super-admin/dashboard';

@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use App\User;
 
 class UsersTableSeeder extends Seeder
 {
@@ -12,24 +13,17 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('users')->insert([
-            'firstname'     => 'admin_fname',
-            'middlename'    => 'admin_mname',
-            'lastname'      => 'admin_lname',
-            'extname'       => '',
-            'email'         => 'admin@gmail.com',
-            'username'      => 'admin',
-            'password'      => bcrypt(123)
-        ]);
 
-        DB::table('users')->insert([
-            'firstname'     => 'superadmin_fname',
-            'middlename'    => 'superadmin_mname',
-            'lastname'      => 'superadmin_lname',
-            'extname'       => '',
-            'email'         => 'superadmin@gmail.com',
-            'username'      => 'superadmin',
-            'password'      => bcrypt(123)
-        ]);
+        $user = new User;
+        $user->firstname = 'superadmin_fname';
+        $user->middlename = 'superadmin_mname';
+        $user->lastname = 'superadmin_lname';
+        $user->extname = '';
+        $user->email = 'superadmin@gmail.com';
+        $user->username = 'superadmin';
+        $user->password = bcrypt(123);
+        $user->active = 0;
+        $user->assignRole('super admin');
+        $user->save();
     }
 }

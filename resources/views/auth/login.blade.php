@@ -35,7 +35,9 @@
     <!-- /.login-logo -->
     <div class="login-box-body">
         <p class="login-box-msg">Sign in to start your session</p>
-
+        @error('error')
+        <div class="alert alert-warning">{{$error}}</div>
+        @enderror
         <form action="{{route('login')}}" method="post">
             @csrf
             <div class="form-group has-feedback">

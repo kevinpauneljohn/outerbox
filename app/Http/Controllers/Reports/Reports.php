@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Reports;
 
 use App\activity;
+use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use JasperPHP\JasperPHP;
@@ -18,6 +19,8 @@ class Reports extends Controller
         //jasper ready to call
 //        JasperPHP::compile(base_path('/vendor/cossou/jasperphp/examples/hello_world.jrxml'))->execute();
 //        return auth()->user()->id;
+
+
     }
 
     /**
@@ -28,7 +31,7 @@ class Reports extends Controller
      * @param int $action
      * @return void
      */
-    public function activity_log($userId, $action)
+    public function activity_log($action)
     {
         $activity = new Activity;
 
