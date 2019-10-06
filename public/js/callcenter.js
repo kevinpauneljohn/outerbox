@@ -213,6 +213,15 @@ $(document).on('submit','#edit-call-center',function (form) {
                         location.reload();
                     },1500);
                 });
+            }else{
+                setTimeout(function(){
+                    $('#change_status').html('<div id="change_text" class="alert alert-warning">'+result.success+'</div>');
+
+                    setTimeout(function(){
+                        $('#change_text').remove();
+                    },3000);
+                });
+                //console.log(result.success);
             }
 
             $.each(result, function (key, value) {

@@ -109,6 +109,11 @@
       <path value="$PROJECT_DIR$/vendor/orchestra/parser" />
       <path value="$PROJECT_DIR$/vendor/tightenco/collect" />
       <path value="$PROJECT_DIR$/vendor/cossou/jasperphp" />
+      <path value="$PROJECT_DIR$/vendor/philippines-region-province-citymun-brgy/mysql" />
+      <path value="$PROJECT_DIR$/vendor/philippines-region-province-citymun-brgy/json" />
+      <path value="$PROJECT_DIR$/vendor/philippines-region-province-citymun-brgy/csv" />
+      <path value="$PROJECT_DIR$/vendor/philippines-region-province-citymun-brgy/xml" />
+      <path value="$PROJECT_DIR$/vendor/philippines-region-province-citymun-brgy/.git" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="7.1" />

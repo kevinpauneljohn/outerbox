@@ -15,9 +15,29 @@ use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Validator;
 use App\Models\CallCenter;
+use App\Http\Controllers\Reports\Reports;
 
 class SuperAdminController extends Controller
 {
+    /**
+     * date: oct 05, 2019
+     * by: john kevin paunel
+     * activity logs variable
+     * @var $activity
+     * */
+    private $activity;
+
+    /**
+     * date: oct. 05, 2019
+     * by: john kevin paunel
+     * this will initialized the report controller
+     * @return void
+     * */
+    public function __construct()
+    {
+        $this->activity = new Reports;
+    }
+
     public function dashboard()
     {
         return view('SuperAdmin.dashboard');

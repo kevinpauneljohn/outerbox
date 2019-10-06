@@ -22,6 +22,17 @@ class AddressController extends Controller
         return $value;
     }
 
+    /**
+     * get the display name of region
+     * @param int $regCode
+     * @return mixed
+     * */
+    public function getRegion($regCode)
+    {
+        $region = DB::table('refregion')->where('regCode',$regCode)->first();
+        return $region->regDesc;
+    }
+
     public function getCities(Request $request)
     {
         $cities = Municipality::where('provCode',$request->id)->get();
@@ -41,12 +52,33 @@ class AddressController extends Controller
         return $region;
     }
 
+    /**
+     * display province name
+     * @param $regProv
+     * @return mixed
+     * */
+    public function get_province_name($regProv)
+    {
+        $province = DB::table('refprovince')->where('provCode','=',$regProv)->first();
+        return $province->provDesc;
+    }
+
     public static function provinceName($regProv)
     {
         $province = DB::table('refprovince')->where('provCode','=',$regProv)->first();
         return $province->provDesc;
     }
 
+    /**
+     * display city name
+     * @param $citymunCode
+     * @return mixed
+     * */
+    public function get_city_name($citymunCode)
+    {
+        $city = DB::table('refcitymun')->where('citymunCode',$citymunCode)->first();
+        return $city->citymunDesc;
+    }
     public static function cityName($citymunCode)
     {
         $city = DB::table('refcitymun')->where('citymunCode',$citymunCode)->first();

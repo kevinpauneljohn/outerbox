@@ -4,13 +4,24 @@ namespace App\Http\Controllers\CallCenter;
 
 use App\address\Municipality;
 use App\address\Province;
+use App\Http\Controllers\address\AddressController;
+use App\Http\Controllers\Reports\Reports;
 use App\Models\CallCenter;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
 class CallCenterController extends Controller
 {
+
+    private $activity, $address;
+
+    public function __construct()
+    {
+        $this->activity = new Reports;
+        $this->address = new AddressController;
+    }
 
     #this method will create a new call center account
     public function addNewCallCenter(Request $request)
@@ -35,6 +46,12 @@ class CallCenterController extends Controller
             $callCenter->city = $request->city;
 
             $message = ($callCenter->save()) ? ['success' => true] : ['success' =>false];
+
+
+
+            $action = "added Call Center: ".$request->callcenter." location: ".$request->address.", ".$this->address->get_city_name($request->city).", ".$this->address->get_province_name($request->state)." ".$this->address->getRegion($request->region);
+            $this->activity->activity_log($action);
+
             return response()->json($message);
         }
         return response()->json($validator->errors());
@@ -82,7 +99,7 @@ class CallCenterController extends Controller
             'update_region'             => 'required',
             'update_state'              => 'required',
             'update_postal_code'        => 'required',
-            'update_city'               => 'required|unique:call_centers,city',
+            'update_city'               => 'required',
         ]);
 
         if($validator->passes())
@@ -95,8 +112,36 @@ class CallCenterController extends Controller
             $callCenter->postalcode = $request->update_postal_code;
             $callCenter->city = $request->update_city;
 
-            $message = ($callCenter->save()) ? ['success' => true] : ['success' => false];
-            return response()->json($message);
+
+            /**
+             * check if the submitted inputs matches the existing
+             * */
+            $checkinput = DB::table("call_centers")->where([
+                ['name','=',$request->update_callcenter],
+                ['region','=',$request->update_region],
+                ['street','=',$request->update_street_address],
+                ['state','=',$request->update_state],
+                ['postalcode','=',$request->update_postal_code],
+                ['city','=',$request->update_city]
+            ])->count();
+
+            if($checkinput < 1)
+            {
+                $callCenterDetails = CallCenter::find($request->callcenter_value);
+                $previousAction = "Name: ".$callCenterDetails->name." location: ".$callCenterDetails->street.", ".$this->address->get_city_name($callCenterDetails->city).", ".$this->address->get_province_name($callCenterDetails->state).", ".$this->address->getRegion($callCenterDetails->region)." ".$callCenterDetails->postalcode;
+                $message = ($callCenter->save()) ? ['success' => true] : ['success' => false];
+
+                $action = "updated the Call Center Details from ".$previousAction." to Name: ".$request->update_callcenter." location: ".$request->update_street_address.", ".
+                    $this->address->get_city_name($request->update_city).", ".$this->address->get_province_name($request->update_state).", "
+                    .$this->address->getRegion($request->update_region)." ".$request->update_postal_code;
+
+                $this->activity->activity_log($action);
+
+                //return response()->json($message);
+            }else{
+                return ['success' => "No Changes Occurred"];
+            }
+
         }
 
         return response()->json($validator->errors());

@@ -189,6 +189,7 @@
                     <div class="modal-body">
                         @csrf
                         <input type="hidden" name="callcenter_value" id="callcenter_value" />
+                        <span id="change_status"></span>
                         <div class="form-group">
                             <label for="update_callcenter">Call Center Name</label>
                             <div class="update_callcenter">

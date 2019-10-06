@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Employee;
 
+use App\Http\Controllers\Reports\Reports;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -11,6 +12,13 @@ use Illuminate\Support\Facades\Validator;
 
 class EmployeeController extends Controller
 {
+    public $activity;
+
+    public function __construct()
+    {
+        $this->activity  = new Reports;
+    }
+
     public function addEmployee(Request $request)
     {
         $validator = Validator::make($request->all(),[
@@ -41,6 +49,18 @@ class EmployeeController extends Controller
                 {
                     $this->assignUserTocallCenter($user->id,$request->callcenter);
                 }
+
+                /**
+                 * create activity logs for adding employee of super admin
+                 * @var $action
+                 * */
+                $action = 'added employee with a name: '.$request->firstname.' '.(!empty($request->middlename)) ? $request->middlename : ''.' '.$request->lastname;
+                $action .= ', email: '.$request->email;
+                $action .= ', username: '.$request->username;
+                $action .= ', role: '.$request->role;
+                $action .= 'and assigned to Call Center: '.$request->callCenter;
+                $this->activity->activity_log(auth()->user()->username.' '.$action);
+
                 $message = ['success' => true];
             }else{
                 $message = ['success' => false];

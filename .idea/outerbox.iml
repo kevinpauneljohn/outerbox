@@ -47,6 +47,10 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/paragonie/sodium_compat" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/phar-io/manifest" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/phar-io/version" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/philippines-region-province-citymun-brgy/csv" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/philippines-region-province-citymun-brgy/json" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/philippines-region-province-citymun-brgy/mysql" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/philippines-region-province-citymun-brgy/xml" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/php-http/guzzle6-adapter" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/php-http/httplug" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/php-http/promise" />
