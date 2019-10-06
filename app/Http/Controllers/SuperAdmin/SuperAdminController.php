@@ -6,6 +6,7 @@ use App\address\Region;
 use App\Lgu;
 use App\Models\Lead;
 use App\User;
+use http\Env\Response;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Carbon;
@@ -190,10 +191,15 @@ class SuperAdminController extends Controller
         return view('SuperAdmin.roles.permissions')->with(['permissions' => $permission]);
     }
 
+    /**
+     * add new permission
+     * @param Request $request
+     * @return Response
+     * */
     public function permissionFormValidation(Request $request)
     {
         $validator = Validator::make($request->All(),[
-            'permission_name'          => 'required|min:3|max:20'
+            'permission_name'          => 'required|min:3|max:20|unique:permissions,name'
         ]);
 
         if($validator->passes())
@@ -201,15 +207,13 @@ class SuperAdminController extends Controller
 
             if(Permission::create(['name' => $request->permission_name]))
             {
+                /*activity log*/
+                $action = "added new permission: ".$request->permission_name;
+                $this->activity->activity_log($action);
                 return response()->json(['success' => true]);
             }
         }
         return response()->json($validator->errors());
-    }
-
-    public static function test()
-    {
-        return 'hello';
     }
 
     public function callCenter()

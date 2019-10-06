@@ -94,7 +94,6 @@ Auth::routes();
 
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/test','Ticket\CreateTicketController@tester');
 
 
 Route::group(['middleware' => ['cors'],'prefix' => 'v1'], function (){
