@@ -88,7 +88,7 @@ $(document).on('submit','#update-staff',function (form) {
 
     let data = $('#update-staff').serialize();
 
-
+    //console.log(data);
     $.ajax({
         'url'   : '/update-employee-details',
         'type'  : 'POST',

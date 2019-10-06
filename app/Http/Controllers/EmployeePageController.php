@@ -18,6 +18,10 @@ class EmployeePageController extends Controller
         return view('Employee.employeeDashboard');
     }
 
+    /**
+     * employee page
+     * @return mixed
+     * */
     public function agent()
     {
         $user_id = Auth::user()->id;

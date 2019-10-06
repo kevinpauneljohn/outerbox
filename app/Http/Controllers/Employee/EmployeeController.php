@@ -187,7 +187,7 @@ class EmployeeController extends Controller
 
                 /**
                  * get the current employee details
-                 * @var $prevInput
+                 * @var int
                  * */
                 $prevInput = DB::table('users')
                     ->leftJoin('callcenterdetails','users.id','=','callcenterdetails.user_id')
@@ -201,7 +201,7 @@ class EmployeeController extends Controller
                 $previousAction .= ", Middle Name: ".$prevInput->middlename;
                 $previousAction .= ", Last Name: ".$prevInput->lastname;
                 $previousAction .= ", Email: ".$prevInput->email;
-                $previousAction .= ", Role: ".$prevInput->role_name;
+                $previousAction .= ", Role: ".$request->old_role;
                 $previousAction .= ", Call Center: ".CallCenter::find($prevInput->cc_id)->name;
 
                 if($user->save())
@@ -216,7 +216,7 @@ class EmployeeController extends Controller
                     $action .= ", Middle Name: ".$request->edit_middlename;
                     $action .= ", Last Name: ".$request->edit_lastname;
                     $action .= ", Email: ".$request->edit_email;
-                    $action .= ", Role: ".$request->old_role;
+                    $action .= ", Role: ".$request->edit_role;
                     $action .= ", Call Center: ".CallCenter::find($request->edit_callcenter)->name;
                     $this->activity->activity_log($previousAction." ".$action);
                 }else{
