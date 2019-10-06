@@ -56,7 +56,7 @@ class SuperAdminController extends Controller
             ->leftJoin('roles','model_has_roles.role_id','=','roles.id')
             ->select('users.id','users.firstname','users.middlename','users.lastname','users.email','users.username','users.created_at','roles.name as role_name','callcenterdetails.cc_id as cc_id','call_centers.name as cc_name')
             ->where([
-                ['users.id','!=',2],
+                ['users.id','!=',1],
                 ['users.deleted_at','=',null]
             ])
             ->get();

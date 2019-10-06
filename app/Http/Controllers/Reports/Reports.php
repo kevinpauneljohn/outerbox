@@ -23,15 +23,21 @@ class Reports extends Controller
         //jasper ready to call
 //        JasperPHP::compile(base_path('/vendor/cossou/jasperphp/examples/hello_world.jrxml'))->execute();
 //        return auth()->user()->id;
-        $address = new AddressController;
+        $checkInput = DB::table('users')
+            ->leftJoin('callcenterdetails','users.id','=','callcenterdetails.user_id')
+            ->leftJoin('model_has_roles','users.id','=','model_has_roles.model_id')
+            ->leftJoin('roles','model_has_roles.role_id','=','roles.id')
+            ->select('users.*','roles.name as role_name','callcenterdetails.*')
+            ->where([
+                ['users.firstname','=','john'],
+                ['users.middlename','=',null],
+                ['users.lastname','=','doe'],
+                ['users.email','=','johndoe@gmail.com'],
+                ['roles.name','=','admin'],
+                ['callcenterdetails.cc_id','=',1],
+            ]);
 
-        $callCenterDetails = CallCenter::find(1);
-        $previousAction = "Name: ".$callCenterDetails->name." location: ".
-            $callCenterDetails->street.", ".$address->get_city_name($callCenterDetails->city)
-            .", ".$address->get_province_name($callCenterDetails->state).", "
-            .$address->getRegion($callCenterDetails->region)." ".$callCenterDetails->postalcode;
-
-        return $previousAction;
+        return $checkInput->first()->cc_id;
     }
 
     /**

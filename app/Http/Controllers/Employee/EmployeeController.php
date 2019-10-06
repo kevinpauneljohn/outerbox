@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Employee;
 
 use App\Http\Controllers\Reports\Reports;
+use App\Models\CallCenter;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -19,6 +20,11 @@ class EmployeeController extends Controller
         $this->activity  = new Reports;
     }
 
+    /**
+     * add new employee
+     * @param Request $request
+     * @return mixed
+    */
     public function addEmployee(Request $request)
     {
         $validator = Validator::make($request->all(),[
@@ -54,12 +60,17 @@ class EmployeeController extends Controller
                  * create activity logs for adding employee of super admin
                  * @var $action
                  * */
-                $action = 'added employee with a name: '.$request->firstname.' '.(!empty($request->middlename)) ? $request->middlename : ''.' '.$request->lastname;
+
+                $action = 'added new employee - name: '.$request->firstname;
+                $action .= (!empty($request->middlename)) ? $request->middlename : ' ';
+                $action .= $request->lastname;
                 $action .= ', email: '.$request->email;
                 $action .= ', username: '.$request->username;
                 $action .= ', role: '.$request->role;
-                $action .= 'and assigned to Call Center: '.$request->callCenter;
-                $this->activity->activity_log(auth()->user()->username.' '.$action);
+                $action .= ' and assigned to Call Center: '.CallCenter::find($request->callcenter)->name;
+
+
+                $this->activity->activity_log($action);
 
                 $message = ['success' => true];
             }else{
@@ -72,6 +83,12 @@ class EmployeeController extends Controller
         return response()->json($validator->errors());
     }
 
+    /**
+     * assign the user to a call center
+     * @param int $userID
+     * @param int $callCenterId
+     * @return void
+     * */
     public function assignUserTocallCenter($userID, $callCenterId)
     {
         $time = Carbon::now();
@@ -84,6 +101,12 @@ class EmployeeController extends Controller
             ]);
     }
 
+    /**
+     * update the user assignment to a new call center
+     * @param int $userID
+     * @param int $callCenterId
+     * @return void
+     * */
     public function updateUserAssignmentToCC($userID, $callCenterId)
     {
         $time = Carbon::now();
@@ -132,18 +155,64 @@ class EmployeeController extends Controller
             $user->removeRole($request->old_role);
             $user->assignRole($request->edit_role);
 
-            if($user->save())
+            $checkInput = DB::table('users')
+                ->leftJoin('callcenterdetails','users.id','=','callcenterdetails.user_id')
+                ->leftJoin('model_has_roles','users.id','=','model_has_roles.model_id')
+                ->leftJoin('roles','model_has_roles.role_id','=','roles.id')
+                ->select('users.*','roles.name as role_name','callcenterdetails.*')
+                ->where([
+                    ['users.firstname','=',$request->edit_firstname],
+                    ['users.middlename','=',!empty($request->edit_middlename) ? $request->edit_middlename : null],
+                    ['users.lastname','=',$request->edit_lastname],
+                    ['users.email','=',$request->edit_email],
+                    ['roles.name','=',$request->old_role],
+                    ['callcenterdetails.cc_id','=',$request->edit_callcenter],
+
+                ]);
+
+            if($checkInput->count() < 1)
             {
-                if(!empty($request->edit_callcenter))
+
+                $prevInput = DB::table('users')
+                    ->leftJoin('callcenterdetails','users.id','=','callcenterdetails.user_id')
+                    ->leftJoin('model_has_roles','users.id','=','model_has_roles.model_id')
+                    ->leftJoin('roles','model_has_roles.role_id','=','roles.id')
+                    ->select('users.*','roles.name as role_name','callcenterdetails.*')
+                    ->where('users.id','=',$request->user_value)
+                    ->first();
+
+                $previousAction = "updated employee details from - First Name: ".$prevInput->firstname;
+                $previousAction .= ", Middle Name: ".$prevInput->middlename;
+                $previousAction .= ", Last Name: ".$prevInput->lastname;
+                $previousAction .= ", Email: ".$prevInput->email;
+                $previousAction .= ", Role: ".$prevInput->role_name;
+                $previousAction .= ", Call Center: ".CallCenter::find($prevInput->cc_id)->name;
+
+                if($user->save())
                 {
-                    $this->updateUserAssignmentToCC($request->user_value,$request->edit_callcenter);
+                    if(!empty($request->edit_callcenter))
+                    {
+                        $this->updateUserAssignmentToCC($request->user_value,$request->edit_callcenter);
+                    }
+                    $message = ['success' => true];
+
+                    $action = "to - First Name: ".$request->edit_firstname;
+                    $action .= ", Middle Name: ".$request->edit_middlename;
+                    $action .= ", Last Name: ".$request->edit_lastname;
+                    $action .= ", Email: ".$request->edit_email;
+                    $action .= ", Role: ".$request->old_role;
+                    $action .= ", Call Center: ".CallCenter::find($request->edit_callcenter)->name;
+                    $this->activity->activity_log($previousAction." ".$action);
+                }else{
+                    $message = ['success' => false];
                 }
-                $message = ['success' => true];
+
+                return response()->json($message);
             }else{
-                $message = ['success' => false];
+                return ['success' => 'No changes occurred'];
             }
 
-            return response()->json($message);
+
         }
 
         return response()->json($validator->errors());
@@ -151,8 +220,11 @@ class EmployeeController extends Controller
 
     public function deleteEmployee(Request $request)
     {
-        $user = User::find($request->user_delete)->delete();
-        $message = ($user) ? ['success' => true] : ['success' => false];
+        $user = User::find($request->user_delete);
+        $action = "deleted ".$user->username." with user id: ".$user->id;
+
+        $message = ($user->delete()) ? ['success' => true] : ['success' => false];
+        $this->activity->activity_log($action);
         return response()->json($message);
     }
 }
