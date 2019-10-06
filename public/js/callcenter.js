@@ -203,7 +203,7 @@ $(document).on('submit','#edit-call-center',function (form) {
                     $('#edit-call-center').trigger('reset');
                     $('#edit_callCenterModal').modal('toggle');
                     $.notify({
-                            message: 'New Call Center Successfully Added!'
+                            message: 'Call Center Successfully Updated!'
                         } ,{
                             type: 'success'
                         }

@@ -150,7 +150,14 @@ class CallCenterController extends Controller
     public function deleteCallCenter(Request $request)
     {
         $callCenter = CallCenter::find($request->call_center_delete_id);
+        $previousAction = "Name: ".$callCenter->name." location: "
+            .$callCenter->street.", ".$this->address->get_city_name($callCenter->city).", "
+            .$this->address->get_province_name($callCenter->state).", "
+            .$this->address->getRegion($callCenter->region)." ".$callCenter->postalcode;
+
         $message = ($callCenter->delete()) ? ['success' => true] : ['success' => false];
+
+        $this->activity->activity_log("deleted Call Center - ".$previousAction);
         return response()->json($message);
     }
 
