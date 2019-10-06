@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Validator;
 class CallCenterController extends Controller
 {
 
-    private $activity, $address;
+    public $activity, $address;
 
     public function __construct()
     {
@@ -137,7 +137,7 @@ class CallCenterController extends Controller
 
                 $this->activity->activity_log($action);
 
-                //return response()->json($message);
+                return response()->json($message);
             }else{
                 return ['success' => "No Changes Occurred"];
             }
