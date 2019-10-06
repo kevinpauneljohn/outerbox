@@ -80,7 +80,7 @@ class SuperAdminController extends Controller
         return view('SuperAdmin.roles.roles')->with(['roles' => $roles]);
     }
 
-    #validate and add new role subitted at Role Page Super Admin Access
+    #validate and add new role submitted at Role Page Super Admin Access
     public function roleFormValidation(Request $request)
     {
         $validator = Validator::make($request->All(),[
@@ -98,6 +98,10 @@ class SuperAdminController extends Controller
 
             if($role->save())
             {
+                /*activity log*/
+                $action = "Added a new role: ".$request->name;
+                $this->activity->activity_log($action);
+
                 return response()->json(['success' => true]);
             }
         }
@@ -108,8 +112,11 @@ class SuperAdminController extends Controller
     public function deleteRole(Request $request)
     {
         $role = Role::find($request->role);
+        $action = "deleted a role: ".$role->name." with role ID: ".$request->role;
         if($role->delete())
         {
+            /*activity log*/
+            $this->activity->activity_log($action);
             return response()->json(['success' => true]);
         }
         return response()->json(['success' => false]);
@@ -123,7 +130,11 @@ class SuperAdminController extends Controller
         return response()->json(['role_name' => ucfirst($role)]);
     }
 
-    #update role details
+    /**
+     * update the role details
+     * @param Request $request
+     * @return mixed
+     * */
     public function updateRoleDetails(Request $request)
     {
         $validator = Validator::make($request->all(),[
@@ -137,10 +148,29 @@ class SuperAdminController extends Controller
             $role->name = $request->edit_name;
             $role->description = $request->edit_description;
 
-            if($role->save())
+            /**
+             * check if the submitted inputs have changes
+             * @var $checkRoleInput
+             * */
+            $checkRoleInput = DB::table('roles')
+                ->where([
+                    ['name','=',$request->edit_name],
+                    ['description','=',$request->edit_description]
+                ]);
+            if($checkRoleInput->count() < 1)
             {
-                return response()->json(['success' => true]);
+                $oldRole = Role::find($request->role_value);
+                $prevAction = "update the role from Role Name: ".$oldRole->name.", description: ".$oldRole->description;
+                if($role->save())
+                {
+                    $action = "to Role Name: ".$request->edit_name.", description: ".$request->edit_description;
+                    $this->activity->activity_log($prevAction." ".$action);
+                    return response()->json(['success' => true]);
+                }
+            }else{
+                return response()->json(['success' => 'No changes occurred']);
             }
+
         }
 
         return response()->json($validator->errors());

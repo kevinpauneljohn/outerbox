@@ -125,6 +125,7 @@
 
                         @csrf
                     <input type="hidden" name="role_value" id="role_value"/>
+                    <span id="change_status"></span>
                         <div class="form-group">
                             <label for="edit_name">Role Name</label>
                             <div class="edit_name">

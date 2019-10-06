@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Employee;
 use App\Http\Controllers\Reports\Reports;
 use App\Models\CallCenter;
 use App\User;
+use http\Env\Response;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Carbon;
@@ -134,6 +135,12 @@ class EmployeeController extends Controller
         return json_decode($users);
     }
 
+
+    /**
+     * Update the existing employee details
+     * @param Request $request
+     * @return Response
+     * */
     public function updateEmployeeDetails(Request $request)
     {
 
@@ -155,6 +162,10 @@ class EmployeeController extends Controller
             $user->removeRole($request->old_role);
             $user->assignRole($request->edit_role);
 
+            /**
+             * check if there is changes on the submitted inputs
+             * @var $checkInput
+             * */
             $checkInput = DB::table('users')
                 ->leftJoin('callcenterdetails','users.id','=','callcenterdetails.user_id')
                 ->leftJoin('model_has_roles','users.id','=','model_has_roles.model_id')
@@ -170,9 +181,14 @@ class EmployeeController extends Controller
 
                 ]);
 
+
             if($checkInput->count() < 1)
             {
 
+                /**
+                 * get the current employee details
+                 * @var $prevInput
+                 * */
                 $prevInput = DB::table('users')
                     ->leftJoin('callcenterdetails','users.id','=','callcenterdetails.user_id')
                     ->leftJoin('model_has_roles','users.id','=','model_has_roles.model_id')
@@ -218,6 +234,11 @@ class EmployeeController extends Controller
         return response()->json($validator->errors());
     }
 
+    /**
+     * Soft Deleting employee
+     * @param Request $request
+     * @return Response
+     * */
     public function deleteEmployee(Request $request)
     {
         $user = User::find($request->user_delete);
