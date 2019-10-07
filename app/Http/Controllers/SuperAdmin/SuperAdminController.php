@@ -262,6 +262,8 @@ class SuperAdminController extends Controller
      * */
     public function lgu()
     {
+        $callCenter = CallCenter::all();
+        $regions = Region::all();
         $lgus = DB::table('lgus')
             ->leftJoin('call_centers','lgus.call_center_id','=','call_centers.id')
             ->leftJoin('contact_people','lgus.id','=','contact_people.lgu_id')
@@ -271,7 +273,11 @@ class SuperAdminController extends Controller
             ->where('lgus.deleted_at','=',null
             );
 
-        return view('SuperAdmin.lgu.lgu')->with(["lgus"=>$lgus]);
+        return view('SuperAdmin.lgu.lgu')->with([
+            "lgus"          => $lgus,
+            "regions"       => $regions,
+            "callCenters"    => $callCenter
+        ]);
     }
 
     public function reports()

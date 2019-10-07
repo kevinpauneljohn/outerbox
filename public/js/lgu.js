@@ -260,7 +260,6 @@ $(document).on("click",".delete-lgu-btn",function(){
 
         $(".lguName").text(result.station_name);
         $("#lgu-id").val(result.id);
-
         },error:function(error){
             console.log(error.status);
         }
