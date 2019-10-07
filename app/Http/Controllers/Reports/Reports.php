@@ -23,15 +23,12 @@ class Reports extends Controller
         //jasper ready to call
 //        JasperPHP::compile(base_path('/vendor/cossou/jasperphp/examples/hello_world.jrxml'))->execute();
 //        return auth()->user()->id;
-        $prevInput = DB::table('users')
-            ->leftJoin('callcenterdetails','users.id','=','callcenterdetails.user_id')
-            ->leftJoin('model_has_roles','users.id','=','model_has_roles.model_id')
-            ->leftJoin('roles','model_has_roles.role_id','=','roles.id')
-            ->select('users.*','roles.name as role_name','callcenterdetails.*')
-            ->where('users.id','=',12)
-            ->get();
+        $lgu = DB::table('lgus')
+            ->leftJoin("contact_people",'lgus.id','=','contact_people.lgu_id')
+            ->select('lgus.*','contact_people.id as contact_id','contact_people.fullname','contact_people.contactno')
+            ->where('lgus.id','=',1);
 
-        return $prevInput;
+        return $lgu->first()->fullname;
     }
 
     /**

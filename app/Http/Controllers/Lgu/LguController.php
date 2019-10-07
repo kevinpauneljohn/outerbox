@@ -3,7 +3,11 @@
 namespace App\Http\Controllers\Lgu;
 
 use App\ContactPerson;
+use App\Http\Controllers\address\AddressController;
+use App\Http\Controllers\Reports\Reports;
 use App\Lgu;
+use App\Models\CallCenter;
+use http\Env\Response;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -13,6 +17,19 @@ use App\User;
 
 class LguController extends Controller
 {
+    private $activity, $address;
+
+    public function __construct()
+    {
+        $this->activity = new Reports;
+        $this->address = new AddressController;
+    }
+
+    /**
+     * add new LGU
+     * @param Request $request
+     * @return Response
+     * */
     public function addLgu(Request $request)
     {
         $user = User::find(Auth::user()->id)->callcenter;
@@ -45,6 +62,16 @@ class LguController extends Controller
                 {
                     $this->assignContactPerson($lgu->id, $request->contactperson_name, $request->contactperson_no);
                 }
+
+                /*Activity log*/
+                $action = "added a new LGU - Station Name: ".$request->station_name;
+                $action .= ", Department: ".$request->department;
+                $action .= ", Location: ".$request->street_address.", ".$this->address->get_city_name($request->city).", "
+                    .$this->address->get_province_name($request->state).", ".$this->address->getRegion($request->region);
+                $action .= ", with Contact Person: ".$request->contactperson_name.", Contact Person Number: ".$request->contactperson_no;
+
+                $action .= "  assigned to Call Center: ".CallCenter::find($callcenter_id)->name;
+                $this->activity->activity_log($action);
                 $message = ['success' => true];
             }else{
                 $message = ['success' => false];
@@ -56,6 +83,13 @@ class LguController extends Controller
         return response()->json($validator->errors());
     }
 
+    /**
+     * assign the contact person to an LGU
+     * @param int $lgu_id
+     * @param int $full_name
+     * @param int $contactNo
+     * @return void
+     * */
     public function assignContactPerson($lgu_id, $full_name, $contactNo)
     {
         $contactPerson = new ContactPerson;
@@ -65,6 +99,11 @@ class LguController extends Controller
         $contactPerson->save();
     }
 
+    /**
+     * retrieve LGU data
+     * @param int $lgu_id
+     * @return mixed
+     * */
     public function lgu_profile($lgu_id)
     {
         $lguDetails = DB::table('lgus')
@@ -74,6 +113,39 @@ class LguController extends Controller
         return view('lgu.lguProfile')->with([
             'lguDetails'    => $lguDetails,
         ]);
+    }
 
+    /**
+     * date: Oct. 07, 2019
+     * by: john kevin paunel
+     * get the lgu data thru ID
+     * @param int $lguId
+     * @return Response
+     * */
+    public function lgu_data(Request $request)
+    {
+        $lgu = DB::table('lgus')
+            ->leftJoin("contact_people",'lgus.id','=','contact_people.lgu_id')
+            ->select('lgus.*','contact_people.id as contact_id','contact_people.fullname','contact_people.contactno')
+            ->where('lgus.id','=',$request->id)->first();
+
+        /**
+         * input all lgu data in one variable
+         * @var $data
+         * */
+        $data = [
+            "lguId"         => $lgu->id,
+            "stationName"   => $lgu->station_name,
+            "department"    => $lgu->department,
+            "region"        => $lgu->region,
+            "province"      => $lgu->province,
+            "city"          => $lgu->city,
+            "address"       => $lgu->address,
+            "contactId"     => $lgu->contact_id,
+            "fullname"      => $lgu->fullname,
+            "contactNo"     => $lgu->contactno
+        ];
+
+        return response()->json($data);
     }
 }
