@@ -275,4 +275,14 @@ class LguController extends Controller
 
         return response()->json($validator->errors());
     }
+
+    /**
+     * fetch LGU name for delete display
+     * @param Request $request
+     * @return mixed
+     * */
+    public function display_delete_lgu(Request $request)
+    {
+        return Lgu::find($request->id)->station_name;
+    }
 }

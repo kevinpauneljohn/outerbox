@@ -27,6 +27,7 @@ Route::group(['middleware' => ['auth','role:admin|super admin']],function (){
     Route::post('/add-lgu','Lgu\LguController@addLgu');
     Route::post('/display-lgu','Lgu\LguController@lgu_data');
     Route::post('/update-lgu','Lgu\LguController@update_lgu');
+    Route::post('/fetch-lgu-name','Lgu\LguController@display_delete_lgu');
 });
 
 Route::get('/create-ticket','Ticket\CreateTicketController@get_all_new_leads');

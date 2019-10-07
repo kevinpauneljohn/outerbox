@@ -55,7 +55,7 @@
                                     <td>
                                         <button type="button" class="btn btn-default"><i class="fa fa-eye"></i></button>
                                         <button type="button" class="btn btn-primary edit-lgu-btn" data-toggle="modal" data-target="#edit-lgu" value="{{$lgu->lgu_id}}"><i class="fa fa-pencil"></i></button>
-                                        <button type="button" class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                                        <button type="button" class="btn btn-danger delete-lgu-btn" data-toggle="modal" data-target="#delete-lgu" value="{{$lgu->lgu_id}}"><i class="fa fa-trash"></i></button>
                                         <button type="button" class="btn btn-warning"><i class="fa fa-phone"></i></button>
                                         <button type="button" class="btn btn-success"><i class="fa fa-comment"></i></button>
                                     </td>
@@ -369,6 +369,34 @@
             </form>
         </div>
     </div>
+
+    {{--Delete Call Center--}}
+    <div class="modal modal-danger fade" id="delete-lgu">
+        <div class="modal-dialog">
+            <form method="post" id="delete-lgu-form">
+                @csrf
+
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">Delete Call LGU</h4>
+                    </div>
+                    <div class="modal-body">
+                        <span>Are you sure you want to delete LGU: <b class="lguName"></b>?</span>
+                    </div>
+                    <input type="hidden" name="call_center_delete_id" id="lgu-id"/>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-outline" name="submit" value=""><i class="fa fa-trash"></i> Delete</button>
+                    </div>
+                </div>
+            </form>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
 @endsection
 
 @section('extra_script')

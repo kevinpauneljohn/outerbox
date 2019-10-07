@@ -244,3 +244,24 @@ $(document).on('submit','#edit-lgu-form',function(form){
         }
     });
 });
+
+
+/*display LGU for delete*/
+$(document).on("click",".delete-lgu-btn",function(){
+    let id = this.value;
+
+    $.ajax({
+        'url'   : '/fetch-lgu-name',
+        'headers': {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+        'type'  : 'POST',
+        'data'  : {'id':id},
+        'cache' : false,
+        success:function(result){
+        $(".lguName").text(result);
+        },error:function(error){
+            console.log(error.status);
+        }
+    });
+});
+
+/*soft delete LGU*/
