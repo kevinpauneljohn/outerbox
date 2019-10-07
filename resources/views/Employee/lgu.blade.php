@@ -258,6 +258,7 @@
 
                     <div class="modal-body">
                         @csrf
+                        <span id="change_status"></span>
                         <input type="hidden" name="lguId" id="lguId"/>
                         <input type="hidden" name="contactId" id="contactId"/>
                         <input type="hidden" name="ccId" id="ccId"/>

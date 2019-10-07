@@ -178,30 +178,97 @@ class LguController extends Controller
 
         if($validator->passes())
         {
-            /*this will update the lgu Details*/
-            $lgu = Lgu::find($request->lguId);
-            $lgu->call_center_id = $request->ccId;
-            $lgu->station_name = $request->edit_station_name;
-            $lgu->department = $request->edit_department;
-            $lgu->region = $request->edit_region;
-            $lgu->province = $request->edit_state;
-            $lgu->city = $request->edit_city;
-            $lgu->address = $request->edit_street_address;
-            $lgu->postalCode = $request->edit_postal_code;
 
-            if($lgu->save())
+            /*check if the submitted input matches the old data*/
+            $checkinput = DB::table('lgus')
+                ->leftJoin("contact_people",'lgus.id','=','contact_people.lgu_id')
+                ->select('lgus.*','contact_people.id as contact_id','contact_people.fullname','contact_people.contactno')
+                ->where([
+                    ['lgus.id','=',$request->lguId],
+                    ['lgus.call_center_id','=',$request->ccId],
+                    ['lgus.station_name','=',$request->edit_station_name],
+                    ['lgus.department','=',$request->edit_department],
+                    ['lgus.region','=',$request->edit_region],
+                    ['lgus.province','=',$request->edit_state],
+                    ['lgus.city','=',$request->edit_city],
+                    ['lgus.address','=',$request->edit_street_address],
+                    ['lgus.postalCode','=',$request->edit_postal_code],
+                    ['contact_people.fullname','=',$request->edit_contactperson_name],
+                    ['contact_people.contactno','=',$request->edit_contactperson_no],
+                ])->count();
+
+            if($checkinput < 1)
             {
-                /*this will update the contact person details*/
-                $contactPerson = ContactPerson::find($request->contactId);
-                $contactPerson->fullname = $request->edit_contactperson_name;
-                $contactPerson->contactno = $request->edit_contactperson_no;
+                /*this will update the lgu Details*/
+                $lgu = Lgu::find($request->lguId);
+                $lgu->call_center_id = $request->ccId;
+                $lgu->station_name = $request->edit_station_name;
+                $lgu->department = $request->edit_department;
+                $lgu->region = $request->edit_region;
+                $lgu->province = $request->edit_state;
+                $lgu->city = $request->edit_city;
+                $lgu->address = $request->edit_street_address;
+                $lgu->postalCode = $request->edit_postal_code;
 
-                $contactPerson->save();
-                $message = ['success' => true];
+                $lguDetails = DB::table('lgus')
+                    ->leftJoin("contact_people",'lgus.id','=','contact_people.lgu_id')
+                    ->select('lgus.*','contact_people.id as contact_id','contact_people.fullname','contact_people.contactno')
+                    ->where('lgus.id','=',$request->lguId)->first();
+//
+                $lguId = $lguDetails->id;
+                $stationname = $lguDetails->station_name;
+                $department = $lguDetails->department;
+                $region = $lguDetails->region;
+                $state = $lguDetails->province;
+                $city = $lguDetails->city;
+                $address = $lguDetails->address;
+                $postalCode = $lguDetails->postalCode;
+                $contactPerson = $lguDetails->fullname;
+                $contactPersonNo = $lguDetails->contactno;
+                $contactId = $lguDetails->contact_id;
+                $callCenterId = $lguDetails->call_center_id;
+
+                if($lgu->save())
+                {
+                    /*display previous data*/
+                    $prevAction = "updated LGU details from - Station Name: ".$stationname;
+                    $prevAction .= ", Department: ".$department;
+                    $prevAction .= ", Address: ".$address;
+                    $prevAction .= ", City: ".$this->address->get_city_name($city);
+                    $prevAction .= ", State: ".$this->address->get_province_name($state);
+                    $prevAction .= ", Region: ".$this->address->getRegion($region);
+                    $prevAction .= ", Postal Code: ".$postalCode;
+                    $prevAction .= ", Contact Person: ".$contactPerson;
+                    $prevAction .= ", Contact Person No: ".$contactPersonNo;
+
+                    /*this will update the contact person details*/
+                    $contactPerson = ContactPerson::find($request->contactId);
+                    $contactPerson->fullname = $request->edit_contactperson_name;
+                    $contactPerson->contactno = $request->edit_contactperson_no;
+
+                    /*update details of contact person*/
+                    $contactPerson->save();
+
+                    /*display new data*/
+                    $action = " to - Station Name: ".$request->edit_station_name;
+                    $action .= ", Department: ".$request->edit_department;
+                    $action .= ", Address: ".$request->edit_street_address;
+                    $action .= ", City: ".$this->address->get_city_name($request->edit_city);
+                    $action .= ", State: ".$this->address->get_province_name($request->edit_state);
+                    $action .= ", Region: ".$this->address->getRegion($request->edit_region);
+                    $action .= ", Postal Code: ".$request->edit_postal_code;
+                    $action .= ", Contact Person: ".$request->edit_contactperson_name;
+                    $action .= ", Contact Person No: ".$request->edit_contactperson_no;
+                    $action .= " LGU Id: ".$callCenterId." and Contact Person Id: ".$contactId;
+                    $this->activity->activity_log($prevAction."".$action);
+
+                    $message = ['success' => true];
+                }else{
+                    $message = ['success' => false];
+                }
             }else{
-                $message = ['success' => false];
+                $message = ['success' => 'No changes occurred'];
             }
-
 
             return response()->json($message);
         }

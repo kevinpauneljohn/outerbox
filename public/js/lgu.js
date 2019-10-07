@@ -162,7 +162,6 @@ $(document).on("click",'.edit-lgu-btn',function(){
         'data'  : {'id':id},
         'cache' : false,
         success:function(result){
-            console.log(result)
 
             $('#edit_station_name').val(result.stationName);
             $('#edit_department').val(result.department);
@@ -193,7 +192,6 @@ $(document).on('submit','#edit-lgu-form',function(form){
 
     let data = $('#edit-lgu-form').serialize();
 
-    console.log(data);
     $.ajax({
         'url'   : '/update-lgu',
         'headers': {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
@@ -201,9 +199,7 @@ $(document).on('submit','#edit-lgu-form',function(form){
         'data'  : data,
         'cache' : false,
         success:function(result){
-            console.log(result)
-
-
+                console.log(result);
             if(result.success == true)
             {
                 setTimeout(function(){
@@ -219,6 +215,14 @@ $(document).on('submit','#edit-lgu-form',function(form){
                     setTimeout(function(){
                         location.reload();
                     },1500);
+                });
+            }else{
+                setTimeout(function(){
+                    $('#change_status').html('<div id="change_text" class="alert alert-warning">'+result.success+'</div>');
+
+                    setTimeout(function(){
+                        $('#change_text').remove();
+                    },3000);
                 });
             }
 

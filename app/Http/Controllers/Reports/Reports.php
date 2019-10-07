@@ -26,9 +26,9 @@ class Reports extends Controller
         $lgu = DB::table('lgus')
             ->leftJoin("contact_people",'lgus.id','=','contact_people.lgu_id')
             ->select('lgus.*','contact_people.id as contact_id','contact_people.fullname','contact_people.contactno')
-            ->where('lgus.id','=',1);
+            ->where('lgus.id','=',1)->first();
 
-        return $lgu->first()->fullname;
+        return $lgu->fullname;
     }
 
     /**
