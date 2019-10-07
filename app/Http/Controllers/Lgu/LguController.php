@@ -56,6 +56,7 @@ class LguController extends Controller
             $lgu->province = $request->state;
             $lgu->city = $request->city;
             $lgu->address = $request->street_address;
+            $lgu->postalCode = $request->postal_code;
 
             if($lgu->save())
             {
@@ -138,6 +139,7 @@ class LguController extends Controller
          * */
         $data = [
             "lguId"         => $lgu->id,
+            "cc_id"         => $lgu->call_center_id,
             "stationName"   => $lgu->station_name,
             "department"    => $lgu->department,
             "region"        => $lgu->region,
@@ -147,10 +149,63 @@ class LguController extends Controller
             "contactId"     => $lgu->contact_id,
             "fullname"      => $lgu->fullname,
             "contactNo"     => $lgu->contactno,
+            'postalCOde'    => $lgu->postalCode,
             'province_value'  => $option->getProvinces($lgu->region),
             'city_value'  => $option->getCities($lgu->province),
         ];
 
         return response()->json($data);
+    }
+
+    /**
+     * update the LGU details
+     * @param Request $request
+     * @return Response
+     * */
+    public function update_lgu(Request $request)
+    {
+        $validator = Validator::make($request->all(),[
+            'edit_station_name'          => 'required|max:50',
+            'edit_department'            => 'required|max:50',
+            'edit_street_address'        => 'required:max:100',
+            'edit_region'                => 'required',
+            'edit_state'                 => 'required',
+            'edit_city'                  => 'required|max:60',
+            'edit_postal_code'           => 'required|max:60',
+            'edit_contactperson_name'    => 'required',
+            'edit_contactperson_no'      => 'required'
+        ]);
+
+        if($validator->passes())
+        {
+            /*this will update the lgu Details*/
+            $lgu = Lgu::find($request->lguId);
+            $lgu->call_center_id = $request->ccId;
+            $lgu->station_name = $request->edit_station_name;
+            $lgu->department = $request->edit_department;
+            $lgu->region = $request->edit_region;
+            $lgu->province = $request->edit_state;
+            $lgu->city = $request->edit_city;
+            $lgu->address = $request->edit_street_address;
+            $lgu->postalCode = $request->edit_postal_code;
+
+            if($lgu->save())
+            {
+                /*this will update the contact person details*/
+                $contactPerson = ContactPerson::find($request->contactId);
+                $contactPerson->fullname = $request->edit_contactperson_name;
+                $contactPerson->contactno = $request->edit_contactperson_no;
+
+                $contactPerson->save();
+                $message = ['success' => true];
+            }else{
+                $message = ['success' => false];
+            }
+
+
+            return response()->json($message);
+        }
+
+        return response()->json($validator->errors());
     }
 }

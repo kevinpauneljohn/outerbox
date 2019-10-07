@@ -258,6 +258,9 @@
 
                     <div class="modal-body">
                         @csrf
+                        <input type="hidden" name="lguId" id="lguId"/>
+                        <input type="hidden" name="contactId" id="contactId"/>
+                        <input type="hidden" name="ccId" id="ccId"/>
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="form-group">
@@ -293,7 +296,7 @@
                                 <span class="col-lg-6">
                                     <div class="form-group">
                                         <div class="edit_region">
-                                            <select class="form-control edit_regions" style="width: 100%;" id="edit_region" name="redit_egion">
+                                            <select class="form-control edit_region" style="width: 100%;" id="edit_region" name="edit_region">
                                                 <option></option>
                                                 @foreach($regions as $region)
                                                     <option value="{{$region->regCode}}">{{$region->regDesc}}</option>
@@ -306,7 +309,7 @@
                                 <span class="col-lg-6">
                                     <div class="form-group">
                                         <div class="edit_state">
-                                            <select class="form-control edit_provinces" style="width: 100%;" id="edit_state" name="edit_state">
+                                            <select class="form-control edit_state" style="width: 100%;" id="edit_state" name="edit_state">
 
                                             </select>
 {{--                                            <input type="text" name="state" id="state" class="form-control"/>--}}
@@ -319,7 +322,7 @@
                                 <span class="col-lg-6">
                                     <div class="form-group">
                                         <div class="edit_city">
-                                            <select class="form-control edit_cities" style="width: 100%;" id="edit_city" name="edit_city">
+                                            <select class="form-control edit_city" style="width: 100%;" id="edit_city" name="edit_city">
 
                                             </select>
 {{--                                            <input type="text" name="city" id="city" class="form-control"/>--}}
@@ -330,7 +333,7 @@
                                 <span class="col-lg-6">
                                     <div class="form-group">
                                         <div class="edit_postal_code">
-                                            <input type="text" name="edit_postal_code" id=edit_"postal_code" class="form-control"/>
+                                            <input type="text" name="edit_postal_code" id="edit_postal_code" class="form-control"/>
                                             <label for="postal_code">Postal Code</label>
                                         </div>
                                     </div>

@@ -148,11 +148,15 @@ $(document).on('change','#edit_state',function(){
         }
     });
 });
+
+/**
+* display the data on update form fields
+* */
 $(document).on("click",'.edit-lgu-btn',function(){
     let id = this.value;
 
     $.ajax({
-        'url'   : '/update-lgu',
+        'url'   : '/display-lgu',
         'headers': {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
         'type'  : 'POST',
         'data'  : {'id':id},
@@ -171,8 +175,65 @@ $(document).on("click",'.edit-lgu-btn',function(){
             ///$('#edit_city').val(result.city);
             $('#edit_city').html(result.city_value);
             $("#edit_city option[value='"+result.city+"']").prop('selected',true);
+            $('#edit_postal_code').val(result.postalCOde);
             $('#edit_contactperson_name').val(result.fullname);
             $('#edit_contactperson_no').val(result.contactNo);
+            $('#lguId').val(result.lguId);
+            $('#contactId').val(result.contactId);
+            $('#ccId').val(result.cc_id);
+
+        },error:function(error){
+            console.log(error.status);
+        }
+    });
+});
+
+$(document).on('submit','#edit-lgu-form',function(form){
+    form.preventDefault();
+
+    let data = $('#edit-lgu-form').serialize();
+
+    console.log(data);
+    $.ajax({
+        'url'   : '/update-lgu',
+        'headers': {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+        'type'  : 'POST',
+        'data'  : data,
+        'cache' : false,
+        success:function(result){
+            console.log(result)
+
+
+            if(result.success == true)
+            {
+                setTimeout(function(){
+                    $('#edit-lgu-form').trigger('reset');
+                    $('#edit-lgu').modal('toggle');
+                    $.notify({
+                            message: 'LGU details successfully updated!'
+                        } ,{
+                            type: 'success'
+                        }
+                    );
+
+                    setTimeout(function(){
+                        location.reload();
+                    },1500);
+                });
+            }
+
+            $.each(result, function (key, value) {
+                var element = $('#'+key);
+
+                element.closest('div.'+key)
+                    .addClass(value.length > 0 ? 'has-error' : 'has-success')
+                    .find('.text-danger')
+                    .remove();
+                element.after('<p class="text-danger">'+value+'</p>');
+            });
+
+    check_value('edit_station_name','edit_department','edit_street_address','edit_region','edit_state','edit_city','edit_postal_code','edit_contactperson_name','edit_contactperson_no');
+
 
         },error:function(error){
             console.log(error.status);
