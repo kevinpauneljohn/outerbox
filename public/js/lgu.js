@@ -257,7 +257,10 @@ $(document).on("click",".delete-lgu-btn",function(){
         'data'  : {'id':id},
         'cache' : false,
         success:function(result){
-        $(".lguName").text(result);
+
+        $(".lguName").text(result.station_name);
+        $("#lgu-id").val(result.id);
+
         },error:function(error){
             console.log(error.status);
         }
@@ -265,3 +268,35 @@ $(document).on("click",".delete-lgu-btn",function(){
 });
 
 /*soft delete LGU*/
+$(document).on("submit","#delete-lgu-form",function(form){
+    form.preventDefault();
+    let data = $("#delete-lgu-form").serialize();
+
+    $.ajax({
+        'url'   : '/delete-lgu',
+        'headers': {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+        'type'  : 'POST',
+        'data'  : data,
+        'cache' : false,
+        success:function(result){
+            if(result.success == true)
+            {
+                setTimeout(function(){
+                    $('#delete-lgu').modal('toggle');
+                    $.notify({
+                            message: 'LGU successfully deleted!'
+                        } ,{
+                            type: 'success'
+                        }
+                    );
+
+                    setTimeout(function(){
+                        location.reload();
+                    },1500);
+                });
+            }
+        },error:function(error){
+            console.log(error.status);
+        }
+    });
+});

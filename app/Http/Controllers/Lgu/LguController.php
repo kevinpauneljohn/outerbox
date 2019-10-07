@@ -283,6 +283,27 @@ class LguController extends Controller
      * */
     public function display_delete_lgu(Request $request)
     {
-        return Lgu::find($request->id)->station_name;
+        return Lgu::find($request->id);
+    }
+
+    /**
+     * soft delete LGU
+     * @param Request $request
+     * @return Response
+     * */
+    public function delete_lgu(Request $request)
+    {
+        $lgu = Lgu::find($request->lgu_delete_id);
+
+
+        if($lgu->delete())
+        {
+            $action = "deleted LGU - Station Name: ".$lgu->station_name." with LGU id: ".$request->lgu_delete_id;
+            $this->activity->activity_log($action);
+            $message = ["success" => true];
+        }else{
+            $message = ["success" => false];
+        }
+        return response()->json($message);
     }
 }

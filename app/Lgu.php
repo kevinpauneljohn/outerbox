@@ -4,9 +4,12 @@ namespace App;
 
 use App\Models\CallCenter;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Lgu extends Model
 {
+    use SoftDeletes;
+
     protected $guarded = [];
     protected $table = 'lgus';
 

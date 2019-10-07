@@ -385,7 +385,7 @@
                     <div class="modal-body">
                         <span>Are you sure you want to delete LGU: <b class="lguName"></b>?</span>
                     </div>
-                    <input type="hidden" name="call_center_delete_id" id="lgu-id"/>
+                    <input type="hidden" name="lgu_delete_id" id="lgu-id"/>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Close</button>
                         <button type="submit" class="btn btn-outline" name="submit" value=""><i class="fa fa-trash"></i> Delete</button>
