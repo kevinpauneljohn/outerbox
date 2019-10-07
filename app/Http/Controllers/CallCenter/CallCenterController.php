@@ -70,7 +70,7 @@ class CallCenterController extends Controller
         return $json;
     }
 
-    private function getProvinces($regCode)
+    public function getProvinces($regCode)
     {
             $provinces = Province::where('regCode',$regCode)->get();
 

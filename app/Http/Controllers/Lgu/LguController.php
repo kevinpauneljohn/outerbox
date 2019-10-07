@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Lgu;
 
 use App\ContactPerson;
 use App\Http\Controllers\address\AddressController;
+use App\Http\Controllers\CallCenter\CallCenterController;
 use App\Http\Controllers\Reports\Reports;
 use App\Lgu;
 use App\Models\CallCenter;
@@ -124,6 +125,8 @@ class LguController extends Controller
      * */
     public function lgu_data(Request $request)
     {
+        $option = new CallCenterController;
+
         $lgu = DB::table('lgus')
             ->leftJoin("contact_people",'lgus.id','=','contact_people.lgu_id')
             ->select('lgus.*','contact_people.id as contact_id','contact_people.fullname','contact_people.contactno')
@@ -143,7 +146,9 @@ class LguController extends Controller
             "address"       => $lgu->address,
             "contactId"     => $lgu->contact_id,
             "fullname"      => $lgu->fullname,
-            "contactNo"     => $lgu->contactno
+            "contactNo"     => $lgu->contactno,
+            'province_value'  => $option->getProvinces($lgu->region),
+            'city_value'  => $option->getCities($lgu->province),
         ];
 
         return response()->json($data);

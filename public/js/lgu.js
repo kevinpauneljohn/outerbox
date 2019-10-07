@@ -165,10 +165,12 @@ $(document).on("click",'.edit-lgu-btn',function(){
             $('#edit_street_address').val(result.address);
             $('#edit_region').val(result.region);
             $("#edit_region option[value='"+result.region+"']").prop('selected',true);
-            $('#edit_state').val(result.province);
-            $("#update_state option[value='"+result.province+"']").prop('selected',true);
-            $('#edit_city').val(result.city);
-            $("#update_city option[value='"+result.city+"']").prop('selected',true);
+            ///$('#edit_state').val(result.province);
+            $('#edit_state').html(result.province_value);
+            $("#edit_state option[value='"+result.province+"']").prop('selected',true);
+            ///$('#edit_city').val(result.city);
+            $('#edit_city').html(result.city_value);
+            $("#edit_city option[value='"+result.city+"']").prop('selected',true);
             $('#edit_contactperson_name').val(result.fullname);
             $('#edit_contactperson_no').val(result.contactNo);
 
