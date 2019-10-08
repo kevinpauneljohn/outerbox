@@ -179,8 +179,14 @@ class CreateTicketController extends Controller
         return sprintf("%'.09d\n", $num);
     }
 
+    /**
+     * disply the label status on the ticket page
+     * @param int $status
+     * @return string
+     * */
     public static function get_status_label($status)
     {
+        $label = "";
             switch ($status) {
                 case 'pending':
                     $label = 'orange';
