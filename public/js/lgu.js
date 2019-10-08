@@ -55,7 +55,7 @@ $(document).on('submit','#add-lgu',function(form){
         }
     });
 
-    check_value('station_name','department','street_address','region','state','city','contactperson_name','contactperson_no');
+    check_value('station_name','department','street_address','region','state','city','contactperson_name','contactperson_no','call_center');
 });
 
 $(document).on('change','#region',function(){

@@ -184,7 +184,7 @@
                                     <div class="form-group">
                                         <div class="state">
                                             <select class="form-control provinces" style="width: 100%;" id="state" name="state">
-
+                                                <option></option>
                                             </select>
 {{--                                            <input type="text" name="state" id="state" class="form-control"/>--}}
                                             <label for="state">State</label>
@@ -197,7 +197,7 @@
                                     <div class="form-group">
                                         <div class="city">
                                             <select class="form-control cities" style="width: 100%;" id="city" name="city">
-
+                                                <option></option>
                                             </select>
 {{--                                            <input type="text" name="city" id="city" class="form-control"/>--}}
                                             <label for="city">City</label>

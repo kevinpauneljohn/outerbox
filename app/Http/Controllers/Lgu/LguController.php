@@ -33,23 +33,45 @@ class LguController extends Controller
      * */
     public function addLgu(Request $request)
     {
-        $user = User::find(Auth::user()->id)->callcenter;
-        $callcenter_id = $user[0]->pivot->cc_id;
-        $validator = Validator::make($request->all(),[
-            'station_name'          => 'required|max:50',
-            'department'            => 'required|max:50',
-            'street_address'        => 'required:max:100',
-            'region'                => 'required',
-            'state'                 => 'required',
-            'city'                  => 'required|max:60',
-            'contactperson_name'    => 'required',
-            'contactperson_no'      => 'required'
-        ]);
+
+        if(auth()->user()->getRoleNames()[0] == "super admin")
+        {
+
+            $validation = [
+                'station_name'          => 'required|max:50',
+                'department'            => 'required|max:50',
+                'street_address'        => 'required:max:100',
+                'region'                => 'required',
+                'state'                 => 'required',
+                'city'                  => 'required|max:60',
+                'contactperson_name'    => 'required',
+                'contactperson_no'      => 'required',
+                'call_center'      => 'required',
+            ];
+            $callCenterValue = $request->call_center;
+        }else{
+            $user = User::find(Auth::user()->id)->callcenter;
+            $callcenter_id = $user[0]->pivot->cc_id;
+
+            $callCenterValue = $callcenter_id;
+            $validation = [
+                'station_name'          => 'required|max:50',
+                'department'            => 'required|max:50',
+                'street_address'        => 'required:max:100',
+                'region'                => 'required',
+                'state'                 => 'required',
+                'city'                  => 'required|max:60',
+                'contactperson_name'    => 'required',
+                'contactperson_no'      => 'required'
+            ];
+        }
+
+        $validator = Validator::make($request->all(),$validation);
 
         if($validator->passes())
         {
             $lgu = new Lgu;
-            $lgu->call_center_id = $callcenter_id;
+            $lgu->call_center_id = $callCenterValue;
             $lgu->station_name = $request->station_name;
             $lgu->department = $request->department;
             $lgu->region = $request->region;
@@ -72,7 +94,7 @@ class LguController extends Controller
                     .$this->address->get_province_name($request->state).", ".$this->address->getRegion($request->region);
                 $action .= ", with Contact Person: ".$request->contactperson_name.", Contact Person Number: ".$request->contactperson_no;
 
-                $action .= "  assigned to Call Center: ".CallCenter::find($callcenter_id)->name;
+                $action .= "  assigned to Call Center: ".CallCenter::find($callCenterValue)->name;
                 $this->activity->activity_log($action);
                 $message = ['success' => true];
             }else{
