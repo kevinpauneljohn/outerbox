@@ -262,6 +262,7 @@ class LguController extends Controller
                     $prevAction .= ", Postal Code: ".$postalCode;
                     $prevAction .= ", Contact Person: ".$contactPerson;
                     $prevAction .= ", Contact Person No: ".$contactPersonNo;
+                    $prevAction .= ", Call Center: ".CallCenter::find($callCenterId)->name." with CCID: ".$callCenterId;
 
                     /*this will update the contact person details*/
                     $contactPerson = ContactPerson::find($request->contactId);
@@ -282,6 +283,7 @@ class LguController extends Controller
                     $action .= ", Contact Person: ".$request->edit_contactperson_name;
                     $action .= ", Contact Person No: ".$request->edit_contactperson_no;
                     $action .= " LGU Id: ".$callCenterId." and Contact Person Id: ".$contactId;
+                    $action .= ", Call Center: ".CallCenter::find($request->ccId)->name." with CCID: ".$request->ccId;
                     $this->activity->activity_log($prevAction."".$action);
 
                     $message = ['success' => true];
