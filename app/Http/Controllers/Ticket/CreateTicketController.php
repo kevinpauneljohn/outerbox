@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Ticket;
 
 use App\Http\Controllers\address\AddressController;
+use App\Http\Controllers\Reports\Reports;
 use App\Models\CallCenter;
 use App\Models\Lead;
 use App\Ticket;
@@ -116,8 +117,6 @@ class CreateTicketController extends Controller
                         array_push($arr3, $agent->id);
                         //echo $agent->id.'<br/>';
                     }
-
-
                 }
 
                 if($agents != null){
@@ -140,6 +139,17 @@ class CreateTicketController extends Controller
                     $lead->created_at
                     );
 
+
+                /**
+                 * system activity logs
+                 * @var $systemLogs
+                 * */
+                $systemLogs = new Reports;
+
+                $action = "created a ticket and assigned to Agent: ".User::find($select_agent[$index_in_agent_count])->username;
+                $action .= "in Call Center: ".CallCenter::find($cc_id)->name." with CCID: ".$cc_id;
+
+                $systemLogs->system_activity_log($action);
                 $this->update_lead_status($lead_id, null);
             }
 

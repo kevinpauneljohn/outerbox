@@ -23,7 +23,7 @@ class Reports extends Controller
         //jasper ready to call
 //        JasperPHP::compile(base_path('/vendor/cossou/jasperphp/examples/hello_world.jrxml'))->execute();
 //        return auth()->user()->id;
-        return auth()->user()->getRoleNames()[0];
+        return (auth()->user() == null) ? "null" : "not null";
     }
 
     /**
@@ -37,8 +37,22 @@ class Reports extends Controller
     {
         $activity = new Activity;
 
+        if(auth()->user() == null)
+        {
+
+        }
         $activity->user_id = auth()->user()->id;
         $activity->action = auth()->user()->username.' '.$action;
+
+        $activity->save();
+    }
+
+    public function system_activity_log($action)
+    {
+        $activity = new Activity;
+
+        $activity->user_id = 0;
+        $activity->action = 'The system '.$action;
 
         $activity->save();
     }
