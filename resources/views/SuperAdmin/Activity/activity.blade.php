@@ -59,7 +59,7 @@
                             <td>{{$activity->description}}</td>
                             <td>{{$dateTime->dateDiff($activity->created_at)}}</td>
                             <td>{{$activity->created_at}}</td>
-                            <td><button class="btn btn-success" title="View"><i class="fa fa-eye"></i></button></td>
+                            <td><button class="btn btn-success view-log-details" title="View" data-toggle="modal" data-target="#view-logs" value="{{$activity->id}}"><i class="fa fa-eye"></i></button></td>
                         </tr>
                         @endforeach
                 </tbody>
@@ -79,6 +79,22 @@
     </div>
     <!-- /.box -->
 
+    <div class="modal fade" id="view-logs">
+        <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">Log Details</h4>
+                    </div>
+
+                    <div class="modal-body">
+                        <div class="logs-content"></div>
+                    </div>
+                </div>
+        </div>
+    </div>
+
 @endsection
 
 @section('extra_script')
@@ -94,7 +110,7 @@
     <!-- growl notification -->
     <script src="{{asset('bower_components/remarkable-bootstrap-notify/bootstrap-notify.min.js')}}"></script>
 
-    <script src="{{asset('/js/lgu.js')}}"></script>
+    <script src="{{asset('/js/activity.js')}}"></script>
 
     <script>
         $(function () {
