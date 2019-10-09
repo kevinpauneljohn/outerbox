@@ -31,9 +31,10 @@ class Reports extends Controller
      * author: John Kevin Paunel
      * save user activity to database
      * @param string $action
+     * @param string $description
      * @return void
      */
-    public function activity_log($action)
+    public function activity_log($action,$description)
     {
         $activity = new Activity;
 
@@ -43,6 +44,7 @@ class Reports extends Controller
         }
         $activity->user_id = auth()->user()->id;
         $activity->action = auth()->user()->username.' '.$action;
+        $activity->description = $description;
 
         $activity->save();
     }

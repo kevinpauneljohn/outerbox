@@ -233,6 +233,7 @@
                     <div class="modal-body">
                         @csrf
                         <input type="hidden" name="user_value" id="user_value"/>
+                        <span id="change_status"></span>
                         <div class="form-group">
                             <div class="row">
                                 <span class="col-lg-4">

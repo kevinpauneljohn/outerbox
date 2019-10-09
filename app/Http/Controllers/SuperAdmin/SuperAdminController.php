@@ -237,6 +237,11 @@ class SuperAdminController extends Controller
 
 
 
+    /**
+     * call center profile view page
+     * @param int $id
+     * @return mixed
+     * */
     public function callCenterProfile($id)
     {
 

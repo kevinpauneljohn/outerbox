@@ -46,8 +46,6 @@
                             <td>{{$lgu->contactno}}</td>
                             <td>
                                 <a href="{{url('/agent/lgu/profile/'.$lgu->lgu_id)}}"> <button type="button" class="btn btn-default"><i class="fa fa-eye"></i></button></a>
-                                <button type="button" class="btn btn-primary"><i class="fa fa-pencil"></i></button>
-                                <button type="button" class="btn btn-danger"><i class="fa fa-trash"></i></button>
                                 <button type="button" class="btn btn-warning"><i class="fa fa-phone"></i></button>
                                 <button type="button" class="btn btn-success"><i class="fa fa-comment"></i></button>
                             </td>

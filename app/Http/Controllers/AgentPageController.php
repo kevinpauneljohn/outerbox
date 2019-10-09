@@ -239,6 +239,10 @@ class AgentPageController extends Controller
 //        }
     }
 
+    /**
+     * Lgu Profile page view
+     * @return mixed
+     * */
     public function lgu()
     {
         $user = User::find(Auth::user()->id)->callcenter;
