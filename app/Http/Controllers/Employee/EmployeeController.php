@@ -62,16 +62,19 @@ class EmployeeController extends Controller
                  * @var $action
                  * */
 
-                $action = 'added new employee - name: '.$request->firstname;
+                $action = 'Name: '.$request->firstname;
                 $action .= (!empty($request->middlename)) ? $request->middlename : ' ';
-                $action .= $request->lastname;
-                $action .= ', email: '.$request->email;
-                $action .= ', username: '.$request->username;
-                $action .= ', role: '.$request->role;
-                $action .= ' and assigned to Call Center: '.CallCenter::find($request->callcenter)->name;
+                $action .= $request->lastname.'<br/>';
+                $action .= 'Email: '.$request->email.'<br/>';
+                $action .= 'Username: '.$request->username.'<br/>';
+                $action .= 'Role: '.$request->role.'<br/>';
+                $action .= 'Call Center: '.CallCenter::find($request->callcenter)->name.'<br/>';
 
-
-                $this->activity->activity_log($action);
+                /**
+                 * @var $description
+                 * */
+                $description = "Added New Employee";
+                $this->activity->activity_log($action, $description);
 
                 $message = ['success' => true];
             }else{

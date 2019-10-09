@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Reports;
 
 use App\activity;
 use App\Http\Controllers\address\AddressController;
+use App\Http\Controllers\TimeController;
 use App\Models\CallCenter;
 use App\User;
 use Illuminate\Http\Request;
@@ -23,7 +24,8 @@ class Reports extends Controller
         //jasper ready to call
 //        JasperPHP::compile(base_path('/vendor/cossou/jasperphp/examples/hello_world.jrxml'))->execute();
 //        return auth()->user()->id;
-        return (auth()->user() == null) ? "null" : "not null";
+        $time = new TimeController;
+        return $time->dateDiff("2019-10-09 06:02:00");
     }
 
     /**

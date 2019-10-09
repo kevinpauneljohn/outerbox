@@ -4,6 +4,8 @@ namespace App\Http\Controllers\SuperAdmin;
 
 use App\activity;
 use App\address\Region;
+use App\Http\Controllers\RolesController;
+use App\Http\Controllers\TimeController;
 use App\Lgu;
 use App\Models\Lead;
 use App\User;
@@ -304,8 +306,11 @@ class SuperAdminController extends Controller
     public function activities()
     {
         $activities = activity::all();
+        $dateTime = new TimeController;
         return view("SuperAdmin.Activity.activity")->with([
             "activities"        => $activities,
+            "dateTime"          => $dateTime,
+            "roles"             => new RolesController,
         ]);
     }
 

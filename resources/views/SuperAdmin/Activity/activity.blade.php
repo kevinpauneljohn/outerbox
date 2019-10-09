@@ -43,24 +43,34 @@
                 <thead>
                 <tr>
                     <th width="10%">Username</th>
+                    <th width="10%">Role</th>
                     <th>Description</th>
+                    <th width="10%">Time</th>
                     <th width="10%">Date</th>
+                    <th width="10%">Action</th>
                 </tr>
                 </thead>
                 <tbody>
                     @foreach($activities as $activity)
                         <tr>
                             <td>{{($activity->user_id == 0) ? "System" : \App\User::find($activity->user_id)->username}}</td>
-                            <td>{{$activity->action}}</td>
+{{--                            <td>{{!! $roles->get_role_names_with_label($activity->user_id !!}}</td>--}}
+                            <td>{!! nl2br($roles->get_role_names_with_label($activity->user_id)) !!}</td>
+                            <td>{{$activity->description}}</td>
+                            <td>{{$dateTime->dateDiff($activity->created_at)}}</td>
                             <td>{{$activity->created_at}}</td>
+                            <td><button class="btn btn-success" title="View"><i class="fa fa-eye"></i></button></td>
                         </tr>
                         @endforeach
                 </tbody>
                 <tfoot>
                 <tr>
-                    <th width="8%">Username</th>
+                    <th width="10%">Username</th>
+                    <th width="10%">Role</th>
                     <th>Description</th>
-                    <th>Date</th>
+                    <th width="10%">Time</th>
+                    <th width="10%">Date</th>
+                    <th width="10%">Action</th>
                 </tr>
                 </tfoot>
             </table>
