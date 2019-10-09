@@ -296,7 +296,7 @@ class SuperAdminController extends Controller
     }
 
 
-    /*
+    /**
      * for mobile app
      * display of call center list
      * */

@@ -2,20 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="03ba3b1d-e17f-4440-a069-100ded3b375a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/views/SuperAdmin/Activity/activity.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/SuperAdmin/SuperAdminController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/SuperAdmin/SuperAdminController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/activity.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/activity.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/SuperAdmin/callCenter/callcenter.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/SuperAdmin/callCenter/callcenter.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/SuperAdmin/callCenter/callcenterProfile.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/SuperAdmin/callCenter/callcenterProfile.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/SuperAdmin/dashboard.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/SuperAdmin/dashboard.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/SuperAdmin/employee/employee.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/SuperAdmin/employee/employee.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/SuperAdmin/employee/employeeProfile.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/SuperAdmin/employee/employeeProfile.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/SuperAdmin/lgu/lgu.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/SuperAdmin/lgu/lgu.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/SuperAdmin/roles/permissions.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/SuperAdmin/roles/permissions.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/SuperAdmin/roles/roles.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/SuperAdmin/roles/roles.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/vendor/beyondcode/laravel-dump-server/" />
     <ignored path="$PROJECT_DIR$/vendor/composer/" />
@@ -117,26 +104,14 @@
     </execution>
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.31494057">
+    <splitter split-orientation="horizontal" split-proportion="0.64710426">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file pinned="false" current-in-tab="false">
+          <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/routes/web.php">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="357">
                   <caret line="74" column="82" selection-start-line="74" selection-start-column="82" selection-end-line="74" selection-end-column="82" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/app/Http/Controllers/SuperAdmin/SuperAdminController.php">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="154">
-                  <caret line="291" column="38" selection-start-line="291" selection-start-column="38" selection-end-line="291" selection-end-column="38" />
-                  <folding>
-                    <element signature="e#51#68#0#PHP" expanded="true" />
-                  </folding>
                 </state>
               </provider>
             </entry>
@@ -190,8 +165,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/resources/views/SuperAdmin/Activity/activity.blade.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-158">
-                  <caret line="42" column="23" lean-forward="true" selection-start-line="42" selection-start-column="23" selection-end-line="42" selection-end-column="23" />
+                <state relative-caret-position="318">
+                  <caret line="70" lean-forward="true" selection-start-line="70" selection-end-line="70" />
                 </state>
               </provider>
             </entry>
@@ -264,8 +239,8 @@
       <find>/lgu</find>
       <find>provinces</find>
       <find>getProvinces</find>
-      <find>emplo</find>
       <find>reports</find>
+      <find>emplo</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -323,8 +298,8 @@
         <option value="$PROJECT_DIR$/routes/web.php" />
         <option value="$PROJECT_DIR$/app/activity.php" />
         <option value="$PROJECT_DIR$/app/User.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/SuperAdmin/SuperAdminController.php" />
         <option value="$PROJECT_DIR$/resources/views/SuperAdmin/Activity/activity.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/SuperAdmin/SuperAdminController.php" />
       </list>
     </option>
   </component>
@@ -637,14 +612,7 @@
       <workItem from="1570325561687" duration="29819000" />
       <workItem from="1570413420559" duration="28054000" />
       <workItem from="1570522789458" duration="1611000" />
-      <workItem from="1570535373050" duration="15057000" />
-    </task>
-    <task id="LOCAL-00118" summary="updated the call center page address call">
-      <created>1567591725423</created>
-      <option name="number" value="00118" />
-      <option name="presentableId" value="LOCAL-00118" />
-      <option name="project" value="LOCAL" />
-      <updated>1567591725424</updated>
+      <workItem from="1570535373050" duration="15705000" />
     </task>
     <task id="LOCAL-00119" summary="updated the call center page address call">
       <created>1567611350650</created>
@@ -982,15 +950,21 @@
       <option name="project" value="LOCAL" />
       <updated>1570549396841</updated>
     </task>
-    <option name="localTasksCounter" value="167" />
+    <task id="LOCAL-00167" summary="audit trail">
+      <created>1570584184226</created>
+      <option name="number" value="00167" />
+      <option name="presentableId" value="LOCAL-00167" />
+      <option name="project" value="LOCAL" />
+      <updated>1570584184226</updated>
+    </task>
+    <option name="localTasksCounter" value="168" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="410264000" />
+    <option name="totallyTimeSpent" value="410912000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49748743" visible="true" weight="0.13087249" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -1402,23 +1376,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/web.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="74" column="82" selection-start-line="74" selection-start-column="82" selection-end-line="74" selection-end-column="82" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/SuperAdmin/SuperAdminController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="291" column="38" selection-start-line="291" selection-start-column="38" selection-end-line="291" selection-end-column="38" />
-          <folding>
-            <element signature="e#51#68#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Reports/Reports.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="522">
@@ -1455,8 +1412,25 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/SuperAdmin/Activity/activity.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-158">
-          <caret line="42" column="23" lean-forward="true" selection-start-line="42" selection-start-column="23" selection-end-line="42" selection-end-column="23" />
+        <state relative-caret-position="318">
+          <caret line="70" lean-forward="true" selection-start-line="70" selection-end-line="70" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/SuperAdmin/SuperAdminController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4081">
+          <caret line="298" column="7" selection-start-line="298" selection-start-column="7" selection-end-line="298" selection-end-column="7" />
+          <folding>
+            <element signature="e#51#68#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/web.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="74" column="82" selection-start-line="74" selection-start-column="82" selection-end-line="74" selection-end-column="82" />
         </state>
       </provider>
     </entry>
