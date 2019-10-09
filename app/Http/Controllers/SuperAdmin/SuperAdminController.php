@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\SuperAdmin;
 
+use App\activity;
 use App\address\Region;
 use App\Lgu;
 use App\Models\Lead;
@@ -280,9 +281,18 @@ class SuperAdminController extends Controller
         ]);
     }
 
-    public function reports()
+    /**
+     * date: oct. 10, 2019
+     * by: John Kevin Paunel
+     * Activity view page
+     * @return mixed
+     * */
+    public function activities()
     {
-
+        $activities = activity::all();
+        return view("SuperAdmin.Activity.activity")->with([
+            "activities"        => $activities,
+        ]);
     }
 
 

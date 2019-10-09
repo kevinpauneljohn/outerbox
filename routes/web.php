@@ -71,6 +71,8 @@ Route::group(['middleware' => ['auth','role:super admin']],function(){
 
     Route::get('super-admin/callCenter','SuperAdmin\SuperAdminController@callCenter');
     Route::get('super-admin/lgu','SuperAdmin\SuperAdminController@lgu');
+
+    Route::get('/super-admin/activity','SuperAdmin\SuperAdminController@activities');
 });
 
 Route::group(['middleware' => ['auth','role:super admin|admin']], function (){
