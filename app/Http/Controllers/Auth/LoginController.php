@@ -80,7 +80,7 @@ class LoginController extends Controller
 
             $this->setActiveStatus(auth()->user()->id, 1);
 
-            $this->activity->activity_log(" logged in");
+            $this->activity->activity_log(" logged in","User logged in");
 
             switch ($role) {
                 case 'super admin':
@@ -113,7 +113,7 @@ class LoginController extends Controller
     {
         $current_id = auth()->user()->id;
 
-        $this->activity->activity_log(" logged out");
+        $this->activity->activity_log(" logged out","User Logged Out");
 
         $this->guard()->logout();
         $request->session()->invalidate();

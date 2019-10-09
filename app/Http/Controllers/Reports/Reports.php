@@ -45,7 +45,7 @@ class Reports extends Controller
 
         }
         $activity->user_id = auth()->user()->id;
-        $activity->action = auth()->user()->username.' '.$action;
+        $activity->action = $action;
         $activity->description = $description;
 
         $activity->save();

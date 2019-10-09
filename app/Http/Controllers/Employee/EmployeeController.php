@@ -61,14 +61,22 @@ class EmployeeController extends Controller
                  * create activity logs for adding employee of super admin
                  * @var $action
                  * */
-
-                $action = 'Name: '.$request->firstname;
+                $action = '<table class="table table-bordered">';
+                $action .= '<tr><td colspan="2">Action: Added New Employee</td></tr>';
+                $action .= '<tr>';
+                $action .= '<td>Name: </td><td>'.$request->firstname;
                 $action .= (!empty($request->middlename)) ? $request->middlename : ' ';
-                $action .= $request->lastname.'<br/>';
-                $action .= 'Email: '.$request->email.'<br/>';
-                $action .= 'Username: '.$request->username.'<br/>';
-                $action .= 'Role: '.$request->role.'<br/>';
-                $action .= 'Call Center: '.CallCenter::find($request->callcenter)->name.'<br/>';
+                $action .= $request->lastname.'</td>';
+                $action .= '</tr>';
+                $action .= '<tr>';
+                $action .= '<td>Email: </td><td>'.$request->email.'<td/>';
+                $action .= '</tr><tr>';
+                $action .= '<td>Username: </td><td>'.$request->username.'<td/>';
+                $action .= '</tr><tr>';
+                $action .= '<td>Role: </td><td>'.$request->role.'<td/>';
+                $action .= '</tr><tr>';
+                $action .= '<td>Call Center: </td><td>'.CallCenter::find($request->callcenter)->name.'<td/>';
+                $action .= '</tr></table>';
 
                 /**
                  * @var $description
@@ -221,7 +229,7 @@ class EmployeeController extends Controller
                     $action .= ", Email: ".$request->edit_email;
                     $action .= ", Role: ".$request->edit_role;
                     $action .= ", Call Center: ".CallCenter::find($request->edit_callcenter)->name;
-                    $this->activity->activity_log($previousAction." ".$action);
+                    $this->activity->activity_log($previousAction." ".$action, "Updated User");
                 }else{
                     $message = ['success' => false];
                 }
@@ -245,10 +253,15 @@ class EmployeeController extends Controller
     public function deleteEmployee(Request $request)
     {
         $user = User::find($request->user_delete);
-        $action = "deleted ".$user->username." with user id: ".$user->id;
+        $action = '<table class="table table-bordered">';
+        $action .= '<tr><td colspan="2">Action: Deleted Employee</td></tr>';
+        $action .= '<tr><td>User ID: </td><td>'.$user->id.'</td></tr><tr><td>Username</td><td>'.$user->username.'</td></tr>';
+        $action .= '</table>';
+
+        $description = "Deleted employee";
 
         $message = ($user->delete()) ? ['success' => true] : ['success' => false];
-        $this->activity->activity_log($action);
+        $this->activity->activity_log($action, $description);
         return response()->json($message);
     }
 }
