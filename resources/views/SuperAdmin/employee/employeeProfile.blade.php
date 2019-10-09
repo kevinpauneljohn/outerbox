@@ -76,44 +76,31 @@
                 <!-- /.box-body -->
             </div>
             <!-- /.box -->
-
-            <div class="box">
-                <div class="box-body">
-                    <h3 align="center">USER ACTIVITY</h3>
-                </div>
-                <!-- /.box-body -->
-            </div>
         </div>
 
         <div class="col-lg-9">
             <div class="box">
                 <div class="box-body">
+                    <h2>Activity Logs</h2>
                     <table id="agents-list" class="table table-bordered table-hover">
                         <thead>
                         <tr>
-                            <th width="10%">Ticker #</th>
-                            <th width="20%">Location Of Incident</th>
-                            <th>Station Name</th>
-                            <th>Date Reported</th>
-                            <th>Time handled</th>
-                            <th>Time Reached</th>
-                            <th>Status</th>
-                            <th width="15%">Action</th>
+                            <th width="10%">Date</th>
+                            <th>Description</th>
                         </tr>
                         </thead>
                         <tbody>
-
+                            @foreach($activities as $activity)
+                                    <tr>
+                                        <td>{{$activity->created_at}}</td>
+                                        <td>{{$activity->action}}</td>
+                                    </tr>
+                                @endforeach
                         </tbody>
                         <tfoot>
                         <tr>
-                            <th width="10%">Ticker #</th>
-                            <th width="20%">Location Of Incident</th>
-                            <th>Station Name</th>
-                            <th>Date Reported</th>
-                            <th>Time handled</th>
-                            <th>Time Reached</th>
-                            <th>Status</th>
-                            <th width="15%">Action</th>
+                            <th width="10%">Date</th>
+                            <th>Description</th>
                         </tr>
                         </tfoot>
                     </table>
