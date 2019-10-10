@@ -88,14 +88,31 @@ class LguController extends Controller
                 }
 
                 /*Activity log*/
-                $action = "added a new LGU - Station Name: ".$request->station_name;
-                $action .= ", Department: ".$request->department;
-                $action .= ", Location: ".$request->street_address.", ".$this->address->get_city_name($request->city).", "
-                    .$this->address->get_province_name($request->state).", ".$this->address->getRegion($request->region);
-                $action .= ", with Contact Person: ".$request->contactperson_name.", Contact Person Number: ".$request->contactperson_no;
+//                $action = "added a new LGU - Station Name: ".$request->station_name;
+//                $action .= ", Department: ".$request->department;
+//                $action .= ", Location: ".$request->street_address.", ".$this->address->get_city_name($request->city).", "
+//                    .$this->address->get_province_name($request->state).", ".$this->address->getRegion($request->region);
+//                $action .= ", with Contact Person: ".$request->contactperson_name.", Contact Person Number: ".$request->contactperson_no;
+//
+//                $action .= "  assigned to Call Center: ".CallCenter::find($callCenterValue)->name;
 
-                $action .= "  assigned to Call Center: ".CallCenter::find($callCenterValue)->name;
-                $this->activity->activity_log($action);
+                $description = 'Added new LGU';
+
+                $action ='<table class="table table-bordered">';
+                $action .= '<tr><td colspan="2">Action: '.$description.'</td></tr>';
+                $action .= '<tr><td>Station Name</td><td>'.$request->station_name.'</td></tr>';
+                $action .= '<tr><td>Department</td><td>'.$request->department.'</td></tr>';
+                $action .= '<tr><td>Address</td><td>'.$request->street_address.'</td></tr>';
+                $action .= '<tr><td>City</td><td>'.$this->address->get_city_name($request->city).'</td></tr>';
+                $action .= '<tr><td>State</td><td>'.$this->address->get_province_name($request->state).'</td></tr>';
+                $action .= '<tr><td>Region</td><td>'.$this->address->getRegion($request->region).'</td></tr>';
+                $action .= '<tr><td>Postal Code</td><td>'.$request->postal_code.'</td></tr>';
+                $action .= '<tr><td>Contact Person</td><td>'.$request->contactperson_name.'</td></tr>';
+                $action .= '<tr><td>Contact Person Number</td><td>'.$request->contactperson_no.'</td></tr>';
+                $action .= '<tr><td>Call Center</td><td>'.CallCenter::find($callCenterValue)->name.'</td></tr>';
+                $action .= '</table>';
+
+                $this->activity->activity_log($action, $description);
                 $message = ['success' => true];
             }else{
                 $message = ['success' => false];
@@ -245,25 +262,13 @@ class LguController extends Controller
                 $city = $lguDetails->city;
                 $address = $lguDetails->address;
                 $postalCode = $lguDetails->postalCode;
-                $contactPerson = $lguDetails->fullname;
+                $contactPersonName = $lguDetails->fullname;
                 $contactPersonNo = $lguDetails->contactno;
                 $contactId = $lguDetails->contact_id;
                 $callCenterId = $lguDetails->call_center_id;
 
                 if($lgu->save())
                 {
-                    /*display previous data*/
-                    $prevAction = "updated LGU details from - Station Name: ".$stationname;
-                    $prevAction .= ", Department: ".$department;
-                    $prevAction .= ", Address: ".$address;
-                    $prevAction .= ", City: ".$this->address->get_city_name($city);
-                    $prevAction .= ", State: ".$this->address->get_province_name($state);
-                    $prevAction .= ", Region: ".$this->address->getRegion($region);
-                    $prevAction .= ", Postal Code: ".$postalCode;
-                    $prevAction .= ", Contact Person: ".$contactPerson;
-                    $prevAction .= ", Contact Person No: ".$contactPersonNo;
-                    $prevAction .= ", Call Center: ".CallCenter::find($callCenterId)->name." with CCID: ".$callCenterId;
-
                     /*this will update the contact person details*/
                     $contactPerson = ContactPerson::find($request->contactId);
                     $contactPerson->fullname = $request->edit_contactperson_name;
@@ -273,18 +278,25 @@ class LguController extends Controller
                     $contactPerson->save();
 
                     /*display new data*/
-                    $action = " to - Station Name: ".$request->edit_station_name;
-                    $action .= ", Department: ".$request->edit_department;
-                    $action .= ", Address: ".$request->edit_street_address;
-                    $action .= ", City: ".$this->address->get_city_name($request->edit_city);
-                    $action .= ", State: ".$this->address->get_province_name($request->edit_state);
-                    $action .= ", Region: ".$this->address->getRegion($request->edit_region);
-                    $action .= ", Postal Code: ".$request->edit_postal_code;
-                    $action .= ", Contact Person: ".$request->edit_contactperson_name;
-                    $action .= ", Contact Person No: ".$request->edit_contactperson_no;
-                    $action .= " LGU Id: ".$callCenterId." and Contact Person Id: ".$contactId;
-                    $action .= ", Call Center: ".CallCenter::find($request->ccId)->name." with CCID: ".$request->ccId;
-                    $this->activity->activity_log($prevAction."".$action);
+                    $description = 'Updated LGU details';
+
+                    $action ='<table class="table table-bordered">';
+                    $action .= '<tr><td colspan="3">Action: '.$description.'</td></tr>';
+                    $action .= '<tr><td></td><td>Previous</td><td>Updated</td></tr>';
+                    $action .= '<tr><td colspan="3">Call Center ID: '.$request->ccId.'</td></tr>';
+                    $action .= '<tr><td>Station Name</td><td>'.$stationname.'</td><td>'.$request->edit_station_name.'</td></tr>';
+                    $action .= '<tr><td>Department</td><td>'.$department.'</td><td>'.$request->edit_department.'</td></tr>';
+                    $action .= '<tr><td>Address</td><td>'.$address.'</td><td>'.$request->edit_street_address.'</td></tr>';
+                    $action .= '<tr><td>City</td><td>'.$this->address->get_city_name($city).'</td><td>'.$this->address->get_city_name($request->edit_city).'</td></tr>';
+                    $action .= '<tr><td>State</td><td>'.$this->address->get_province_name($state).'</td><td>'.$this->address->get_province_name($request->edit_state).'</td></tr>';
+                    $action .= '<tr><td>Region</td><td>'.$this->address->getRegion($region).'</td><td>'.$this->address->getRegion($request->edit_region).'</td></tr>';
+                    $action .= '<tr><td>Postal Code</td><td>'.$postalCode.'</td><td>'.$request->edit_postal_code.'</td></tr>';
+                    $action .= '<tr><td>Contact Person</td><td>'.$contactPersonName.'</td><td>'.$request->edit_contactperson_name.'</td></tr>';
+                    $action .= '<tr><td>Contact Person Number</td><td>'.$contactPersonNo.'</td><td>'.$request->edit_contactperson_no.'</td></tr>';
+                    $action .= '<tr><td>Call Center</td><td>'.CallCenter::find($callCenterId)->name.'</td><td>'.CallCenter::find($request->ccId)->name.'</td></tr>';
+                    $action .= '</table>';
+
+                    $this->activity->activity_log($action, $description);
 
                     $message = ['success' => true];
                 }else{
@@ -322,8 +334,14 @@ class LguController extends Controller
 
         if($lgu->delete())
         {
-            $action = "deleted LGU - Station Name: ".$lgu->station_name." with LGU id: ".$request->lgu_delete_id;
-            $this->activity->activity_log($action);
+            $description = "Deleted LGU";
+            $action = '<table class="table table-bordered">';
+            $action .= '<tr><td colspan="2">Action: '.$description.'</td></tr>';
+            $action .= '<tr><td>LGU ID</td><td>'.$request->lgu_delete_id.'</td></tr>';
+            $action .= '<tr><td>Station Name</td><td>'.$lgu->station_name.'</td></tr>';
+            $action .= '</table>';
+
+            $this->activity->activity_log($action, $description);
             $message = ["success" => true];
         }else{
             $message = ["success" => false];
