@@ -15,7 +15,7 @@
     <link href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.0/animate.min.css" rel="stylesheet">
 @endsection
 @section('page_header')
-    Activity Logs
+    Activity Logs Push
 @endsection
 @section('variable_menu')
     <li><a href="{{url('/super-admin/dashboard')}}"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
