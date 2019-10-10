@@ -37,6 +37,19 @@
     <li class="active"><a href="{{url('/super-admin/callCenter')}}"><i class="fa fa-phone-square"></i> <span>Call Center</span></a></li>
     <li><a href="{{url('/super-admin/lgu')}}"><i class="fa fa-bank"></i> <span>LGUs</span></a></li>
     <li><a href="{{url('/super-admin/activity')}}"><i class="fa fa-list"></i> <span>Activity</span></a></li>
+    <li class="treeview">
+        <a href="#">
+            <i class="fa fa-pie-chart"></i><span>Reports</span>
+            <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+            </span>
+            <ul class="treeview-menu">
+                <li><a href="{{url('/super-admin/performance-eval')}}">Performance Evaluation</a></li>
+                <li><a href="/super-admin/user-management">User Management</a></li>
+                <li><a href="/super-admin/forecast">Forecast</a></li>
+            </ul>
+        </a>
+    </li>
 @endsection
 
 @section('main_content')
