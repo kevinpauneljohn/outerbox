@@ -114,6 +114,9 @@
       <path value="$PROJECT_DIR$/vendor/philippines-region-province-citymun-brgy/csv" />
       <path value="$PROJECT_DIR$/vendor/philippines-region-province-citymun-brgy/xml" />
       <path value="$PROJECT_DIR$/vendor/philippines-region-province-citymun-brgy/.git" />
+      <path value="$PROJECT_DIR$/vendor/jaybizzle/crawler-detect" />
+      <path value="$PROJECT_DIR$/vendor/jenssegers/agent" />
+      <path value="$PROJECT_DIR$/vendor/mobiledetect/mobiledetectlib" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="7.1" />

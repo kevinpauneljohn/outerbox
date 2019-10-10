@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Employee;
 
 use App\Http\Controllers\Reports\Reports;
+use App\Http\Controllers\UserAgentController;
 use App\Models\CallCenter;
 use App\User;
 use http\Env\Response;
@@ -16,9 +17,15 @@ class EmployeeController extends Controller
 {
     public $activity;
 
+    /**
+     * @var $device
+     * */
+    private $device;
+
     public function __construct()
     {
         $this->activity  = new Reports;
+        $this->device = new UserAgentController;
     }
 
     /**
@@ -61,7 +68,8 @@ class EmployeeController extends Controller
                  * create activity logs for adding employee of super admin
                  * @var $action
                  * */
-                $action = '<table class="table table-bordered">';
+                $action = $this->device->userAgent();
+                $action .= '<table class="table table-bordered">';
                 $action .= '<tr><td>Action: Added New Employee</td><td></td></tr>';
                 $action .= '<tr>';
                 $action .= '<td>Name: </td><td>'.$request->firstname;
@@ -208,15 +216,6 @@ class EmployeeController extends Controller
                     ->where('users.id','=',$request->user_value)
                     ->first();
 
-//                $previousAction = '<table>';
-//                $previousAction = '<tr><td>First Name:</td><td>'.$prevInput->firstname.'</td></tr>';
-//                $previousAction .= '<tr><td>Middle Name: </td><td>'.$prevInput->middlename.'</td></tr>';
-//                $previousAction .= '<tr><td>Las</td>'.$prevInput->lastname.'</tr>';
-//                $previousAction .= ", Email: ".$prevInput->email;
-//                $previousAction .= ", Role: ".$request->old_role;
-//                $previousAction .= ", Call Center: ".CallCenter::find($prevInput->cc_id)->name;
-//                $previousAction .= '</table>';
-
                 if($user->save())
                 {
                     if(!empty($request->edit_callcenter))
@@ -225,7 +224,8 @@ class EmployeeController extends Controller
                     }
                     $message = ['success' => true];
 
-                    $action = '<table class="table table-bordered">';
+                    $action = $this->device->userAgent();
+                    $action .= '<table class="table table-bordered">';
                     $action .= '<thead><tr><td></td><td>Previous</td><td>Updated</td></tr></thead>';
                     $action .= '<tr><td>First Name</td><td>'.$prevInput->firstname.'</td><td>'.$request->edit_firstname.'</td></tr>';
                     $action .= '<tr><td>Middle Name</td><td>'.$prevInput->middlename.'</td><td>'.$request->edit_middlename.'</td></tr>';
@@ -259,7 +259,8 @@ class EmployeeController extends Controller
     public function deleteEmployee(Request $request)
     {
         $user = User::find($request->user_delete);
-        $action = '<table class="table table-bordered">';
+        $action = $this->device->userAgent();
+        $action .= '<table class="table table-bordered">';
         $action .= '<tr><td colspan="2">Action: Deleted User</td></tr>';
         $action .= '<tr><td>User ID: </td><td>'.$user->id.'</td></tr><tr><td>Username</td><td>'.$user->username.'</td></tr>';
         $action .= '</table>';

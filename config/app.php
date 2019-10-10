@@ -185,7 +185,9 @@ return [
         Illuminate\View\ViewServiceProvider::class,
 
         //insert jasper service provider here
-        JasperPHP\JasperPHPServiceProvider::class
+        JasperPHP\JasperPHPServiceProvider::class,
+        Jenssegers\Agent\AgentServiceProvider::class,
+
 
     ],
 
@@ -238,6 +240,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'XmlParser' => Orchestra\Parser\Xml\Facade::class,
+        'Agent' => Jenssegers\Agent\Facades\Agent::class,
 
     ],
 

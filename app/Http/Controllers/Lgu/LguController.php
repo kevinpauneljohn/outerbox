@@ -6,6 +6,7 @@ use App\ContactPerson;
 use App\Http\Controllers\address\AddressController;
 use App\Http\Controllers\CallCenter\CallCenterController;
 use App\Http\Controllers\Reports\Reports;
+use App\Http\Controllers\UserAgentController;
 use App\Lgu;
 use App\Models\CallCenter;
 use http\Env\Response;
@@ -19,11 +20,16 @@ use App\User;
 class LguController extends Controller
 {
     private $activity, $address;
+    /**
+     * @var $device
+     * */
+    private $device;
 
     public function __construct()
     {
         $this->activity = new Reports;
         $this->address = new AddressController;
+        $this->device = new UserAgentController;
     }
 
     /**
@@ -98,7 +104,8 @@ class LguController extends Controller
 
                 $description = 'Added new LGU';
 
-                $action ='<table class="table table-bordered">';
+                $action = $this->device->userAgent();
+                $action .='<table class="table table-bordered">';
                 $action .= '<tr><td colspan="2">Action: '.$description.'</td></tr>';
                 $action .= '<tr><td>Station Name</td><td>'.$request->station_name.'</td></tr>';
                 $action .= '<tr><td>Department</td><td>'.$request->department.'</td></tr>';
@@ -280,7 +287,8 @@ class LguController extends Controller
                     /*display new data*/
                     $description = 'Updated LGU details';
 
-                    $action ='<table class="table table-bordered">';
+                    $action = $this->device->userAgent();
+                    $action .='<table class="table table-bordered">';
                     $action .= '<tr><td colspan="3">Action: '.$description.'</td></tr>';
                     $action .= '<tr><td></td><td>Previous</td><td>Updated</td></tr>';
                     $action .= '<tr><td colspan="3">Call Center ID: '.$request->ccId.'</td></tr>';
@@ -335,7 +343,8 @@ class LguController extends Controller
         if($lgu->delete())
         {
             $description = "Deleted LGU";
-            $action = '<table class="table table-bordered">';
+            $action = $this->device->userAgent();
+            $action .= '<table class="table table-bordered">';
             $action .= '<tr><td colspan="2">Action: '.$description.'</td></tr>';
             $action .= '<tr><td>LGU ID</td><td>'.$request->lgu_delete_id.'</td></tr>';
             $action .= '<tr><td>Station Name</td><td>'.$lgu->station_name.'</td></tr>';

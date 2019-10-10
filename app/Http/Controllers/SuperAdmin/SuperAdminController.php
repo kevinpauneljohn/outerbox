@@ -6,6 +6,7 @@ use App\activity;
 use App\address\Region;
 use App\Http\Controllers\RolesController;
 use App\Http\Controllers\TimeController;
+use App\Http\Controllers\UserAgentController;
 use App\Lgu;
 use App\Models\Lead;
 use App\User;
@@ -13,7 +14,6 @@ use http\Env\Response;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Carbon;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
@@ -32,6 +32,11 @@ class SuperAdminController extends Controller
     private $activity;
 
     /**
+     * @var $device
+     * */
+    private $device;
+
+    /**
      * date: oct. 05, 2019
      * by: john kevin paunel
      * this will initialized the report controller
@@ -40,6 +45,7 @@ class SuperAdminController extends Controller
     public function __construct()
     {
         $this->activity = new Reports;
+        $this->device = new UserAgentController;
     }
 
     public function dashboard()
@@ -82,7 +88,9 @@ class SuperAdminController extends Controller
         $activities = activity::where('user_id',$id)->get();
         return view('SuperAdmin.employee.employeeProfile')->with([
             'user'          => $user,
-            'activities'    => $activities
+            'activities'    => $activities,
+            "dateTime"          => new TimeController,
+            "roles"             => new RolesController,
         ]);
     }
 
@@ -112,7 +120,10 @@ class SuperAdminController extends Controller
             if($role->save())
             {
                 /*activity log*/
-                $action = "Added a new Role: ".$request->name;
+                $action = $this->device->userAgent();
+                $action .= "<b>Added a new Role: </b>".$request->name;
+                $action .= '<tr><td><b>Role Name</b></td><td>'.$request->name.'</td></tr>';
+                $action .= '</table>';
                 $description = "Added a new role";
                 $this->activity->activity_log($action, $description);
 
@@ -126,11 +137,15 @@ class SuperAdminController extends Controller
     public function deleteRole(Request $request)
     {
         $role = Role::find($request->role);
-        $action = "deleted a role: ".$role->name." with role ID: ".$request->role;
+
         if($role->delete())
         {
             /*activity log*/
             $description = "Deleted a role";
+            $action = $this->device->userAgent();
+            $action .= '<tr><td>Role Name</td><td>'.$role->name.'</td></tr>';
+            $action .= '<tr><td>Role ID</td><td>'.$request->role.'</td></tr>';
+            $action .= '</table>';
             $this->activity->activity_log($action, $description);
             return response()->json(['success' => true]);
         }
@@ -178,7 +193,8 @@ class SuperAdminController extends Controller
 
                 if($role->save())
                 {
-                    $action = '<table class="table table-bordered">';
+                    $action = $this->device->userAgent();
+                    $action .= '<table class="table table-bordered">';
                     $action .= '<tr><td></td><td>Previous</td><td>Updated</td></tr>';
                     $action .= '<tr><td>Role name</td><td>'.$oldRole->name.'</td><td>'.$request->edit_name.'</td></tr>';
                     $action .= '<tr><td>Description</td><td>'.$oldRole->description.'</td><td>'.$request->edit_description.'</td></tr>';
@@ -227,8 +243,15 @@ class SuperAdminController extends Controller
             if(Permission::create(['name' => $request->permission_name]))
             {
                 /*activity log*/
-                $action = "added new permission: ".$request->permission_name;
-                $this->activity->activity_log($action, "Added new permission");
+                /*$action = "added new permission: ".$request->permission_name;*/
+                $description = 'Added new permission';
+
+                $action = $this->device->userAgent();
+                $action .= '<table class="table table-bordered">';
+                $action .= '<tr><td>Action: '.$description.'</td></tr>';
+                $action .= '<tr><td>Permission Name:</td><td>'.$request->permission_name.'</td></tr>';
+                $action .= '<table/>';
+                $this->activity->activity_log($action,$description);
                 return response()->json(['success' => true]);
             }
         }

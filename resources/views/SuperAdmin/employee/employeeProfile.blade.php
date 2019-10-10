@@ -44,30 +44,30 @@
                     <div class="row">
                             <div align="center"><img src="http://outerbox.biz/tmc/vendor/adminLTE/img/default-avatar.png" class="img-circle" alt="User" style="max-height:70px;margin:15px;"></div>
                             <p>
-                            <table style="margin-left:30px !important;">
+                            <table style="margin-left:30px !important;" class="table table-bordered">
                                 <tr>
                                     <td><b>Date Registered </b>&nbsp;</td>
-                                    <td>: {{$user->created_at}}</td>
+                                    <td>{{$user->created_at}}</td>
                                 </tr>
                                 <tr>
                                     <td><b>Full Name </b>&nbsp;</td>
-                                    <td>: {{ucfirst($user->firstname)}} {{ ($user->middlename) ? ucfirst($user->middlename): ''}} {{ucfirst($user->lastname)}}</td>
+                                    <td>{{ucfirst($user->firstname)}} {{ ($user->middlename) ? ucfirst($user->middlename): ''}} {{ucfirst($user->lastname)}}</td>
                                 </tr>
                                 <tr>
                                     <td><b>Username</b> &nbsp;</td>
-                                    <td>: {{$user->username}}</td>
+                                    <td>{{$user->username}}</td>
                                 </tr>
                                 <tr>
                                     <td><b>Role</b> &nbsp;</td>
-                                    <td>: {{ucfirst($user->roles[0]->name)}}</td>
+                                    <td>{{ucfirst($user->roles[0]->name)}}</td>
                                 </tr>
                                 <tr>
                                     <td><b>Last seen online </b>&nbsp;</td>
-                                    <td>: </td>
+                                    <td></td>
                                 </tr>
                                 <tr>
                                     <td><b>Department</b>&nbsp; </td>
-                                    <td>: </td>
+                                    <td></td>
                                 </tr>
                             </table>
                             </p>
@@ -85,22 +85,35 @@
                     <table id="agents-list" class="table table-bordered table-hover">
                         <thead>
                         <tr>
-                            <th width="10%">Date</th>
+                            <th width="10%">Username</th>
+                            <th width="10%">Role</th>
                             <th>Description</th>
+                            <th width="10%">Time</th>
+                            <th width="10%">Date</th>
+                            <th width="10%">Action</th>
                         </tr>
                         </thead>
                         <tbody>
-                            @foreach($activities as $activity)
-                                    <tr>
-                                        <td>{{$activity->created_at}}</td>
-                                        <td>{{$activity->action}}</td>
-                                    </tr>
-                                @endforeach
+                        @foreach($activities as $activity)
+                            <tr>
+                                <td>{{($activity->user_id == 0) ? "System" : \App\User::find($activity->user_id)->username}}</td>
+                                {{--                            <td>{{!! $roles->get_role_names_with_label($activity->user_id !!}}</td>--}}
+                                <td>{!! nl2br($roles->get_role_names_with_label($activity->user_id)) !!}</td>
+                                <td>{{$activity->description}}</td>
+                                <td>{{$dateTime->dateDiff($activity->created_at)}}</td>
+                                <td>{{$activity->created_at}}</td>
+                                <td><button class="btn btn-success view-log-details" title="View" data-toggle="modal" data-target="#view-logs" value="{{$activity->id}}"><i class="fa fa-eye"></i></button></td>
+                            </tr>
+                        @endforeach
                         </tbody>
                         <tfoot>
                         <tr>
-                            <th width="10%">Date</th>
+                            <th width="10%">Username</th>
+                            <th width="10%">Role</th>
                             <th>Description</th>
+                            <th width="10%">Time</th>
+                            <th width="10%">Date</th>
+                            <th width="10%">Action</th>
                         </tr>
                         </tfoot>
                     </table>
@@ -110,7 +123,24 @@
         </div>
     </div>
 
+    <div class="modal fade" id="view-logs">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Log Details</h4>
+                </div>
 
+                <div class="modal-body">
+                    <div class="logs-content"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
 
 @section('extra_script')
@@ -127,6 +157,7 @@
     <script src="{{asset('bower_components/remarkable-bootstrap-notify/bootstrap-notify.min.js')}}"></script>
 
     <script src="{{asset('/js/employeeProfile.js')}}"></script>
+    <script src="{{asset('/js/activity.js')}}"></script>
 
     <script>
         $(function () {
