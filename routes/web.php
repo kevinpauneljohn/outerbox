@@ -74,6 +74,10 @@ Route::group(['middleware' => ['auth','role:super admin']],function(){
     Route::get('super-admin/lgu','SuperAdmin\SuperAdminController@lgu');
 
     Route::get('/super-admin/activity','SuperAdmin\SuperAdminController@activities');
+
+    Route::get('/super-admin/performance-eval','SuperAdmin\SuperAdminController@performanceEval');
+    Route::get('/super-admin/user-management','SuperAdmin\SuperAdminController@userManagement');
+    Route::get('/super-admin/forecast','SuperAdmin\SuperAdminController@forecast');
 });
 
 Route::group(['middleware' => ['auth','role:super admin|admin']], function (){

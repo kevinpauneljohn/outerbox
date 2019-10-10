@@ -21,6 +21,10 @@ use Illuminate\Support\Facades\Validator;
 use App\Models\CallCenter;
 use App\Http\Controllers\Reports\Reports;
 
+use App\Repositories\Lead\LeadRepositoryContract;
+
+use LaravelDaily\LaravelCharts\Classes\LaravelChart;
+
 class SuperAdminController extends Controller
 {
     /**
@@ -31,20 +35,53 @@ class SuperAdminController extends Controller
      * */
     private $activity;
 
+
+    // Added Oct. 10, 2019 by Jovito Pangan
+    // Lead Count and For report leads
+    protected $leads;
+
     /**
      * date: oct. 05, 2019
      * by: john kevin paunel
      * this will initialized the report controller
      * @return void
      * */
-    public function __construct()
+    public function __construct(LeadRepositoryContract $leads)
     {
+        $this->leads = $leads;
         $this->activity = new Reports;
     }
 
     public function dashboard()
     {
-        return view('SuperAdmin.dashboard');
+               /**
+         * Statistics for leads this month.
+         */
+        // $leadCompletedThisMonth = $this->leads->completedLeadsThisMonth();
+        // $completedLeadsMonthly = $this->leads->completedLeadsThisMonth();
+        // $createdLeadsMonthly   = $this->leads->createdLeadsMonthly();
+
+        $chart_options = [
+            'chart_title' => 'Users by months',
+            'report_type' => 'group_by_date',
+            'model' => 'App\User',
+            'group_by_field' => 'created_at',
+            'group_by_period' => 'month',
+            'chart_type' => 'bar',
+        ];
+        $chart1 = new LaravelChart($chart_options);
+
+        $chart_option_tickets = [
+            'chart_title' => 'Call Centers by months',
+            'report_type' => 'group_by_date',
+            'model' => 'App\Ticket',
+            'group_by_field' => 'created_at',
+            'group_by_period' => 'day',
+            'chart_type' => 'line',
+        ];
+        $chart2 = new LaravelChart($chart_option_tickets);
+
+        return view('SuperAdmin.dashboard', compact('chart1', 'chart2'));
     }
 
     public function employee()
@@ -321,6 +358,38 @@ class SuperAdminController extends Controller
         ]);
     }
 
+    /////////////////////////////// -------------- REPORTS MODULE --------------- ////////////////////////////
+    /**
+     * date: Oct. 10, 2019
+     * by: Jovito Pangan
+     * Performance Evaluation Report
+     * @return object
+     */
+    public function performanceEval(){
+        return view("SuperAdmin.Reports.performance_eval");
+    }
+
+    /**
+     * date: Oct. 10, 2019
+     * by: Jovito Pangan
+     * User management Report
+     * @return object
+     */
+    public function userManagement(){
+        return view("SuperAdmin.Reports.user_management");
+    }
+
+    /**
+     * date: Oct. 10, 2019
+     * by: Jovito Pangan
+     * Forecast Report
+     * @return object
+     */
+    public function forecast(){
+        return view("SuperAdmin.Reports.forecast");
+    }
+
+    /////////////////////////////// -------------- END OF REPORTS MODULE --------------- ////////////////////////////
 
     /**
      * for mobile app

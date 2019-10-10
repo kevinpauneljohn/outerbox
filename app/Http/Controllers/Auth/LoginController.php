@@ -8,6 +8,7 @@ use App\Http\Controllers\Reports\Reports;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class LoginController extends Controller
 {
@@ -79,7 +80,7 @@ class LoginController extends Controller
             $role = !empty(auth()->user()->getRoleNames()[0]) ? auth()->user()->getRoleNames()[0] : "";
 
             $this->setActiveStatus(auth()->user()->id, 1);
-
+            Cache::put('user-is-online-', auth()->user()->id, 500);
             $this->activity->activity_log(" logged in","User logged in");
 
             switch ($role) {
