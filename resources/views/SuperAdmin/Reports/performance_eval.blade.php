@@ -5,7 +5,7 @@
 @endsection
 
 @section('title')
-    Super Admin | Activity Logs
+    Super Admin | Performance Evaluation Report
 @endsection
 @section('extra_stylesheet')
     <!-- DataTables -->
@@ -15,7 +15,7 @@
     <link href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.0/animate.min.css" rel="stylesheet">
 @endsection
 @section('page_header')
-    Activity Logs
+    Performance Evaluation Report
 @endsection
 @section('variable_menu')
     <li><a href="{{url('/super-admin/dashboard')}}"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
@@ -34,8 +34,8 @@
     </li>
     <li><a href="{{url('/super-admin/callCenter')}}"><i class="fa fa-phone-square"></i> <span>Call Center</span></a></li>
     <li><a href="{{url('/super-admin/lgu')}}"><i class="fa fa-bank"></i> <span>LGUs</span></a></li>
-    <li class="active"><a href="{{url('/super-admin/activity')}}"><i class="fa fa-list"></i> <span>Activity</span></a></li>
-    <li class="treeview">
+    <li><a href="{{url('/super-admin/activity')}}"><i class="fa fa-list"></i> <span>Activity</span></a></li>
+    <li class="active treeview">
         <a href="#">
             <i class="fa fa-pie-chart"></i><span>Reports</span>
             <span class="pull-right-container">
@@ -50,63 +50,77 @@
     </li>
 @endsection
 @section('main_content')
-    <div class="box">
-        <div class="box-body">
-            <table id="activities" class="table table-bordered table-hover">
-                <thead>
-                <tr>
-                    <th width="10%">Username</th>
-                    <th width="10%">Role</th>
-                    <th>Description</th>
-                    <th width="10%">Time</th>
-                    <th width="10%">Date</th>
-                    <th width="10%">Action</th>
-                </tr>
-                </thead>
-                <tbody>
-                    @foreach($activities as $activity)
-                        <tr>
-                            <td>{{($activity->user_id == 0) ? "System" : \App\User::find($activity->user_id)->username}}</td>
-{{--                            <td>{{!! $roles->get_role_names_with_label($activity->user_id !!}}</td>--}}
-                            <td>{!! nl2br($roles->get_role_names_with_label($activity->user_id)) !!}</td>
-                            <td>{{$activity->description}}</td>
-                            <td>{{$dateTime->dateDiff($activity->created_at)}}</td>
-                            <td>{{$activity->created_at}}</td>
-                            <td><button class="btn btn-success view-log-details" title="View" data-toggle="modal" data-target="#view-logs" value="{{$activity->id}}"><i class="fa fa-eye"></i></button></td>
-                        </tr>
-                        @endforeach
-                </tbody>
-                <tfoot>
-                <tr>
-                    <th width="10%">Username</th>
-                    <th width="10%">Role</th>
-                    <th>Description</th>
-                    <th width="10%">Time</th>
-                    <th width="10%">Date</th>
-                    <th width="10%">Action</th>
-                </tr>
-                </tfoot>
-            </table>
-        </div>
-        <!-- /.box-body -->
-    </div>
-    <!-- /.box -->
+<div class="col-sm-6">
+        <div class="box box-primary">
+                <div class="box-header with-border">
 
-    <div class="modal fade" id="view-logs">
-        <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title">Log Details</h4>
-                    </div>
-
-                    <div class="modal-body">
-                        <div class="logs-content"></div>
+                    <div class="box-tools pull-right">
+                        <button type="button" id="collapse2" class="btn btn-box-tool" data-toggle="collapse"
+                                data-target="#collapseTwo"><i id="toggler2" class="fa fa-minus"></i>
+                        </button>
                     </div>
                 </div>
+                <div id="collapseTwo" class="panel-collapse">
+                    <div class="box-body">
+                            <table id="activities" class="table table-bordered table-hover">
+                                    <thead>
+                                    <tr>
+                                        <th width="10%">User</th>
+                                        <th width="10%">Rating</th>
+                                        <th>Comments</th>
+                                        <th width="10%">Date</th>
+                                        <th width="10%">Action</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+
+                                    </tbody>
+
+                                </table>
+                    </div>
+             </div>
+        </div>
+
+</div>
+<div class="col-sm-6">
+
+    <div class="col-lg-12">
+        <!-- /.info-box -->
+        <div class="info-box bg-green">
+                <span class="info-box-icon"><i class="ion ion-star"></i></span>
+
+                <div class="info-box-content">
+                    <span class="info-box-text">{{ __('Rating') }}</span>
+                    <span class="info-box-number">0</span>
+
+                    <div class="progress">
+                        <div class="progress-bar" style="width: 0%"></div>
+                    </div>
+                      <span class="progress-description">
+                        0% {{ __('Completed') }}
+                      </span>
+                </div>
+                <!-- /.info-box-content -->
         </div>
     </div>
+
+    <div class="col-lg-12">
+        <div class="box"> <!-- Info Boxes Style 2 -->
+            <div class="box-body">
+                <div style="width: 50%; display: inline !important;">
+                    {!!Form::submit("Export to PDF")->danger()!!}
+                    {!!Form::submit("Export to Excel")->success()!!}
+                    {!!Form::date('start_date', 'Start Date')!!}{!!Form::date('end_date', 'End Date')!!}
+                    {!!Form::submit("Filter Date")!!}
+
+                </div>
+            </div> <!-- /.info-box-content -->
+        </div>
+    </div>
+
+
+
+</div>
 
 @endsection
 
@@ -126,9 +140,6 @@
     <script src="{{asset('/js/activity.js')}}"></script>
 
     <script>
-        $(function () {
-            $('#activities').DataTable({
-            })
-        })
+
     </script>
 @endsection
