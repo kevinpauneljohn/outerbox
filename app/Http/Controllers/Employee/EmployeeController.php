@@ -62,7 +62,7 @@ class EmployeeController extends Controller
                  * @var $action
                  * */
                 $action = '<table class="table table-bordered">';
-                $action .= '<tr><td colspan="2">Action: Added New Employee</td></tr>';
+                $action .= '<tr><td>Action: Added New Employee</td><td></td></tr>';
                 $action .= '<tr>';
                 $action .= '<td>Name: </td><td>'.$request->firstname;
                 $action .= (!empty($request->middlename)) ? $request->middlename : ' ';
@@ -208,12 +208,14 @@ class EmployeeController extends Controller
                     ->where('users.id','=',$request->user_value)
                     ->first();
 
-                $previousAction = "updated employee details from - First Name: ".$prevInput->firstname;
-                $previousAction .= ", Middle Name: ".$prevInput->middlename;
-                $previousAction .= ", Last Name: ".$prevInput->lastname;
-                $previousAction .= ", Email: ".$prevInput->email;
-                $previousAction .= ", Role: ".$request->old_role;
-                $previousAction .= ", Call Center: ".CallCenter::find($prevInput->cc_id)->name;
+//                $previousAction = '<table>';
+//                $previousAction = '<tr><td>First Name:</td><td>'.$prevInput->firstname.'</td></tr>';
+//                $previousAction .= '<tr><td>Middle Name: </td><td>'.$prevInput->middlename.'</td></tr>';
+//                $previousAction .= '<tr><td>Las</td>'.$prevInput->lastname.'</tr>';
+//                $previousAction .= ", Email: ".$prevInput->email;
+//                $previousAction .= ", Role: ".$request->old_role;
+//                $previousAction .= ", Call Center: ".CallCenter::find($prevInput->cc_id)->name;
+//                $previousAction .= '</table>';
 
                 if($user->save())
                 {
@@ -223,13 +225,17 @@ class EmployeeController extends Controller
                     }
                     $message = ['success' => true];
 
-                    $action = "to - First Name: ".$request->edit_firstname;
-                    $action .= ", Middle Name: ".$request->edit_middlename;
-                    $action .= ", Last Name: ".$request->edit_lastname;
-                    $action .= ", Email: ".$request->edit_email;
-                    $action .= ", Role: ".$request->edit_role;
-                    $action .= ", Call Center: ".CallCenter::find($request->edit_callcenter)->name;
-                    $this->activity->activity_log($previousAction." ".$action, "Updated User");
+                    $action = '<table class="table table-bordered">';
+                    $action .= '<thead><tr><td></td><td>Previous</td><td>Updated</td></tr></thead>';
+                    $action .= '<tr><td>First Name</td><td>'.$prevInput->firstname.'</td><td>'.$request->edit_firstname.'</td></tr>';
+                    $action .= '<tr><td>Middle Name</td><td>'.$prevInput->middlename.'</td><td>'.$request->edit_middlename.'</td></tr>';
+                    $action .= '<tr><td>Last Name</td><td>'.$prevInput->lastname.'</td><td>'.$request->edit_lastname.'</td></tr>';
+                    $action .= '<tr><td>Email</td><td>'.$prevInput->email.'</td><td>'.$request->edit_email.'</td></tr>';
+                    $action .= '<tr><td>Role</td><td>'.$request->old_role.'</td><td>'.$request->edit_role.'</td></tr>';
+                    $action .= '<tr><td>Call Center</td><td>'.CallCenter::find($prevInput->cc_id)->name.'</td><td>'.CallCenter::find($request->edit_callcenter)->name.'</td></tr>';
+                    $action .= '</table>';
+                    /*$this->activity->activity_log($previousAction." ".$action, "Updated User");*/
+                    $this->activity->activity_log($action, "Updated User");
                 }else{
                     $message = ['success' => false];
                 }
@@ -254,11 +260,11 @@ class EmployeeController extends Controller
     {
         $user = User::find($request->user_delete);
         $action = '<table class="table table-bordered">';
-        $action .= '<tr><td colspan="2">Action: Deleted Employee</td></tr>';
+        $action .= '<tr><td colspan="2">Action: Deleted User</td></tr>';
         $action .= '<tr><td>User ID: </td><td>'.$user->id.'</td></tr><tr><td>Username</td><td>'.$user->username.'</td></tr>';
         $action .= '</table>';
 
-        $description = "Deleted employee";
+        $description = "Deleted user";
 
         $message = ($user->delete()) ? ['success' => true] : ['success' => false];
         $this->activity->activity_log($action, $description);

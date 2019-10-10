@@ -112,8 +112,9 @@ class SuperAdminController extends Controller
             if($role->save())
             {
                 /*activity log*/
-                $action = "Added a new role: ".$request->name;
-                $this->activity->activity_log($action);
+                $action = "Added a new Role: ".$request->name;
+                $description = "Added a new role";
+                $this->activity->activity_log($action, $description);
 
                 return response()->json(['success' => true]);
             }
@@ -129,7 +130,8 @@ class SuperAdminController extends Controller
         if($role->delete())
         {
             /*activity log*/
-            $this->activity->activity_log($action);
+            $description = "Deleted a role";
+            $this->activity->activity_log($action, $description);
             return response()->json(['success' => true]);
         }
         return response()->json(['success' => false]);
@@ -173,11 +175,16 @@ class SuperAdminController extends Controller
             if($checkRoleInput->count() < 1)
             {
                 $oldRole = Role::find($request->role_value);
-                $prevAction = "update the role from Role Name: ".$oldRole->name.", description: ".$oldRole->description;
+
                 if($role->save())
                 {
-                    $action = "to Role Name: ".$request->edit_name.", description: ".$request->edit_description;
-                    $this->activity->activity_log($prevAction." ".$action);
+                    $action = '<table class="table table-bordered">';
+                    $action .= '<tr><td></td><td>Previous</td><td>Updated</td></tr>';
+                    $action .= '<tr><td>Role name</td><td>'.$oldRole->name.'</td><td>'.$request->edit_name.'</td></tr>';
+                    $action .= '<tr><td>Description</td><td>'.$oldRole->description.'</td><td>'.$request->edit_description.'</td></tr>';
+                    $action .= '</table>';
+                    $description = "Updated a role";
+                    $this->activity->activity_log($action, $description);
                     return response()->json(['success' => true]);
                 }
             }else{
@@ -221,7 +228,7 @@ class SuperAdminController extends Controller
             {
                 /*activity log*/
                 $action = "added new permission: ".$request->permission_name;
-                $this->activity->activity_log($action);
+                $this->activity->activity_log($action, "Added new permission");
                 return response()->json(['success' => true]);
             }
         }

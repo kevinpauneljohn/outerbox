@@ -39,11 +39,14 @@ class PermissionController extends Controller
         {
             $permission = Permission::find($request->permission_value);
             /*activity log*/
-            $action = "updated the permission from ".$permission->name." to ".$request->edit_permission_name." with permission id: ".$request->permission_value;
 
-            $permission->name = $request->edit_permission_name;
+            $action = '<table class="table table-bordered">';
+            $action .= '<tr><td colspan="3">Role ID: '.$request->permission_value.'</td></tr>';
+            $action .= '<tr><td></td><td>Previous</td><td>Updated</td></tr>';
+            $action .= '<tr><td>Permission Name</td><td>'.$permission->name.'</td><td>'.$request->edit_permission_name.'</td></tr>';
+            $action .= '</table>';
 
-            $this->activity->activity_log($action);
+            $this->activity->activity_log($action, "updated permission");
 
             return ($permission->save()) ? response()->json(['success' => true]) : response()->json(['success' => false]);
 
@@ -59,7 +62,7 @@ class PermissionController extends Controller
 
         /*activity logs*/
         $action = "deleted a permission name: ".$permission->name." with permission id: ".$request->delete_permission_row;
-        $this->activity->activity_log($action);
+        $this->activity->activity_log($action, "Deleted a permission");
 
         return ($permission->delete()) ? response()->json(['success' => true]) : response()->json(['success' => false]);
     }
