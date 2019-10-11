@@ -40,7 +40,7 @@
                             {{ucfirst(\App\Http\Controllers\address\AddressController::cityName($lguDetails->city).', ')}}
                             {{ucfirst(\App\Http\Controllers\address\AddressController::provinceName($lguDetails->province))}}
                         </td>
-                        <td>{{$lguDetails->fullname}}</td>
+                        <td>{{ucfirst($lguDetails->firstname)}} {{ucfirst($lguDetails->lastname)}}</td>
                         <td>{{$lguDetails->contactno}}</td>
                     </tr>
                 </tbody>

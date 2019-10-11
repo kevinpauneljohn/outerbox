@@ -31,7 +31,11 @@ $(document).on('change','select[name=status]',function(){
         'data'  : data,
         'cache' : false,
         success: function (result) {
-
+            console.log(result);
+            if(result.success == true)
+            {
+                location.reload();
+            }
         }
     });
 });

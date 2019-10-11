@@ -36,12 +36,12 @@ class AgentPageController extends Controller
                 'leads.id as lead_id','leads.app_user_id','leads.created_at as date_reported','leads.app_response',
                 'lgus.*',
                 'tickets.*')
-            ->where('tickets.user_assigned_id','=',auth()->user()->id)
-            ->get();
-        $callCenterId = User::find(auth()->user()->id)->callcenter()->pluck('cc_id')[0];
-        $callCenterTickets = CallCenter::find($callCenterId)->tickets()->pluck('id');
+            ->where('tickets.user_assigned_id','=',auth()->user()->id);
 
-//        return $callCenterTickets;
+        $callCenterId = User::find(auth()->user()->id)->callcenter()->pluck('cc_id')[0];
+        $callCenterTickets = CallCenter::find($callCenterId)->tickets();
+
+//        return $tickets->get();
 
         return view('Employee.Agent.tickets')->with([
             'tickets' => $tickets,
@@ -241,6 +241,8 @@ class AgentPageController extends Controller
 
     /**
      * Lgu Profile page view
+     * route /agent/lgu
+     * controller method AgentPageController@lgu
      * @return mixed
      * */
     public function lgu()
@@ -252,19 +254,21 @@ class AgentPageController extends Controller
         $lgus = DB::table('lgus')
             ->leftJoin('call_centers','lgus.call_center_id','=','call_centers.id')
             ->leftJoin('contact_people','lgus.id','=','contact_people.lgu_id')
+            ->leftJoin('users','contact_people.user_id','=','users.id')
             ->select('lgus.id as lgu_id','lgus.station_name','lgus.department','lgus.created_at','lgus.region','lgus.province','lgus.city','lgus.address',
                 'call_centers.id as cc_id',
-                'contact_people.fullname as contactname','contact_people.contactno')
+                'users.firstname','users.lastname','contact_people.contactno')
             ->where('lgus.call_center_id','=',$callcenter_id);
 
 
         return view('Employee.Agent.lgu')->with(['lgus'=> $lgus]);
     }
 
-
     /**
      * display the details about the ticket
+     * @author john kevin paunel
      * date: 09/06/2019
+     * route /ticket/{id}
      * @param int $id
      * @return mixed
      * */

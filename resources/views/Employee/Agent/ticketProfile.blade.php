@@ -16,20 +16,24 @@
     Ticket <button type="button" class="btn bg-purple" data-toggle="modal" data-target="#create-ticket"><i class="fa fa-plus"></i> Add New</button>
 @endsection
 @section('main_content')
-    <div class="box">
-        <div class="box-body">
-            <table cellspacing="100">
-                <tr>
-                    <td>Assigned Agent</td>
-                    <td>: {{ucfirst($agent->firstname)}} {{ucfirst($agent->lastname)}}</td>
-                </tr>
-                <tr>
-                    <td>Username</td>
-                    <td>: {{$agent->username}}</td>
-                </tr>
-            </table>
-        </div>
+    <div class="row">
+        <div class="col-lg-4">
+            <div class="box">
+                <div class="box-body">
+                    <table class="table table-bordered">
+                        <tr>
+                            <td><b>Assigned Agent: </b></td>
+                            <td>{{ucfirst($agent->firstname)}} {{ucfirst($agent->lastname)}}</td>
+                        </tr>
+                        <tr>
+                            <td><b>Username: </b></td>
+                            <td>{{$agent->username}}</td>
+                        </tr>
+                    </table>
+                </div>
         <!-- /.box-body -->
+            </div>
+        </div>
     </div>
     <!-- /.box -->
     <div class="row">

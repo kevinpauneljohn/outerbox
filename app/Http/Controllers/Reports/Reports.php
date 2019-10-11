@@ -33,8 +33,9 @@ class Reports extends Controller
 
        // echo \request()->ip();
         // server ip
-
-        echo \request()->ip(); //see the method below
+        $user_id = 12;
+        $user = ($user_id != 0 )? User::find($user_id)->getRoleNames()[0] : "system";
+        return $user;
     }
     public function getUserIpAddr(){
         $ipaddress = '';
@@ -92,7 +93,7 @@ class Reports extends Controller
         $activity = new Activity;
 
         $activity->user_id = 0;
-        $activity->action = 'The system '.$action;
+        $activity->action = $action;
         $activity->description = $description;
 
         $activity->save();

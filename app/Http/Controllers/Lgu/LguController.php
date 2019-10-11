@@ -160,7 +160,11 @@ class LguController extends Controller
     }
 
     /**
+     * @author john kevin paunel
      * retrieve LGU data
+     * route /agent/lgu/profile/{id}
+     * controller: Lgu\LguController
+     * method lgu_profile
      * @param int $lgu_id
      * @return mixed
      * */
@@ -168,7 +172,8 @@ class LguController extends Controller
     {
         $lguDetails = DB::table('lgus')
             ->leftJoin('contact_people','lgus.id','=','contact_people.lgu_id')
-            ->select('lgus.*','contact_people.id as contactId','contact_people.contactno')
+            ->leftJoin('users','contact_people.user_id','=','users.id')
+            ->select('lgus.*','contact_people.id as contactId','contact_people.contactno','users.firstname','users.lastname')
             ->where('lgus.id','=',$lgu_id)->first();
         return view('lgu.lguProfile')->with([
             'lguDetails'    => $lguDetails,
@@ -177,7 +182,7 @@ class LguController extends Controller
 
     /**
      * date: Oct. 07, 2019
-     * by: john kevin paunel
+     * @author john kevin paunel
      * get the lgu data thru ID
      * @param Request $request
      * @return Response

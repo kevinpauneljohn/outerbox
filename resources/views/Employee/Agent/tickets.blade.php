@@ -27,7 +27,6 @@
                     <th>Station name</th>
                     <th>Date Reported</th>
                     <th>Time Handled</th>
-                    {{-- <th>Time Reached</th> --}}
                     <th>Duration Before Agent Handled the case</th>
                     <th>Call Duration</th>
                     <th>Duration until the Agent transfer the request to LGU</th>
@@ -38,19 +37,18 @@
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($tickets as $ticket)
+                @foreach($tickets->get() as $ticket)
                     <tr>
                         <td><a href="{{url('/ticket/'.$ticket->id)}}"> {{\App\Http\Controllers\Ticket\CreateTicketController::getSequence($ticket->id)}}</a></td>
                         <td><a href="{{url('/ticket/'.$ticket->id)}}"> {{\App\Http\Controllers\Ticket\TicketController::get_parent_ticket($ticket->id)}}</a></td>
                         <td>{{\App\Http\Controllers\AgentPageController::get_app_response($ticket->app_response)}}</td>
-                        <td><button type="button" name="select_lgu" class="btn bg-aqua" data-toggle="modal" data-target="#select-lgu" value="{{$ticket->id}}">{{(!empty($ticket->station_name)) ? $ticket->station_name : 'Select LGU'}}</button></td>
-{{--                        <td>{{$ticket->date_reported}}</td>--}}
+                        <td><button type="button" name="select_lgu" class="btn bg-aqua" data-toggle="modal" data-target="#select-lgu" value="{{$ticket->id}}">{{(isset($ticket->station_name)) ? $ticket->station_name : 'Select LGU'}}</button></td>
+                        <td>{{$ticket->date_reported}}</td>
                         <td>{{ Carbon\Carbon::parse(\App\Http\Controllers\AgentPageController::get_requested_date($ticket->app_response))->diffForHumans()}}</td>
                         <td>{{ Carbon\Carbon::parse($ticket->time_handled)->diffForHumans() }}</td>
                         <td>{{ Carbon\Carbon::parse($ticket->duration_before_agent_handled_call)->diffForHumans() }}</td>
                         <td>{{ Carbon\Carbon::parse($ticket->duration_until_agent_transfer_request)->diffForHumans() }}</td>
                         <td>{{ Carbon\Carbon::parse($ticket->duration_until_agent_transfer_request)->diffForHumans() }}</td>
-                        <td></td>
                         <td></td>
                         <td>
                             <select name="status" id="{{$ticket->id}}">
@@ -71,14 +69,14 @@
                             </select>
                         </td>
                         <td>
-{{--                            <a href="{{url('/v1/call-user')}}"><button type="button" class="btn btn-primary call_user" value="{{$ticket->id}}"><i class="fa fa-phone"></i></button></a>--}}
+                            <a href="{{url('/v1/call-user')}}"><button type="button" class="btn btn-primary call_user" value="{{$ticket->id}}"><i class="fa fa-phone"></i></button></a>
                             <input type="hidden" name="user_mobile_no{{$ticket->id}}" value="{{\App\Http\Controllers\AgentPageController::get_mobile_no($ticket->app_response)}}">
                             <button type="button" class="btn btn-primary call_user" value="{{$ticket->id}}" data-toggle="modal" data-target="#lead-details" title="Call User"><i class="fa fa-phone"></i></button>
                             <button type="button" class="btn btn-success connect_to_lgu" value="{{$ticket->id}}" title="Connect To LGU"><i class="fa fa-arrows-h"></i></button>
                             <button type="button" class="btn bg-aqua-active relate-ticket-btn" title="Create Child Ticket" data-toggle="modal" data-target="#create-child-ticket" value="{{$ticket->id}}"><i class="fa fa-ticket"></i></button>
                             <button type="button" class="btn bg-yellow-active twilio_recordings" title="Display Call Recordings" value="{{$ticket->id}}" data-toggle="modal" data-target="#display-call-recordings"><i class="fa fa-play"></i></button>
                             <button type="button" class="btn bg-aqua-active twilio_call_back" title="Create Child Ticket" value="{{$ticket->id}}"><i class="fa fa-ticket"></i></button>
-{{--                            <button type="button" class="btn btn-warning"><i class="fa fa-user-times"></i></button>--}}
+                            <button type="button" class="btn btn-warning"><i class="fa fa-user-times"></i></button>
                         </td>
                     </tr>
                     @endforeach
@@ -88,7 +86,7 @@
                 <tr>
                     <th width="8%">Ticket #</th>
                     <th width="8%">Parent Ticket</th>
-                    <th>Location of Incident</th>
+                    <th width="10%">Location of Incident</th>
                     <th>Station name</th>
                     <th>Date Reported</th>
                     <th>Time Handled</th>
@@ -147,7 +145,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn bg-purple"><i class="fa fa-check"></i> Save</button>
+{{--                        <button type="submit" class="btn bg-purple"><i class="fa fa-check"></i> Save</button>--}}
                     </div>
                 </div>
             </form>
@@ -208,7 +206,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-success call_finish" data-dismiss="modal" value="{{$ticket->id}}">Done</button>
+{{--                        <button type="button" class="btn btn-success call_finish" data-dismiss="modal" value="{{$ticket->id}}">Done</button>--}}
                     </div>
                 </div>
 
@@ -234,8 +232,8 @@
                             <label for="parent-ticket">Parent Ticket</label>
                             <select name="ticketList" class="form-control">
                                 <option></option>
-                                @foreach($callCenterTickets as $ticket)
-                                    <option value="{{$ticket}}">{{sprintf("%'.09d\n", $ticket)}}</option>
+                                @foreach($callCenterTickets as $ccTicket)
+                                    <option value="{{$ccTicket->id}}">{{sprintf("%'.09d\n", $ccTicket->id)}}</option>
                                 @endforeach
                             </select>
 
