@@ -75,9 +75,11 @@ Route::group(['middleware' => ['auth','role:super admin']],function(){
 
     Route::get('/super-admin/activity','SuperAdmin\SuperAdminController@activities');
 
-    Route::get('/super-admin/performance-eval','SuperAdmin\SuperAdminController@performanceEval');
-    Route::get('/super-admin/user-management','SuperAdmin\SuperAdminController@userManagement');
+    Route::get('/super-admin/performance-eval','SuperAdmin\SuperAdminController@performance_eval');
+    Route::get('/super-admin/user-management','SuperAdmin\SuperAdminController@user_management');
     Route::get('/super-admin/forecast','SuperAdmin\SuperAdminController@forecast');
+
+
 });
 
 Route::group(['middleware' => ['auth','role:super admin|admin']], function (){
@@ -98,6 +100,9 @@ Route::group(['middleware' => ['auth']],function (){
     Route::post('/relate-ticket','Ticket\TicketController@relate_tickets');
     Route::get('/ticket/{id}','AgentPageController@ticket_profile_page');
 
+    // Added by Jovito Pangan, Oct. 10. 2019
+    // Updating fields after a call
+    Route::post('/update-ticket-after-call','Ticket\TicketController@update_field_after_call');
 });
 //Route::post('/call-user','AgentPageController@call_user');
 Auth::routes();
@@ -114,18 +119,8 @@ Route::group(['middleware' => ['cors'],'prefix' => 'v1'], function (){
     Route::post('/call-user','AgentPageController@call_user');
     Route::post('/events','Ticket\TicketController@twilio_callback');
     Route::post('/connect-to-lgu','Ticket\TicketController@connect_to_lgu');
+   // Route::get('/test-response','SuperAdmin\SuperAdminController@test_response');
 });
-
-
-Route::post(
-    '/token',
-    ['uses' => 'TokenController@newToken', 'as' => 'new-token']
-);
-
-Route::post(
-    '/support/call',
-    ['uses' => 'CallController@newCall', 'as' => 'new-call']
-);
 
 Route::get('/jasper','Reports\Reports@generateReport');
 

@@ -10,7 +10,10 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
-use Twilio\Rest\Client;
+
+
+use GuzzleHttp\Client;
+use Illuminate\Support\Facades\Date;
 
 class TicketController extends Controller
 {
@@ -118,19 +121,27 @@ class TicketController extends Controller
          * @var $callCenterId
          * */
 
-        $lgu = Lgu::find($request->lgu_id);
-        $stationName = $lgu->station_name;
-        $officeInCharge = $lgu->contactpeople[0]->fullname;
-        $agent = auth()->user()->username;
-        $callCenter = User::find(auth()->user()->id)->callcenter[0]->name;
+        // $lgu = Lgu::find($request->lgu_id);
+        // $stationName = $lgu->station_name;
+        // $officeInCharge = $lgu->contactpeople[0]->fullname;
+        // $agent = auth()->user()->username;
+        // $callCenter = User::find(auth()->user()->id)->callcenter[0]->name;
 
-        $data = array(
-            'responseTeam'      => $stationName,
-            'officeInCharge'    => $officeInCharge,
-            'agent'             => $agent,
-            'callCenter'        => $callCenter);
+        // $data = array(
+        //     'responseTeam'      => $stationName,
+        //     'officeInCharge'    => $officeInCharge,
+        //     'agent'             => $agent,
+        //     'callCenter'        => $callCenter);
 
-        return $data;
+        //return $data;
+
+        // Update By Jovito Pangan, Oct. 11, 2019
+        // This code will update the duration_until_agent_transfer_request
+        $ticket = Ticket::find($request->ticket_id);
+        $ticket->duration_until_agent_transfer_request = now();
+        $ticket->save() ? $message = ['success' => true] : ['success' => false];
+
+        return response()->json($message);
     }
 
 
@@ -205,26 +216,7 @@ class TicketController extends Controller
 
     public function twilio_callback(Request $request)
     {
-        $AccountSid = 'ACa2901d7449d60690cb960e94f5f56df2';
-        $AuthToken = '24789a94f5f1775d0028bd477f928ca7';
 
-        $twilio = new Client($AccountSid, $AuthToken);
-
-        $calls = $twilio->calls("CA281df0215f90a0b2d46cf49fc3af3781")
-            ->fetch();
-
-        return $calls->to;
-
-//        $call = $twilio->calls($request->sid)
-//            ->fetch();
-//
-//        var_dump($call);
-//        $calls = $twilio->calls
-//            ->read(array(), 1);
-//
-//        foreach ($calls as $record) {
-//            echo gettype($record->sid);
-//        }
     }
 
 //    public function time_handled($date1, $date2)
@@ -264,5 +256,48 @@ class TicketController extends Controller
 //            $str.= $secFix." sec ";
 //        return $str;
 //    }
+
+    /**
+     * Update Ticket after triggering a call
+     * Created Date: Oct 11, 2019
+     * By: Jovito Pangan
+     * @return void
+     */
+    public function update_field_after_call(Request $request){
+        $client = new Client([
+            // Base URI is used with relative requests
+            'base_uri' => 'https://api.crazycall.com/api/',
+            'headers' => ['x-api-token' => 'f8DAYKDzK0JHRyOdZvTDeiTMN9vZtoCv', 'Account' => 'inbyz.crazycall.com'],
+            // You can set any number of default request options.
+            'timeout'  => 2.0,
+        ]);
+
+        $response = $client->request('GET', 'v1/calls?limit=3&page=1');
+        $get_id = $response->getBody();
+        //error_log(print_r($response->getBody()));
+        //print_r($response->getResult());
+
+        $callRecord = json_decode($get_id);
+        error_log($callRecord[0]->lengthSeconds);
+        error_log(getType($callRecord[0]->answeredDate));
+        error_log($callRecord[0]->finishDate);
+
+        $time = strtotime($callRecord[0]->answeredDate);
+        $newformat = date('Y-m-d H:i:s',$time);
+
+        $time2 = strtotime($callRecord[0]->finishDate);
+        $newformat2 = date('Y-m-d H:i:s',$time2);
+
+
+
+        $ticket = Ticket::find($request->ticket_id);
+        //$ticket->call_duration = $callRecord[0]->lengthSeconds;
+        $ticket->time_handled = $newformat;
+        $ticket->duration_before_agent_handled_call = $newformat2;
+        $ticket->status = 'On-going';
+        $message = ($ticket->save()) ? ['success'=>true] : ['success' => false];
+        return response()->json($message);
+    }
+
 
 }
