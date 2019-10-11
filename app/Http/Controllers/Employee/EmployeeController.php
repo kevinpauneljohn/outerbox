@@ -70,20 +70,20 @@ class EmployeeController extends Controller
                  * */
                 $action = $this->device->userAgent();
                 $action .= '<table class="table table-bordered">';
-                $action .= '<tr><td>Action: Added New Employee</td><td></td></tr>';
+                $action .= '<tr><td><b>Action:</b> Added New Employee</td><td></td></tr>';
                 $action .= '<tr>';
-                $action .= '<td>Name: </td><td>'.$request->firstname;
+                $action .= '<td><b>Name:</b> </td><td>'.$request->firstname;
                 $action .= (!empty($request->middlename)) ? $request->middlename : ' ';
                 $action .= $request->lastname.'</td>';
                 $action .= '</tr>';
                 $action .= '<tr>';
-                $action .= '<td>Email: </td><td>'.$request->email.'<td/>';
+                $action .= '<td><b>Email:</b> </td><td>'.$request->email.'<td/>';
                 $action .= '</tr><tr>';
-                $action .= '<td>Username: </td><td>'.$request->username.'<td/>';
+                $action .= '<td><b>Username:</b> </td><td>'.$request->username.'<td/>';
                 $action .= '</tr><tr>';
-                $action .= '<td>Role: </td><td>'.$request->role.'<td/>';
+                $action .= '<td><b>Role:</b> </td><td>'.$request->role.'<td/>';
                 $action .= '</tr><tr>';
-                $action .= '<td>Call Center: </td><td>'.CallCenter::find($request->callcenter)->name.'<td/>';
+                $action .= '<td><b>Call Center:</b> </td><td>'.CallCenter::find($request->callcenter)->name.'<td/>';
                 $action .= '</tr></table>';
 
                 /**
@@ -226,13 +226,13 @@ class EmployeeController extends Controller
 
                     $action = $this->device->userAgent();
                     $action .= '<table class="table table-bordered">';
-                    $action .= '<thead><tr><td></td><td>Previous</td><td>Updated</td></tr></thead>';
-                    $action .= '<tr><td>First Name</td><td>'.$prevInput->firstname.'</td><td>'.$request->edit_firstname.'</td></tr>';
-                    $action .= '<tr><td>Middle Name</td><td>'.$prevInput->middlename.'</td><td>'.$request->edit_middlename.'</td></tr>';
-                    $action .= '<tr><td>Last Name</td><td>'.$prevInput->lastname.'</td><td>'.$request->edit_lastname.'</td></tr>';
-                    $action .= '<tr><td>Email</td><td>'.$prevInput->email.'</td><td>'.$request->edit_email.'</td></tr>';
-                    $action .= '<tr><td>Role</td><td>'.$request->old_role.'</td><td>'.$request->edit_role.'</td></tr>';
-                    $action .= '<tr><td>Call Center</td><td>'.CallCenter::find($prevInput->cc_id)->name.'</td><td>'.CallCenter::find($request->edit_callcenter)->name.'</td></tr>';
+                    $action .= '<thead><tr><td></td><td><b>Previous</b></td><td><b>Updated</td></tr></thead>';
+                    $action .= '<tr><td><b>First Name</b></td><td>'.$prevInput->firstname.'</td><td>'.$request->edit_firstname.'</td></tr>';
+                    $action .= '<tr><td><b>Middle Name</b></td><td>'.$prevInput->middlename.'</td><td>'.$request->edit_middlename.'</td></tr>';
+                    $action .= '<tr><td><b>Last Name</b></td><td>'.$prevInput->lastname.'</td><td>'.$request->edit_lastname.'</td></tr>';
+                    $action .= '<tr><td><b>Email</b></td><td>'.$prevInput->email.'</td><td>'.$request->edit_email.'</td></tr>';
+                    $action .= '<tr><td><b>Role</b></td><td>'.$request->old_role.'</td><td>'.$request->edit_role.'</td></tr>';
+                    $action .= '<tr><td><b>Call Center</b></td><td>'.CallCenter::find($prevInput->cc_id)->name.'</td><td>'.CallCenter::find($request->edit_callcenter)->name.'</td></tr>';
                     $action .= '</table>';
                     /*$this->activity->activity_log($previousAction." ".$action, "Updated User");*/
                     $this->activity->activity_log($action, "Updated User");
@@ -259,13 +259,13 @@ class EmployeeController extends Controller
     public function deleteEmployee(Request $request)
     {
         $user = User::find($request->user_delete);
-        $action = $this->device->userAgent();
-        $action .= '<table class="table table-bordered">';
-        $action .= '<tr><td colspan="2">Action: Deleted User</td></tr>';
-        $action .= '<tr><td>User ID: </td><td>'.$user->id.'</td></tr><tr><td>Username</td><td>'.$user->username.'</td></tr>';
-        $action .= '</table>';
 
         $description = "Deleted user";
+        $action = $this->device->userAgent();
+        $action .= '<table class="table table-bordered">';
+        $action .= '<tr><td colspan="2"><b>Action:</b> '.$description.'</td></tr>';
+        $action .= '<tr><td><b>User ID:</b> </td><td>'.$user->id.'</td></tr><tr><td><b>Username</b></td><td>'.$user->username.'</td></tr>';
+        $action .= '</table>';
 
         $message = ($user->delete()) ? ['success' => true] : ['success' => false];
         $this->activity->activity_log($action, $description);

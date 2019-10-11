@@ -78,12 +78,22 @@ class Reports extends Controller
         $activity->save();
     }
 
-    public function system_activity_log($action)
+    /**
+     * system logs
+     * @param string $action
+     * @param string $description
+     * @return void
+     * */
+    public function system_activity_log($action,$description)
     {
+        /**
+         * @var $activity
+         * */
         $activity = new Activity;
 
         $activity->user_id = 0;
         $activity->action = 'The system '.$action;
+        $activity->description = $description;
 
         $activity->save();
     }

@@ -13,7 +13,7 @@ $(document).on('submit','#add-lgu',function(form){
     form.preventDefault();
 
     let data = $('#add-lgu').serialize();
-
+    console.log(data);
     $.ajax({
         'url'   : '/add-lgu',
         'type'  : 'POST',
@@ -55,7 +55,7 @@ $(document).on('submit','#add-lgu',function(form){
         }
     });
 
-    check_value('station_name','department','street_address','region','state','city','contactperson_name','contactperson_no','call_center');
+    check_value('station_name','department','street_address','region','state','city','contactperson_fname','contactperson_lname','contactperson_no','call_center','contactperson_uname','password');
 });
 
 $(document).on('change','#region',function(){
@@ -175,10 +175,12 @@ $(document).on("click",'.edit-lgu-btn',function(){
             $('#edit_city').html(result.city_value);
             $("#edit_city option[value='"+result.city+"']").prop('selected',true);
             $('#edit_postal_code').val(result.postalCOde);
-            $('#edit_contactperson_name').val(result.fullname);
+            $('#edit_contactperson_fname').val(result.firstname);
+            $('#edit_contactperson_lname').val(result.lastname);
             $('#edit_contactperson_no').val(result.contactNo);
             $('#lguId').val(result.lguId);
             $('#contactId').val(result.contactId);
+            $('#contactPeopleId').val(result.contactPeopleId);
             $('#ccId').val(result.cc_id);
 
         },error:function(error){

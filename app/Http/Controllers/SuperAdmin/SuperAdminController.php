@@ -103,7 +103,8 @@ class SuperAdminController extends Controller
             ->leftJoin('roles','model_has_roles.role_id','=','roles.id')
             ->select('users.id','users.firstname','users.middlename','users.lastname','users.email','users.username','users.created_at','roles.name as role_name','callcenterdetails.cc_id as cc_id','call_centers.name as cc_name')
             ->where([
-                ['users.id','!=',1],
+                ['roles.name','!=','Lgu'],
+                ['roles.name','!=','super admin'],
                 ['users.deleted_at','=',null]
             ])
             ->get();
@@ -180,8 +181,8 @@ class SuperAdminController extends Controller
             /*activity log*/
             $description = "Deleted a role";
             $action = $this->device->userAgent();
-            $action .= '<tr><td>Role Name</td><td>'.$role->name.'</td></tr>';
-            $action .= '<tr><td>Role ID</td><td>'.$request->role.'</td></tr>';
+            $action .= '<tr><td><b>Role Name</b></td><td>'.$role->name.'</td></tr>';
+            $action .= '<tr><td><b>Role ID</b></td><td>'.$request->role.'</td></tr>';
             $action .= '</table>';
             $this->activity->activity_log($action, $description);
             return response()->json(['success' => true]);
@@ -232,9 +233,9 @@ class SuperAdminController extends Controller
                 {
                     $action = $this->device->userAgent();
                     $action .= '<table class="table table-bordered">';
-                    $action .= '<tr><td></td><td>Previous</td><td>Updated</td></tr>';
-                    $action .= '<tr><td>Role name</td><td>'.$oldRole->name.'</td><td>'.$request->edit_name.'</td></tr>';
-                    $action .= '<tr><td>Description</td><td>'.$oldRole->description.'</td><td>'.$request->edit_description.'</td></tr>';
+                    $action .= '<tr><td></td><td><b>Previous</b></td><td><b>Updated</b></td></tr>';
+                    $action .= '<tr><td><b>Role name</b></td><td>'.$oldRole->name.'</td><td>'.$request->edit_name.'</td></tr>';
+                    $action .= '<tr><td><b>Description</b></td><td>'.$oldRole->description.'</td><td>'.$request->edit_description.'</td></tr>';
                     $action .= '</table>';
                     $description = "Updated a role";
                     $this->activity->activity_log($action, $description);
@@ -285,8 +286,8 @@ class SuperAdminController extends Controller
 
                 $action = $this->device->userAgent();
                 $action .= '<table class="table table-bordered">';
-                $action .= '<tr><td>Action: '.$description.'</td></tr>';
-                $action .= '<tr><td>Permission Name:</td><td>'.$request->permission_name.'</td></tr>';
+                $action .= '<tr><td><b>Action:</b> '.$description.'</td></tr>';
+                $action .= '<tr><td><b>Permission Name:</b></td><td>'.$request->permission_name.'</td></tr>';
                 $action .= '<table/>';
                 $this->activity->activity_log($action,$description);
                 return response()->json(['success' => true]);
@@ -294,6 +295,7 @@ class SuperAdminController extends Controller
         }
         return response()->json($validator->errors());
     }
+
 
     public function callCenter()
     {
@@ -303,8 +305,6 @@ class SuperAdminController extends Controller
         return view('SuperAdmin.callCenter.callcenter')->with(['callcenters' => $callCenter, 'regions' => $region]);
         //return $callcenter;
     }
-
-
 
     /**
      * call center profile view page
@@ -351,9 +351,10 @@ class SuperAdminController extends Controller
         $lgus = DB::table('lgus')
             ->leftJoin('call_centers','lgus.call_center_id','=','call_centers.id')
             ->leftJoin('contact_people','lgus.id','=','contact_people.lgu_id')
-            ->select('lgus.id as lgu_id','lgus.station_name','lgus.department','lgus.created_at','lgus.region','lgus.province','lgus.city','lgus.address',
-                'call_centers.id as cc_id',
-                'contact_people.fullname as contactname','contact_people.contactno')
+            ->leftJoin('users','contact_people.user_id','=','users.id')
+            ->select('users.firstname','users.lastname','users.username',
+                'lgus.id as lgu_id','lgus.station_name','lgus.department','lgus.created_at','lgus.region','lgus.province','lgus.city','lgus.address',
+                'call_centers.id as cc_id','contact_people.contactno')
             ->where('lgus.deleted_at','=',null
             );
 
@@ -412,17 +413,24 @@ class SuperAdminController extends Controller
         return view("SuperAdmin.Reports.forecast");
     }
 
+
     /////////////////////////////// -------------- END OF REPORTS MODULE --------------- ////////////////////////////
 
     /**
      * for mobile app
      * display of call center list
+     * @return object
      * */
     public function show_call_center_list()
     {
         return CallCenter::all()->pluck('postalcode');
     }
 
+    /**
+     * by: john kevin paunel
+     * show list of LGUs
+     * @return  object
+     * */
     public function show_lgu_list()
     {
         return Lgu::all();

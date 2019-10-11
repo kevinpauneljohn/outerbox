@@ -4,6 +4,7 @@ namespace App\Http\Controllers\SuperAdmin;
 
 use App\Http\Controllers\Reports\Reports;
 use App\Http\Controllers\UserAgentController;
+use http\Env\Response;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Jenssegers\Agent\Agent;
@@ -50,17 +51,22 @@ class PermissionController extends Controller
             $permission->name = $request->edit_permission_name;
             /*activity log*/
 
+            /**
+             * @var $description
+             * */
+            $description = "Updated permission";
             $action = '<table class="table table-bordered">';
-            $action .= '<tr><td>Ip Address: '.\request()->ip().'</td><td>Browser: '.$agent->browser().' '.$agent->version($agent->browser()).'</td>
-                        <td>Device Used: '.$this->device->check_device().'</td><td>Operating System: '.$agent->platform().' '.$agent->version($agent->platform()).'</td></tr>';
+            $action .= '<tr><td><b>Ip Address: '.\request()->ip().'</b></td><td><b>Browser: </b>'.$agent->browser().' '.$agent->version($agent->browser()).'</td>
+                        <td><b>Device Used:</b> '.$this->device->check_device().'</td><td><b>Operating System: </b>'.$agent->platform().' '.$agent->version($agent->platform()).'</td></tr>';
             $action .= '</table>';
             $action .= '<table class="table table-bordered">';
-            $action .= '<tr><td colspan="3">Role ID: '.$request->permission_value.'</td></tr>';
-            $action .= '<tr><td></td><td>Previous</td><td>Updated</td></tr>';
-            $action .= '<tr><td>Permission Name</td><td>'.$permission->name.'</td><td>'.$request->edit_permission_name.'</td></tr>';
+            $action .= '<tr><td colspan="3"><b>Action: </b>'.$description.'</td></tr>';
+            $action .= '<tr><td colspan="3"><b>Role ID: </b>'.$request->permission_value.'</td></tr>';
+            $action .= '<tr><td></td><td><b>Previous</b></td><td><b>Updated</b></td></tr>';
+            $action .= '<tr><td><b>Permission Name</b></td><td>'.$permission->name.'</td><td>'.$request->edit_permission_name.'</td></tr>';
             $action .= '</table>';
 
-            $this->activity->activity_log($action, "updated permission");
+            $this->activity->activity_log($action, $description);
 
             return ($permission->save()) ? response()->json(['success' => true]) : response()->json(['success' => false]);
 
@@ -70,21 +76,33 @@ class PermissionController extends Controller
     }
 
     #delete the permission row
+    /**
+     * by: john kevin paunel
+     * delete the permission row
+     * @param Request $request
+     * @return Response
+     * */
     public function deletePermission(Request $request)
     {
         $permission = Permission::find($request->delete_permission_row);
 
+        /**
+         * @var $description
+         * */
         $description = "Deleted a permission";
         /*activity logs*/
+        /**
+         * @var $action
+         * */
         $action = '<table class="table table-bordered">';
         $action .= '<tr><td>Ip Address: '.\request()->ip().'</td><td>Browser: '.$this->device->agent->browser().' '.$this->device->agent->version($this->device->agent->browser()).'</td>
                         <td>Device Used: '.$this->device->check_device().'</td><td>Operating System: '.$this->device->agent->platform().' '.$this->device->agent->version($this->device->agent->platform()).'</td></tr>';
         $action .= '</table>';
 
         $action .= '<table>';
-        $action .= '<tr><td colspan="2">Action: '.$description.'</td></tr>';
-        $action .= '<tr><td>Permission ID</td><td>'.$request->delete_permission_row.'</td></tr>';
-        $action .= '<tr><td>Permission Name</td><td>'.$permission->name.'</td></tr>';
+        $action .= '<tr><td colspan="2"><b>Action: </b>'.$description.'</td></tr>';
+        $action .= '<tr><td><b>Permission ID</b></td><td>'.$request->delete_permission_row.'</td></tr>';
+        $action .= '<tr><td><b>Permission Name</b></td><td>'.$permission->name.'</td></tr>';
         $action .= '</table>';
 
         $this->activity->activity_log($action, $description);

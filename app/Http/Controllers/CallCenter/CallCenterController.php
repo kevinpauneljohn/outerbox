@@ -38,7 +38,7 @@ class CallCenterController extends Controller
     public function addNewCallCenter(Request $request)
     {
         $validator = Validator::make($request->All(),[
-            'callcenter'       => 'required|min:1|max:20',
+            'callcenter'       => 'required|min:1|max:150',
             'street_address'   => 'required|max:100',
             'region'           => 'required',
             'state'            => 'required',
@@ -62,13 +62,13 @@ class CallCenterController extends Controller
 
             $action = $this->device->userAgent();
             $action .= '<table class="table table-bordered">';
-            $action .= '<tr><td colspan="2">Action: '.$description.'</td></tr>';
-            $action .= '<tr><td>Call Center Name</td><td>'.$request->callcenter.'</td></tr>';
-            $action .= '<tr><td>Address</td><td>'.$request->postal_code.'</td></tr>';
-            $action .= '<tr><td>City</td><td>'.$this->address->get_city_name($request->city).'</td></tr>';
-            $action .= '<tr><td>State</td><td>'.$this->address->get_province_name($request->state).'</td></tr>';
-            $action .= '<tr><td>Region</td><td>'.$this->address->getRegion($request->region).'</td></tr>';
-            $action .= '<tr><td>Postal Code</td><td>'.$request->postal_code.'</td></tr>';
+            $action .= '<tr><td colspan="2"><b>Action: </b>'.$description.'</td></tr>';
+            $action .= '<tr><td><b>Call Center Name</b></td><td>'.$request->callcenter.'</td></tr>';
+            $action .= '<tr><td><b>Address</b></td><td>'.$request->postal_code.'</td></tr>';
+            $action .= '<tr><td><b>City</b></td><td>'.$this->address->get_city_name($request->city).'</td></tr>';
+            $action .= '<tr><td><b>State</b></td><td>'.$this->address->get_province_name($request->state).'</td></tr>';
+            $action .= '<tr><td><b>Region</b></td><td>'.$this->address->getRegion($request->region).'</td></tr>';
+            $action .= '<tr><td><b>Postal Code</b></td><td>'.$request->postal_code.'</td></tr>';
             $action .= '</table>';
 
             $this->activity->activity_log($action, $description);
@@ -161,15 +161,15 @@ class CallCenterController extends Controller
                 $description = 'Updated call center';
                 $action = $this->device->userAgent();
                 $action .= '<table class="table table-bordered">';
-                $action .= '<tr><td colspan="3">Action: '.$description.'</td></tr>';
-                $action .= '<tr><td colspan="3">Call Center ID: '.$request->callcenter_value.'</td></tr>';
-                $action .= '<tr><td></td><td>Previous</td><td>Updated</td></tr>';
-                $action .= '<tr><td>Call Center Name: </td><td>'.$callCenterDetails->name.'</td><td>'.$request->update_callcenter.'</td></tr>';
-                $action .= '<tr><td>Address</td><td>'.$callCenterDetails->street.'</td><td>'.$request->update_street_address.'</td></tr>';
-                $action .= '<tr><td>City</td><td>'.$this->address->get_city_name($callCenterDetails->city).'</td><td>'.$this->address->get_city_name($request->update_city).'</td></tr>';
-                $action .= '<tr><td>State</td><td>'.$this->address->get_province_name($callCenterDetails->state).'</td><td>'.$this->address->get_province_name($request->update_state).'</td></tr>';
-                $action .= '<tr><td>Region</td><td>'.$this->address->getRegion($callCenterDetails->region).'</td><td>'.$this->address->getRegion($request->update_region).'</td></tr>';
-                $action .= '<tr><td>Postal Code</td><td>'.$callCenterDetails->postalcode.'</td><td>'.$request->update_postal_code.'</td></tr>';
+                $action .= '<tr><td colspan="3"><b>Action:</b> '.$description.'</td></tr>';
+                $action .= '<tr><td colspan="3"><b>Call Center ID:</b> '.$request->callcenter_value.'</td></tr>';
+                $action .= '<tr><td></td><td><b>Previous</b></td><td><b>Updated</b></td></tr>';
+                $action .= '<tr><td><b>Call Center Name:</b> </td><td>'.$callCenterDetails->name.'</td><td>'.$request->update_callcenter.'</td></tr>';
+                $action .= '<tr><td><b>Address</b></td><td>'.$callCenterDetails->street.'</td><td>'.$request->update_street_address.'</td></tr>';
+                $action .= '<tr><td><b>City</b></td><td>'.$this->address->get_city_name($callCenterDetails->city).'</td><td>'.$this->address->get_city_name($request->update_city).'</td></tr>';
+                $action .= '<tr><td><b>State</b></td><td>'.$this->address->get_province_name($callCenterDetails->state).'</td><td>'.$this->address->get_province_name($request->update_state).'</td></tr>';
+                $action .= '<tr><td><b>Region</b></td><td>'.$this->address->getRegion($callCenterDetails->region).'</td><td>'.$this->address->getRegion($request->update_region).'</td></tr>';
+                $action .= '<tr><td><b>Postal Code</b></td><td>'.$callCenterDetails->postalcode.'</td><td>'.$request->update_postal_code.'</td></tr>';
                 $action .= '</table>';
 
                 $this->activity->activity_log($action, $description);
@@ -196,14 +196,14 @@ class CallCenterController extends Controller
 
         $action = $this->device->userAgent();
         $action .= '<table class="table table-bordered">';
-        $action .= '<tr><td colspan="2">Action :'.$description.'</td></tr>';
-        $action .= '<tr><td>Call Center ID: '.$request->call_center_delete_id.'</td></tr>';
-        $action .= '<tr><td>Name</td><td>'.$callCenter->name.'</td></tr>';
-        $action .= '<tr><td>Address</td><td>'.$callCenter->street.'</td></tr>';
-        $action .= '<tr><td>City</td><td>'.$this->address->get_city_name($callCenter->city).'</td></tr>';
-        $action .= '<tr><td>State</td><td>'.$this->address->get_province_name($callCenter->state).'</td></tr>';
-        $action .= '<tr><td>Region</td><td>'.$this->address->getRegion($callCenter->region).'</td></tr>';
-        $action .= '<tr><td>Postal Code</td><td>'.$callCenter->postalcode.'</td></tr>';
+        $action .= '<tr><td colspan="2"><b>Action:</b> '.$description.'</td></tr>';
+        $action .= '<tr><td><b>Call Center ID:</b> '.$request->call_center_delete_id.'</td></tr>';
+        $action .= '<tr><td><b>Name</b></td><td>'.$callCenter->name.'</td></tr>';
+        $action .= '<tr><td><b>Address</b></td><td>'.$callCenter->street.'</td></tr>';
+        $action .= '<tr><td><b>City</b></td><td>'.$this->address->get_city_name($callCenter->city).'</td></tr>';
+        $action .= '<tr><td><b>State</b></td><td>'.$this->address->get_province_name($callCenter->state).'</td></tr>';
+        $action .= '<tr><td><b>Region</b></td><td>'.$this->address->getRegion($callCenter->region).'</td></tr>';
+        $action .= '<tr><td><b>Postal Code</b></td><td>'.$callCenter->postalcode.'</td></tr>';
         $action .= '</table>';
 
         $message = ($callCenter->delete()) ? ['success' => true] : ['success' => false];
@@ -213,6 +213,12 @@ class CallCenterController extends Controller
     }
 
     //count number of agents per call center
+    /**
+     * by: john kevin paunel
+     * count all employees per call center
+     *@param int $callcenter_id
+     *@return object
+     * */
     public static function totalEmployees($callcenter_id)
     {
         $employees = CallCenter::find($callcenter_id)->users->count();

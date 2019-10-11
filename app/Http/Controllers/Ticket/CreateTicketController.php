@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Ticket;
 
 use App\Http\Controllers\address\AddressController;
 use App\Http\Controllers\Reports\Reports;
+use App\Http\Controllers\UserAgentController;
 use App\Models\CallCenter;
 use App\Models\Lead;
 use App\Ticket;
@@ -16,6 +17,16 @@ use Spatie\Permission\Models\Role;
 
 class CreateTicketController extends Controller
 {
+    /**
+     * @var $device
+     * */
+    private $device;
+
+    public function __construct()
+    {
+        $this->device = new UserAgentController;
+    }
+
 //    this method will check the new leads in leads table
     private function check_leads()
     {
@@ -149,7 +160,7 @@ class CreateTicketController extends Controller
                 $action = "created a ticket and assigned to Agent: ".User::find($select_agent[$index_in_agent_count])->username;
                 $action .= "in Call Center: ".CallCenter::find($cc_id)->name." with CCID: ".$cc_id;
 
-                $systemLogs->system_activity_log($action);
+                $systemLogs->system_activity_log($action, "System assigned ticket to user");
                 $this->update_lead_status($lead_id, null);
             }
 

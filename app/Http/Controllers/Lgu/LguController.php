@@ -50,8 +50,11 @@ class LguController extends Controller
                 'region'                => 'required',
                 'state'                 => 'required',
                 'city'                  => 'required|max:60',
-                'contactperson_name'    => 'required',
+                'contactperson_fname'    => 'required',
+                'contactperson_lname'    => 'required',
                 'contactperson_no'      => 'required',
+                'contactperson_uname'   => 'required|unique:users,username',
+                'password'              => 'required|min:3|max:50|confirmed',
                 'call_center'      => 'required',
             ];
             $callCenterValue = $request->call_center;
@@ -67,8 +70,11 @@ class LguController extends Controller
                 'region'                => 'required',
                 'state'                 => 'required',
                 'city'                  => 'required|max:60',
-                'contactperson_name'    => 'required',
-                'contactperson_no'      => 'required'
+                'contactperson_fname'    => 'required',
+                'contactperson_lname'    => 'required',
+                'contactperson_no'      => 'required',
+                'contactperson_uname'   => 'required|unique:users,username',
+                'password'              => 'required|min:3|max:50|confirmed',
             ];
         }
 
@@ -88,35 +94,41 @@ class LguController extends Controller
 
             if($lgu->save())
             {
-                if(!empty($request->contactperson_name) && !empty($request->contactperson_no))
-                {
-                    $this->assignContactPerson($lgu->id, $request->contactperson_name, $request->contactperson_no);
-                }
+                $contactPerson = new User;
+                $contactPerson->firstname = $request->contactperson_fname;
+                $contactPerson->lastname = $request->contactperson_lname;
+                $contactPerson->username = $request->contactperson_uname;
+                $contactPerson->password = bcrypt($request->password);
+                $contactPerson->active = 0;
+                $contactPerson->assignRole('Lgu');
 
-                /*Activity log*/
-//                $action = "added a new LGU - Station Name: ".$request->station_name;
-//                $action .= ", Department: ".$request->department;
-//                $action .= ", Location: ".$request->street_address.", ".$this->address->get_city_name($request->city).", "
-//                    .$this->address->get_province_name($request->state).", ".$this->address->getRegion($request->region);
-//                $action .= ", with Contact Person: ".$request->contactperson_name.", Contact Person Number: ".$request->contactperson_no;
-//
-//                $action .= "  assigned to Call Center: ".CallCenter::find($callCenterValue)->name;
+                $contactPerson->save();
+                    $this->assignContactPerson($lgu->id, $contactPerson->id, $request->contactperson_no);
+
+
+                /**
+                 * @var $description
+                 * */
 
                 $description = 'Added new LGU';
 
+                /**
+                 * @var $action
+                 * */
                 $action = $this->device->userAgent();
                 $action .='<table class="table table-bordered">';
-                $action .= '<tr><td colspan="2">Action: '.$description.'</td></tr>';
-                $action .= '<tr><td>Station Name</td><td>'.$request->station_name.'</td></tr>';
-                $action .= '<tr><td>Department</td><td>'.$request->department.'</td></tr>';
-                $action .= '<tr><td>Address</td><td>'.$request->street_address.'</td></tr>';
-                $action .= '<tr><td>City</td><td>'.$this->address->get_city_name($request->city).'</td></tr>';
-                $action .= '<tr><td>State</td><td>'.$this->address->get_province_name($request->state).'</td></tr>';
-                $action .= '<tr><td>Region</td><td>'.$this->address->getRegion($request->region).'</td></tr>';
-                $action .= '<tr><td>Postal Code</td><td>'.$request->postal_code.'</td></tr>';
-                $action .= '<tr><td>Contact Person</td><td>'.$request->contactperson_name.'</td></tr>';
-                $action .= '<tr><td>Contact Person Number</td><td>'.$request->contactperson_no.'</td></tr>';
-                $action .= '<tr><td>Call Center</td><td>'.CallCenter::find($callCenterValue)->name.'</td></tr>';
+                $action .= '<tr><td colspan="2"><b>Action:</b> '.$description.'</td></tr>';
+                $action .= '<tr><td><b>Station Name</b></td><td>'.$request->station_name.'</td></tr>';
+                $action .= '<tr><td><b>Department</b></td><td>'.$request->department.'</td></tr>';
+                $action .= '<tr><td><b>Address</b></td><td>'.$request->street_address.'</td></tr>';
+                $action .= '<tr><td><b>City</b></td><td>'.$this->address->get_city_name($request->city).'</td></tr>';
+                $action .= '<tr><td><b>State</b></td><td>'.$this->address->get_province_name($request->state).'</td></tr>';
+                $action .= '<tr><td><b>Region</b></td><td>'.$this->address->getRegion($request->region).'</td></tr>';
+                $action .= '<tr><td><b>Postal Code</b></td><td>'.$request->postal_code.'</td></tr>';
+                $action .= '<tr><td><b>Contact Person</b></td><td>'.$request->contactperson_fname.' '.$request->contactperson_lname.'</td></tr>';
+                $action .= '<tr><td><b>Contact Person Username</b></td><td>'.$request->contactperson_uname.'</td></tr>';
+                $action .= '<tr><td><b>Contact Person Number</b></td><td>'.$request->contactperson_no.'</td></tr>';
+                $action .= '<tr><td><b>Call Center</b></td><td>'.CallCenter::find($callCenterValue)->name.'</td></tr>';
                 $action .= '</table>';
 
                 $this->activity->activity_log($action, $description);
@@ -138,11 +150,11 @@ class LguController extends Controller
      * @param int $contactNo
      * @return void
      * */
-    public function assignContactPerson($lgu_id, $full_name, $contactNo)
+    public function assignContactPerson($lgu_id, $user_id, $contactNo)
     {
         $contactPerson = new ContactPerson;
         $contactPerson->lgu_id = $lgu_id;
-        $contactPerson->fullname = $full_name;
+        $contactPerson->user_id = $user_id;
         $contactPerson->contactno = $contactNo;
         $contactPerson->save();
     }
@@ -156,7 +168,7 @@ class LguController extends Controller
     {
         $lguDetails = DB::table('lgus')
             ->leftJoin('contact_people','lgus.id','=','contact_people.lgu_id')
-            ->select('lgus.*','contact_people.id as contactId','contact_people.fullname','contact_people.contactno')
+            ->select('lgus.*','contact_people.id as contactId','contact_people.contactno')
             ->where('lgus.id','=',$lgu_id)->first();
         return view('lgu.lguProfile')->with([
             'lguDetails'    => $lguDetails,
@@ -167,7 +179,7 @@ class LguController extends Controller
      * date: Oct. 07, 2019
      * by: john kevin paunel
      * get the lgu data thru ID
-     * @param int $lguId
+     * @param Request $request
      * @return Response
      * */
     public function lgu_data(Request $request)
@@ -176,7 +188,8 @@ class LguController extends Controller
 
         $lgu = DB::table('lgus')
             ->leftJoin("contact_people",'lgus.id','=','contact_people.lgu_id')
-            ->select('lgus.*','contact_people.id as contact_id','contact_people.fullname','contact_people.contactno')
+            ->leftJoin('users','contact_people.user_id','=','users.id')
+            ->select('users.id as user_id','users.firstname','users.lastname','users.username','lgus.*','contact_people.id as contact_id','contact_people.contactno')
             ->where('lgus.id','=',$request->id)->first();
 
         /**
@@ -192,13 +205,15 @@ class LguController extends Controller
             "province"      => $lgu->province,
             "city"          => $lgu->city,
             "address"       => $lgu->address,
-            "contactId"     => $lgu->contact_id,
-            "fullname"      => $lgu->fullname,
+            "contactId"     => $lgu->user_id,
+            "firstname"      => $lgu->firstname,
+            "lastname"      => $lgu->lastname,
+            "username"      => $lgu->username,
             "contactNo"     => $lgu->contactno,
             'postalCOde'    => $lgu->postalCode,
             'province_value'  => $option->getProvinces($lgu->region),
-            'city_value'  => $option->getCities($lgu->province),
-        ];
+            'city_value'        => $option->getCities($lgu->province),
+            'contactPeopleId'   => $lgu->contact_id,        ];
 
         return response()->json($data);
     }
@@ -218,8 +233,10 @@ class LguController extends Controller
             'edit_state'                 => 'required',
             'edit_city'                  => 'required|max:60',
             'edit_postal_code'           => 'required|max:60',
-            'edit_contactperson_name'    => 'required',
-            'edit_contactperson_no'      => 'required'
+            'edit_contactperson_fname'   => 'required',
+            'edit_contactperson_lname'   => 'required',
+            'edit_contactperson_no'      => 'required',
+            'ccId'                       => 'required',
         ]);
 
         if($validator->passes())
@@ -228,7 +245,8 @@ class LguController extends Controller
             /*check if the submitted input matches the old data*/
             $checkinput = DB::table('lgus')
                 ->leftJoin("contact_people",'lgus.id','=','contact_people.lgu_id')
-                ->select('lgus.*','contact_people.id as contact_id','contact_people.fullname','contact_people.contactno')
+                ->leftJoin('users','contact_people.user_id','=','users.id')
+                ->select('lgus.*','contact_people.id as contact_id','contact_people.contactno')
                 ->where([
                     ['lgus.id','=',$request->lguId],
                     ['lgus.call_center_id','=',$request->ccId],
@@ -239,7 +257,8 @@ class LguController extends Controller
                     ['lgus.city','=',$request->edit_city],
                     ['lgus.address','=',$request->edit_street_address],
                     ['lgus.postalCode','=',$request->edit_postal_code],
-                    ['contact_people.fullname','=',$request->edit_contactperson_name],
+                    ['users.firstname','=',$request->edit_contactperson_fname],
+                    ['users.lastname','=',$request->edit_contactperson_lname],
                     ['contact_people.contactno','=',$request->edit_contactperson_no],
                 ])->count();
 
@@ -256,9 +275,11 @@ class LguController extends Controller
                 $lgu->address = $request->edit_street_address;
                 $lgu->postalCode = $request->edit_postal_code;
 
+                /*get the lgu previous data*/
                 $lguDetails = DB::table('lgus')
                     ->leftJoin("contact_people",'lgus.id','=','contact_people.lgu_id')
-                    ->select('lgus.*','contact_people.id as contact_id','contact_people.fullname','contact_people.contactno')
+                    ->leftJoin('users','contact_people.user_id','=','users.id')
+                    ->select('lgus.*','contact_people.id as contact_id','contact_people.contactno','users.firstname','users.lastname')
                     ->where('lgus.id','=',$request->lguId)->first();
 //
                 $lguId = $lguDetails->id;
@@ -269,39 +290,48 @@ class LguController extends Controller
                 $city = $lguDetails->city;
                 $address = $lguDetails->address;
                 $postalCode = $lguDetails->postalCode;
-                $contactPersonName = $lguDetails->fullname;
+                $contactPersonFname = $lguDetails->firstname;
+                $contactPersonlname = $lguDetails->lastname;
                 $contactPersonNo = $lguDetails->contactno;
                 $contactId = $lguDetails->contact_id;
                 $callCenterId = $lguDetails->call_center_id;
 
                 if($lgu->save())
                 {
-                    /*this will update the contact person details*/
-                    $contactPerson = ContactPerson::find($request->contactId);
-                    $contactPerson->fullname = $request->edit_contactperson_name;
-                    $contactPerson->contactno = $request->edit_contactperson_no;
+                    $contatPerson = User::find($request->contactId);
+                    $contatPerson->firstname = $request->edit_contactperson_fname;
+                    $contatPerson->lastname = $request->edit_contactperson_lname;
 
-                    /*update details of contact person*/
-                    $contactPerson->save();
+                    if($contatPerson->save())
+                    {
+                        /*this will update the contact person details*/
+                        $contactPersonTbl = ContactPerson::find($request->contactPeopleId);
+                        $contactPersonTbl->contactno = $request->edit_contactperson_no;
+
+                        /*update details of contact person*/
+                        $contactPersonTbl->save();
+                    }
+
+
 
                     /*display new data*/
                     $description = 'Updated LGU details';
 
                     $action = $this->device->userAgent();
                     $action .='<table class="table table-bordered">';
-                    $action .= '<tr><td colspan="3">Action: '.$description.'</td></tr>';
-                    $action .= '<tr><td></td><td>Previous</td><td>Updated</td></tr>';
-                    $action .= '<tr><td colspan="3">Call Center ID: '.$request->ccId.'</td></tr>';
-                    $action .= '<tr><td>Station Name</td><td>'.$stationname.'</td><td>'.$request->edit_station_name.'</td></tr>';
-                    $action .= '<tr><td>Department</td><td>'.$department.'</td><td>'.$request->edit_department.'</td></tr>';
-                    $action .= '<tr><td>Address</td><td>'.$address.'</td><td>'.$request->edit_street_address.'</td></tr>';
-                    $action .= '<tr><td>City</td><td>'.$this->address->get_city_name($city).'</td><td>'.$this->address->get_city_name($request->edit_city).'</td></tr>';
-                    $action .= '<tr><td>State</td><td>'.$this->address->get_province_name($state).'</td><td>'.$this->address->get_province_name($request->edit_state).'</td></tr>';
-                    $action .= '<tr><td>Region</td><td>'.$this->address->getRegion($region).'</td><td>'.$this->address->getRegion($request->edit_region).'</td></tr>';
-                    $action .= '<tr><td>Postal Code</td><td>'.$postalCode.'</td><td>'.$request->edit_postal_code.'</td></tr>';
-                    $action .= '<tr><td>Contact Person</td><td>'.$contactPersonName.'</td><td>'.$request->edit_contactperson_name.'</td></tr>';
-                    $action .= '<tr><td>Contact Person Number</td><td>'.$contactPersonNo.'</td><td>'.$request->edit_contactperson_no.'</td></tr>';
-                    $action .= '<tr><td>Call Center</td><td>'.CallCenter::find($callCenterId)->name.'</td><td>'.CallCenter::find($request->ccId)->name.'</td></tr>';
+                    $action .= '<tr><td colspan="3"><b>Action: </b>'.$description.'</td></tr>';
+                    $action .= '<tr><td></td><td><b>Previous</b></td><td><b>Updated</b></td></tr>';
+                    $action .= '<tr><td colspan="3"><b>Call Center ID: </b>'.$request->ccId.'</td></tr>';
+                    $action .= '<tr><td><b>Station Name</b></td><td>'.$stationname.'</td><td>'.$request->edit_station_name.'</td></tr>';
+                    $action .= '<tr><td><b>Department</b></td><td>'.$department.'</td><td>'.$request->edit_department.'</td></tr>';
+                    $action .= '<tr><td><b>Address</b></td><td>'.$address.'</td><td>'.$request->edit_street_address.'</td></tr>';
+                    $action .= '<tr><td><b>City</b></td><td>'.$this->address->get_city_name($city).'</td><td>'.$this->address->get_city_name($request->edit_city).'</td></tr>';
+                    $action .= '<tr><td><b>State</b></td><td>'.$this->address->get_province_name($state).'</td><td>'.$this->address->get_province_name($request->edit_state).'</td></tr>';
+                    $action .= '<tr><td><b>Region</b></td><td>'.$this->address->getRegion($region).'</td><td>'.$this->address->getRegion($request->edit_region).'</td></tr>';
+                    $action .= '<tr><td><b>Postal Code</b></td><td>'.$postalCode.'</td><td>'.$request->edit_postal_code.'</td></tr>';
+                    $action .= '<tr><td><b>Contact Person</b></td><td>'.$contactPersonFname.' '.$contactPersonlname.'</td><td>'.$request->edit_contactperson_fname.' '.$request->edit_contactperson_fname.'</td></tr>';
+                    $action .= '<tr><td><b>Contact Person Number</b></td><td>'.$contactPersonNo.'</td><td>'.$request->edit_contactperson_no.'</td></tr>';
+                    $action .= '<tr><td><b>Call Center</b></td><td>'.CallCenter::find($callCenterId)->name.'</td><td>'.CallCenter::find($request->ccId)->name.'</td></tr>';
                     $action .= '</table>';
 
                     $this->activity->activity_log($action, $description);
@@ -345,9 +375,9 @@ class LguController extends Controller
             $description = "Deleted LGU";
             $action = $this->device->userAgent();
             $action .= '<table class="table table-bordered">';
-            $action .= '<tr><td colspan="2">Action: '.$description.'</td></tr>';
-            $action .= '<tr><td>LGU ID</td><td>'.$request->lgu_delete_id.'</td></tr>';
-            $action .= '<tr><td>Station Name</td><td>'.$lgu->station_name.'</td></tr>';
+            $action .= '<tr><td colspan="2"><b>Action:</b> '.$description.'</td></tr>';
+            $action .= '<tr><td><b>LGU ID</b></td><td>'.$request->lgu_delete_id.'</td></tr>';
+            $action .= '<tr><td><b>Station Name</b></td><td>'.$lgu->station_name.'</td></tr>';
             $action .= '</table>';
 
             $this->activity->activity_log($action, $description);

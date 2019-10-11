@@ -42,11 +42,15 @@ class UserAgentController extends Controller
         return $device;
     }
 
+    /**
+     * display user agent
+     * @return string
+     * */
     public function userAgent()
     {
         $action = '<table class="table table-bordered">';
-        $action .= '<tr><td>Ip Address: '.\request()->ip().'</td><td>Browser: '.$this->agent->browser().' '.$this->agent->version($this->agent->browser()).'</td>
-                        <td>Device Used: '.$this->check_device().'</td><td>Operating System: '.$this->agent->platform().' '.$this->agent->version($this->agent->platform()).'</td></tr>';
+        $action .= '<tr><td><b>Ip Address:</b> '.\request()->ip().'</td><td><b>Browser:</b> '.$this->agent->browser().' '.$this->agent->version($this->agent->browser()).'</td>
+                        <td><b>Device Used:</b> '.$this->check_device().'</td><td><b>Operating System: </b>'.$this->agent->platform().' '.$this->agent->version($this->agent->platform()).'</td></tr>';
         $action .= '</table>';
 
         return $action;
