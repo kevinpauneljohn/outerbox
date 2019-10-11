@@ -389,7 +389,7 @@ class SuperAdminController extends Controller
      * Performance Evaluation Report
      * @return object
      */
-    public function performanceEval(){
+    public function performance_eval(){
         return view("SuperAdmin.Reports.performance_eval");
     }
 
@@ -399,7 +399,7 @@ class SuperAdminController extends Controller
      * User management Report
      * @return object
      */
-    public function userManagement(){
+    public function user_management(){
         return view("SuperAdmin.Reports.user_management");
     }
 

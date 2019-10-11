@@ -5,7 +5,7 @@
 @endsection
 
 @section('title')
-    Agent | Leads
+    Agent | Tickets
 @endsection
 @section('extra_stylesheet')
     <!-- DataTables -->
@@ -13,7 +13,7 @@
     <link href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.0/animate.min.css" rel="stylesheet">
 @endsection
 @section('page_header')
-    Ticket <button type="button" class="btn bg-purple" data-toggle="modal" data-target="#create-ticket"><i class="fa fa-plus"></i> Add New</button>
+    Ticket
 @endsection
 @section('main_content')
     <div class="box">
@@ -27,7 +27,7 @@
                     <th>Station name</th>
                     <th>Date Reported</th>
                     <th>Time Handled</th>
-                    <th>Time Reached</th>
+                    {{-- <th>Time Reached</th> --}}
                     <th>Duration Before Agent Handled the case</th>
                     <th>Call Duration</th>
                     <th>Duration until the Agent transfer the request to LGU</th>
@@ -45,12 +45,11 @@
                         <td>{{\App\Http\Controllers\AgentPageController::get_app_response($ticket->app_response)}}</td>
                         <td><button type="button" name="select_lgu" class="btn bg-aqua" data-toggle="modal" data-target="#select-lgu" value="{{$ticket->id}}">{{(!empty($ticket->station_name)) ? $ticket->station_name : 'Select LGU'}}</button></td>
 {{--                        <td>{{$ticket->date_reported}}</td>--}}
-                        <td>{{\App\Http\Controllers\AgentPageController::get_requested_date($ticket->app_response)}}</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td>{{ Carbon\Carbon::parse(\App\Http\Controllers\AgentPageController::get_requested_date($ticket->app_response))->diffForHumans()}}</td>
+                        <td>{{ Carbon\Carbon::parse($ticket->time_handled)->diffForHumans() }}</td>
+                        <td>{{ Carbon\Carbon::parse($ticket->duration_before_agent_handled_call)->diffForHumans() }}</td>
+                        <td>{{ Carbon\Carbon::parse($ticket->duration_until_agent_transfer_request)->diffForHumans() }}</td>
+                        <td>{{ Carbon\Carbon::parse($ticket->duration_until_agent_transfer_request)->diffForHumans() }}</td>
                         <td></td>
                         <td></td>
                         <td>
@@ -75,7 +74,7 @@
 {{--                            <a href="{{url('/v1/call-user')}}"><button type="button" class="btn btn-primary call_user" value="{{$ticket->id}}"><i class="fa fa-phone"></i></button></a>--}}
                             <input type="hidden" name="user_mobile_no{{$ticket->id}}" value="{{\App\Http\Controllers\AgentPageController::get_mobile_no($ticket->app_response)}}">
                             <button type="button" class="btn btn-primary call_user" value="{{$ticket->id}}" data-toggle="modal" data-target="#lead-details" title="Call User"><i class="fa fa-phone"></i></button>
-                            <button type="button" class="btn btn-success connect_to_lgu" value="{{$ticket->lgu_id}}" title="Connect To LGU"><i class="fa fa-arrows-h"></i></button>
+                            <button type="button" class="btn btn-success connect_to_lgu" value="{{$ticket->id}}" title="Connect To LGU"><i class="fa fa-arrows-h"></i></button>
                             <button type="button" class="btn bg-aqua-active relate-ticket-btn" title="Create Child Ticket" data-toggle="modal" data-target="#create-child-ticket" value="{{$ticket->id}}"><i class="fa fa-ticket"></i></button>
                             <button type="button" class="btn bg-yellow-active twilio_recordings" title="Display Call Recordings" value="{{$ticket->id}}" data-toggle="modal" data-target="#display-call-recordings"><i class="fa fa-play"></i></button>
                             <button type="button" class="btn bg-aqua-active twilio_call_back" title="Create Child Ticket" value="{{$ticket->id}}"><i class="fa fa-ticket"></i></button>
@@ -93,7 +92,6 @@
                     <th>Station name</th>
                     <th>Date Reported</th>
                     <th>Time Handled</th>
-                    <th>Time Reached</th>
                     <th>Duration Before Agent Handled the case</th>
                     <th>Call Duration</th>
                     <th>Duration until the Agent transfer the request to LGU</th>
@@ -210,6 +208,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-success call_finish" data-dismiss="modal" value="{{$ticket->id}}">Done</button>
                     </div>
                 </div>
 
