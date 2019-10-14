@@ -188,3 +188,16 @@ $(document).on('submit','#delete-staff',function(form){
         }
     });
 });
+
+/**
+ * Oct. 14, 2019
+ * @author john kevin paune;
+ *display edit profile icon visibility
+* */
+$(document).on('mouseover','.profile',function(){
+    $('#edit_profile').css("visibility", "visible");
+});
+
+$(document).on('mouseout','.profile',function(){
+    $('#edit_profile').css("visibility","hidden");
+});

@@ -11,6 +11,13 @@
     <!-- DataTables -->
     <link rel="stylesheet" href="{{asset('/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css')}}">
     <link href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.0/animate.min.css" rel="stylesheet">
+    <style type="text/css" rel="stylesheet">
+        .edit-employee{
+            border:none;
+            background:none;
+            visibility:hidden;
+        }
+    </style>
 @endsection
 @section('page_header')
     Employee Profile
@@ -52,7 +59,7 @@
     <div class="row">
         <div class="col-lg-3">
             <div class="box profile">
-                <div class="box-header"><button class="edit-employee" data-toggle="modal" data-target="#edit_employee" value="{{$user->id}}"><small class="pull-right" id="edit_profile" title="Edit Profile"><i class="fa fa-edit"></i></small></button></div>
+                <div class="box-header"><button class="edit-employee pull-right" data-toggle="modal" data-target="#edit_employee" value="{{$user->id}}"><small id="edit_profile" title="Edit Profile"><i class="fa fa-edit fa-2x"></i></small></button></div>
                 <div class="box-body">
 
                     <div class="row">
