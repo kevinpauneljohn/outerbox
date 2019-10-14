@@ -334,7 +334,7 @@ class LguController extends Controller
                     $action .= '<tr><td><b>State</b></td><td>'.$this->address->get_province_name($state).'</td><td>'.$this->address->get_province_name($request->edit_state).'</td></tr>';
                     $action .= '<tr><td><b>Region</b></td><td>'.$this->address->getRegion($region).'</td><td>'.$this->address->getRegion($request->edit_region).'</td></tr>';
                     $action .= '<tr><td><b>Postal Code</b></td><td>'.$postalCode.'</td><td>'.$request->edit_postal_code.'</td></tr>';
-                    $action .= '<tr><td><b>Contact Person</b></td><td>'.$contactPersonFname.' '.$contactPersonlname.'</td><td>'.$request->edit_contactperson_fname.' '.$request->edit_contactperson_fname.'</td></tr>';
+                    $action .= '<tr><td><b>Contact Person</b></td><td>'.$contactPersonFname.' '.$contactPersonlname.'</td><td>'.$request->edit_contactperson_fname.' '.$request->edit_contactperson_lname.'</td></tr>';
                     $action .= '<tr><td><b>Contact Person Number</b></td><td>'.$contactPersonNo.'</td><td>'.$request->edit_contactperson_no.'</td></tr>';
                     $action .= '<tr><td><b>Call Center</b></td><td>'.CallCenter::find($callCenterId)->name.'</td><td>'.CallCenter::find($request->ccId)->name.'</td></tr>';
                     $action .= '</table>';

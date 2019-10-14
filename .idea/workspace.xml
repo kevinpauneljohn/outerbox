@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="03ba3b1d-e17f-4440-a069-100ded3b375a" name="Default Changelist" comment="audit trail">
+    <list default="true" id="03ba3b1d-e17f-4440-a069-100ded3b375a" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/SuperAdmin/SuperAdminController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/SuperAdmin/SuperAdminController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/SuperAdmin/lgu/lgu.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/SuperAdmin/lgu/lgu.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Lgu/LguController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Lgu/LguController.php" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/vendor/beyondcode/laravel-dump-server/" />
     <ignored path="$PROJECT_DIR$/vendor/composer/" />
@@ -106,7 +105,7 @@
     </execution>
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.61962754">
+    <splitter split-orientation="horizontal" split-proportion="0.10555175">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file pinned="false" current-in-tab="false">
@@ -133,8 +132,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/app/Http/Controllers/SuperAdmin/SuperAdminController.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="277">
-                  <caret line="367" column="8" selection-start-line="367" selection-start-column="8" selection-end-line="367" selection-end-column="28" />
+                <state relative-caret-position="838">
+                  <caret line="368" column="8" selection-start-line="368" selection-start-column="8" selection-end-line="373" selection-end-column="11" />
                   <folding>
                     <element signature="e#51#68#0#PHP" expanded="true" />
                   </folding>
@@ -200,8 +199,20 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/public/js/lgu.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="3179">
+                <state relative-caret-position="156">
                   <caret line="187" selection-start-line="187" selection-end-line="188" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Lgu/LguController.php">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="328">
+                  <caret line="336" column="197" selection-start-line="336" selection-start-column="197" selection-end-line="336" selection-end-column="197" />
+                  <folding>
+                    <element signature="e#44#66#0#PHP" expanded="true" />
+                  </folding>
                 </state>
               </provider>
             </entry>
@@ -218,41 +229,11 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/resources/views/SuperAdmin/lgu/lgu.blade.php">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="289">
                   <caret line="75" column="31" selection-start-line="75" selection-start-column="31" selection-end-line="75" selection-end-column="119" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/resources/views/Employee/Agent/lgu.blade.php">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="748">
-                  <caret line="44" column="85" selection-start-line="44" selection-start-column="85" selection-end-line="44" selection-end-column="85" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/public/js/ticket.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="459">
-                  <caret line="27" selection-start-line="26" selection-end-line="27" />
-                  <folding>
-                    <element signature="n#!!doc" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/resources/views/Employee/Agent/tickets.blade.php">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="697">
-                  <caret line="41" column="73" selection-start-line="41" selection-start-column="73" selection-end-line="41" selection-end-column="124" />
                 </state>
               </provider>
             </entry>
@@ -278,7 +259,6 @@
       <find>activities</find>
       <find>profile</find>
       <find>dashb</find>
-      <find>assignContactPerson</find>
       <find>lgu</find>
       <find>lgu_data</find>
       <find>emplo</find>
@@ -300,6 +280,7 @@
       <find>ticket_profile_page</find>
       <find>/ticket</find>
       <find>lgu()</find>
+      <find>assignContactPerson</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -349,7 +330,6 @@
         <option value="$PROJECT_DIR$/public/js/ticket.js" />
         <option value="$PROJECT_DIR$/resources/views/Employee/Agent/lgu.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/lgu/lguProfile.blade.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/Lgu/LguController.php" />
         <option value="$PROJECT_DIR$/resources/views/SuperAdmin/Activity/activity.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/RolesController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Reports/Reports.php" />
@@ -359,6 +339,7 @@
         <option value="$PROJECT_DIR$/resources/views/SuperAdmin/lgu/lgu.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/address/AddressController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/SuperAdmin/SuperAdminController.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/Lgu/LguController.php" />
       </list>
     </option>
   </component>
@@ -552,6 +533,14 @@
               <item name="app" type="462c0819:PsiDirectoryNode" />
               <item name="Http" type="462c0819:PsiDirectoryNode" />
               <item name="Controllers" type="462c0819:PsiDirectoryNode" />
+              <item name="Lgu" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="outerbox" type="b2602c69:ProjectViewProjectNode" />
+              <item name="outerbox" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="Http" type="462c0819:PsiDirectoryNode" />
+              <item name="Controllers" type="462c0819:PsiDirectoryNode" />
               <item name="SuperAdmin" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -715,21 +704,7 @@
       <workItem from="1570676643805" duration="685000" />
       <workItem from="1570677700760" duration="40684000" />
       <workItem from="1570802052149" duration="9911000" />
-      <workItem from="1571034022212" duration="1029000" />
-    </task>
-    <task id="LOCAL-00135" summary="updated the call process">
-      <created>1567775293763</created>
-      <option name="number" value="00135" />
-      <option name="presentableId" value="LOCAL-00135" />
-      <option name="project" value="LOCAL" />
-      <updated>1567775293763</updated>
-    </task>
-    <task id="LOCAL-00136" summary="updated the call process">
-      <created>1567777548296</created>
-      <option name="number" value="00136" />
-      <option name="presentableId" value="LOCAL-00136" />
-      <option name="project" value="LOCAL" />
-      <updated>1567777548296</updated>
+      <workItem from="1571034022212" duration="2522000" />
     </task>
     <task id="LOCAL-00137" summary="updated the call process">
       <created>1567777933916</created>
@@ -1060,17 +1035,31 @@
       <option name="project" value="LOCAL" />
       <updated>1570812374948</updated>
     </task>
-    <option name="localTasksCounter" value="184" />
+    <task id="LOCAL-00184" summary="audit trail">
+      <created>1571035065673</created>
+      <option name="number" value="00184" />
+      <option name="presentableId" value="LOCAL-00184" />
+      <option name="project" value="LOCAL" />
+      <updated>1571035065673</updated>
+    </task>
+    <task id="LOCAL-00185" summary="audit trail">
+      <created>1571035316191</created>
+      <option name="number" value="00185" />
+      <option name="presentableId" value="LOCAL-00185" />
+      <option name="project" value="LOCAL" />
+      <updated>1571035316191</updated>
+    </task>
+    <option name="localTasksCounter" value="186" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="472159000" />
+    <option name="totallyTimeSpent" value="473652000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49748743" visible="true" weight="0.06308725" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49748743" visible="true" weight="0.020134227" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" sideWeight="0.5025126" side_tool="true" weight="0.48724833" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -1368,16 +1357,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Lgu/LguController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="177" column="45" selection-start-line="177" selection-start-column="45" selection-end-line="177" selection-end-column="45" />
-          <folding>
-            <element signature="e#44#66#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/LguAccess/LguAccessController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
@@ -1456,20 +1435,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/lgu.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3179">
-          <caret line="187" selection-start-line="187" selection-end-line="188" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/Employee/Agent/lgu.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="748">
-          <caret line="44" column="85" selection-start-line="44" selection-start-column="85" selection-end-line="44" selection-end-column="85" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/js/ticket.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="459">
@@ -1514,13 +1479,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/SuperAdmin/lgu/lgu.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="75" column="31" selection-start-line="75" selection-start-column="31" selection-end-line="75" selection-end-column="119" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/address/AddressController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="420">
@@ -1530,10 +1488,41 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/SuperAdmin/SuperAdminController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="277">
-          <caret line="367" column="8" selection-start-line="367" selection-start-column="8" selection-end-line="367" selection-end-column="28" />
+        <state relative-caret-position="838">
+          <caret line="368" column="8" selection-start-line="368" selection-start-column="8" selection-end-line="373" selection-end-column="11" />
           <folding>
             <element signature="e#51#68#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/Employee/Agent/lgu.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="473">
+          <caret line="44" column="85" selection-start-line="44" selection-start-column="85" selection-end-line="44" selection-end-column="85" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/SuperAdmin/lgu/lgu.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="75" column="31" selection-start-line="75" selection-start-column="31" selection-end-line="75" selection-end-column="119" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/lgu.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="156">
+          <caret line="187" selection-start-line="187" selection-end-line="188" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Lgu/LguController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="328">
+          <caret line="336" column="197" selection-start-line="336" selection-start-column="197" selection-end-line="336" selection-end-column="197" />
+          <folding>
+            <element signature="e#44#66#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
