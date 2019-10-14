@@ -96,20 +96,15 @@
                     <li class="dropdown notifications-menu">
                         <!-- Menu toggle button -->
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <i class="fa fa-bell-o"></i>
-                            <span class="label label-warning">10</span>
+                            <i data-count="0" class="fa fa-bell-o"></i>
+                            <span class="label label-warning">0</span>
                         </a>
                         <ul class="dropdown-menu">
-                            <li class="header">You have 10 notifications</li>
+                            <li class="header">You have (<span class="notif-count">0</span>) notifications</li>
                             <li>
                                 <!-- Inner Menu: contains the notifications -->
                                 <ul class="menu">
-                                    <li><!-- start notification -->
-                                        <a href="#">
-                                            <i class="fa fa-users text-aqua"></i> 5 new members joined today
-                                        </a>
-                                    </li>
-                                    <!-- end notification -->
+
                                 </ul>
                             </li>
                             <li class="footer"><a href="#">View all</a></li>
@@ -273,7 +268,7 @@
 
 <!-- REQUIRED JS SCRIPTS -->
 <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
-<script src="//static.twilio.com/libs/twiliojs/1.3/twilio.min.js"></script>
+<script src="//js.pusher.com/3.1/pusher.min.js"></script>
 <!-- jQuery 3 -->
 <script src="{{ asset('/bower_components/jquery/dist/jquery.min.js') }}"></script>
 <!-- Bootstrap 3.3.7 -->
@@ -281,11 +276,78 @@
 <!-- AdminLTE App -->
 <script src="{{ asset('/bower_components/admin-lte/dist/js/adminlte.min.js') }}"></script>
 
-@yield('extra_script')
 
+<script type="text/javascript">
+    //alert("Working");
+    var notificationsWrapper   = $('.notifications-menu');
+    var notificationsToggle    = notificationsWrapper.find('a[data-toggle]');
+    var notificationsCountElem = notificationsToggle.find('i[data-count]');
+    var notificationsCount     = parseInt(notificationsCountElem.data('count'));
+    var notifications          = notificationsWrapper.find('ul.menu');
+
+    console.log("Count notif " + notificationsCount);
+    if (notificationsCount <= 0) {
+      //notificationsWrapper.hide();
+    }
+
+    // Enable pusher logging - don't include this in production
+    // Pusher.logToConsole = true;
+
+    var pusher = new Pusher('d280273f5b9950d7af2b', {
+      cluster: 'ap1',
+      encrypted: true
+    });
+
+    // Subscribe to the channel we specified in our Laravel Event
+    var channel = pusher.subscribe('assign-task');
+
+    // Bind a function to a Event (the full Laravel class)
+    channel.bind('App\\Events\\AssignTask', function(data) {
+      var existingNotifications = notifications.html();
+      var avatar = Math.floor(Math.random() * (71 - 20 + 1)) + 20;
+      var newNotificationHtml = `
+        <li class="notification active">
+            <div class="media">
+              <div class="media-left">
+                <div class="media-object">
+                  <img src="https://api.adorable.io/avatars/71/`+avatar+`.png" class="img-circle" alt="50x50" style="width: 50px; height: 50px;">
+                </div>
+              </div>
+              <div class="media-body">
+                <strong class="notification-title">`+data.message+`</strong>
+                <!--p class="notification-desc">Extra description can go here</p-->
+                <div class="notification-meta">
+                  <small class="timestamp">about a minute ago</small>
+                </div>
+              </div>
+            </div>
+        </li>
+      `;
+      notifications.html(newNotificationHtml + existingNotifications);
+
+      notificationsCount += 1;
+      notificationsWrapper.find('.label-warning').text(notificationsCount);
+      notificationsCountElem.attr('data-count', notificationsCount);
+      notificationsWrapper.find('.notif-count').text(notificationsCount);
+      notificationsWrapper.show();
+
+
+    });
+
+    $(document).on("click", ".notifications-menu", function() {
+       notificationsCount = 0;
+       notificationsWrapper.find('.label-warning').text(notificationsCount);
+       notificationsCountElem.attr('data-count', notificationsCount);
+       notificationsWrapper.find('.notif-count').text(notificationsCount);
+       notificationsWrapper.show();
+      });
+</script>
+@yield('extra_script')
 
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
      Both of these plugins are recommended to enhance the
      user experience. -->
+
+
 </body>
 </html>

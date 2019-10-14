@@ -11,6 +11,8 @@
 |
 */
 
+use App\Http\Controllers\TestEventController;
+
 Route::get('/', function () {
     return redirect(route('login'));
 });
@@ -128,4 +130,18 @@ Route::group(['middleware' => ['cors'],'prefix' => 'v1'], function (){
 
 Route::get('/jasper','Reports\Reports@generateReport');
 
+Route::get('/broadcast', function(){
+    event(new TestEventController('Anjing Laravel Pusher'));
 
+    return view('welcome');
+});
+
+Route::get('notif-test', function () {
+    event(new App\Events\AssignTask('Someone'));
+    return "Event has been sent!";
+});
+
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

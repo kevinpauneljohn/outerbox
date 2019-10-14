@@ -19,7 +19,7 @@ class AuthController extends Controller
         $credentials = request(['email', 'password']);
         if(!Auth::attempt($credentials))
             return response()->json([
-                'message' => 'Unauthorized'
+                'message' => 'Unauthorized User'
             ], 401);
         $user = $request->user();
         $user->active = 1;
@@ -42,6 +42,7 @@ class AuthController extends Controller
         $request->validate([
             'fName' => 'required|string',
             'lName' => 'required|string',
+            'uname' => 'required|string',
             'email' => 'required|string|email|unique:users',
             'password' => 'required|string'
         ]);
@@ -49,7 +50,7 @@ class AuthController extends Controller
         $user->firstname = $request->fName;
         $user->lastname = $request->lName;
         $user->email = $request->email;
-        $user->username = $request->username;
+        $user->username = $request->uname;
         $user->active = 0;
         $user->password = bcrypt($request->password);
         $user->save();

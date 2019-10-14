@@ -27,5 +27,6 @@ Route::group([
     ], function() {
         Route::get('logout', 'Auth\AuthController@logout');
         Route::get('user', 'Auth\AuthController@user');
+        Route::post('request','Leads\LeadsController@save_leads');
     });
 });
