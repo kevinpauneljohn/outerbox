@@ -13,12 +13,12 @@ class TestEventController extends Controller implements ShouldBroadcast
     public function __construct($text)
     {
         $this->text = $text;
-        error_log("CONSTRUCT");
+        // error_log("CONSTRUCT");
     }
 
     public function broadcastOn()
     {
-        error_log("broadcastOn");
+        //error_log("broadcastOn");
         return ['test-channel'];
     }
 }

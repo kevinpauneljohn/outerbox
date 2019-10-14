@@ -45,6 +45,8 @@ Route::group(['middleware' => ['auth','role:agent']],function (){
     Route::get('/agent/ticket','AgentPageController@ticket');
     Route::get('/agent/lgu','AgentPageController@lgu');
     Route::get('/agent/lgu/profile/{id}','Lgu\LguController@lgu_profile');
+
+
 });
 
 #superadmin login
@@ -109,6 +111,7 @@ Route::group(['middleware' => ['auth']],function (){
     // Added by Jovito Pangan, Oct. 10. 2019
     // Updating fields after a call
     Route::post('/update-ticket-after-call','Ticket\TicketController@update_field_after_call');
+
 });
 //Route::post('/call-user','AgentPageController@call_user');
 Auth::routes();

@@ -8,6 +8,7 @@ use App\User;
 use http\Env\Response;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\TestEventController;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 
@@ -26,6 +27,7 @@ class TicketController extends Controller
      * */
     public function update_ticket_status(Request $request)
     {
+
         $ticket = Ticket::find($request->ticket_id);
         $ticket->status = $request->value;
 
@@ -42,6 +44,7 @@ class TicketController extends Controller
      * */
     public function assign_lgu_to_ticket(Request $request)
     {
+
         $ticket = Ticket::find($request->ticket_id);
         $ticket->lgu_id = $request->lgu_id;
         $ticket->status = 'On-going';
@@ -139,6 +142,7 @@ class TicketController extends Controller
         // This code will update the duration_until_agent_transfer_request
         $ticket = Ticket::find($request->ticket_id);
         $ticket->duration_until_agent_transfer_request = now();
+        event(new TestEventController("Update Ticket Status"));
         $ticket->save() ? $message = ['success' => true] : ['success' => false];
 
         return response()->json($message);
