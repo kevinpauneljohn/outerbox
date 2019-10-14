@@ -3,10 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="03ba3b1d-e17f-4440-a069-100ded3b375a" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Reports/Reports.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Reports/Reports.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/SuperAdmin/SuperAdminController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/SuperAdmin/SuperAdminController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/Employee/Agent/tickets.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Employee/Agent/tickets.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/SuperAdmin/employee/employeeProfile.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/SuperAdmin/employee/employeeProfile.blade.php" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/vendor/beyondcode/laravel-dump-server/" />
     <ignored path="$PROJECT_DIR$/vendor/composer/" />
@@ -108,7 +105,7 @@
     </execution>
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.86442006">
+    <splitter split-orientation="horizontal" split-proportion="0.8785266">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file pinned="false" current-in-tab="false">
@@ -175,7 +172,7 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/resources/views/Employee/Agent/tickets.blade.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="460">
+                <state relative-caret-position="188">
                   <caret line="50" column="32" selection-start-line="50" selection-start-column="28" selection-end-line="50" selection-end-column="127" />
                 </state>
               </provider>
@@ -670,21 +667,7 @@
       <workItem from="1570676643805" duration="685000" />
       <workItem from="1570677700760" duration="40684000" />
       <workItem from="1570802052149" duration="9911000" />
-      <workItem from="1571034022212" duration="17241000" />
-    </task>
-    <task id="LOCAL-00141" summary="updated the call process">
-      <created>1568089683856</created>
-      <option name="number" value="00141" />
-      <option name="presentableId" value="LOCAL-00141" />
-      <option name="project" value="LOCAL" />
-      <updated>1568089683857</updated>
-    </task>
-    <task id="LOCAL-00142" summary="updated the call process">
-      <created>1568114923717</created>
-      <option name="number" value="00142" />
-      <option name="presentableId" value="LOCAL-00142" />
-      <option name="project" value="LOCAL" />
-      <updated>1568114923718</updated>
+      <workItem from="1571034022212" duration="17520000" />
     </task>
     <task id="LOCAL-00143" summary="updated the call process">
       <created>1568301684160</created>
@@ -1015,11 +998,25 @@
       <option name="project" value="LOCAL" />
       <updated>1571050092029</updated>
     </task>
-    <option name="localTasksCounter" value="190" />
+    <task id="LOCAL-00190" summary="audit trail">
+      <created>1571056952808</created>
+      <option name="number" value="00190" />
+      <option name="presentableId" value="LOCAL-00190" />
+      <option name="project" value="LOCAL" />
+      <updated>1571056952808</updated>
+    </task>
+    <task id="LOCAL-00191" summary="audit trail">
+      <created>1571057117893</created>
+      <option name="number" value="00191" />
+      <option name="presentableId" value="LOCAL-00191" />
+      <option name="project" value="LOCAL" />
+      <updated>1571057117893</updated>
+    </task>
+    <option name="localTasksCounter" value="192" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="488371000" />
+    <option name="totallyTimeSpent" value="488650000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
@@ -1481,7 +1478,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/Employee/Agent/tickets.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="460">
+        <state relative-caret-position="188">
           <caret line="50" column="32" selection-start-line="50" selection-start-column="28" selection-end-line="50" selection-end-column="127" />
         </state>
       </provider>
