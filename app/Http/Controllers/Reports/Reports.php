@@ -12,6 +12,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use JasperPHP\JasperPHP;
 use Jenssegers\Agent\Agent;
+use Spatie\Permission\Models\Role;
 
 class Reports extends Controller
 {
@@ -26,33 +27,12 @@ class Reports extends Controller
 //        JasperPHP::compile(base_path('/vendor/cossou/jasperphp/examples/hello_world.jrxml'))->execute();
 //        return auth()->user()->id;
 
-        // server ip
+        $role = Role::where([
+            ['name','=','Lgu'],
+            ['deleted_at','=',null]
+        ]);
 
-
-        // server ip
-
-       // echo \request()->ip();
-        // server ip
-
-        echo \request()->ip(); //see the method below
-    }
-    public function getUserIpAddr(){
-        $ipaddress = '';
-        if (isset($_SERVER['HTTP_CLIENT_IP']))
-            $ipaddress = $_SERVER['HTTP_CLIENT_IP'];
-        else if(isset($_SERVER['HTTP_X_FORWARDED_FOR']))
-            $ipaddress = $_SERVER['HTTP_X_FORWARDED_FOR'];
-        else if(isset($_SERVER['HTTP_X_FORWARDED']))
-            $ipaddress = $_SERVER['HTTP_X_FORWARDED'];
-        else if(isset($_SERVER['HTTP_FORWARDED_FOR']))
-            $ipaddress = $_SERVER['HTTP_FORWARDED_FOR'];
-        else if(isset($_SERVER['HTTP_FORWARDED']))
-            $ipaddress = $_SERVER['HTTP_FORWARDED'];
-        else if(isset($_SERVER['REMOTE_ADDR']))
-            $ipaddress = $_SERVER['REMOTE_ADDR'];
-        else
-            $ipaddress = 'UNKNOWN';
-        return $ipaddress;
+        return CallCenter::find(12);
     }
 
     /**
@@ -92,7 +72,7 @@ class Reports extends Controller
         $activity = new Activity;
 
         $activity->user_id = 0;
-        $activity->action = 'The system '.$action;
+        $activity->action = $action;
         $activity->description = $description;
 
         $activity->save();

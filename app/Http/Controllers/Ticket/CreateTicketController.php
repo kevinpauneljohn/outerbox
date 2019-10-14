@@ -95,7 +95,8 @@ class CreateTicketController extends Controller
         $ticket->date_reported = $date_reported;
         $ticket->status = 'Pending';
 
-        return ($ticket->save()) ? true : false;
+        $ticket->save();
+        return $ticket->id;
     }
 
     //this method will be called by CRON to retrieve all new leads and automatically create ticket
@@ -143,7 +144,7 @@ class CreateTicketController extends Controller
 
                 $lead_id = $arr2[$i++];
                 $cc_id = $arr[$y++];
-                $this->create_ticket(
+                $ticketId = $this->create_ticket(
                     $lead_id,
                     $cc_id,
                     $select_agent[$index_in_agent_count],
@@ -157,10 +158,18 @@ class CreateTicketController extends Controller
                  * */
                 $systemLogs = new Reports;
 
-                $action = "created a ticket and assigned to Agent: ".User::find($select_agent[$index_in_agent_count])->username;
-                $action .= "in Call Center: ".CallCenter::find($cc_id)->name." with CCID: ".$cc_id;
+                $description = "System created and assigned ticket to user";
+//                $action = "created a ticket and assigned to Agent: ".User::find($select_agent[$index_in_agent_count])->username;
+//                $action .= "in Call Center: ".CallCenter::find($cc_id)->name." with CCID: ".$cc_id;
 
-                $systemLogs->system_activity_log($action, "System assigned ticket to user");
+                $action = '<table class="table table-bordered">';
+                $action .= '<tr><td colspan="2"><b>Action: </b>'.$description.'</td></tr>';
+                $action .= '<tr><td><b>Ticket: </b></td><td><a href="'.url('/ticket/'.$ticketId).'">'.CreateTicketController::getSequence($ticketId).'</a></td></tr>';
+                $action .= '<tr><td><b>Agent: </b></td><td>'.User::find($select_agent[$index_in_agent_count])->username.'</td></tr>';
+                $action .= '<tr><td><b>Call Center: </b></td><td>'.CallCenter::find($cc_id)->name.'</td></tr>';
+                $action .= '</table>';
+
+                $systemLogs->system_activity_log($action, $description);
                 $this->update_lead_status($lead_id, null);
             }
 

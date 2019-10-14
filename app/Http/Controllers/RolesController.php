@@ -17,7 +17,8 @@ class RolesController extends Controller
         /**
          * @var $user
          * */
-        $user = User::find($userId)->getRoleNames()[0];
+        /*$user = User::find($userId)->getRoleNames()[0];*/
+        $user = ($userId != 0 )? User::find($userId)->getRoleNames()[0] : "system";
 
         switch ($user)
         {
@@ -30,6 +31,8 @@ class RolesController extends Controller
             case "agent":
                 return '<small class="label bg-fuchsia">agent</small>';
                 break;
+            case "system":
+                return '<small class="label bg-black">system</small>';
             default:
                 return "";
                 break;

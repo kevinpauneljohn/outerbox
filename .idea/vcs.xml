@@ -2,6 +2,7 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/outerbox" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/philippines-region-province-citymun-brgy" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/public/bootstrap-notify" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/public/philippines-region-province-citymun-brgy" vcs="Git" />

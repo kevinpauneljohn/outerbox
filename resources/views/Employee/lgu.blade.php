@@ -50,7 +50,7 @@
                                         {{ucfirst(\App\Http\Controllers\address\AddressController::cityName($lgu->city).', ')}}
                                         {{ucfirst(\App\Http\Controllers\address\AddressController::provinceName($lgu->province))}}
                                     </td>
-                                    <td>{{ucfirst($lgu->contactname)}}</td>
+                                    <td>{{ucfirst($lgu->firstname)}} {{ucfirst($lgu->lastname)}}</td>
                                     <td>{{$lgu->contactno}}</td>
                                     <td>
                                         <button type="button" class="btn btn-default"><i class="fa fa-eye"></i></button>
@@ -214,13 +214,32 @@
                                 </span>
                             </div>
                         </div>
+                        <hr/>
+                        <h2>Contact Person</h2>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="contactperson_fname">
+                                        <label for="contactperson_fname">First Name</label>
+                                        <input type="text" name="contactperson_fname" id="contactperson_fname" class="form-control"/>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="contactperson_lname">
+                                        <label for="contactperson_lname">Last Name</label>
+                                        <input type="text" name="contactperson_lname" id="contactperson_lname" class="form-control"/>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
 
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <div class="contactperson_name">
-                                        <label for="contactperson_name">Contact Person</label>
-                                        <input type="text" name="contactperson_name" id="contactperson_name" class="form-control"/>
+                                    <div class="contactperson_uname">
+                                        <label for="contactperson_uname">Username</label>
+                                        <input type="text" name="contactperson_uname" id="contactperson_uname" class="form-control"/>
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
@@ -231,6 +250,24 @@
                                 </div>
                             </div>
                         </div>
+
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="password">
+                                        <label for="password">Password</label>
+                                        <input type="password" name="password" id="password" class="form-control"/>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="password_confirmation">
+                                        <label for="password_confirmation">Password Confirmation</label>
+                                        <input type="password" name="password_confirmation" id="password_confirmation" class="form-control"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <input type="hidden" name="call_center" value="{{$callCenterId}}"/>
 
                     </div>
 
@@ -261,7 +298,8 @@
                         <span id="change_status"></span>
                         <input type="hidden" name="lguId" id="lguId"/>
                         <input type="hidden" name="contactId" id="contactId"/>
-                        <input type="hidden" name="ccId" id="ccId"/>
+                        <input type="hidden" name="contactPeopleId" id="contactPeopleId"/>
+                        {{--                        <input type="hidden" name="ccId" id="ccId"/>--}}
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="form-group">
@@ -341,24 +379,36 @@
                                 </span>
                             </div>
                         </div>
-
+                        <hr/>
+                        <h2>Contact Person</h2>
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <div class="edit_contactperson_name">
-                                        <label for="edit_contactperson_name">Contact Person</label>
-                                        <input type="text" name="edit_contactperson_name" id="edit_contactperson_name" class="form-control"/>
+                                    <div class="edit_contactperson_fname">
+                                        <label for="edit_contactperson_fname">First Name</label>
+                                        <input type="text" name="edit_contactperson_fname" id="edit_contactperson_fname" class="form-control"/>
                                     </div>
                                 </div>
+                                <div class="col-lg-6">
+                                    <div class="edit_contactperson_lname">
+                                        <label for="edit_contactperson_lname">Last Name</label>
+                                        <input type="text" name="edit_contactperson_lname" id="edit_contactperson_lname" class="form-control"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
                                 <div class="col-lg-6">
                                     <div class="edit_contactperson_no">
                                         <label for="edit_contactperson_no">Contact Number</label>
                                         <input type="text" name="edit_contactperson_no" id="edit_contactperson_no" class="form-control"/>
                                     </div>
                                 </div>
+                                <input type="hidden" name="ccId" value="{{$callCenterId}}"/>
+
                             </div>
                         </div>
-
                     </div>
 
                     <div class="modal-footer">

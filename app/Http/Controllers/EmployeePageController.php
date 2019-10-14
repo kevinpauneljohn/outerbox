@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\address\Region;
+use App\Http\Controllers\address\AddressController;
 use App\Models\CallCenter;
 use App\User;
 use Illuminate\Http\Request;
@@ -58,14 +59,17 @@ class EmployeePageController extends Controller
     {
         $user = User::find(Auth::user()->id)->callcenter;
         $callcenter_id = $user[0]->pivot->cc_id;
+        $callCenter = CallCenter::all();
         $regions = Region::all();
 
         $lgus = DB::table('lgus')
             ->leftJoin('call_centers','lgus.call_center_id','=','call_centers.id')
             ->leftJoin('contact_people','lgus.id','=','contact_people.lgu_id')
+            ->leftJoin('users','contact_people.user_id','=','users.id')
             ->select('lgus.id as lgu_id','lgus.station_name','lgus.department','lgus.created_at','lgus.region','lgus.province','lgus.city','lgus.address',
                 'call_centers.id as cc_id',
-                'contact_people.fullname as contactname','contact_people.contactno')
+                'contact_people.contactno',
+                'users.firstname','users.lastname','users.username')
             ->where([
                 ['lgus.call_center_id','=',$callcenter_id],
                 ['lgus.deleted_at','=',null]
@@ -73,7 +77,10 @@ class EmployeePageController extends Controller
 
         return view('Employee.lgu')->with([
             'lgus'    => $lgus,
-            'regions' => $regions
+            'regions' => $regions,
+            "callCenters"    => $callCenter,
+            "address"       => new AddressController,
+            "callCenterId"  => $callcenter_id,
         ]);
 
     }

@@ -42,7 +42,7 @@
                                 {{ucfirst(\App\Http\Controllers\address\AddressController::cityName($lgu->city).', ')}}
                                 {{ucfirst(\App\Http\Controllers\address\AddressController::provinceName($lgu->province))}}
                             </td>
-                            <td>{{ucfirst($lgu->contactname)}}</td>
+                            <td>{{ucfirst($lgu->firstname)}} {{ucfirst($lgu->lastname)}}</td>
                             <td>{{$lgu->contactno}}</td>
                             <td>
                                 <a href="{{url('/agent/lgu/profile/'.$lgu->lgu_id)}}"> <button type="button" class="btn btn-default"><i class="fa fa-eye"></i></button></a>

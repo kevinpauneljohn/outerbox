@@ -39,6 +39,15 @@ $(document).on('submit','#add-lgu',function(form){
                     },1500);
                 });
             }
+            else if(result.success == false){
+                setTimeout(function(){
+                    $('#change_status').html('<div id="change_text" class="alert alert-warning">'+result.success+'</div>');
+
+                    setTimeout(function(){
+                        $('#change_text').remove();
+                    },3000);
+                });
+            }
 
             $.each(result, function (key, value) {
                 var element = $('#'+key);
@@ -201,7 +210,7 @@ $(document).on('submit','#edit-lgu-form',function(form){
         'data'  : data,
         'cache' : false,
         success:function(result){
-                console.log(result);
+            console.log(result);
             if(result.success == true)
             {
                 setTimeout(function(){
@@ -219,6 +228,7 @@ $(document).on('submit','#edit-lgu-form',function(form){
                     },1500);
                 });
             }else{
+
                 setTimeout(function(){
                     $('#change_status').html('<div id="change_text" class="alert alert-warning">'+result.success+'</div>');
 
@@ -238,7 +248,7 @@ $(document).on('submit','#edit-lgu-form',function(form){
                 element.after('<p class="text-danger">'+value+'</p>');
             });
 
-    check_value('edit_station_name','edit_department','edit_street_address','edit_region','edit_state','edit_city','edit_postal_code','edit_contactperson_name','edit_contactperson_no');
+    check_value('edit_station_name','edit_department','edit_street_address','edit_region','edit_state','edit_city','edit_postal_code','contactperson_fname','contactperson_lname','edit_contactperson_no');
 
 
         },error:function(error){

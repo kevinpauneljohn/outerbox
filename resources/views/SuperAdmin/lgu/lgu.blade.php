@@ -74,6 +74,7 @@
                             <td>
                                 {{ucfirst($lgu->address).', '}}
                                 {{ucfirst(\App\Http\Controllers\address\AddressController::cityName($lgu->city).', ')}}
+                                {{--{{ucfirst($address->get_city_name($lgu->city).', ')}}--}}
                                 {{ucfirst(\App\Http\Controllers\address\AddressController::provinceName($lgu->province))}}
                             </td>
                             <td>{{ucfirst($lgu->firstname)}} {{ucfirst($lgu->lastname)}}</td>
