@@ -39,6 +39,15 @@ $(document).on('submit','#add-lgu',function(form){
                     },1500);
                 });
             }
+            else if(result.success == false){
+                setTimeout(function(){
+                    $('#change_status').html('<div id="change_text" class="alert alert-warning">'+result.success+'</div>');
+
+                    setTimeout(function(){
+                        $('#change_text').remove();
+                    },3000);
+                });
+            }
 
             $.each(result, function (key, value) {
                 var element = $('#'+key);

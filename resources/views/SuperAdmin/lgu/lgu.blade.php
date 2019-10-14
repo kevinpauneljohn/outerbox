@@ -120,6 +120,7 @@
 
                     <div class="modal-body">
                         @csrf
+                        <span id="change_status"></span>
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="form-group">

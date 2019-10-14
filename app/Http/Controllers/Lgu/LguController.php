@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use App\User;
+use Spatie\Permission\Models\Role;
 
 class LguController extends Controller
 {
@@ -82,62 +83,86 @@ class LguController extends Controller
 
         if($validator->passes())
         {
-            $lgu = new Lgu;
-            $lgu->call_center_id = $callCenterValue;
-            $lgu->station_name = $request->station_name;
-            $lgu->department = $request->department;
-            $lgu->region = $request->region;
-            $lgu->province = $request->state;
-            $lgu->city = $request->city;
-            $lgu->address = $request->street_address;
-            $lgu->postalCode = $request->postal_code;
+            /**
+             * @author john kevin paunel
+             * oct 14, 2019
+             * this will check if Lgu role name is existing and will return 0 if it is not
+             * @var object $role
+             * */
+            $role = Role::where([
+                ['name','=','Lgu'],
+                ['deleted_at','=',null]
+            ]);
 
-            if($lgu->save())
+            if($role->count() > 0)
             {
-                $contactPerson = new User;
-                $contactPerson->firstname = $request->contactperson_fname;
-                $contactPerson->lastname = $request->contactperson_lname;
-                $contactPerson->username = $request->contactperson_uname;
-                $contactPerson->password = bcrypt($request->password);
-                $contactPerson->active = 0;
-                $contactPerson->assignRole('Lgu');
+                $lgu = new Lgu;
+                $lgu->call_center_id = $callCenterValue;
+                $lgu->station_name = $request->station_name;
+                $lgu->department = $request->department;
+                $lgu->region = $request->region;
+                $lgu->province = $request->state;
+                $lgu->city = $request->city;
+                $lgu->address = $request->street_address;
+                $lgu->postalCode = $request->postal_code;
 
-                $contactPerson->save();
+                if($lgu->save())
+                {
+                    $contactPerson = new User;
+                    $contactPerson->firstname = $request->contactperson_fname;
+                    $contactPerson->lastname = $request->contactperson_lname;
+                    $contactPerson->username = $request->contactperson_uname;
+                    $contactPerson->password = bcrypt($request->password);
+                    $contactPerson->active = 0;
+                    $contactPerson->assignRole('Lgu');
+
+                    $contactPerson->save();
                     $this->assignContactPerson($lgu->id, $contactPerson->id, $request->contactperson_no);
 
 
-                /**
-                 * @var $description
-                 * */
+                    /**
+                     * @author john kevin paunel
+                     * @var $description
+                     * */
 
-                $description = 'Added new LGU';
+                    $description = 'Added new LGU';
 
-                /**
-                 * @var $action
-                 * */
-                $action = $this->device->userAgent();
-                $action .='<table class="table table-bordered">';
-                $action .= '<tr><td colspan="2"><b>Action:</b> '.$description.'</td></tr>';
-                $action .= '<tr><td><b>Station Name</b></td><td>'.$request->station_name.'</td></tr>';
-                $action .= '<tr><td><b>Department</b></td><td>'.$request->department.'</td></tr>';
-                $action .= '<tr><td><b>Address</b></td><td>'.$request->street_address.'</td></tr>';
-                $action .= '<tr><td><b>City</b></td><td>'.$this->address->get_city_name($request->city).'</td></tr>';
-                $action .= '<tr><td><b>State</b></td><td>'.$this->address->get_province_name($request->state).'</td></tr>';
-                $action .= '<tr><td><b>Region</b></td><td>'.$this->address->getRegion($request->region).'</td></tr>';
-                $action .= '<tr><td><b>Postal Code</b></td><td>'.$request->postal_code.'</td></tr>';
-                $action .= '<tr><td><b>Contact Person</b></td><td>'.$request->contactperson_fname.' '.$request->contactperson_lname.'</td></tr>';
-                $action .= '<tr><td><b>Contact Person Username</b></td><td>'.$request->contactperson_uname.'</td></tr>';
-                $action .= '<tr><td><b>Contact Person Number</b></td><td>'.$request->contactperson_no.'</td></tr>';
-                $action .= '<tr><td><b>Call Center</b></td><td>'.CallCenter::find($callCenterValue)->name.'</td></tr>';
-                $action .= '</table>';
+                    /**
+                     * @author john kevin paunel
+                     * oct 14, 2019
+                     * @var $action
+                     * */
+                    $action = $this->device->userAgent();
+                    $action .='<table class="table table-bordered">';
+                    $action .= '<tr><td colspan="2"><b>Action:</b> '.$description.'</td></tr>';
+                    $action .= '<tr><td><b>Station Name</b></td><td>'.$request->station_name.'</td></tr>';
+                    $action .= '<tr><td><b>Department</b></td><td>'.$request->department.'</td></tr>';
+                    $action .= '<tr><td><b>Address</b></td><td>'.$request->street_address.'</td></tr>';
+                    $action .= '<tr><td><b>City</b></td><td>'.$this->address->get_city_name($request->city).'</td></tr>';
+                    $action .= '<tr><td><b>State</b></td><td>'.$this->address->get_province_name($request->state).'</td></tr>';
+                    $action .= '<tr><td><b>Region</b></td><td>'.$this->address->getRegion($request->region).'</td></tr>';
+                    $action .= '<tr><td><b>Postal Code</b></td><td>'.$request->postal_code.'</td></tr>';
+                    $action .= '<tr><td><b>Contact Person</b></td><td>'.$request->contactperson_fname.' '.$request->contactperson_lname.'</td></tr>';
+                    $action .= '<tr><td><b>Contact Person Username</b></td><td>'.$request->contactperson_uname.'</td></tr>';
+                    $action .= '<tr><td><b>Contact Person Number</b></td><td>'.$request->contactperson_no.'</td></tr>';
+                    $action .= '<tr><td><b>Call Center</b></td><td>'.CallCenter::find($callCenterValue)->name.'</td></tr>';
+                    $action .= '</table>';
 
-                $this->activity->activity_log($action, $description);
-                $message = ['success' => true];
+                    $this->activity->activity_log($action, $description);
+                    $message = ['success' => true];
+                }else{
+                    $message = ['success' => false];
+                }
+
+                return response()->json($message);
             }else{
-                $message = ['success' => false];
+                /**
+                 * @author john kevin paunel
+                 * oct 14, 2019
+                 * this will return error message if Lgu role name is non-existing
+                 * */
+                return response()->json(['success' => false, 'message' => 'Please Create Lgu role name first']);
             }
-
-            return response()->json($message);
         }
 
         return response()->json($validator->errors());
