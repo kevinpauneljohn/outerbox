@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\address\Region;
+use App\Http\Controllers\address\AddressController;
 use App\Models\CallCenter;
 use App\User;
 use Illuminate\Http\Request;
@@ -58,6 +59,7 @@ class EmployeePageController extends Controller
     {
         $user = User::find(Auth::user()->id)->callcenter;
         $callcenter_id = $user[0]->pivot->cc_id;
+        $callCenter = CallCenter::all();
         $regions = Region::all();
 
         $lgus = DB::table('lgus')
@@ -75,7 +77,10 @@ class EmployeePageController extends Controller
 
         return view('Employee.lgu')->with([
             'lgus'    => $lgus,
-            'regions' => $regions
+            'regions' => $regions,
+            "callCenters"    => $callCenter,
+            "address"       => new AddressController,
+            "callCenterId"  => $callcenter_id,
         ]);
 
     }
