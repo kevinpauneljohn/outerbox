@@ -4,6 +4,7 @@ namespace App\Http\Controllers\SuperAdmin;
 
 use App\activity;
 use App\address\Region;
+use App\Http\Controllers\address\AddressController;
 use App\Http\Controllers\RolesController;
 use App\Http\Controllers\TimeController;
 use App\Http\Controllers\UserAgentController;
@@ -358,11 +359,19 @@ class SuperAdminController extends Controller
             ->where('lgus.deleted_at','=',null
             );
 
-        return view('SuperAdmin.lgu.lgu')->with([
+        /*$cityname = new AddressController();
+
+        foreach ($lgus->get() as $lgu)
+        {
+            echo $cityname->get_city_name($lgu->city);
+        }*/
+        return $lgus->get();
+        /*return view('SuperAdmin.lgu.lgu')->with([
             "lgus"          => $lgus,
             "regions"       => $regions,
-            "callCenters"    => $callCenter
-        ]);
+            "callCenters"    => $callCenter,
+            "address"       => new AddressController,
+        ]);*/
     }
 
     /**
