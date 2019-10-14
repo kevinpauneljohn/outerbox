@@ -32,7 +32,7 @@ class Reports extends Controller
             ['deleted_at','=',null]
         ]);
 
-        return $role->count();
+        return CallCenter::find(12);
     }
 
     /**

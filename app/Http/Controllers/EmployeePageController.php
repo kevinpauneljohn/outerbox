@@ -63,9 +63,11 @@ class EmployeePageController extends Controller
         $lgus = DB::table('lgus')
             ->leftJoin('call_centers','lgus.call_center_id','=','call_centers.id')
             ->leftJoin('contact_people','lgus.id','=','contact_people.lgu_id')
+            ->leftJoin('users','contact_people.user_id','=','users.id')
             ->select('lgus.id as lgu_id','lgus.station_name','lgus.department','lgus.created_at','lgus.region','lgus.province','lgus.city','lgus.address',
                 'call_centers.id as cc_id',
-                'contact_people.fullname as contactname','contact_people.contactno')
+                'contact_people.contactno',
+                'users.firstname','users.lastname','users.username')
             ->where([
                 ['lgus.call_center_id','=',$callcenter_id],
                 ['lgus.deleted_at','=',null]

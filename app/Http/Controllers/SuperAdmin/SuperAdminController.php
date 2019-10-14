@@ -130,6 +130,9 @@ class SuperAdminController extends Controller
             'activities'    => $activities,
             "dateTime"          => new TimeController,
             "roles"             => new RolesController,
+            "roleList"          => Role::where('name','!=','Lgu')->get(),
+            "callCenterUser"        => User::find($id)->callcenter()->first(),
+            "active"            => User::where([['id','=',$id],['active','=',1]]),
         ]);
     }
 
