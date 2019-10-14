@@ -365,13 +365,13 @@ class SuperAdminController extends Controller
         {
             echo $cityname->get_city_name($lgu->city);
         }*/
-        return $lgus->get();
-        /*return view('SuperAdmin.lgu.lgu')->with([
+//        return $lgus->get();
+        return view('SuperAdmin.lgu.lgu')->with([
             "lgus"          => $lgus,
             "regions"       => $regions,
             "callCenters"    => $callCenter,
             "address"       => new AddressController,
-        ]);*/
+        ]);
     }
 
     /**
