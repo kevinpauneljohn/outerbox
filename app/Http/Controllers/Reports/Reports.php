@@ -32,7 +32,7 @@ class Reports extends Controller
             ['deleted_at','=',null]
         ]);
 
-        return CallCenter::find(12);
+        return User::where([['id','=',13],['active','=',1]])->get();
     }
 
     /**
