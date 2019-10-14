@@ -11,6 +11,13 @@
     <!-- DataTables -->
     <link rel="stylesheet" href="{{asset('/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css')}}">
     <link href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.0/animate.min.css" rel="stylesheet">
+    <style type="text/css" rel="stylesheet">
+        .edit-employee{
+            border:none;
+            background:none;
+            visibility:hidden;
+        }
+    </style>
 @endsection
 @section('page_header')
     Employee Profile
@@ -52,7 +59,7 @@
     <div class="row">
         <div class="col-lg-3">
             <div class="box profile">
-                <div class="box-header"><a data-toggle="modal" data-target="#edit_employee"><small class="pull-right" id="edit_profile" title="Edit Profile"><i class="fa fa-edit"></i></small></a></div>
+                <div class="box-header"><button class="edit-employee pull-right" data-toggle="modal" data-target="#edit_employee" value="{{$user->id}}"><small id="edit_profile" title="Edit Profile"><i class="fa fa-edit fa-2x"></i></small></button></div>
                 <div class="box-body">
 
                     <div class="row">
@@ -179,7 +186,7 @@
                                     <div class="form-group">
                                         <div class="edit_firstname">
                                             <label for="edit_firstname">First name</label> <span class="required">*</span>
-                                            <input type="text" name="edit_firstname" id="edit_firstname" class="form-control" value="{{$active->first()->firstname}}"/>
+                                            <input type="text" name="edit_firstname" id="edit_firstname" class="form-control" value="{{$userDetails->first()->firstname}}"/>
                                         </div>
                                     </div>
                                 </span>
@@ -187,7 +194,7 @@
                                     <div class="form-group">
                                         <div class="edit_middlename">
                                             <label for="edit_middlename">Middle name</label>
-                                            <input type="text" name="edit_middlename" id="edit_middlename" class="form-control" value="{{$active->first()->middlename}}"/>
+                                            <input type="text" name="edit_middlename" id="edit_middlename" class="form-control" value="{{$userDetails->first()->middlename}}"/>
                                         </div>
                                     </div>
                                 </span>
@@ -195,7 +202,7 @@
                                     <div class="form-group">
                                         <div class="edit_lastname">
                                             <label for="edit_lastname">Last name</label><span class="required">*</span>
-                                            <input type="text" name="edit_lastname" id="edit_lastname" class="form-control" value="{{$active->first()->lastname}}"/>
+                                            <input type="text" name="edit_lastname" id="edit_lastname" class="form-control" value="{{$userDetails->first()->lastname}}"/>
                                         </div>
                                     </div>
                                 </span>
@@ -205,7 +212,7 @@
                                     <div class="form-group">
                                         <div class="edit_email">
                                             <label for="edit_email">Email</label><span class="required">*</span>
-                                            <input type="text" name="edit_email" id="edit_email" class="form-control" value="{{$active->first()->email}}"/>
+                                            <input type="text" name="edit_email" id="edit_email" class="form-control" value="{{$userDetails->first()->email}}"/>
                                         </div>
                                     </div>
                                 </span>
@@ -230,13 +237,14 @@
                                     <div class="col-lg-4">
                                         <div class="form-group">
                                             <div class="edit_callcenter">
-                                                <label for="edit_callcenter">Assign To Call Center</label>
-                                                <select name="edit_callcenter" class="form-control" id="edit_callcenter">
-                                                    <option></option>
-                                                    {{--@foreach($callcenters as $callcenter)
-                                                        <option value="{{$callcenter->id}}">{{ucfirst($callcenter->name)}}</option>
-                                                    @endforeach--}}
-                                                </select>
+{{--                                                <label for="edit_callcenter">Assign To Call Center</label>--}}
+                                                <input type="hidden" name="edit_callcenter" id="edit_callcenter">
+{{--                                                <select name="edit_callcenter" class="form-control" id="edit_callcenter">--}}
+{{--                                                    <option></option>--}}
+{{--                                                    --}}{{--@foreach($callcenters as $callcenter)--}}
+{{--                                                        <option value="{{$callcenter->id}}">{{ucfirst($callcenter->name)}}</option>--}}
+{{--                                                    @endforeach--}}
+{{--                                                </select>--}}
                                             </div>
                                         </div>
                                     </div>
@@ -268,8 +276,8 @@
     <!-- growl notification -->
     <script src="{{asset('bower_components/remarkable-bootstrap-notify/bootstrap-notify.min.js')}}"></script>
 
-    <script src="{{asset('/js/employeeProfile.js')}}"></script>
     <script src="{{asset('/js/activity.js')}}"></script>
+    <script src="{{asset('/js/employee.js')}}"></script>
 
     <script>
         $(function () {

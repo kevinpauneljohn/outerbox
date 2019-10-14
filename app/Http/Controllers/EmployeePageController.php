@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\activity;
 use App\address\Region;
 use App\Http\Controllers\address\AddressController;
 use App\Models\CallCenter;
@@ -51,8 +52,21 @@ class EmployeePageController extends Controller
 
     public function agentProfile($id)
     {
+        /*$user = User::find($id);
+        return view('Employee.agentProfile')->with(['user' => $user]);*/
+
         $user = User::find($id);
-        return view('Employee.agentProfile')->with(['user' => $user]);
+        $activities = activity::where('user_id',$id)->get();
+        return view('Employee.agentProfile')->with([
+            'user'          => $user,
+            'activities'    => $activities,
+            "dateTime"          => new TimeController,
+            "roles"             => new RolesController,
+            "roleList"          => Role::where('name','!=','Lgu')->get(),
+            "callCenterUser"        => User::find($id)->callcenter()->first(),
+            "active"            => User::where([['id','=',$id],['active','=',1]]),
+            "userDetails"            => User::where([['id','=',$id]]),
+        ]);
     }
 
     public function lgu()

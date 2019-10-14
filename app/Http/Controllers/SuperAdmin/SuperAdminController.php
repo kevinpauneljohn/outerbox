@@ -133,6 +133,7 @@ class SuperAdminController extends Controller
             "roleList"          => Role::where('name','!=','Lgu')->get(),
             "callCenterUser"        => User::find($id)->callcenter()->first(),
             "active"            => User::where([['id','=',$id],['active','=',1]]),
+            "userDetails"            => User::where([['id','=',$id]]),
         ]);
     }
 
