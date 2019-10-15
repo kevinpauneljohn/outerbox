@@ -11,19 +11,21 @@ use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Support\Facades\Auth;
 
-class RequestVerified
+class RequestVerified implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
     public $userId;
+    public $status;
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct($userId)
+    public function __construct($userId, $status)
     {
         //
+        $this->status = $status;
         $this->userId = $userId;
     }
 
@@ -34,6 +36,8 @@ class RequestVerified
      */
     public function broadcastOn()
     {
-        return [$this->userId.'-request-verified'];
+        return ['verification'];
     }
+
+
 }

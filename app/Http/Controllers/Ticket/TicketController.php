@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Ticket;
 
+use App\Events\RequestVerified;
 use App\Lgu;
 use App\Ticket;
 use App\User;
@@ -140,9 +141,15 @@ class TicketController extends Controller
 
         // Update By Jovito Pangan, Oct. 11, 2019
         // This code will update the duration_until_agent_transfer_request
+
+        $lead_ticket_id = DB::table('leads')
+            ->leftJoin('tickets','leads.id','=','tickets.lead_id')
+            ->select('leads.app_user_id')
+            ->where('tickets.id','=',$request->ticket_id)
+            ->first();
         $ticket = Ticket::find($request->ticket_id);
         $ticket->duration_until_agent_transfer_request = now();
-        event(new TestEventController("Update Ticket Status"));
+        event(new RequestVerified($lead_ticket_id->app_user_id,'Confirmed'));
         $ticket->save() ? $message = ['success' => true] : ['success' => false];
 
         return response()->json($message);
@@ -299,6 +306,13 @@ class TicketController extends Controller
         $ticket->duration_before_agent_handled_call = $newformat2;
         $ticket->status = 'On-going';
         $message = ($ticket->save()) ? ['success'=>true] : ['success' => false];
+
+        $lead_ticket_id = DB::table('leads')
+            ->leftJoin('tickets','leads.id','=','tickets.lead_id')
+            ->select('leads.app_user_id')
+            ->where('tickets.id','=',$request->ticket_id)
+            ->first();
+        event(new RequestVerified($lead_ticket_id->app_user_id,'Verified'));
         return response()->json($message);
     }
 
