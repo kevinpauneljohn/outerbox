@@ -201,3 +201,4 @@ $(document).on('mouseover','.profile',function(){
 $(document).on('mouseout','.profile',function(){
     $('#edit_profile').css("visibility","hidden");
 });
+
