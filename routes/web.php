@@ -96,6 +96,8 @@ Route::group(['middleware' => ['auth','role:super admin|admin']], function (){
     Route::post('/update-employee-details','Employee\EmployeeController@updateEmployeeDetails');
     Route::post('/delete-employee','Employee\EmployeeController@deleteEmployee');
     Route::get('/employee/profile/{id}','SuperAdmin\SuperAdminController@employeeProfile');
+    /*Generate PDF report*/
+    Route::GET('/generate-pdf-report','Reports\Reports@generatePdfReport');
 });
 
 Route::group(['middleware' => ['auth']],function (){
@@ -114,7 +116,11 @@ Route::group(['middleware' => ['auth']],function (){
 
 });
 //Route::post('/call-user','AgentPageController@call_user');
-Auth::routes();
+Auth::routes([
+    'register' => false,
+    'verify' => true,
+    'reset' => false
+]);
 
 
 
@@ -145,6 +151,5 @@ Route::get('notif-test', function () {
 });
 
 
-Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

@@ -242,6 +242,9 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'XmlParser' => Orchestra\Parser\Xml\Facade::class,
         'Agent' => Jenssegers\Agent\Facades\Agent::class,
+        'PdfReport' => Jimmyjs\ReportGenerator\Facades\PdfReportFacade::class,
+        'ExcelReport' => Jimmyjs\ReportGenerator\Facades\ExcelReportFacade::class,
+        'CSVReport' => Jimmyjs\ReportGenerator\Facades\CSVReportFacade::class,
 
     ],
 

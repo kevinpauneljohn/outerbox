@@ -5,10 +5,14 @@ namespace App\Http\Controllers\Auth;
 use App\activity;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Reports\Reports;
+use App\Http\Controllers\UserAgentController;
+use App\User;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Session;
 
 class LoginController extends Controller
 {
@@ -34,6 +38,11 @@ class LoginController extends Controller
     protected $username;
 
     /**
+     * @var $device
+     * */
+    private $device;
+
+    /**
      * set activity logs
      *
      * @var string
@@ -51,6 +60,7 @@ class LoginController extends Controller
         $this->username = $this->findUsername();
 
         $this->activity = new Reports;
+        $this->device = new UserAgentController;
     }
 
     public function findUsername()
@@ -69,6 +79,31 @@ class LoginController extends Controller
         return $this->username;
     }
 
+    /**
+     * Oct. 16, 2019
+     * @author john kevin paunel
+     * this will check if the user is already logged in from other device
+     * @param Request $request
+     * @return mixed
+     * */
+    protected function authenticated(Request $request, $user)
+    {
+        $user = User::where([
+            ['username', '=', $request->login],
+            ['active', '=', 1]
+        ]);
+        if ($user->count() > 0) {
+            $action = $this->device->userAgent();
+            $action .= '<br/>User attempted to log in from another device';
+            $this->activity->activity_log($action,"User login attempt failed");
+            Auth::logout();
+
+            return back()
+                ->with('test', trans('user is currently logged in from other device'));
+        }
+
+        return redirect()->intended($this->redirectPath());
+    }
 
     /**
      * redirect login user to their designated dashboard
@@ -100,6 +135,7 @@ class LoginController extends Controller
                     return '/login';
                     break;
             }
+
     }
 
     /**

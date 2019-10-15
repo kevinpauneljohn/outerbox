@@ -34,6 +34,10 @@
     </div>
     <!-- /.login-logo -->
     <div class="login-box-body">
+
+        @if(session('test'))
+            <div class="alert alert-warning">{{session('test')}}</div>
+            @endif
         <p class="login-box-msg">Sign in to start your session</p>
         @error('error')
         <div class="alert alert-warning">{{$error}}</div>

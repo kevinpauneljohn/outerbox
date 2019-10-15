@@ -103,6 +103,7 @@
             <div class="box">
                 <div class="box-body">
                     <h2>Activity Logs</h2>
+
                     <table id="agents-list" class="table table-bordered table-hover">
                         <thead>
                         <tr>
@@ -144,6 +145,30 @@
         </div>
     </div>
 
+    <div class="row">
+        <div class="col-lg-3">
+            <div class="box profile">
+                <div class="box-header"><h3>Generate Report</h3></div>
+                <div class="box-body">
+                    <input type="hidden" name="userId" id="userId" value="{{$user->id}}">
+                    <div class="form-group start_date">
+                        <label for="start_date">Start date</label>
+                        <input type="date" name="start_date" class="form-control" id="start_date">
+                    </div>
+                    <div class="form-group end_date">
+                        <label for="end_date">End date</label>
+                        <input type="date" name="end_date" class="form-control" id="end_date">
+                    </div>
+                    <button type="submit" class="btn bg-red-active generate-report" value="pdf">Export to PDF</button>
+                    <button type="submit" class="btn bg-green-active generate-report" value="excel">Export to Excel</button>
+
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+        </div>
+    </div>
+
 
     {{--this will display the activity logs--}}
     <div class="modal fade" id="view-logs">
@@ -173,7 +198,7 @@
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title">Update Employee</h4>
+                        <h4 class="modal-title">Update Employee Profile</h4>
                     </div>
 
                     <div class="modal-body">
@@ -278,6 +303,7 @@
 
     <script src="{{asset('/js/activity.js')}}"></script>
     <script src="{{asset('/js/employee.js')}}"></script>
+    <script src="{{asset('/js/reports.js')}}"></script>
 
     <script>
         $(function () {
