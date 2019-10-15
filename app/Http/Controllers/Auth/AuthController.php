@@ -51,7 +51,10 @@ class AuthController extends Controller
         $user->lastname = $request->lName;
         $user->email = $request->email;
         $user->username = $request->uname;
-        $user->active = 0;
+        $user->mnumber = $request->mnumber;
+        $user->cperson = $request->cperson;
+        $user->cnumber = $request->cnumber;
+        $user->active = 1;
         $user->password = bcrypt($request->password);
         $user->save();
         return response()->json([
@@ -60,6 +63,9 @@ class AuthController extends Controller
     }
     public function logout(Request $request)
     {
+        $loggedOutUser = $request->user();
+        $loggedOutUser->active = 0;
+        $loggedOutUser->save();
         $request->user()->token()->revoke();
         return response()->json([
             'message' => 'Successfully logged out'

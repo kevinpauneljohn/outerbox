@@ -265,7 +265,8 @@ class TicketController extends Controller
      * Update Ticket after triggering a call
      * Created Date: Oct 11, 2019
      * By: Jovito Pangan
-     * @return void
+     * @param Request request
+     * @return message
      */
     public function update_field_after_call(Request $request){
         $client = new Client([
@@ -292,8 +293,6 @@ class TicketController extends Controller
         $time2 = strtotime($callRecord[0]->finishDate);
         $newformat2 = date('Y-m-d H:i:s',$time2);
 
-
-
         $ticket = Ticket::find($request->ticket_id);
         //$ticket->call_duration = $callRecord[0]->lengthSeconds;
         $ticket->time_handled = $newformat;
@@ -303,5 +302,8 @@ class TicketController extends Controller
         return response()->json($message);
     }
 
+    // Create a channel that will message the request verified or request confirmed
+    // create a channel for LGU and app that will tell the LGU app to verify request and
+    // update mobile app user progress tracker
 
 }
