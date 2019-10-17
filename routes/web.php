@@ -36,6 +36,7 @@ Route::group(['middleware' => ['auth','role:admin|super admin']],function (){
 
 Route::group(['middleware' => ['auth','role:Lgu']], function (){
     Route::get('/lgus/dashboard','LguAccess\LguAccessController@dashboard');
+    Route::get('/lgus/announcement','LguAccess\LguAccessController@announcement');
 });
 
 Route::get('/create-ticket','Ticket\CreateTicketController@get_all_new_leads');
@@ -87,6 +88,7 @@ Route::group(['middleware' => ['auth','role:super admin']],function(){
     Route::get('/super-admin/user-management','SuperAdmin\SuperAdminController@user_management');
     Route::get('/super-admin/forecast','SuperAdmin\SuperAdminController@forecast');
 
+    Route::get('/announcement','SuperAdmin\SuperAdminController@announcement');
 
 });
 

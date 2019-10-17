@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Facades\Session;
+use Jenssegers\Agent\Agent;
 
 class LoginController extends Controller
 {
@@ -146,7 +146,8 @@ class LoginController extends Controller
      * */
     private function setActiveStatus($userId, $status)
     {
-        DB::table('users')->where('id',$userId)->update(['active' => $status]);
+
+        DB::table('users')->where('id',$userId)->update(['active' => $status, 'is_desktop' => ($this->device->agent->isDesktop() == true) ? 1 : 0]);
     }
 
     public function logout(Request $request)

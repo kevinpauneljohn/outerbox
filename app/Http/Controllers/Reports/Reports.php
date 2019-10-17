@@ -3,20 +3,35 @@
 namespace App\Http\Controllers\Reports;
 
 use App\activity;
+use App\Http\Controllers\UserAgentController;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use PdfReport;
+use ExcelReport;
 
 class Reports extends Controller
 {
+
+    /**
+     * @var $device
+     * */
+    private $device;
+
+    public function __construct()
+    {
+        $this->device = new UserAgentController;
+    }
+
     /**
      * test JasperPHP report
      * @return void
      * */
     public function generateReport()
     {
+
+        echo auth()->user();
     }
 
     /**
@@ -57,9 +72,16 @@ class Reports extends Controller
         ];
 
         // Generate Report with flexibility to manipulate column class even manipulate column value (using Carbon, etc).
-        return PdfReport::of($title, $meta, $queryBuilder, $columns)
-            ->setOrientation('landscape')
-            ->download('activity_log_'.Carbon::now());
+        if($request->action == "pdf")
+        {
+            return PdfReport::of($title, $meta, $queryBuilder, $columns)
+                ->setOrientation('landscape')
+                ->download('activity_log_'.Carbon::now());
+        }elseif ($request->action == "excel"){
+            return ExcelReport::of($title, $meta, $queryBuilder, $columns)
+                ->simple()
+                ->download('activity_log_'.Carbon::now());
+        }
     }
 
     /**

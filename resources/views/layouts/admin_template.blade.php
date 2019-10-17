@@ -221,6 +221,7 @@
                 <!-- Optionally, you can add icons to the links -->
                 @section('variable_menu')
                     @show
+                <li{{(Request::segment(1) == "announcement")?' class=active':''}}><a href="{{url('/announcement')}}"><i class="fa fa-bullhorn"></i> <span>Announcement</span></a></li>
             </ul>
             <!-- /.sidebar-menu -->
         </section>

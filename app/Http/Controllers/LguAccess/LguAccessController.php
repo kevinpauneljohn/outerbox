@@ -20,4 +20,12 @@ class LguAccessController extends Controller
     {
         return view('LguAccess.dashboard');
     }
+
+    /**
+     * Lgu Announcement Page
+     * */
+    public function announcement()
+    {
+        return view('LguAccess.announcement');
+    }
 }

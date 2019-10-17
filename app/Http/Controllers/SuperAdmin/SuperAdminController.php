@@ -350,7 +350,7 @@ class SuperAdminController extends Controller
             ->leftJoin('roles','model_has_roles.role_id','=','roles.id')
             ->select('users.*','roles.name as role_name')
             ->where([
-                ['users.id','!=',2],
+                ['users.id','!=','super admin'],
                 ['users.deleted_at','=',null],
                 ['callcenterdetails.cc_id', '=',$id]
             ])
@@ -470,5 +470,17 @@ class SuperAdminController extends Controller
     public function show_lgu_list()
     {
         return Lgu::all();
+    }
+
+    /**
+     * Oct. 18, 2019
+     * @author john kevin paunel
+     * announcement view page of super admin
+     * url: /announcement
+     * @return mixed
+     * */
+    public function announcement()
+    {
+        return view('SuperAdmin.announcement');
     }
 }

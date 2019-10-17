@@ -8,23 +8,26 @@ $(document).on('click','.generate-report',function(){
     let userId = $('#userId').val();
     let startDate = $('#start_date').val();
     let endDate = $('#end_date').val();
-    // console.log(action);
-    $.ajax({
-        'url' : reportType(action),
-        'headers': {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-        'type'  : 'GET',
-        'data'  : {
-            'action'    : action,
-            'userId' : userId,
-            'startDate' : startDate,
-            'endDate'   : endDate,
-        },
-        'cache'   : false,
-        success: function(result){
-        },error: function (error) {
-            console.log(error.status);
-        }
-    });
+
+    let pdfWindow = window.open("/generate-pdf-report?action="+action+"&userId="+userId+"&startDate="+startDate+"&endDate="+endDate);
+    pdfWindow.document.write("<iframe style='border: none;' width='100%' height='100%' src='data:application/pdf;base64, " + encodeURI(data)+"'></iframe> <style> body{margin:0;}</style>")
+    // $.ajax({
+    //     'url' : '/generate-pdf-report',
+    //     'headers': {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+    //     'type'  : 'GET',
+    //     'data'  : {
+    //         'action'    : action,
+    //         'userId' : userId,
+    //         'startDate' : startDate,
+    //         'endDate'   : endDate,
+    //     },
+    //     'cache'   : false,
+    //     success: function(result){
+    //
+    //     },error: function (error) {
+    //         console.log(error.status);
+    //     }
+    // });
 });
 
 /**
