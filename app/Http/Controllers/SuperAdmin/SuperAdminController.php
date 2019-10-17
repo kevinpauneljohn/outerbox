@@ -123,18 +123,41 @@ class SuperAdminController extends Controller
      * */
     public function employeeProfile($id)
     {
-        $user = User::find($id);
-        $activities = activity::where('user_id',$id)->get();
-        return view('SuperAdmin.employee.employeeProfile')->with([
-            'user'          => $user,
-            'activities'    => $activities,
-            "dateTime"          => new TimeController,
-            "roles"             => new RolesController,
-            "roleList"          => Role::where('name','!=','Lgu')->get(),
-            "callCenterUser"        => User::find($id)->callcenter()->first(),
-            "active"            => User::where([['id','=',$id],['active','=',1]]),
-            "userDetails"            => User::where([['id','=',$id]]),
-        ]);
+        $role = auth()->user()->getRoleNames()[0];
+        if(User::find($id) != null)
+        {
+            if(CallCenter::all()->count() > 0)
+            {
+                $user = User::find($id);
+                $activities = activity::where('user_id',$id)->get();
+                return view('SuperAdmin.employee.employeeProfile')->with([
+                    'user'          => $user,
+                    'activities'    => $activities,
+                    "dateTime"          => new TimeController,
+                    "roles"             => new RolesController,
+                    "roleList"          => Role::where('name','!=','Lgu')->get(),
+                    "callCenterUser"        => User::find($id)->callcenter()->first(),
+                    "active"            => User::where([['id','=',$id],['active','=',1]]),
+                    "userDetails"            => User::where([['id','=',$id]]),
+                ]);
+            }else{
+
+                if($role == "super admin")
+                {
+                    return redirect(url('/super-admin/dashboard'));
+                }elseif($role == "admin"){
+                    return redirect(url('/dashboard'));
+                }
+            }
+        }else{
+            if($role == "super admin")
+            {
+                return redirect(url('/super-admin/dashboard'));
+            }elseif($role == "admin"){
+                return redirect(url('/dashboard'));
+            }
+        }
+
     }
 
     #Role Page Method
