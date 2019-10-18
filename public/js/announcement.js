@@ -9,6 +9,10 @@ function check_value()
     }
 }
 
+/**
+* this will create new announcement
+ * @var data
+* */
 $(document).on('submit','#add-announcement-form',function (form) {
     form.preventDefault();
 
@@ -53,4 +57,45 @@ $(document).on('submit','#add-announcement-form',function (form) {
         }
     });
     check_value('title','description');
+});
+
+$(document).on('click','.view-announcement-detail',function () {
+    let id = this.value;
+
+    $.ajax({
+        'url'   : '/display-announcement',
+        'headers': {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+        'type'  : 'POST',
+        'data'  : {'id' : id},
+        'cache' : false,
+        success:function(result){
+
+            $('.announcement-title').text(result.title);
+            $('.announcement-description').html(result.description);
+        },error:function(error){
+            console.log(error.status);
+        }
+    });
+
+});
+
+$(document).on('click','.edit-announcement-detail',function () {
+
+    let id = this.value;
+    console.log(id);
+
+    $.ajax({
+        'url'   : '/display-announcement',
+        'headers': {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+        'type'  : 'POST',
+        'data'  : {'id' : id},
+        'cache' : false,
+        success:function(result){
+            $('#edit_title').val(result.title);
+            $('#edit_description ~ iframe').contents().find('.wysihtml5-editor').html(result.description);
+
+        },error:function(error){
+            console.log(error.status);
+        }
+    });
 });

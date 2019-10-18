@@ -64,4 +64,17 @@ class AnnouncementController extends Controller
                 break;
         }
     }
+
+    /**
+     * Oct. 18, 2019
+     * @author john kevin paunel
+     * Display announcement details in modal
+     * @param Request $request
+     * @return object
+     * view: announcement.blade
+     * */
+    public function displayAnnouncementDetails(Request $request)
+    {
+        return Announcement::find($request->id);
+    }
 }

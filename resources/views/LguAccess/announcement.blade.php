@@ -38,9 +38,10 @@
                             <tr>
                                 <td>{{$announcement->created_at}}</td>
                                 <td>{{ucfirst($announcement->title)}}</td>
-                                <td><small class="label bg-yellow">{{$announcement->status}}</small></td>
+                                <td>{!! $status->announcementStatus($announcement->status) !!}</td>
                                 <td>
-                                    <button class="btn btn-success" title="View" data-toggle="modal" data-target="#view-announcement"><i class="fa fa-eye"></i></button>
+                                    <button class="btn btn-success view-announcement-detail" title="View" data-toggle="modal" data-target="#view-announcement" value="{{$announcement->id}}"><i class="fa fa-eye"></i></button>
+                                    <button class="btn btn-primary edit-announcement-detail" title="View" data-toggle="modal" data-target="#edit-announcement" value="{{$announcement->id}}"><i class="fa fa-edit"></i></button>
                                 </td>
                             </tr>
                         @endforeach
@@ -95,16 +96,18 @@
         </div>
     </div>
     {{--end add announcement--}}
+
+    {{--View Announcement--}}
     <div class="modal fade" id="view-announcement">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span></button>
+                        <h3 class="announcement-title"></h3>
                     </div>
 
-                    <div class="modal-body">
-
+                    <div class="modal-body announcement-description">
 
                     </div>
                     <div class="modal-footer">
@@ -113,6 +116,45 @@
             </div>
         </div>
     </div>
+    {{--End of View Announcement--}}
+
+    {{--edit announcement--}}
+    <div class="modal fade" id="edit-announcement">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <form id="edit-announcement-form">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">Add New Announcement</h4>
+                    </div>
+
+                    <div class="modal-body">
+
+                        @csrf
+                        <div class="form-group edit_title">
+                            <label for="edit_title">Title</label>
+                            <input type="text" name="edit_title" class="form-control" id="edit_title"/>
+                        </div>
+                        <div class="edit_description">
+                            <label for="edit_description">Description</label>
+                            <div class="box-body pad">
+
+                                <textarea name="edit_description" id="edit_description" class="textarea" placeholder="Place some text here" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn bg-purple"><i class="fa fa-check"></i> Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    {{--end edit announcement--}}
 @endsection
 
 @section('extra_script')
@@ -134,9 +176,9 @@
     <script>
         $(function () {
             $('#announcement').DataTable({
-            })
+            });
 
-            $('.textarea').wysihtml5()
+            $('.textarea').wysihtml5();
         })
     </script>
 @endsection

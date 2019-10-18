@@ -38,6 +38,7 @@ Route::group(['middleware' => ['auth','role:Lgu']], function (){
     Route::get('/lgus/dashboard','LguAccess\LguAccessController@dashboard');
     Route::get('/lgus/announcement','LguAccess\LguAccessController@announcement');
     Route::post('/create-announcement','Announcements\AnnouncementController@addAnnouncement');
+    Route::post('/display-announcement','Announcements\AnnouncementController@displayAnnouncementDetails');
 });
 
 Route::get('/create-ticket','Ticket\CreateTicketController@get_all_new_leads');
