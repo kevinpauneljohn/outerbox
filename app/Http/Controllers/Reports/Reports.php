@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use PdfReport;
 use ExcelReport;
+use Illuminate\Support\Facades\Auth;
 
 class Reports extends Controller
 {
@@ -30,8 +31,7 @@ class Reports extends Controller
      * */
     public function generateReport()
     {
-
-        echo auth()->user();
+        return auth()->user()->id;
     }
 
     /**
