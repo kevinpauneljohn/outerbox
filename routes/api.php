@@ -13,9 +13,9 @@ use Illuminate\Http\Request;
 |
 */
 
-//Route::middleware('auth:api')->get('/user', function (Request $request) {
+// Route::middleware('auth:api')->get('/user', function (Request $request) {
 //    return $request->user();
-//});
+// });
 
 Route::group([
     'prefix' => 'auth'
@@ -28,6 +28,6 @@ Route::group([
         Route::get('logout', 'Auth\AuthController@logout');
         Route::get('user', 'Auth\AuthController@user');
         Route::post('request','Leads\LeadsController@save_leads');
-        Route::get('create-ticket','Ticket\CreateTicketController@get_all_new_leads');
+        Route::get('create-tickets','Ticket\CreateTicketController@get_all_new_leads');
     });
 });

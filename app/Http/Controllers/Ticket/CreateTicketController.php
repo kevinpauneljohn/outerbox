@@ -102,8 +102,68 @@ class CreateTicketController extends Controller
     //this method will be called by CRON to retrieve all new leads and automatically create ticket
     public function get_all_new_leads()
     {
+        // $result = $this->check_leads()->count() > 0 ? "Yes" : "No";
+
+        // if($result == "Yes"){
+        //     $arr = [];
+        //     $arr2 = [];
+        //     $arr3 = [];
+        //     $arr4 = [];
+
+        //     foreach($this->check_leads()->get() as $lead)
+        //     {
+
+        //         $region = $lead->app_response[0]['region'];
+        //         $state = $lead->app_response[0]['province'];
+        //         $city = $lead->app_response[0]['city'];
+
+        //         $call_center_id = $this->get_call_center_id($region, $state, $city);
+        //         error_log("Lead id =>  " . $call_center_id);
+        //         array_push($arr, $call_center_id);
+        //         array_push($arr2, $lead->id);
+        //     }
+
+        //      // ///will create ticket inside the loop
+        //     foreach ($arr as $callcenter){
+        //         //error_log($arr);
+        //         //$agents = $this->get_available_agent($callcenter);
+        //         // foreach ($agents as $agent){
+        //         //     if($agent != null){
+        //         //         array_push($arr3, $agent->id);
+        //         //         //echo $agent->id.'<br/>';
+        //         //     }
+        //         // }
+
+        //         // if($agents != null){
+        //         //     $user_agent = array_unique($arr3);
+        //         // }
+        //     }
+
+        //     //     if($agents != null){
+        //     //         $user_agent = array_unique($arr3);
+        //     //     }
+        //     // }
+        //     // $i = 0;
+        //     // $y = 0;
+        //     // foreach ($arr2 as $callcenter2){
+        //     //     $select_agent = array_unique($arr3);
+        //     //     $index_in_agent_count = $this->count_assigned_ticket(array_unique($arr3));
+        //     //     //echo $select_agent[$index_in_agent_count];
+
+        //     //     $lead_id = $arr2[$i++];
+        //     //     $cc_id = $arr[$y++];
+        //     //     $ticketId = $this->create_ticket(
+        //     //         $lead_id,
+        //     //         $cc_id,
+        //     //         $select_agent[$index_in_agent_count],
+        //     //         $lead->created_at
+        //     //         );
+        //     return "Yes Sir";
+        // }
+
         if($this->check_leads()->count() > 0)
         {
+
             $arr = [];
             $arr2 = [];
             $arr3 = [];
@@ -170,7 +230,7 @@ class CreateTicketController extends Controller
                 $action .= '</table>';
 
                 $systemLogs->system_activity_log($action, $description);
-                $this->update_lead_status($lead_id, null);
+               $this->update_lead_status($lead_id, null);
             }
 
         }
