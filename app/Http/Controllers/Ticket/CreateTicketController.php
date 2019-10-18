@@ -83,7 +83,7 @@ class CreateTicketController extends Controller
 
         return $employees != null ? $employees : null;
     }
-  
+
     // this method is used to create tickets
     private function create_ticket($lead_id, $call_center_id, $agent_id, $date_reported)
     {
