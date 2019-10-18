@@ -29,19 +29,26 @@
                 <tr>
                     <th width="10%">Date Created</th>
                     <th width="10%">Title</th>
-                    <th>Description</th>
                     <th width="10%">Status</th>
                     <th width="10%">Action</th>
                 </tr>
                 </thead>
                 <tbody>
-
+                    @foreach($announcements as $announcement)
+                            <tr>
+                                <td>{{$announcement->created_at}}</td>
+                                <td>{{ucfirst($announcement->title)}}</td>
+                                <td><small class="label bg-yellow">{{$announcement->status}}</small></td>
+                                <td>
+                                    <button class="btn btn-success" title="View" data-toggle="modal" data-target="#view-announcement"><i class="fa fa-eye"></i></button>
+                                </td>
+                            </tr>
+                        @endforeach
                 </tbody>
                 <tfoot>
                 <tr>
                     <th width="10%">Date Created</th>
                     <th width="10%">Title</th>
-                    <th>Description</th>
                     <th width="10%">Status</th>
                     <th width="10%">Action</th>
                 </tr>
@@ -51,9 +58,11 @@
         <!-- /.box-body -->
     </div>
 
+    {{--add announcement--}}
     <div class="modal fade" id="add-announcement">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
+                <form id="add-announcement-form">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span></button>
@@ -61,28 +70,46 @@
                 </div>
 
                 <div class="modal-body">
-                    <form id="add-announcement-form">
+
+                        @csrf
                         <div class="form-group title">
                             <label for="title">Title</label>
                             <input type="text" name="title" class="form-control" id="title"/>
                         </div>
                         <div class="description">
                             <label for="description">Description</label>
-                            {{--<textarea class="form-control" name="description" id="description">
-
-                            </textarea>--}}
                             <div class="box-body pad">
 
-                                <textarea class="textarea" placeholder="Place some text here" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+                                <textarea name="description" id="description" class="textarea" placeholder="Place some text here" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
 
                             </div>
                         </div>
-                    </form>
+
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
                     <button type="submit" class="btn bg-purple"><i class="fa fa-check"></i> Save</button>
                 </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    {{--end add announcement--}}
+    <div class="modal fade" id="view-announcement">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span></button>
+                    </div>
+
+                    <div class="modal-body">
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+                    </div>
             </div>
         </div>
     </div>
@@ -102,7 +129,7 @@
     <script src="{{asset('bower_components/remarkable-bootstrap-notify/bootstrap-notify.min.js')}}"></script>
     <script src="{{asset('bower_components/admin-lte/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js')}}"></script>
 
-    <script src="{{asset('/js/lgu.js')}}"></script>
+    <script src="{{asset('/js/announcement.js')}}"></script>
 
     <script>
         $(function () {

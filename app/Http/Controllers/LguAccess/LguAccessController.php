@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\LguAccess;
 
+use App\Announcement;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -26,6 +27,8 @@ class LguAccessController extends Controller
      * */
     public function announcement()
     {
-        return view('LguAccess.announcement');
+        return view('LguAccess.announcement')->with([
+            'announcements'     => Announcement::all()
+        ]);
     }
 }

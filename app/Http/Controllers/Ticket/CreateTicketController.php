@@ -254,8 +254,11 @@ class CreateTicketController extends Controller
     }
 
 
-    /*
+    /**
+     *
      * Count all assigned tickets from an agent
+     * @param int $user_id
+     * @return object
      * */
     public function ticket_counter($user_id)
     {
