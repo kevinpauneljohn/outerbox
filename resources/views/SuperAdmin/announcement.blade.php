@@ -49,7 +49,48 @@
 @endsection
 
 @section('main_content')
-
+    <div class="box">
+        <div class="box-body">
+            <table id="announcement" class="table table-bordered table-hover">
+                <thead>
+                <tr>
+                    <th width="10%">Date Created</th>
+                    <th width="10%">Title</th>
+                    <th width="10%">Status</th>
+                    <th width="10%">LGU</th>
+                    <th width="10%">Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach($announcements as $announcement)
+                    <tr>
+                        <td>{{$announcement->created_at}}</td>
+                        <td>{{ucfirst($announcement->title)}}</td>
+                        <td>{!! $status->announcementStatus($announcement->status) !!}</td>
+                        <td>
+                            @foreach(\App\User::find($announcement->user_id)->lgus as $lgu)
+                                {{$lgu->station_name}}
+                                @endforeach
+                        </td>
+                        <td>
+                            <button class="btn btn-success view-announcement-detail" title="View" data-toggle="modal" data-target="#view-announcement" value="{{$announcement->id}}"><i class="fa fa-eye"></i></button>
+                            <button class="btn btn-primary edit-announcement-detail" title="View" data-toggle="modal" data-target="#edit-announcement" value="{{$announcement->id}}"><i class="fa fa-edit"></i></button>
+                        </td>
+                    </tr>
+                @endforeach
+                </tbody>
+                <tfoot>
+                <tr>
+                    <th width="10%">Date Created</th>
+                    <th width="10%">Title</th>
+                    <th width="10%">Status</th>
+                    <th width="10%">LGU</th>
+                    <th width="10%">Action</th>
+                </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
 @endsection
 
 @section('extra_script')
@@ -70,9 +111,10 @@
 
     <script>
         $(function () {
-            $('#agents-list').DataTable({
-                'lengthChange': false
-            })
+            $('#announcement').DataTable({
+            });
+
+            $('.textarea').wysihtml5();
         })
     </script>
 @endsection

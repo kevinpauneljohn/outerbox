@@ -4,7 +4,9 @@ namespace App\Http\Controllers\SuperAdmin;
 
 use App\activity;
 use App\address\Region;
+use App\Announcement;
 use App\Http\Controllers\address\AddressController;
+use App\Http\Controllers\Announcements\AnnouncementController;
 use App\Http\Controllers\RolesController;
 use App\Http\Controllers\TimeController;
 use App\Http\Controllers\UserAgentController;
@@ -481,6 +483,15 @@ class SuperAdminController extends Controller
      * */
     public function announcement()
     {
-        return view('SuperAdmin.announcement');
+        /**
+         * @var object $announcement
+         * this will call the announcement with draft
+         * */
+        $announcement = Announcement::where('status','draft')->get();
+
+        return view('SuperAdmin.announcement')->with([
+            'announcements'      => $announcement,
+            'status'             => new AnnouncementController()
+        ]);
     }
 }

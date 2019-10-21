@@ -68,4 +68,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Announcement::class,'user_id');
     }
+
+    public function lgus()
+    {
+        return $this->belongsToMany(Lgu::class,'contact_people','user_id','lgu_id');
+    }
 }
