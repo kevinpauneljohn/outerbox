@@ -74,7 +74,7 @@
                         </td>
                         <td>
                             <button class="btn btn-success view-announcement-detail" title="View" data-toggle="modal" data-target="#view-announcement" value="{{$announcement->id}}"><i class="fa fa-eye"></i></button>
-                            <button class="btn btn-primary edit-announcement-detail" title="View" data-toggle="modal" data-target="#edit-announcement" value="{{$announcement->id}}"><i class="fa fa-edit"></i></button>
+
                         </td>
                     </tr>
                 @endforeach
@@ -91,6 +91,27 @@
             </table>
         </div>
     </div>
+    {{--View Announcement--}}
+    <div class="modal fade" id="view-announcement">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span></button>
+                    <h3 class="announcement-title"></h3>
+                </div>
+
+                <div class="modal-body announcement-description">
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{--End of View Announcement--}}
+
 @endsection
 
 @section('extra_script')
@@ -106,8 +127,7 @@
     <!-- growl notification -->
     <script src="{{asset('bower_components/remarkable-bootstrap-notify/bootstrap-notify.min.js')}}"></script>
 
-    <script src="{{asset('/js/activity.js')}}"></script>
-    <script src="{{asset('/js/reports.js')}}"></script>
+    <script src="{{asset('/js/announcement.js')}}"></script>
 
     <script>
         $(function () {
