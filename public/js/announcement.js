@@ -113,7 +113,9 @@ $(document).on('submit','#edit-announcement-form',function (form) {
         'data'  : data,
         'cache' : false,
         success:function(result){
-            if(result.success == true)
+            console.log(result);
+
+            if(result.success === true)
             {
                 setTimeout(function(){
                     $('#edit-announcement-form').trigger('reset');
@@ -129,6 +131,15 @@ $(document).on('submit','#edit-announcement-form',function (form) {
                         location.reload();
                     },1500);
                 });
+            }else if(result.error.length > 0)
+            {
+                setTimeout(function(){
+                    $('.error-message').html('<div id="change_text" class="alert alert-warning">'+result.error+'</div>');
+
+                    setTimeout(function(){
+                        $('#change_text').remove();
+                    },3000);
+                });
             }
 
             $.each(result, function (key, value) {
@@ -140,6 +151,7 @@ $(document).on('submit','#edit-announcement-form',function (form) {
                     .remove();
                 element.after('<p class="text-danger">'+value+'</p>');
             });
+
             return false;
         },error:function(error){
             console.log(error.status);

@@ -56,7 +56,7 @@ class AnnouncementController extends Controller
     public function announcementStatus($status)
     {
         switch ($status){
-            case 'draft':
+            case 'pending':
                 return '<small class="label bg-yellow">'.$status.'</small>';
                 break;
             case 'approved':
@@ -95,22 +95,41 @@ class AnnouncementController extends Controller
 
         if($validator->passes())
         {
-            /*this will check if the submitted update is not already approved by the super admin so they can still edit it*/
-            $check = Announcement::where([
+            /**
+             * @var object $checkIfmatched
+             * this will check if the submitted input matches the date on the database
+             */
+            $checkIfmatched = Announcement::where([
                 ['id','=',$request->announcementId],
-                ['status','=','draft'],
+                ['title','=',$request->edit_title],
+                ['description','=',$request->edit_description],
             ])->count();
 
-            if($check > 0)
+            if($checkIfmatched == 0)
             {
-                $announcement = Announcement::find($request->announcementId);
-                $announcement->title = $request->edit_title;
-                $announcement->description = $request->edit_description;
+                /**
+                 * @var object $checkIfApproved
+                 * this will check if the submitted update is not already approved by the super admin so they can still edit it
+                 * */
+                $checkIfApproved = Announcement::where([
+                    ['id','=',$request->announcementId],
+                    ['status','=','pending'],
+                ])->count();
+
+                if($checkIfApproved > 0)
+                {
+                    $announcement = Announcement::find($request->announcementId);
+                    $announcement->title = $request->edit_title;
+                    $announcement->description = $request->edit_description;
 
                     $message = $announcement->save() ? ['success' => true] : ['success' => false];
+                }else{
+                    $message = ['error' => 'Action is not allowed!', 'success' => false];
+                }
             }else{
-             $message = ['error' => 'Action is not allowed!', 'success' => false];
+                $message = ['error' => 'No changes occurred', 'success' => false];
             }
+
             return response()->json($message);
         }
 

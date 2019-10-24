@@ -41,7 +41,9 @@
                                 <td>{!! $status->announcementStatus($announcement->status) !!}</td>
                                 <td>
                                     <button class="btn btn-success view-announcement-detail" title="View" data-toggle="modal" data-target="#view-announcement" value="{{$announcement->id}}"><i class="fa fa-eye"></i></button>
+                                    @if(\App\Announcement::find($announcement->id)->status != 'approved')
                                     <button class="btn btn-primary edit-announcement-detail" title="View" data-toggle="modal" data-target="#edit-announcement" value="{{$announcement->id}}"><i class="fa fa-edit"></i></button>
+                                    @endif
                                 </td>
                             </tr>
                         @endforeach
@@ -131,7 +133,7 @@
                     </div>
 
                     <div class="modal-body">
-
+                        <span class="error-message"></span>
                         @csrf
                         <div class="form-group edit_title">
                             <label for="edit_title">Title</label>
