@@ -74,6 +74,9 @@
                         </td>
                         <td>
                             <button class="btn btn-success view-announcement-detail" title="View" data-toggle="modal" data-target="#view-announcement" value="{{$announcement->id}}"><i class="fa fa-eye"></i></button>
+                            <button class="btn {{($announcement->status == 'pending') ? 'btn-primary' : 'btn-warning'}} status-update" title="{{($announcement->status == 'pending') ? 'Approve' : 'Unapprove'}}" value="{{$announcement->status.'-'.$announcement->id}}">
+                                {{($announcement->status == 'pending') ? 'Approve' : 'Unapprove'}}
+                            </button>
 
                         </td>
                     </tr>

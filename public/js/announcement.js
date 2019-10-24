@@ -159,3 +159,38 @@ $(document).on('submit','#edit-announcement-form',function (form) {
     });
     check_value('edit_title','edit_description');
 });
+
+/*status approval*/
+$(document).on('click','.status-update',function () {
+    let data = this.value;
+
+    $.ajax({
+        'url'   : '/update-announcement-status',
+        'headers': {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+        'type'  : 'POST',
+        'data'  : {'data' : data},
+        'cache' : false,
+        success:function(result){
+            console.log(result);
+
+            if(result.success === true)
+            {
+                setTimeout(function(){
+                    $.notify({
+                            message: 'Announcement Status Updated!'
+                        } ,{
+                            type: 'success'
+                        }
+                    );
+
+                    setTimeout(function(){
+                        location.reload();
+                    },1500);
+                });
+            }
+
+        },error:function(error){
+            console.log(error.status);
+        }
+    });
+});

@@ -40,6 +40,7 @@ Route::group(['middleware' => ['auth','role:Lgu|super admin']], function (){
     Route::post('/create-announcement','Announcements\AnnouncementController@addAnnouncement');
     Route::post('/display-announcement','Announcements\AnnouncementController@displayAnnouncementDetails');
     Route::post('/update-announcement','Announcements\AnnouncementController@updateAnnouncementDetails');
+    Route::post('/update-announcement-status','Announcements\AnnouncementController@announcementApproval');
 });
 
 Route::get('/create-ticket','Ticket\CreateTicketController@get_all_new_leads');

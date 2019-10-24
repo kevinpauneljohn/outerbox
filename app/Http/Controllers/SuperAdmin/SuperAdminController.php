@@ -487,7 +487,8 @@ class SuperAdminController extends Controller
          * @var object $announcement
          * this will call the announcement with draft
          * */
-        $announcement = Announcement::where('status','draft')->get();
+        //$announcement = Announcement::where('status','pending')->get();
+        $announcement = Announcement::all();
 
         return view('SuperAdmin.announcement')->with([
             'announcements'      => $announcement,

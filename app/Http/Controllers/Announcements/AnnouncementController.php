@@ -135,4 +135,27 @@ class AnnouncementController extends Controller
 
         return response()->json($validator->errors());
     }
+
+    /**
+     * Oct. 25, 2019
+     * @author john kevin paunel
+     * announcement approval by the super admin
+     * @param Request $request
+     * @return mixed
+     * */
+    public function announcementApproval(Request $request)
+    {
+        $data = explode('-',$request->data);
+
+       $status = $data[0];
+       $id = $data[1];
+
+       $announcement = Announcement::find($id);
+       $announcement->status = ($status == 'pending') ? 'approved' : 'pending';
+
+       $message = $announcement->save() ? ['success' => true] : ['success' => false];
+
+       return response()->json($message);
+
+    }
 }
