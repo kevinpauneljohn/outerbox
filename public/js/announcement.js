@@ -78,11 +78,10 @@ $(document).on('click','.view-announcement-detail',function () {
     });
 
 });
-
+/*this will display the announcement details*/
 $(document).on('click','.edit-announcement-detail',function () {
 
     let id = this.value;
-    console.log(id);
 
     $.ajax({
         'url'   : '/display-announcement',
@@ -91,6 +90,7 @@ $(document).on('click','.edit-announcement-detail',function () {
         'data'  : {'id' : id},
         'cache' : false,
         success:function(result){
+            $('#announcementId').val(result.id);
             $('#edit_title').val(result.title);
             $('#edit_description ~ iframe').contents().find('.wysihtml5-editor').html(result.description);
 
@@ -98,4 +98,52 @@ $(document).on('click','.edit-announcement-detail',function () {
             console.log(error.status);
         }
     });
+});
+
+/*ajax call for submit announcement update*/
+$(document).on('submit','#edit-announcement-form',function (form) {
+    form.preventDefault();
+
+    let data = $('#edit-announcement-form').serialize();
+
+    $.ajax({
+        'url'   : '/update-announcement',
+        'headers': {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+        'type'  : 'POST',
+        'data'  : data,
+        'cache' : false,
+        success:function(result){
+            if(result.success == true)
+            {
+                setTimeout(function(){
+                    $('#edit-announcement-form').trigger('reset');
+                    $('#edit-announcement').modal('toggle');
+                    $.notify({
+                            message: 'Announcement Successfully Updated!'
+                        } ,{
+                            type: 'success'
+                        }
+                    );
+
+                    setTimeout(function(){
+                        location.reload();
+                    },1500);
+                });
+            }
+
+            $.each(result, function (key, value) {
+                var element = $('#'+key);
+
+                element.closest('div.'+key)
+                    .addClass(value.length > 0 ? 'has-error' : 'has-success')
+                    .find('.text-danger')
+                    .remove();
+                element.after('<p class="text-danger">'+value+'</p>');
+            });
+            return false;
+        },error:function(error){
+            console.log(error.status);
+        }
+    });
+    check_value('edit_title','edit_description');
 });

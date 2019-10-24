@@ -77,4 +77,43 @@ class AnnouncementController extends Controller
     {
         return Announcement::find($request->id);
     }
+
+    /**
+     * Oct. 25, 2019
+     * @author john kevin paunel
+     * this will update the announcement details
+     * @param Request $request
+     * @return mixed
+     * */
+    public function updateAnnouncementDetails(Request $request)
+    {
+
+        $validator = Validator::make($request->all(),[
+            'edit_title'         => 'required|max:300',
+            'edit_description'   => 'required'
+        ]);
+
+        if($validator->passes())
+        {
+            /*this will check if the submitted update is not already approved by the super admin so they can still edit it*/
+            $check = Announcement::where([
+                ['id','=',$request->announcementId],
+                ['status','=','draft'],
+            ])->count();
+
+            if($check > 0)
+            {
+                $announcement = Announcement::find($request->announcementId);
+                $announcement->title = $request->edit_title;
+                $announcement->description = $request->edit_description;
+
+                    $message = $announcement->save() ? ['success' => true] : ['success' => false];
+            }else{
+             $message = ['error' => 'Action is not allowed!', 'success' => false];
+            }
+            return response()->json($message);
+        }
+
+        return response()->json($validator->errors());
+    }
 }
