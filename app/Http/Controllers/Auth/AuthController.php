@@ -23,6 +23,7 @@ class AuthController extends Controller
             ], 401);
         $user = $request->user();
         $user->active = 1;
+        $user->is_desktop = 0;
         $user->save();
         $tokenResult = $user->createToken('Personal Access Token');
         $token = $tokenResult->token;
