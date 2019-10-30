@@ -97,6 +97,25 @@
                 <!-- /.box-body -->
             </div>
             <!-- /.box -->
+            <div class="box profile">
+                <div class="box-header"><h3>Generate Report</h3></div>
+                <div class="box-body">
+                    <input type="hidden" name="userId" id="userId" value="{{$user->id}}">
+                    <div class="form-group start_date">
+                        <label for="start_date">Start date</label>
+                        <input type="date" name="start_date" class="form-control" id="start_date">
+                    </div>
+                    <div class="form-group end_date">
+                        <label for="end_date">End date</label>
+                        <input type="date" name="end_date" class="form-control" id="end_date">
+                    </div>
+                    <button type="submit" class="btn bg-red-active generate-report" value="pdf">Export to PDF</button>
+                    <button type="submit" class="btn bg-green-active generate-report" value="excel">Export to Excel</button>
+
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
         </div>
 
         <div class="col-lg-9">
@@ -142,30 +161,6 @@
                 </div>
                 <!-- /.box-body -->
             </div>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-lg-3">
-            <div class="box profile">
-                <div class="box-header"><h3>Generate Report</h3></div>
-                <div class="box-body">
-                    <input type="hidden" name="userId" id="userId" value="{{$user->id}}">
-                    <div class="form-group start_date">
-                        <label for="start_date">Start date</label>
-                        <input type="date" name="start_date" class="form-control" id="start_date">
-                    </div>
-                    <div class="form-group end_date">
-                        <label for="end_date">End date</label>
-                        <input type="date" name="end_date" class="form-control" id="end_date">
-                    </div>
-                    <button type="submit" class="btn bg-red-active generate-report" value="pdf">Export to PDF</button>
-                    <button type="submit" class="btn bg-green-active generate-report" value="excel">Export to Excel</button>
-
-                </div>
-                <!-- /.box-body -->
-            </div>
-            <!-- /.box -->
         </div>
     </div>
 
