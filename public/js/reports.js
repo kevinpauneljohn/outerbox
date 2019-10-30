@@ -50,3 +50,17 @@ function reportType(value)
 
     return url;
 }
+
+/**
+ * Oct. 31, 2019
+ * @author john kevin paunel
+ * this script will generate either pdf or excel file report of all user activities
+ * */
+$(document).on('click','.generate-all-report',function(){
+    let action = this.value;
+    let startDate = $('#start_date').val();
+    let endDate = $('#end_date').val();
+
+    let pdfWindow = window.open("/generate-all-report?action="+action+"&startDate="+startDate+"&endDate="+endDate);
+    pdfWindow.document.write("<iframe style='border: none;' width='100%' height='100%' src='data:application/pdf;base64, " + encodeURI(data)+"'></iframe> <style> body{margin:0;}</style>")
+});

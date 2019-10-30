@@ -50,47 +50,71 @@
     </li>
 @endsection
 @section('main_content')
-    <div class="box">
-        <div class="box-body">
-            <table id="activities" class="table table-bordered table-hover">
-                <thead>
-                <tr>
-                    <th width="10%">Username</th>
-                    <th width="10%">Role</th>
-                    <th>Description</th>
-                    <th width="10%">Time</th>
-                    <th width="10%">Date</th>
-                    <th width="10%">Action</th>
-                </tr>
-                </thead>
-                <tbody>
-                    @foreach($activities as $activity)
-                        <tr>
-                            <td>{{($activity->user_id == 0) ? "System" : \App\User::find($activity->user_id)->username}}</td>
-{{--                            <td>{{!! $roles->get_role_names_with_label($activity->user_id !!}}</td>--}}
-                            <td>{!! nl2br($roles->get_role_names_with_label($activity->user_id)) !!}</td>
-                            <td>{{$activity->description}}</td>
-                            <td>{{$dateTime->dateDiff($activity->created_at)}}</td>
-                            <td>{{$activity->created_at}}</td>
-                            <td><button class="btn btn-success view-log-details" title="View" data-toggle="modal" data-target="#view-logs" value="{{$activity->id}}"><i class="fa fa-eye"></i></button></td>
-                        </tr>
-                        @endforeach
-                </tbody>
-                <tfoot>
-                <tr>
-                    <th width="10%">Username</th>
-                    <th width="10%">Role</th>
-                    <th>Description</th>
-                    <th width="10%">Time</th>
-                    <th width="10%">Date</th>
-                    <th width="10%">Action</th>
-                </tr>
-                </tfoot>
-            </table>
+    <div class="row">
+        <div class="col-lg-4">
+            <div class="box profile">
+                <div class="box-header"><h3>Generate Report</h3></div>
+                <div class="box-body">
+                    <input type="hidden" name="userId" id="userId" value="">
+                    <div class="form-group start_date">
+                        <label for="start_date">Start date</label>
+                        <input type="date" name="start_date" class="form-control" id="start_date">
+                    </div>
+                    <div class="form-group end_date">
+                        <label for="end_date">End date</label>
+                        <input type="date" name="end_date" class="form-control" id="end_date">
+                    </div>
+                    <button type="submit" class="btn bg-red-active generate-all-report" value="pdf">Export to PDF</button>
+                    <button type="submit" class="btn bg-green-active generate-all-report" value="excel">Export to Excel</button>
+
+                </div>
+                <!-- /.box-body -->
+            </div>
         </div>
-        <!-- /.box-body -->
+        <div class="col-lg-8">
+            <div class="box">
+                <div class="box-body">
+                    <table id="activities" class="table table-bordered table-hover">
+                        <thead>
+                        <tr>
+                            <th width="10%">Username</th>
+                            <th width="10%">Role</th>
+                            <th>Description</th>
+                            <th width="10%">Time</th>
+                            <th width="10%">Date</th>
+                            <th width="10%">Action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach($activities as $activity)
+                            <tr>
+                                <td>{{($activity->user_id == 0) ? "System" : \App\User::find($activity->user_id)->username}}</td>
+                                {{--                            <td>{{!! $roles->get_role_names_with_label($activity->user_id !!}}</td>--}}
+                                <td>{!! nl2br($roles->get_role_names_with_label($activity->user_id)) !!}</td>
+                                <td>{{$activity->description}}</td>
+                                <td>{{$dateTime->dateDiff($activity->created_at)}}</td>
+                                <td>{{$activity->created_at}}</td>
+                                <td><button class="btn btn-success view-log-details" title="View" data-toggle="modal" data-target="#view-logs" value="{{$activity->id}}"><i class="fa fa-eye"></i></button></td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                            <th width="10%">Username</th>
+                            <th width="10%">Role</th>
+                            <th>Description</th>
+                            <th width="10%">Time</th>
+                            <th width="10%">Date</th>
+                            <th width="10%">Action</th>
+                        </tr>
+                        </tfoot>
+                    </table>
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+        </div>
     </div>
-    <!-- /.box -->
 
     <div class="modal fade" id="view-logs">
         <div class="modal-dialog modal-lg">
@@ -127,6 +151,7 @@
     <script src="{{asset('bower_components/remarkable-bootstrap-notify/bootstrap-notify.min.js')}}"></script>
 
     <script src="{{asset('/js/activity.js')}}"></script>
+    <script src="{{asset('/js/reports.js')}}"></script>
 
     <script>
         $(function () {

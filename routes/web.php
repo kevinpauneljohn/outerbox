@@ -104,6 +104,7 @@ Route::group(['middleware' => ['auth','role:super admin|admin']], function (){
     Route::get('/employee/profile/{id}','SuperAdmin\SuperAdminController@employeeProfile');
     /*Generate PDF report*/
     Route::GET('/generate-pdf-report','Reports\Reports@generatePdfReport');
+    Route::GET('/generate-all-report','Reports\Reports@generateAllActivity');
 });
 
 Route::group(['middleware' => ['auth']],function (){
