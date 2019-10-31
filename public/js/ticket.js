@@ -87,7 +87,7 @@ $(document).on('click','.twilio_call_back',function(){
     });
 });
 
-$(document).on('click','.call_user',function(){
+/*$(document).on('click','.call_user',function(){
     let ticket_id = this.value;
     let mobile_no = $('input[name=user_mobile_no'+ticket_id+']').val();
     console.log('Calling User Now');
@@ -95,35 +95,35 @@ $(document).on('click','.call_user',function(){
 
 
 
-    // $.ajax({
-    //     'url'   : '/v1/call-user',
-    //     'headers': {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-    //     'type'  : 'POST',
-    //     'data'  : {
-    //         'ticket_id' : ticket_id,
-    //         'mobile_no' : mobile_no,
-    //     },
-    //     'cache' : false,
-    //     success: function (result) {
-    //         let callId = result.sid;
-    //
-    //         $.ajax({
-    //             'url'   : '/v1/events',
-    //             'headers': {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-    //             'type'  : 'POST',
-    //             'data'  : {
-    //                 'sid' : callId,
-    //             },
-    //             'cache' : false,
-    //             success: function (data) {
-    //                 console.log(data)
-    //
-    //             }
-    //         });
-    //
-    //     }
-    // });
-});
+    $.ajax({
+        'url'   : '/v1/call-user',
+        'headers': {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+        'type'  : 'POST',
+        'data'  : {
+            'ticket_id' : ticket_id,
+            'mobile_no' : mobile_no,
+        },
+        'cache' : false,
+        success: function (result) {
+            let callId = result.sid;
+
+            $.ajax({
+                'url'   : '/v1/events',
+                'headers': {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                'type'  : 'POST',
+                'data'  : {
+                    'sid' : callId,
+                },
+                'cache' : false,
+                success: function (data) {
+                    console.log(data)
+
+                }
+            });
+
+        }
+    });
+});*/
 
 
 $(document).on('click','.call_finish',function(){

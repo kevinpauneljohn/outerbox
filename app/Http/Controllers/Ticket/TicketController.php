@@ -65,7 +65,7 @@ class TicketController extends Controller
         $tickets = DB::table('leads')
             ->leftJoin('tickets','leads.id','=','tickets.lead_id')
             ->select('leads.app_response')
-            ->where('tickets.id','=',$request->ticket_id)
+            ->where('tickets.id','=',1)
             ->first();
 
         $app_response = $tickets->app_response;
@@ -73,6 +73,7 @@ class TicketController extends Controller
         $requested_date  = str_replace('\/','-',$requested_date);
         $data = [
             'firstname' => $this->display_label($app_response,'firstname',1),
+            'middlename' => $this->display_label($app_response,'middlename',2),
             'lastname' => $this->display_label($app_response,'lastname',3),
             'latitude' => $this->display_label($app_response,'lat',4),
             'longitude' => $this->display_label($app_response,'lang',5),
@@ -83,11 +84,12 @@ class TicketController extends Controller
             'request_date' => $requested_date,
             'request_time' => $this->display_label($app_response,'request_time',11),
             'mobile_no' => $this->display_label($app_response,'mobile_no',12),
-            'timestamp' => $this->display_label($app_response,'timestamp',13),
-            'type_of_accident' => $this->display_label($app_response,'type_of_accident',14),
-            'emergency_contact' => $this->display_label($app_response,'emergency_contact',15),
-            'contact_no' => $this->display_label($app_response,'contact_no',16),
+//            'timestamp' => $this->display_label($app_response,'timestamp',13),
+            'type_of_accident' => $this->display_label($app_response,'type_of_accident',13),
+            'emergency_contact' => $this->display_label($app_response,'emergency_contact',14),
+            'contact_no' => $this->display_label($app_response,'contact_no',15),
         ];
+        //return $this->display_label($app_response,'emergency_contact',14);
         return $data;
     }
 
