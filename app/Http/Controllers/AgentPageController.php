@@ -60,7 +60,7 @@ class AgentPageController extends Controller
 //
 //        }
 
-
+//        return response()->json($tickets->get());
 
 //        echo $tickets;
 //        echo '<br>Difference is : '.$this->time_duration("2019-09-10 01:00:00", date('Y-m-d H:i:s'));
@@ -129,9 +129,10 @@ class AgentPageController extends Controller
 
         $region = explode('"request_date":',$split[10]);
         $reg = explode('"',$region[1]);
-
-        $requested_date = str_replace('\/','-',$reg[1]);
-        return $requested_date.' '.self::get_requested_time($app_response);
+        $newDate = strtotime($reg[1]);
+        // $requested_date = str_replace('\/','-',$reg[1]);
+        // return $requested_date.' '.self::get_requested_time($app_response);
+        return date('d/M/Y H:i:s', $newDate);
     }
 
     public static function get_requested_time($app_response)
