@@ -45,10 +45,10 @@
                     <td><button type="button" name="select_lgu" class="btn bg-aqua" data-toggle="modal" data-target="#select-lgu" value="{{$ticket->id}}">{{(isset($ticket->station_name)) ? $ticket->station_name : 'Select LGU'}}</button></td>
                     <td>{{$ticket->date_reported}}</td>
                 {{-- <td>{{ Carbon\Carbon::parse(\App\Http\Controllers\AgentPageController::get_requested_date($ticket->app_response))->diffForHumans()}}</td> --}}<td>{{ \App\Http\Controllers\AgentPageController::get_requested_date($ticket->app_response) }}</td>
-                    <td>{{ Carbon\Carbon::parse($ticket->time_handled)->diffForHumans() }}</td>
-                    <td>{{ Carbon\Carbon::parse($ticket->duration_before_agent_handled_call)->diffForHumans() }}</td>
-                    <td>{{ Carbon\Carbon::parse($ticket->duration_until_agent_transfer_request)->diffForHumans() }}</td>
-                    <td>{{ Carbon\Carbon::parse($ticket->duration_until_agent_transfer_request)->diffForHumans() }}</td>
+                    <td>{{ $ticket->time_handled != null ? Carbon\Carbon::parse($ticket->time_handled)->diffForHumans() : "" }}</td>
+                    <td>{{ $ticket->duration_before_agent_handled_call != null ? Carbon\Carbon::parse($ticket->duration_before_agent_handled_call)->diffForHumans() : "" }}</td>
+                    <td>{{ $ticket->duration_until_agent_transfer_request != null ? Carbon\Carbon::parse($ticket->duration_until_agent_transfer_request)->diffForHumans() : "" }}</td>
+                    <td>{{ $ticket->duration_until_agent_transfer_request != null ? Carbon\Carbon::parse($ticket->duration_until_agent_transfer_request)->diffForHumans() : "" }}</td>
                     <td></td>
                     <td>
                         <select name="status" id="{{$ticket->id}}">
