@@ -1105,7 +1105,7 @@
     <option name="LAST_COMMIT_MESSAGE" value="announcement" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://D:/outerbox_v3/outerbox/composer.json">
+    <entry file="file://$PROJECT_DIR$/composer.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
           <caret line="13" column="44" lean-forward="true" selection-start-line="13" selection-start-column="44" selection-end-line="13" selection-end-column="44" />
