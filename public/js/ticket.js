@@ -160,6 +160,7 @@ $(document).on('click','.call_user',function(){
         },
         'cache' : false,
         success: function (result) {
+            console.log(result);
             $('#lead-info-table #fullname').text(result.firstname+' '+result.lastname);
             $('#lead-info-table #mobile_no').text(result.mobile_no);
             $('#lead-info-table #address').text(result.city+', '+result.province+', '+result.region+' '+result.zip_code);

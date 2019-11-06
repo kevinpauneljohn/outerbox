@@ -65,7 +65,7 @@ class TicketController extends Controller
         $tickets = DB::table('leads')
             ->leftJoin('tickets','leads.id','=','tickets.lead_id')
             ->select('leads.app_response')
-            ->where('tickets.id','=',1)
+            ->where('tickets.id','=',$request->ticket_id)
             ->first();
 
         $app_response = $tickets->app_response;
