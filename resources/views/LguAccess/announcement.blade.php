@@ -20,6 +20,7 @@
     <button class="btn bg-purple" data-toggle="modal" data-target="#add-announcement"><i class="fa fa-plus"></i> &nbsp; Add New</button>
 @endsection
 @section('main_content')
+    test
     <div class="box">
         <div class="box-body">
             <h2>Announcements</h2>
