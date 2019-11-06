@@ -37,6 +37,7 @@
             </tr>
             </thead>
             <tbody>
+            @if($tickets->count() > 0)
             @foreach($tickets->get() as $ticket)
                 <tr>
                     <td><a href="{{url('/ticket/'.$ticket->id)}}"> {{\App\Http\Controllers\Ticket\CreateTicketController::getSequence($ticket->id)}}</a></td>
@@ -80,6 +81,7 @@
                     </td>
                 </tr>
                 @endforeach
+                @endif
 
             </tbody>
             <tfoot>
@@ -204,7 +206,8 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-success call_finish" data-dismiss="modal" value="{{$ticket->id}}">Done</button>
+{{--                <button type="button" class="btn btn-success call_finish" data-dismiss="modal" value="{{$ticket->id}}">Done</button>--}}
+                <button type="button" class="btn btn-success call_finish" data-dismiss="modal" value="">Done</button>
                 </div>
             </div>
 

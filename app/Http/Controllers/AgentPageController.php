@@ -41,7 +41,7 @@ class AgentPageController extends Controller
         $callCenterId = User::find(auth()->user()->id)->callcenter()->pluck('cc_id')[0];
         $callCenterTickets = CallCenter::find($callCenterId)->tickets();
 
-//        return $tickets->get();
+//        return $tickets->count();
 
         return view('Employee.Agent.tickets')->with([
             'tickets' => $tickets,
