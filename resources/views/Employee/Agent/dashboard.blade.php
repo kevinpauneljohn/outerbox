@@ -16,128 +16,116 @@
 {{--    Ticket <button type="button" class="btn bg-purple" data-toggle="modal" data-target="#create-ticket"><i class="fa fa-plus"></i> Add New</button>--}}
 @endsection
 @section('main_content')
-{{--    <div class="box">--}}
-{{--        <div class="box-body">--}}
-{{--            <table id="ticket-list" class="table table-bordered table-hover">--}}
-{{--                <thead>--}}
-{{--                <tr>--}}
-{{--                    <th width="10%">Date Registered</th>--}}
-{{--                    <th width="20%">Full Name</th>--}}
-{{--                    <th>Email</th>--}}
-{{--                    <th>Username</th>--}}
-{{--                    <th>Role</th>--}}
-{{--                    <th width="15%">Action</th>--}}
-{{--                </tr>--}}
-{{--                </thead>--}}
-{{--                <tbody>--}}
-
-{{--                </tbody>--}}
-{{--                <tfoot>--}}
-{{--                <tr>--}}
-{{--                    <th width="10%">Date Registered</th>--}}
-{{--                    <th width="20%">Full Name</th>--}}
-{{--                    <th>Email</th>--}}
-{{--                    <th>Username</th>--}}
-{{--                    <th>Role</th>--}}
-{{--                    <th width="15%">Action</th>--}}
-{{--                </tr>--}}
-{{--                </tfoot>--}}
-{{--            </table>--}}
-{{--        </div>--}}
-{{--        <!-- /.box-body -->--}}
-{{--    </div>--}}
-{{--    <!-- /.box -->--}}
-
-{{--    <div class="modal fade" id="create-ticket">--}}
-{{--        <div class="modal-dialog modal-lg">--}}
-{{--            <form method="post" id="add-staff">--}}
-{{--                <div class="modal-content">--}}
-{{--                    <div class="modal-header">--}}
-{{--                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">--}}
-{{--                            <span aria-hidden="true">&times;</span></button>--}}
-{{--                        <h4 class="modal-title">Add New Ticket</h4>--}}
-{{--                    </div>--}}
-
-{{--                    <div class="modal-body">--}}
-{{--                        @csrf--}}
-
-{{--                        <div class="form-group">--}}
-{{--                            <div class="row">--}}
-{{--                                <span class="col-lg-4">--}}
-{{--                                    <div class="form-group">--}}
-{{--                                        <div class="firstname">--}}
-{{--                                            <label for="firstname">First name</label> <span class="required">*</span>--}}
-{{--                                            <input type="text" name="firstname" id="firstname" class="form-control"/>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                </span>--}}
-{{--                                <span class="col-lg-4">--}}
-{{--                                    <div class="form-group">--}}
-{{--                                        <div class="middlename">--}}
-{{--                                            <label for="middlename">Middle name</label>--}}
-{{--                                            <input type="text" name="middlename" id="middlename" class="form-control"/>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                </span>--}}
-{{--                                <span class="col-lg-4">--}}
-{{--                                    <div class="form-group">--}}
-{{--                                        <div class="lastname">--}}
-{{--                                            <label for="lastname">Last name</label><span class="required">*</span>--}}
-{{--                                            <input type="text" name="lastname" id="lastname" class="form-control"/>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                </span>--}}
-{{--                            </div>--}}
-{{--                            <div class="row">--}}
-{{--                                <span class="col-lg-6">--}}
-{{--                                    <div class="form-group">--}}
-{{--                                        <div class="email">--}}
-{{--                                            <label for="email">Email</label><span class="required">*</span>--}}
-{{--                                            <input type="text" name="email" id="email" class="form-control"/>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                </span>--}}
-{{--                                <span class="col-lg-6">--}}
-{{--                                    <div class="form-group">--}}
-{{--                                        <div class="username">--}}
-{{--                                            <label for="username">Username</label><span class="required">*</span>--}}
-{{--                                            <input type="text" name="username" id="username" class="form-control"/>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                </span>--}}
-{{--                            </div>--}}
-
-{{--                            <div class="row">--}}
-{{--                                <span class="col-lg-6">--}}
-{{--                                    <div class="form-group">--}}
-{{--                                        <div class="password">--}}
-{{--                                            <label for="password">Password</label><span class="required">*</span>--}}
-{{--                                            <input type="password" name="password" id="password" class="form-control"/>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                </span>--}}
-{{--                                <span class="col-lg-6">--}}
-{{--                                    <div class="form-group">--}}
-{{--                                        <div class="password_confirmation">--}}
-{{--                                            <label for="password_confirmation">Confirm Password</label><span class="required">*</span>--}}
-{{--                                            <input type="password" name="password_confirmation" id="password_confirmation" class="form-control"/>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                </span>--}}
-{{--                            </div>--}}
+<br/><br/>
+<div class="col-sm-6">
 
 
-{{--                        </div>--}}
+    <div class="box box-primary">
+        <div class="box-header with-border">
+            <h4 class="box-title">
+                {{ $chart1->options['chart_title'] }}
+            </h4>
+            <div class="box-tools pull-right">
+                <button type="button" id="collapse2" class="btn btn-box-tool" data-toggle="collapse"
+                        data-target="#collapseTwo"><i id="toggler2" class="fa fa-minus"></i>
+                </button>
+            </div>
+        </div>
+        <div id="collapseTwo" class="panel-collapse">
+            <div class="box-body">
+                <div>
+                    {!! $chart1->renderHtml() !!}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-sm-6">
 
-{{--                        <div class="modal-footer">--}}
-{{--                            <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>--}}
-{{--                            <button type="submit" class="btn bg-purple"><i class="fa fa-check"></i> Save</button>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            </form>--}}
-{{--        </div>--}}
-{{--    </div>--}}
+    <div class="col-lg-12">
+        <!-- Info Boxes Style 2 -->
+        <div class="info-box bg-yellow">
+            <span class="info-box-icon"><i class="ion ion-ios-book-outline"></i></span>
+
+            <div class="info-box-content">
+                <span class="info-box-text"> {{ __('All Tasks') }} </span>
+                <span class="info-box-number">0</span>
+
+                <div class="progress">
+                    <div class="progress-bar" style="width: 0%"></div>
+                </div>
+                <span class="progress-description">
+                    0% {{ __('Completed') }}
+                  </span>
+            </div>
+            <!-- /.info-box-content -->
+        </div>
+    </div>
+    <div class="col-lg-12">
+        <!-- /.info-box -->
+        <div class="info-box bg-red">
+            <span class="info-box-icon"><i class="ion ion-android-document"></i></span>
+
+            <div class="info-box-content">
+                <span class="info-box-text">{{ __('All Reports') }}</span>
+                <span class="info-box-number">0</span>
+
+                <div class="progress">
+                    <div class="progress-bar" style="width: 0%"></div>
+                </div>
+                <span class="progress-description">
+                    0% {{ __('Completed') }}
+                  </span>
+            </div>
+            <!-- /.info-box-content -->
+        </div>
+
+    </div>
+
+    <div class="col-lg-12">
+        <!-- /.info-box -->
+        <div class="info-box bg-blue">
+            <span class="info-box-icon"><i class="ion ion-android-call"></i></span>
+
+            <div class="info-box-content">
+                <span class="info-box-text">{{ __('Calls') }}</span>
+                <span class="info-box-number">0</span>
+
+                <div class="progress">
+                    <div class="progress-bar" style="width: 0%"></div>
+                </div>
+                <span class="progress-description">
+                    0% {{ __('Detected') }}
+                  </span>
+            </div>
+            <!-- /.info-box-content -->
+        </div>
+
+    </div>
+
+    <div class="col-lg-12">
+        <!-- /.info-box -->
+        <div class="info-box bg-green">
+            <span class="info-box-icon"><i class="ion ion-star"></i></span>
+
+            <div class="info-box-content">
+                <span class="info-box-text">{{ __('Rating') }}</span>
+                <span class="info-box-number">0</span>
+
+                <div class="progress">
+                    <div class="progress-bar" style="width: 0%"></div>
+                </div>
+                <span class="progress-description">
+                    0% {{ __('Completed') }}
+                  </span>
+            </div>
+            <!-- /.info-box-content -->
+        </div>
+
+    </div>
+
+
+</div>
 @endsection
 
 @section('extra_script')
@@ -160,4 +148,6 @@
             $('#ticket-list').DataTable()
         })
     </script>
+    {!! $chart1->renderChartJsLibrary() !!}
+    {!! $chart1->renderJs() !!}
 @endsection

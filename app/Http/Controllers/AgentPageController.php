@@ -10,13 +10,34 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Carbon;
+use LaravelDaily\LaravelCharts\Classes\LaravelChart;
 use Twilio\Rest\Client;
 
 class AgentPageController extends Controller
 {
     public function dashboard()
     {
-        return view('Employee.Agent.dashboard');
+        $chart_options = [
+            'chart_title' => 'Tickets by months',
+            'report_type' => 'group_by_date',
+            'model' => 'App\User',
+            'relationship_name' => 'tickets',
+            'group_by_field' => 'created_at',
+            'group_by_period' => 'month',
+            'chart_type' => 'bar',
+        ];
+        $chart1 = new LaravelChart($chart_options);
+
+        /*$chart_option_tickets = [
+            'chart_title' => 'Call Centers by months',
+            'report_type' => 'group_by_date',
+            'model' => 'App\Ticket',
+            'group_by_field' => 'created_at',
+            'group_by_period' => 'day',
+            'chart_type' => 'line',
+        ];
+        $chart2 = new LaravelChart($chart_option_tickets);*/
+        return view('Employee.Agent.dashboard', compact('chart1'));
     }
 
     /**
