@@ -64,10 +64,12 @@ class AgentPageController extends Controller
 
 //        return $tickets->count();
 
+        $dateTime = new TimeController();
         return view('Employee.Agent.tickets')->with([
             'tickets' => $tickets,
             'lgus'    => $this->get_registered_lgu($this->get_user_call_center()),
-            'callCenterTickets' => $callCenterTickets
+            'callCenterTickets' => $callCenterTickets,
+            "dateTime"          => $dateTime,
         ]);
 
 //        foreach ($tickets as $ticket){
