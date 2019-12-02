@@ -303,7 +303,7 @@ class TicketController extends Controller
         $newformat2 = date('Y-m-d H:i:s',$time2);
 
         $ticket = Ticket::find($request->ticket_id);
-        //$ticket->call_duration = $callRecord[0]->lengthSeconds;
+        $ticket->call_duration = $callRecord[0]->lengthSeconds;
         $ticket->time_handled = $newformat;
         $ticket->duration_before_agent_handled_call = $newformat2;
         $ticket->status = 'On-going';
@@ -321,5 +321,20 @@ class TicketController extends Controller
     // Create a channel that will message the request verified or request confirmed
     // create a channel for LGU and app that will tell the LGU app to verify request and
     // update mobile app user progress tracker
+
+
+    /**
+     * This method will calculate seconds between two dates (that can be use for hours, days, weeks, etc.)
+     * @param dates
+     * November 13, 2019
+     * @author Jovito Pangan
+     */
+    public function calculate_seconds_of_dates($date1, $date2){
+
+        $timeFirst  = strtotime($date1);
+        $timeSecond = strtotime($date2);
+        $diffSeconds = $timeSecond - $timeFirst;
+        return $diffSeconds;
+    }
 
 }

@@ -48,9 +48,12 @@
                     <td>{{date_format(date_create($ticket->date_reported),"d/M/Y H:i:s")}}</td>
                     <td>{{ \App\Http\Controllers\AgentPageController::get_requested_date($ticket->app_response) }}</td>
                     <td>{{ $dateTime->dateDifftwoDates($ticket->date_reported,$ticket->time_handled) }}</td>
-                    <td>{{ $ticket->duration_before_agent_handled_call != null ? Carbon\Carbon::parse($ticket->duration_before_agent_handled_call)->diffForHumans() : "" }}</td>
-                    <td>{{ $ticket->duration_until_agent_transfer_request != null ? Carbon\Carbon::parse($ticket->duration_until_agent_transfer_request)->diffForHumans() : "" }}</td>
-                    <td>{{ $ticket->duration_until_agent_transfer_request != null ? Carbon\Carbon::parse($ticket->duration_until_agent_transfer_request)->diffForHumans() : "" }}</td>
+                    <td>{{ $ticket->duration_before_agent_handled_call != null ? \App\Http\Controllers\Ticket\TicketController::calculate_seconds_of_dates($ticket->time_handled,$ticket->duration_before_agent_handled_call) : "" }}</td>
+                    <td>{{ $ticket->call_duration != null ? $ticket->call_duration : "" }}</td>
+                    <td>{{ $ticket->duration_until_agent_transfer_request != null ? \App\Http\Controllers\Ticket\TicketController::calculate_seconds_of_dates($ticket->time_handled,$ticket->duration_until_agent_transfer_request) : "" }}</td>
+                    {{-- <td>{{ $ticket->duration_before_agent_handled_call != null ? $ticket->duration_before_agent_handled_call : "" }}</td>
+                    <td>{{ $ticket->duration_until_agent_transfer_request != null ? $ticket->duration_until_agent_transfer_request : "" }}</td>
+                    <td>{{ $ticket->duration_until_agent_transfer_request != null ? $ticket->duration_until_agent_transfer_request : "" }}</td> --}}
                     <td></td>
                     <td>
                         <select name="status" id="{{$ticket->id}}">
