@@ -52,7 +52,7 @@
                     {{-- <td>{{ $ticket->duration_before_agent_handled_call != null ? \App\Http\Controllers\Ticket\TicketController::calculate_seconds_of_dates($ticket->time_handled,$ticket->duration_before_agent_handled_call) . "s" : "" }}</td> --}}
                     <td>{{ $ticket->call_duration != null ? $ticket->call_duration . " s" : "" }}</td>
                     <td>{{ $ticket->duration_until_agent_transfer_request != null ? \App\Http\Controllers\Ticket\TicketController::calculate_seconds_of_dates($ticket->duration_before_agent_handled_call,$ticket->duration_until_agent_transfer_request). "s" : "" }}</td>
-                    <td>{{ $ticket->duration_before_agent_handled_call != null ? \App\Http\Controllers\Ticket\TicketController::calculate_seconds_of_dates($ticket->time_handled,$ticket->duration_until_agent_transfer_request). "s" : "" }}</td>
+                    <td>{{ $ticket->duration_until_agent_transfer_request != null ? \App\Http\Controllers\Ticket\TicketController::calculate_seconds_of_dates($ticket->time_handled,$ticket->duration_until_agent_transfer_request). "s" : "" }}</td>
 
                    {{-- <td>{{ $ticket->duration_until_agent_transfer_request != null ? $ticket->duration_until_agent_transfer_request : "" }}</td> --}}
                     <td></td>
