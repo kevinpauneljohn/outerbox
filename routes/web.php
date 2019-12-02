@@ -162,10 +162,7 @@ Route::get('notif-test', function () {
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/test',function (){
-    $user = \App\User::find(4)->lgus->first();
-
-    echo $user->station_name;
-//    foreach ($user as $lgu){
-//        echo $lgu->station_name;
-//    }
+    $message = 'hello world';
+    event(new \App\Events\MyEvent($message));
+    return view('test');
 });

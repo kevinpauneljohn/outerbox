@@ -28,7 +28,7 @@
         "nexmo/client": "^1.8",
         "nexmo/laravel": "^1.1",
         "orchestra/parser": "^3.8",
-        "pusher/pusher-php-server": "^4.0",
+        "pusher/pusher-php-server": "~4.0",
         "spatie/laravel-permission": "^2.37",
         "twilio/sdk": "^5.0"
     },
