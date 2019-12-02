@@ -329,7 +329,7 @@ class TicketController extends Controller
      * November 13, 2019
      * @author Jovito Pangan
      */
-    public function calculate_seconds_of_dates($date1, $date2){
+    public static function calculate_seconds_of_dates($date1, $date2){
 
         $timeFirst  = strtotime($date1);
         $timeSecond = strtotime($date2);
