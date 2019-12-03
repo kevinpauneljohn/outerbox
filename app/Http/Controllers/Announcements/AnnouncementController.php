@@ -238,4 +238,21 @@ class AnnouncementController extends Controller
        return response()->json($message);
 
     }
+
+    /**
+     * Announcement Fetching from mobile app
+     * @param request
+     * @author Jovito Pangan
+     * Updated December 03, 2019
+     */
+    public function announcementList(Request $request)
+    {
+
+        $announcement = DB::table('announcements')
+        ->select('announcements.user_id', 'announcements.title', 'announcements.description', 'announcements.status')
+        ->where('status', 'approved')
+        ->get();
+
+        return json_decode($announcement);
+    }
 }

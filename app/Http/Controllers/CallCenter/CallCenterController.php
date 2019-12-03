@@ -225,4 +225,19 @@ class CallCenterController extends Controller
         return $employees;
     }
 
+    /**
+     * All Call Center
+     * @param request
+     * @author Jovito Pangan
+     * Updated December 03, 2019
+     */
+    public function allCallCenter(Request $request)
+    {
+        $call_centers = DB::table('call_centers')
+        ->select('call_centers.name', 'call_centers.region', 'call_centers.street', 'call_centers.state', 'call_centers.city')
+        ->get();
+
+        return json_decode($call_centers);
+    }
+
 }

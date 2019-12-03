@@ -29,5 +29,14 @@ Route::group([
         Route::get('user', 'Auth\AuthController@user');
         Route::post('request','Leads\LeadsController@save_leads');
         Route::get('create-tickets','Ticket\CreateTicketController@get_all_new_leads');
+
+        // Announcements
+        Route::get('announcements', 'AnnouncementController@announcementList');
+
+        // Ratings
+        Route::post('ratings', 'RatingController@addRating');
+
+        // Available Call Center Area
+        Route::get('available-call-centers', 'CallCenterController@allCallCenter');
     });
 });
