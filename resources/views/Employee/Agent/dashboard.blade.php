@@ -16,10 +16,74 @@
 {{--    Ticket <button type="button" class="btn bg-purple" data-toggle="modal" data-target="#create-ticket"><i class="fa fa-plus"></i> Add New</button>--}}
 @endsection
 @section('main_content')
-<br/><br/>
+    <section class="content">
+        <!-- Small boxes (Stat box) -->
+        <div class="row">
+            <div class="col-lg-3 col-xs-6">
+                <!-- small box -->
+                <div class="small-box bg-aqua">
+                    <div class="inner">
+                        <h3>{{\App\User::find(auth()->user()->id)->tickets()->where('status','On-going')->count()}}</h3>
+
+                        <p>On-going</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fa fa-info"></i>
+                    </div>
+                    <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
+            <!-- ./col -->
+            <div class="col-lg-3 col-xs-6">
+                <!-- small box -->
+                <div class="small-box bg-green">
+                    <div class="inner">
+                        <h3>{{\App\User::find(auth()->user()->id)->tickets()->where('status','Completed')->count()}}</h3>
+
+                        <p>Completed</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fa fa-check-circle-o"></i>
+                    </div>
+                    <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
+            <!-- ./col -->
+            <div class="col-lg-3 col-xs-6">
+                <!-- small box -->
+                <div class="small-box bg-yellow">
+                    <div class="inner">
+                        <h3>{{\App\User::find(auth()->user()->id)->tickets()->where('status','Pending')->count()}}</h3>
+
+                        <p>Pending</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fa fa-ticket"></i>
+                    </div>
+                    <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
+            <!-- ./col -->
+            <div class="col-lg-3 col-xs-6">
+                <!-- small box -->
+                <div class="small-box bg-red">
+                    <div class="inner">
+                        <h3>{{\App\User::find(auth()->user()->id)->tickets()->where('status','Prank')->count()}}</h3>
+
+                        <p>Prank</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fa fa-frown-o"></i>
+                    </div>
+                    <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
+            <!-- ./col -->
+        </div>
+        <!-- /.row -->
+    </section>
+<div class="row">
 <div class="col-sm-6">
-
-
     <div class="box box-primary">
         <div class="box-header with-border">
             <h4 class="box-title">
@@ -126,6 +190,7 @@
 
 
 </div>
+    </div>
 @endsection
 
 @section('extra_script')

@@ -3,7 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="03ba3b1d-e17f-4440-a069-100ded3b375a" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/Employee/Agent/tickets.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Employee/Agent/tickets.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/Employee/Agent/dashboard.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Employee/Agent/dashboard.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/agentDashboardTemplate.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/agentDashboardTemplate.blade.php" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/vendor/beyondcode/laravel-dump-server/" />
     <ignored path="$PROJECT_DIR$/vendor/composer/" />
@@ -105,7 +106,7 @@
     </execution>
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.8543151">
+    <splitter split-orientation="horizontal" split-proportion="0.1875">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file pinned="false" current-in-tab="false">
@@ -126,18 +127,57 @@
               </provider>
             </entry>
           </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$USER_HOME$/Downloads/AdminLTE-2.4.18/AdminLTE-2.4.18/index.html">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="957">
+                  <caret line="522" column="4" selection-start-line="522" selection-start-column="4" selection-end-line="1025" selection-end-column="22" />
+                  <folding>
+                    <element signature="n#section#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
         </leaf>
       </split-first>
       <split-second>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/app/Http/Controllers/AgentPageController.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="358">
+                <state relative-caret-position="731">
                   <caret line="58" column="28" lean-forward="true" selection-start-line="58" selection-start-column="28" selection-end-line="58" selection-end-column="28" />
                   <folding>
                     <element signature="e#40#63#0#PHP" expanded="true" />
                   </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/resources/views/Employee/Agent/dashboard.blade.php">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="425">
+                  <caret line="73" column="26" lean-forward="true" selection-start-line="73" selection-start-column="26" selection-end-line="73" selection-end-column="26" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/resources/views/layouts/agentDashboardTemplate.blade.php">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="-136">
+                  <caret line="25" column="9" selection-start-line="25" selection-start-column="9" selection-end-line="25" selection-end-column="9" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/app/User.php">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="698">
+                  <caret line="72" column="5" selection-start-line="72" selection-start-column="5" selection-end-line="72" selection-end-column="5" />
                 </state>
               </provider>
             </entry>
@@ -167,7 +207,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>displayAnnouncementDetails</find>
       <find>/announcement</find>
       <find>employee/profile</find>
       <find>/activity-details</find>
@@ -196,6 +235,7 @@
       <find>done</find>
       <find>call_finish</find>
       <find>call_user</find>
+      <find>new order</find>
       <find>/agent/ticket</find>
     </findStrings>
     <dirStrings>
@@ -208,7 +248,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/resources/views/Employee/Agent/lgu.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/lgu/lguProfile.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/RolesController.php" />
         <option value="$PROJECT_DIR$/resources/views/Employee/Agent/ticketProfile.blade.php" />
@@ -251,7 +290,6 @@
         <option value="$PROJECT_DIR$/public/js/ticket.js" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Ticket/TicketController.php" />
         <option value="$PROJECT_DIR$/resources/views/SuperAdmin/dashboard.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/Employee/Agent/dashboard.blade.php" />
         <option value="$PROJECT_DIR$/.env" />
         <option value="$PROJECT_DIR$/app/Events/MyEvent.php" />
         <option value="$PROJECT_DIR$/resources/views/test.blade.php" />
@@ -259,6 +297,8 @@
         <option value="$PROJECT_DIR$/routes/web.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/AgentPageController.php" />
         <option value="$PROJECT_DIR$/resources/views/Employee/Agent/tickets.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/layouts/agentDashboardTemplate.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/Employee/Agent/dashboard.blade.php" />
       </list>
     </option>
   </component>
@@ -641,21 +681,7 @@
       <workItem from="1575432770443" duration="351000" />
       <workItem from="1575462121424" duration="618000" />
       <workItem from="1575464531666" duration="87000" />
-      <workItem from="1575466480762" duration="4216000" />
-    </task>
-    <task id="LOCAL-00172" summary="audit trail">
-      <created>1570603741512</created>
-      <option name="number" value="00172" />
-      <option name="presentableId" value="LOCAL-00172" />
-      <option name="project" value="LOCAL" />
-      <updated>1570603741513</updated>
-    </task>
-    <task id="LOCAL-00173" summary="audit trail">
-      <created>1570608051716</created>
-      <option name="number" value="00173" />
-      <option name="presentableId" value="LOCAL-00173" />
-      <option name="project" value="LOCAL" />
-      <updated>1570608051716</updated>
+      <workItem from="1575466480762" duration="6049000" />
     </task>
     <task id="LOCAL-00174" summary="audit trail">
       <created>1570681664889</created>
@@ -986,17 +1012,31 @@
       <option name="project" value="LOCAL" />
       <updated>1575472047931</updated>
     </task>
-    <option name="localTasksCounter" value="221" />
+    <task id="LOCAL-00221" summary="added orderBy sql to $tickets from ticket method AgentPageController">
+      <created>1575472920219</created>
+      <option name="number" value="00221" />
+      <option name="presentableId" value="LOCAL-00221" />
+      <option name="project" value="LOCAL" />
+      <updated>1575472920219</updated>
+    </task>
+    <task id="LOCAL-00222" summary="datatable order by ticket number">
+      <created>1575473208746</created>
+      <option name="number" value="00222" />
+      <option name="presentableId" value="LOCAL-00222" />
+      <option name="project" value="LOCAL" />
+      <updated>1575473208746</updated>
+    </task>
+    <option name="localTasksCounter" value="223" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="591299000" />
+    <option name="totallyTimeSpent" value="593132000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4957507" visible="true" weight="0.15167785" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4957507" visible="true" weight="0.15167785" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" sideWeight="0.5025126" side_tool="true" weight="0.48724833" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -1062,7 +1102,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="updated the employee page" />
     <MESSAGE value="updated the employee js" />
     <MESSAGE value="updated the employee controller" />
     <MESSAGE value="updated the employee controller and employee js" />
@@ -1087,16 +1126,10 @@
     <MESSAGE value="remove $ticket-&gt;id from tickets.blade&#10;button class call_finish" />
     <MESSAGE value="fix $ticket-&gt;id from tickets.blade&#10;button class call_finish" />
     <MESSAGE value="added orderBy sql to $tickets from ticket method AgentPageController" />
-    <option name="LAST_COMMIT_MESSAGE" value="added orderBy sql to $tickets from ticket method AgentPageController" />
+    <MESSAGE value="datatable order by ticket number" />
+    <option name="LAST_COMMIT_MESSAGE" value="datatable order by ticket number" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/database/migrations/2019_10_18_125543_create_announcements_table.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="539">
-          <caret line="35" column="1" selection-start-line="35" selection-start-column="1" selection-end-line="35" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/UserAgentController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="624">
@@ -1303,30 +1336,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/Employee/Agent/dashboard.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2409">
-          <caret line="151" column="31" selection-start-line="151" selection-start-column="31" selection-end-line="151" selection-end-column="31" />
-          <folding>
-            <element signature="e#1927#1944#0#HTML" expanded="true" />
-            <element signature="e#2625#2642#0#HTML" expanded="true" />
-            <element signature="e#3316#3333#0#HTML" expanded="true" />
-            <element signature="e#4000#4017#0#HTML" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.env.example">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
           <caret line="11" column="19" selection-start-line="11" selection-start-column="12" selection-end-line="11" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/User.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1105">
-          <caret line="72" column="5" selection-start-line="72" selection-start-column="5" selection-end-line="72" selection-end-column="5" />
         </state>
       </provider>
     </entry>
@@ -1381,13 +1394,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/layouts/agentDashboardTemplate.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1664">
-          <caret line="305" column="55" lean-forward="true" selection-start-line="305" selection-start-column="55" selection-end-line="305" selection-end-column="55" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.env">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="477">
@@ -1404,16 +1410,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/config/broadcasting.php">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/web.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="158">
-          <caret line="49" column="29" selection-start-line="49" selection-start-column="16" selection-end-line="49" selection-end-column="29" />
-          <folding>
-            <element signature="e#7#389#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/js/ticket.js">
       <provider selected="true" editor-type-id="text-editor">
@@ -1432,12 +1428,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/AgentPageController.php">
+    <entry file="file://$USER_HOME$/Downloads/AdminLTE-2.4.18/AdminLTE-2.4.18/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="358">
-          <caret line="58" column="28" lean-forward="true" selection-start-line="58" selection-start-column="28" selection-end-line="58" selection-end-column="28" />
+        <state relative-caret-position="957">
+          <caret line="522" column="4" selection-start-line="522" selection-start-column="4" selection-end-line="1025" selection-end-column="22" />
           <folding>
-            <element signature="e#40#63#0#PHP" expanded="true" />
+            <element signature="n#section#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" />
           </folding>
         </state>
       </provider>
@@ -1446,6 +1442,47 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="457">
           <caret line="312" column="29" selection-start-line="312" selection-start-column="29" selection-end-line="312" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/web.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="158">
+          <caret line="49" column="29" selection-start-line="49" selection-start-column="16" selection-end-line="49" selection-end-column="29" />
+          <folding>
+            <element signature="e#7#389#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/AgentPageController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="731">
+          <caret line="58" column="28" lean-forward="true" selection-start-line="58" selection-start-column="28" selection-end-line="58" selection-end-column="28" />
+          <folding>
+            <element signature="e#40#63#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/User.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="698">
+          <caret line="72" column="5" selection-start-line="72" selection-start-column="5" selection-end-line="72" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/layouts/agentDashboardTemplate.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-136">
+          <caret line="25" column="9" selection-start-line="25" selection-start-column="9" selection-end-line="25" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/Employee/Agent/dashboard.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="73" column="26" lean-forward="true" selection-start-line="73" selection-start-column="26" selection-end-line="73" selection-end-column="26" />
         </state>
       </provider>
     </entry>

@@ -20,6 +20,11 @@
     <link rel="stylesheet" href="{{ asset('/bower_components/admin-lte/dist/css/skins/skin-purple.min.css') }}">
     <link rel="stylesheet" href="{{ asset('/css/design.css') }}">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <style type="text/css">
+        .content{
+            min-height:0!important;
+        }
+    </style>
 @yield('extra_stylesheet')
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
