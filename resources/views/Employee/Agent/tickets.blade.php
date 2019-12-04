@@ -310,7 +310,7 @@
         $(function () {
 
             $('#ticket-list').DataTable({
-                "order": [[ 5, "desc" ]], //or asc
+                "order": [[ 0, "desc" ]], //or asc
             });
         })
     </script>
