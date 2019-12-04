@@ -58,7 +58,7 @@ class AgentPageController extends Controller
                 'lgus.*',
                 'tickets.*')
             ->where('tickets.user_assigned_id','=',auth()->user()->id)
-            ->orderBy('created_at','asc');
+            ->orderBy('tickets.created_at','asc');
 
         $callCenterId = User::find(auth()->user()->id)->callcenter()->pluck('cc_id')[0];
         $callCenterTickets = CallCenter::find($callCenterId)->tickets();
