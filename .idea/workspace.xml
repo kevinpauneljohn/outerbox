@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="03ba3b1d-e17f-4440-a069-100ded3b375a" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AgentPageController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AgentPageController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/Employee/Agent/tickets.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Employee/Agent/tickets.blade.php" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/vendor/beyondcode/laravel-dump-server/" />
     <ignored path="$PROJECT_DIR$/vendor/composer/" />
@@ -105,7 +105,7 @@
     </execution>
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.1653481">
+    <splitter split-orientation="horizontal" split-proportion="0.8543151">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file pinned="false" current-in-tab="false">
@@ -120,8 +120,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/resources/views/Employee/Agent/tickets.blade.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="3262">
-                  <caret line="222" column="49" lean-forward="true" selection-start-line="222" selection-start-column="49" selection-end-line="222" selection-end-column="49" />
+                <state relative-caret-position="457">
+                  <caret line="312" column="29" selection-start-line="312" selection-start-column="29" selection-end-line="312" selection-end-column="29" />
                 </state>
               </provider>
             </entry>
@@ -133,8 +133,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/app/Http/Controllers/AgentPageController.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="409">
-                  <caret line="61" lean-forward="true" selection-start-line="61" selection-end-line="61" />
+                <state relative-caret-position="358">
+                  <caret line="58" column="28" lean-forward="true" selection-start-line="58" selection-start-column="28" selection-end-line="58" selection-end-column="28" />
                   <folding>
                     <element signature="e#40#63#0#PHP" expanded="true" />
                   </folding>
@@ -257,8 +257,8 @@
         <option value="$PROJECT_DIR$/resources/views/test.blade.php" />
         <option value="$PROJECT_DIR$/resources/js/bootstrap.js" />
         <option value="$PROJECT_DIR$/routes/web.php" />
-        <option value="$PROJECT_DIR$/resources/views/Employee/Agent/tickets.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/AgentPageController.php" />
+        <option value="$PROJECT_DIR$/resources/views/Employee/Agent/tickets.blade.php" />
       </list>
     </option>
   </component>
@@ -641,21 +641,7 @@
       <workItem from="1575432770443" duration="351000" />
       <workItem from="1575462121424" duration="618000" />
       <workItem from="1575464531666" duration="87000" />
-      <workItem from="1575466480762" duration="3168000" />
-    </task>
-    <task id="LOCAL-00170" summary="audit trail">
-      <created>1570600506543</created>
-      <option name="number" value="00170" />
-      <option name="presentableId" value="LOCAL-00170" />
-      <option name="project" value="LOCAL" />
-      <updated>1570600506543</updated>
-    </task>
-    <task id="LOCAL-00171" summary="audit trail">
-      <created>1570602733682</created>
-      <option name="number" value="00171" />
-      <option name="presentableId" value="LOCAL-00171" />
-      <option name="project" value="LOCAL" />
-      <updated>1570602733682</updated>
+      <workItem from="1575466480762" duration="4216000" />
     </task>
     <task id="LOCAL-00172" summary="audit trail">
       <created>1570603741512</created>
@@ -986,11 +972,25 @@
       <option name="project" value="LOCAL" />
       <updated>1575471364050</updated>
     </task>
-    <option name="localTasksCounter" value="219" />
+    <task id="LOCAL-00219" summary="added orderBy sql to $tickets from ticket method AgentPageController">
+      <created>1575471927471</created>
+      <option name="number" value="00219" />
+      <option name="presentableId" value="LOCAL-00219" />
+      <option name="project" value="LOCAL" />
+      <updated>1575471927471</updated>
+    </task>
+    <task id="LOCAL-00220" summary="added orderBy sql to $tickets from ticket method AgentPageController">
+      <created>1575472047931</created>
+      <option name="number" value="00220" />
+      <option name="presentableId" value="LOCAL-00220" />
+      <option name="project" value="LOCAL" />
+      <updated>1575472047931</updated>
+    </task>
+    <option name="localTasksCounter" value="221" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="590251000" />
+    <option name="totallyTimeSpent" value="591299000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
@@ -1062,7 +1062,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="set the default landing page to login page" />
     <MESSAGE value="updated the employee page" />
     <MESSAGE value="updated the employee js" />
     <MESSAGE value="updated the employee controller" />
@@ -1087,7 +1086,8 @@
     <MESSAGE value="integrate region, state, city, and municipality" />
     <MESSAGE value="remove $ticket-&gt;id from tickets.blade&#10;button class call_finish" />
     <MESSAGE value="fix $ticket-&gt;id from tickets.blade&#10;button class call_finish" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix $ticket-&gt;id from tickets.blade&#10;button class call_finish" />
+    <MESSAGE value="added orderBy sql to $tickets from ticket method AgentPageController" />
+    <option name="LAST_COMMIT_MESSAGE" value="added orderBy sql to $tickets from ticket method AgentPageController" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/database/migrations/2019_10_18_125543_create_announcements_table.php">
@@ -1432,20 +1432,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/Employee/Agent/tickets.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3262">
-          <caret line="222" column="49" lean-forward="true" selection-start-line="222" selection-start-column="49" selection-end-line="222" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/AgentPageController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="409">
-          <caret line="61" lean-forward="true" selection-start-line="61" selection-end-line="61" />
+        <state relative-caret-position="358">
+          <caret line="58" column="28" lean-forward="true" selection-start-line="58" selection-start-column="28" selection-end-line="58" selection-end-column="28" />
           <folding>
             <element signature="e#40#63#0#PHP" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/Employee/Agent/tickets.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="457">
+          <caret line="312" column="29" selection-start-line="312" selection-start-column="29" selection-end-line="312" selection-end-column="29" />
         </state>
       </provider>
     </entry>

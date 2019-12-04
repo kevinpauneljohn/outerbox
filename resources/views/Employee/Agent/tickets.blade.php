@@ -308,7 +308,10 @@
 
     <script>
         $(function () {
-            $('#ticket-list').DataTable()
+
+            $('#ticket-list').DataTable({
+                "order": [[ 5, "desc" ]], //or asc
+            });
         })
     </script>
 @endsection
