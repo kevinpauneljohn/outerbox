@@ -303,7 +303,8 @@
     <script>
         $(function () {
             $('#agents-list').DataTable({
-                'lengthChange': false
+                'lengthChange': false,
+                'order': [[4,'desc']],
             })
         })
     </script>
