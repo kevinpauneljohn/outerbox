@@ -156,6 +156,7 @@
     <script>
         $(function () {
             $('#activities').DataTable({
+                "order":[[4, "desc"]],
             })
         })
     </script>

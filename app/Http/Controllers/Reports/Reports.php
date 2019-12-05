@@ -112,7 +112,7 @@ class Reports extends Controller
 
         $columns = [ // Set Column to be displayed
             'Username' => function($user){
-                return User::find($user->user_id)->username;
+                return ($user->user_id === 0) ? "System" : User::find($user->user_id)->username;
             },
             'Action' => function($user){
                 return strip_tags($user->action);
